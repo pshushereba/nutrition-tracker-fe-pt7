@@ -1,15 +1,13 @@
-import React from 'react'
-import Head from 'next/head'
-import { withApollo } from '../lib/apollo'
+import React from "react";
+import { withApollo } from "../lib/apollo";
+import Layout from "../components/Layout";
+import BlueButton from "../components/Button/BlueButton";
 
 const Home = () => (
-  <div>
-    <Head>
-      <title>Home</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-    <h1>Home Page</h1>
-  </div>
-)
+  <Layout>
+    <h1 className="block text-5xl font-bold text-blue-700">Home Page</h1>
+    <BlueButton text="Test Button" />
+  </Layout>
+);
 
-export default withApollo()(Home)
+export default withApollo()(Home);
