@@ -27,6 +27,8 @@ function User() {
   )
   // End of hook
 
+  // useSWR(`define the query`, cb(query => doSomething(withThe, query, heres your variables))
+
   //this is where you pass in your form data. just replace the hardcoded
   // strings with your state variables
   const variables = {
