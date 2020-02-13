@@ -1,5 +1,5 @@
 import Button from "./Button";
 
-export default ({ text, className }) => (
-  <Button className="btn-blue text-3xl" text={text} />
+export default props => (
+  <Button className="btn-blue text-3xl" text={props.text} />
 );
