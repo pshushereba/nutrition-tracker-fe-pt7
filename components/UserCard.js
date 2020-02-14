@@ -3,33 +3,42 @@ import gql from 'graphql-tag'
 
 export const GET_ALL_USERS = gql`
   query {
-    users {
+    allUsers {
       id
-      name
+      firstName
+      lastName
       email
     }
   }
 `
-export default UserCard = () => {
+const UserCard = () => {
   const { loading, error, data } = useQuery(GET_ALL_USERS)
-
-  const userCards = data.users.map(user => {
-    return (
-        <div>
-          <ul>
-            <li>{user.id}</li>
-            <li>{user.name}</li>
-          </ul>
-        </div>
-      )
-    }
-  )
-
+  
+  // const { users } = data
+  
   if (loading) <div>loading...</div>
   if (error) <div>{error}</div>
+  // if (data) {    
   
-  return (
-    {userCards}
-  )
-}
+    // const userCards = users.map(user => {
+    //   return (
+    //     <div key={user.id}>
+    //         <ul>
+    //           <li>{user.id}</li>
+    //           <li>{user.name}</li>
+    //         </ul>
+    //       </div>
+    //         )
+    //     }
+    // )
+    
+    return (
+      <div>
+        {/* {userCards} */}
+        something
+    </div>
+    )
+  }
+// }
 
+export default UserCard

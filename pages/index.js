@@ -3,6 +3,7 @@ import { withApollo } from "../lib/apollo";
 import Link from 'next/link'
 import Layout from "../components/Layout";
 import BlueButton from "../components/Button/BlueButton";
+import UserCard from "../components/UserCard";
 
 const Home = () => (
   <Layout>
@@ -12,7 +13,8 @@ const Home = () => (
       href="/userSample">
       sample return values for user from server
     </a>
+    <UserCard />
   </Layout>
 );
 
-export default withApollo()(Home);
+export default withApollo({ ssr: true })(Home);
