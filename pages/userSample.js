@@ -1,47 +1,35 @@
-import { request } from 'graphql-request'
-import useSWR from 'swr'
+import gql from "graphql-tag";
+import { useQuery } from "@apollo/react-hooks";
+import withApollo from "../lib/apollo";
+import { getDataFromTree } from "@apollo/react-ssr";
 
-const API = 'https://labspt7-nutrition-tracker-be.herokuapp.com'
-
-// Make these imports and set this var at the top of your page
+export const GET_ALL_USERS = gql`
+  query {
+    users {
+      id
+      name
+      email
+    }
+  }
+`;
 
 function User() {
-  
-  //Add this hook inside your React component
-  const { data, error } = useSWR(
-    `mutation loginUser($email: String!, $password: String!) {
-      login (
-        data: {
-          email: $email,
-          password: $password
-        }
-      ) {
-        token
-        user {
-          id
-          name
-        }
-      }
-    }`,
-    query => request(API, query, variables)
-  )
-  // End of hook
+  const { loading, error, data } = useQuery(GET_ALL_USERS);
 
-  //this is where you pass in your form data. just replace the hardcoded
-  // strings with your state variables
-  const variables = {
-    email: "testing@testing.com",
-    password: "test1234"
+  if (error) {
+    console.log("error block", data.users);
+    return <ErrorMessage message="Error loading posts." />;
   }
+  if (loading) {
+    console.log("loading block", data.users);
+    return <div>loading ...</div>;
+  }
+  // if (loading || !data) return <div>Loading</div>;
+  console.log(data.users);
+  const names = data.users.map(user => <li>{user.name}</li>);
 
-  //We'll be using ApolloClient, but this requires zero config
-  // and was quicker to get working
-  //eventually we will have these calls and all their logic in the routes
-  //in the pages/api folder
-
-  if (error) return <div>failed to load</div>
-  if (!data) return <div>loading...</div>
-  return <div>User: {JSON.stringify(data.login)}!</div>
+  return <ul>{names}</ul>;
 }
 
-export default User
+// export default withApollo(User);
+export default withApollo(User, { getDataFromTree });
