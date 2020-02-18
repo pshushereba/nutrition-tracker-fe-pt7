@@ -4,12 +4,12 @@ import { Line } from 'react-chartjs-2';
 const Graph = () => {
     
     const graphData = {
-        data: {
-           datasets:
-                {
-                    data: [172, 170.2, 169.6, 169.4]
-                }
-        }
+        datasets:
+            [{
+                labels: ['label1', 'label2', 'label3', 'label4', 'label5', 'label6', 'label7', 'label8'],
+                data: [172, 170.2, 169.6, 169.4, 168.8, 168.4, 167.0, 166.8],
+                label: 'Weight'
+            }]
     }
 
     const graphOptions = {
@@ -33,7 +33,7 @@ const Graph = () => {
 
             xAxes: [{
                 type: 'category',
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+                labels: ['2/5', '2/6', '2/7', '2/8', '2/9', '2/10', '2/11', '2/12', '2/13', '2/14', '2/15', '2/16']
             }]
         }
     }
