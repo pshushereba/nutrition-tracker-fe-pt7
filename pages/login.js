@@ -1,67 +1,84 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import Router from 'next/router'
+import Cookie from 'js-cookie'
+import gql from 'graphql-tag';
+import { useMutation } from '@apollo/react-hooks';
+
 import Layout from '../components/Layout.js';
-// import fetch from 'isomorphic-unfetch';
+import withApollo from '../lib/apollo'
 
-import { request } from 'graphql-request';
-import useSWR from 'swr';
 
-const API = 'https://labspt7-nutrition-tracker-be.herokuapp.com'
+const Login = () => {
+  const [thisUser, setThisUser] = useState("")
 
-const Login = (props) => {
-    const [user, setUser] = useState("")
-    console.log(user);
+  const handleChange = (e) => {
+    setThisUser({ ...thisUser, [e.target.name]: e.target.value })
+  }
 
-    const variables = {
-        email: user.email,
-        password: user.password
+  const variables = {
+    email: thisUser.email,
+    password: thisUser.password
+  }
+
+  const LOG_IN = gql`  
+    mutation LogIn($email: String!, $password: String!) {
+      login (
+        data: {
+          email: $email,
+          password: $password
+        }
+      ) {
+        token
+        user {
+          id
+          name
+
+        }
+      }
     }
+  `
+  const [login, { data }] = useMutation(LOG_IN)
 
-    const handleChange = (e) => {
-        setUser({...user, [e.target.name]: e.target.value})
-    }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-           const query = `mutation loginUser($email: String!, $password: String!) {
-                login(
-                    data: {
-                        email: $email,
-                        password: $password
-                    }
-                ) {
-                    token
-                    user {
-                        id
-                        name
-                    }
-                }
-            }`
-           request(API, query, variables)
-            .then((res) => {
-               console.log(res);
-           })
-           .catch((err) => console.log(err))
-    }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const {
+      data: {
+        login: {
+          token,
+          user: {
+            id,
+            name
+          }
+        }
+      }
+    } = await login({ variables: variables })
 
-    return (
-        <Layout>
-        <div className="form-container">
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="email"
-                    placeholder="Email"
-                    onChange={handleChange}></input>
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    onChange={handleChange}></input>
-                <button>Login</button>
-            </form>
-        </div>
-        </Layout>
-    )
+    Cookie.set('data', { token, id, name })
+    // localStorage.setItem('token', token)
+    const user = name
+    Router.push(`/${user}/profile`)
+  }
+
+  return (
+    <Layout>
+      <div className="form-container">
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="email"
+            placeholder="Email"
+            onChange={handleChange}></input>
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={handleChange}></input>
+          <button>Login</button>
+        </form>
+      </div>
+    </Layout>
+  )
 }
 
 <style jsx>{`
@@ -72,4 +89,4 @@ const Login = (props) => {
     }
 `}</style>
 
-export default Login;
+export default withApollo(Login)
