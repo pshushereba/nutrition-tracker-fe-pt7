@@ -47,15 +47,14 @@ const Login = () => {
         login: {
           token,
           user: {
-            id,
             name
           }
         }
       }
     } = await login({ variables: variables })
 
-    Cookie.set('data', { token, id, name })
-    // localStorage.setItem('token', token)
+    Cookie.set('token', `Bearer ${token}`)
+    console.log(token)
     const user = name
     Router.push(`/${user}/profile`)
   }

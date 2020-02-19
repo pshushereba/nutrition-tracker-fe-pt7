@@ -1,30 +1,20 @@
-import { ApolloClient } from 'apollo-client'
-import { GET_USER } from '../lib/GET_USER'
+import { GET_USER } from '../gql/queries'
 import { useQuery } from '@apollo/react-hooks'
+import UserCard from './ProfileCard'
 
 
 
-const ProfileCard = (props) => {
+const ProfileCard = () => {
 
+  const { loading , error, data: { user } } = useQuery(GET_USER)
+  // console.log('ProfileCard', id, name, email)
 
-
-
-  const { loading, error, data } = useQuery(GET_USER)
-
-  if (loading) return <div>loading</div>
-  console.log('data', data)
+  if (loading) return <div>Loading ...</div>
+  if (error) return <div>Error: {error}</div>
+console.log(user)
   return (
-    <ul className="border-red-500">
-      <li className="break-words w-64 border-black bg">
-        Data:
-      </li>
-      <li className="text-orange-500">
-        {/* Id: {props.user.id} */}
-      </li>
-      <li>
-        {/* Name: {props.user.name} */}
-      </li>
-    </ul>
+    <UserCard id={user.id} name={user.name} email={user.email} />
+    // <div>!</div>
   )
 }
 

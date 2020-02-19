@@ -1,44 +1,23 @@
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+const UserCard = ({ id, name, email }) => {
 
-// export const GET_ALL_USERS = gql`
-//   query {
-//     allUsers {
-//       id
-//       firstName
-//       lastName
-//       email
-//     }
-//   }
-// `
-const UserCard = () => {
-  // const { loading, error, data } = useQuery(GET_ALL_USERS)
-  
-  // const { users } = data
-  
-  // if (loading) <div>loading...</div>
-  // if (error) <div>{error}</div>
-  // if (data) {    
-  
-    // const userCards = users.map(user => {
-    //   return (
-    //     <div key={user.id}>
-    //         <ul>
-    //           <li>{user.id}</li>
-    //           <li>{user.name}</li>
-    //         </ul>
-    //       </div>
-    //         )
-    //     }
-    // )
-    
-    return (
-      <div>
-        {/* {userCards} */}
-        something
-    </div>
-    )
-  }
-// }
+  if (loading) return <div>Loading ...</div>
+  if (error) return <div>Error: {error}</div>
+
+  return (
+    <>
+      <ul className="mb-10">
+        <li className="leading-9">
+          Id: {id}
+        </li>
+        <li className="leading-9 text-purple-900">
+          Name: {name}
+        </li>
+        <li className="leading-9">
+          Email: {email}
+        </li>
+      </ul>      
+    </>
+  )
+}
 
 export default UserCard
