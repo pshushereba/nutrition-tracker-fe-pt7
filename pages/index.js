@@ -13,6 +13,7 @@ const Home = () => (
     >
       sample return values for user from server
     </a>
+    <a href="/login">log in</a>
   </Layout>
 );
 

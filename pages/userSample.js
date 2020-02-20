@@ -17,16 +17,15 @@ function User() {
   const { loading, error, data } = useQuery(GET_ALL_USERS);
 
   if (error) {
-    console.log("error block", data.users);
+    console.log("error block", error);
     return <ErrorMessage message="Error loading posts." />;
   }
   if (loading) {
     console.log("loading block", data.users);
     return <div>loading ...</div>;
   }
-  // if (loading || !data) return <div>Loading</div>;
-  console.log(data.users);
-  const names = data.users.map(user => <li>{user.name}</li>);
+
+  const names = data.users.map(({ id, name }) => <li key={id}>{name}</li>);
 
   return <ul>{names}</ul>;
 }
