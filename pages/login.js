@@ -1,47 +1,63 @@
-import React, { useState } from "react";
-import Layout from "../components/Layout.js";
-import { request } from "graphql-request";
-import Cookies from "js-cookie";
-import { useRouter } from "next/router";
+import React, { useState } from 'react';
+import Router from 'next/router'
+import Cookie from 'js-cookie'
+import gql from 'graphql-tag';
+import { useMutation } from '@apollo/react-hooks';
 
-const API = "https://labspt7-nutrition-tracker-be.herokuapp.com";
+import Layout from '../components/Layout.js';
+import withApollo from '../lib/apollo'
 
-const Login = props => {
-  const Router = useRouter();
-  const [user, setUser] = useState("");
+
+const Login = () => {
+  const [thisUser, setThisUser] = useState("")
+
+  const handleChange = (e) => {
+    setThisUser({ ...thisUser, [e.target.name]: e.target.value })
+  }
 
   const variables = {
-    email: user.email,
-    password: user.password
-  };
+    email: thisUser.email,
+    password: thisUser.password
+  }
 
-  const handleChange = e => {
-    setUser({ ...user, [e.target.name]: e.target.value });
-  };
+  const LOG_IN = gql`  
+    mutation LogIn($email: String!, $password: String!) {
+      login (
+        data: {
+          email: $email,
+          password: $password
+        }
+      ) {
+        token
+        user {
+          id
+          name
 
-  const handleSubmit = e => {
+        }
+      }
+    }
+  `
+  const [login, { data }] = useMutation(LOG_IN)
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const query = `mutation loginUser($email: String!, $password: String!) {
-                login(
-                    data: {
-                        email: $email,
-                        password: $password
-                    }
-                ) {
-                    token
-                    user {
-                        id
-                        name
-                    }
-                }
-            }`;
-    request(API, query, variables)
-      .then(({ login: { token } }) => {
-        Cookies.set("token", token, { expires: 1 });
-        Router.push("/userSample");
-      })
-      .catch(err => console.log(err));
-  };
+    const {
+      data: {
+        login: {
+          token,
+          user: {
+            name
+          }
+        }
+      }
+    } = await login({ variables: variables })
+
+    Cookie.set('token', `Bearer ${token}`)
+    console.log(token)
+    const user = name
+    Router.push(`/${user}/profile`)
+  }
 
   return (
     <Layout>
@@ -63,8 +79,8 @@ const Login = props => {
         </form>
       </div>
     </Layout>
-  );
-};
+  )
+}
 
 <style jsx>{`
   .form-container {
@@ -74,4 +90,4 @@ const Login = props => {
   }
 `}</style>;
 
-export default Login;
+export default withApollo(Login)
