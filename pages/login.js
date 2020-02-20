@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Form, Input, Button} from 'antd';
 import Layout from '../components/Layout.js';
 // import fetch from 'isomorphic-unfetch';
 
@@ -46,30 +47,31 @@ const Login = (props) => {
     return (
         <Layout>
         <div className="form-container">
-            <form onSubmit={handleSubmit}>
-                <input
+            <Form onSubmit={handleSubmit}>
+                <Input
                     type="text"
                     name="email"
                     placeholder="Email"
-                    onChange={handleChange}></input>
-                <input
+                    onChange={handleChange}></Input>
+                <Input
                     type="password"
                     name="password"
                     placeholder="Password"
-                    onChange={handleChange}></input>
-                <button>Login</button>
-            </form>
+                    onChange={handleChange}></Input>
+                <Button>Login</Button>
+            </Form>
         </div>
         </Layout>
     )
 }
 
-<style jsx>{`
+{/* <style jsx>{`
     .form-container {
         display: flex;
         justify-content: center;
         align-items: center;
+        max-width: 300px;
     }
-`}</style>
+`}</style> */}
 
 export default Login;
