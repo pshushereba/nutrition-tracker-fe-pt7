@@ -4,18 +4,27 @@ import UserCard from './ProfileCard'
 
 
 
-const ProfileCard = () => {
-
-  const { loading , error, data: { user } } = useQuery(GET_USER)
-  // console.log('ProfileCard', id, name, email)
-
-  if (loading) return <div>Loading ...</div>
+const ProfileCard = ({ loading, error, data }) => {
+  
   if (error) return <div>Error: {error}</div>
-console.log(user)
+  if (loading) return <div>Loading ..</div>
+  
+  const { id , name, email } = data.user
+
+  const profileCard = 
+    <UserCard 
+      loading={loading} 
+      id={id || ''} 
+      name={name || ''} 
+      email={email || ''}
+    />
+
   return (
-    <UserCard id={user.id} name={user.name} email={user.email} />
-    // <div>!</div>
+    <>
+      {data ? profileCard : "nothing"}
+    </>
   )
+  
 }
 
 export default ProfileCard

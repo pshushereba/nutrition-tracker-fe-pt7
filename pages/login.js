@@ -53,16 +53,16 @@ const Login = () => {
       }
     } = await login({ variables: variables })
 
-    Cookie.set('token', `Bearer ${token}`)
+    Cookie.set('user', { token, id })
     console.log(token)
     const user = name
     Router.push(`/${user}/profile`)
   }
 
   return (
-    <Layout>
-      <div className="form-container">
-        <form onSubmit={handleSubmit}>
+    // <Layout>
+      <div>
+        <form className="flex-col" onSubmit={handleSubmit}>
           <input
             type="text"
             name="email"
@@ -76,16 +76,17 @@ const Login = () => {
           <button>Login</button>
         </form>
       </div>
-    </Layout>
+    // </Layout>
   )
 }
 
-<style jsx>{`
+{/* <style jsx>{`
     .form-container {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
     }
-`}</style>
+`}</style> */}
 
 export default withApollo(Login)
