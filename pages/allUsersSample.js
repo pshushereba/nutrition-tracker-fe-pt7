@@ -9,14 +9,16 @@ function AllUsers(props) {
   const {
     loading,
     error,
-    data: { users }
+    data
   } = useQuery(GET_ALL_USERS);
 
   if (loading) return <div>Loading ...</div>;
   if (error) return <div>Error: {error}</div>;
 
+  const users = data.users
+
   const allUsers = users.map(({ id, name, email }) => {
-    return <UserCard id={id} name={name} email={email} />;
+    return <UserCard key={id} id={id} name={name} email={email} />;
   });
 
   return <Layout>{users && allUsers}</Layout>;
