@@ -32,23 +32,14 @@ const Login = () => {
       }
     } = await login({ variables: variables });
 
-<<<<<<< HEAD
-    Cookie.set('user', { token, id })
-    console.log(token)
-    const user = name
-    Router.push(`/${user}/profile`)
-  }
-=======
     Cookie.set("token", token);
     Cookie.set("id", id);
-    console.log(token);
-    const user = name;
+    // const user = name;
     Router.push(`/allUsersSample`);
   };
->>>>>>> d17e1da1fc612d443d4f2990c562e1ef4cf14fd9
 
   return (
-    // <Layout>
+    <Layout>
       <div>
         <form className="flex-col" onSubmit={handleSubmit}>
           <input
@@ -66,20 +57,6 @@ const Login = () => {
           <button>Login</button>
         </form>
       </div>
-<<<<<<< HEAD
-    // </Layout>
-  )
-}
-
-{/* <style jsx>{`
-    .form-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-`}</style> */}
-=======
     </Layout>
   );
 };
@@ -91,6 +68,5 @@ const Login = () => {
     align-items: center;
   }
 `}</style>;
->>>>>>> d17e1da1fc612d443d4f2990c562e1ef4cf14fd9
 
 export default withApollo(Login);
