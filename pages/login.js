@@ -1,77 +1,72 @@
-import React, {useState} from 'react';
-import {Form, Input, Button} from 'antd';
-import Layout from '../components/Layout.js';
-// import fetch from 'isomorphic-unfetch';
+import React, { useState } from "react";
+import Router from "next/router";
+import Cookie from "js-cookie";
+import { useMutation } from "@apollo/react-hooks";
 
-import { request } from 'graphql-request';
-import useSWR from 'swr';
+import Layout from "../components/Layout.js";
+import withApollo from "../lib/apollo";
+import { LOG_IN } from "../gql/mutations";
 
-const API = 'https://labspt7-nutrition-tracker-be.herokuapp.com'
+const Login = () => {
+  const [thisUser, setThisUser] = useState("");
 
-const Login = (props) => {
-    const [user, setUser] = useState("")
-    console.log(user);
+  const handleChange = e => {
+    setThisUser({ ...thisUser, [e.target.name]: e.target.value });
+  };
 
-    const variables = {
-        email: user.email,
-        password: user.password
-    }
+  const variables = {
+    email: thisUser.email,
+    password: thisUser.password
+  };
 
-    const handleChange = (e) => {
-        setUser({...user, [e.target.name]: e.target.value})
-    }
+  const [login, {}] = useMutation(LOG_IN);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-           const query = `mutation loginUser($email: String!, $password: String!) {
-                login(
-                    data: {
-                        email: $email,
-                        password: $password
-                    }
-                ) {
-                    token
-                    user {
-                        id
-                        name
-                    }
-                }
-            }`
-           request(API, query, variables)
-            .then((res) => {
-               console.log(res);
-           })
-           .catch((err) => console.log(err))
-    }
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const {
+      data: {
+        login: {
+          token,
+          user: { id, name }
+        }
+      }
+    } = await login({ variables: variables });
 
-    return (
-        <Layout>
-        <div className="form-container">
-            <Form onSubmit={handleSubmit}>
-                <Input
-                    type="text"
-                    name="email"
-                    placeholder="Email"
-                    onChange={handleChange}></Input>
-                <Input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    onChange={handleChange}></Input>
-                <Button>Login</Button>
-            </Form>
-        </div>
-        </Layout>
-    )
-}
+    Cookie.set("token", token);
+    Cookie.set("id", id);
+    // const user = name;
+    Router.push(`/allUsersSample`);
+  };
 
-{/* <style jsx>{`
-    .form-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        max-width: 300px;
-    }
-`}</style> */}
+  return (
+    <Layout>
+      <div>
+        <form className="flex-col" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="email"
+            placeholder="Email"
+            onChange={handleChange}
+          ></input>
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={handleChange}
+          ></input>
+          <button>Login</button>
+        </form>
+      </div>
+    </Layout>
+  );
+};
 
-export default Login;
+<style jsx>{`
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`}</style>;
+
+export default withApollo(Login);
