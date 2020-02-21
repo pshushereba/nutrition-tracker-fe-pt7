@@ -1,4 +1,4 @@
-import NTHeader from './Header.js';
+import NTHeader from './NTHeader.js';
 
 export default ({ children }) => {
   return (

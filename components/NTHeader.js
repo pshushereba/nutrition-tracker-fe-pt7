@@ -7,7 +7,9 @@ const NTHeader = () => {
             <Header>
                 <h1>Nutrition Tracker</h1>
                 <Menu mode="horizontal">
-                    <Menu.Item key="1" >Login</Menu.Item>    
+                    <Menu.Item key="1" >Login</Menu.Item>
+                    <Menu.Item key="2" >Home</Menu.Item>
+                    <Menu.Item key="3" >About</Menu.Item>    
                 </Menu>
             </Header>
         </div>
