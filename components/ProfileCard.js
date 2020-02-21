@@ -1,30 +1,25 @@
-import { GET_USER } from '../gql/queries'
-import { useQuery } from '@apollo/react-hooks'
-import UserCard from './ProfileCard'
+import { GET_USER } from "../gql/queries";
+import { useQuery } from "@apollo/react-hooks";
+import Cookie from "js-cookie";
 
+import UserCard from "./ProfileCard";
 
+const ProfileCard = () => {
+  const userId = Cookie.get("id");
 
-const ProfileCard = ({ loading, error, data }) => {
-  
-  if (error) return <div>Error: {error}</div>
-  if (loading) return <div>Loading ..</div>
-  
-  const { id , name, email } = data.user
+  const { loading, error, data } = useQuery(GET_USER, {
+    variables: { id: userId }
+  });
 
-  const profileCard = 
-    <UserCard 
-      loading={loading} 
-      id={id || ''} 
-      name={name || ''} 
-      email={email || ''}
-    />
+  if (loading) return <div>Loading ...</div>;
+  if (error) return <div>Error: </div>;
+
+  const { id, name, email } = data.user;
 
   return (
-    <>
-      {data ? profileCard : "nothing"}
-    </>
-  )
-  
-}
+    <UserCard id={user.id} name={user.name} email={user.email} />
+    // <div>someone please help</div>
+  );
+};
 
-export default ProfileCard
+export default ProfileCard;
