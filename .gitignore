@@ -7,7 +7,7 @@
 /coverage
 
 # next.js
-/.next/
+.next
 /out/
 
 # production
@@ -17,6 +17,7 @@
 .DS_Store
 .env*
 yarn.lock
+package.json.lock
 
 # debug
 npm-debug.log*
