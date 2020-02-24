@@ -1,18 +1,19 @@
 import {Menu, Layout} from 'antd';
 const {Header} = Layout;
+import Link from 'next/link';
 
 const NTHeader = () => {
     return(
-        <div>
-            <Header>
-                <h1>Nutrition Tracker</h1>
-                <Menu mode="horizontal">
-                    <Menu.Item key="1" >Login</Menu.Item>
-                    <Menu.Item key="2" >Home</Menu.Item>
-                    <Menu.Item key="3" >About</Menu.Item>    
+        <Layout className="layout">
+            <Header className="flex">
+                <h1 className="flex-grow text-white">Nutrition Tracker</h1>
+                <Menu theme="dark" mode="horizontal" className="flex items-center">
+                    <Menu.Item key="1" ><Link href="/"><a>Home</a></Link></Menu.Item>
+                    <Menu.Item key="2" >About</Menu.Item>
+                    <Menu.Item key="3" ><Link href="/login"><a>Login</a></Link></Menu.Item>    
                 </Menu>
             </Header>
-        </div>
+        </Layout>
     )
 }
 

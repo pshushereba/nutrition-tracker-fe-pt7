@@ -4,6 +4,7 @@ import Cookie from "js-cookie";
 import { useMutation } from "@apollo/react-hooks";
 
 import Layout from "../components/Layout.js";
+import {Form, Input, Button} from 'antd';
 import withApollo from "../lib/apollo";
 import { LOG_IN } from "../gql/mutations";
 
@@ -40,33 +41,28 @@ const Login = () => {
 
   return (
     <Layout>
-      <div>
-        <form className="flex-col" onSubmit={handleSubmit}>
-          <input
+      <div className="w-64 h-64 p-3 shadow-md flex-col">
+        <h1 className="p-1 text-center">Login to your Account</h1>
+        <Form className="flex-col" onSubmit={handleSubmit}>
+          <Input
             type="text"
             name="email"
             placeholder="Email"
             onChange={handleChange}
-          ></input>
-          <input
+          ></Input>
+          <Input
             type="password"
             name="password"
             placeholder="Password"
             onChange={handleChange}
-          ></input>
-          <button>Login</button>
-        </form>
+          ></Input>
+          <Button type="primary">Login</Button>
+          <h3 className="py-2">Don't have an account?</h3>
+          <Button>Sign Up</Button>
+        </Form>
       </div>
     </Layout>
   );
 };
-
-<style jsx>{`
-  .form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-`}</style>;
 
 export default withApollo(Login);
