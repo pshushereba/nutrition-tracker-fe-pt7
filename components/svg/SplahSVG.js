@@ -48,6 +48,6 @@ const svgSource = `<svg width="294" height="247" viewBox="0 0 294 247" fill="non
 </svg>
 `
 
-const SplashSVG = () => <InlineSVG src={svgSource} />
+const SplashSVG = () => <InLineSVG src={svgSource} />
 
 export default SplashSVG
