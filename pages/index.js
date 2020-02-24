@@ -27,6 +27,7 @@ const Home = () => {
         >
           <a
             className="text-indigo-500"
+            href="/signup"
           >
             Sign Up
           </a>
