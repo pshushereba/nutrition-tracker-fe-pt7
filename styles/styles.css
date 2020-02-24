@@ -2,12 +2,12 @@
 
 @tailwind base;
 
-body {
-  font-family: Nunito;
-}
-
 h1 {
   font-family: Montserrat;
+}
+
+body {
+  font-family: Nunito;
 }
 
 a {
