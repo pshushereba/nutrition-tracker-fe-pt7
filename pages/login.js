@@ -41,7 +41,8 @@ const Login = () => {
 
   return (
     <Layout>
-      <div className="container flex">
+      <div className="w-64 h-64 p-3 shadow-md flex-col">
+        <h1 className="p-1 text-center">Login to your Account</h1>
         <Form className="flex-col" onSubmit={handleSubmit}>
           <Input
             type="text"
@@ -55,19 +56,13 @@ const Login = () => {
             placeholder="Password"
             onChange={handleChange}
           ></Input>
-          <Button>Login</Button>
+          <Button type="primary">Login</Button>
+          <h3 className="py-2">Don't have an account?</h3>
+          <Button>Sign Up</Button>
         </Form>
       </div>
     </Layout>
   );
 };
-
-{/* <style jsx>{`
-  .form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-`}</style>; */}
 
 export default withApollo(Login);
