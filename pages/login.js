@@ -28,7 +28,7 @@ const Login = () => {
       data: {
         login: {
           token,
-          user: { id, name }
+          user: { id }
         }
       }
     } = await login({ variables: variables });
@@ -43,7 +43,7 @@ const Login = () => {
     <Layout>
       <div className="w-64 h-64 p-3 shadow-md flex-col">
         <h1 className="p-1 text-center">Login to your Account</h1>
-        <Form className="flex-col" onSubmit={handleSubmit}>
+        <Form className="flex-col">
           <Input
             type="text"
             name="email"
@@ -56,7 +56,7 @@ const Login = () => {
             placeholder="Password"
             onChange={handleChange}
           ></Input>
-          <Button type="primary">Login</Button>
+          <Button type="primary" onClick={handleSubmit}>Login</Button>
           <h3 className="py-2">Don't have an account?</h3>
           <Button>Sign Up</Button>
         </Form>

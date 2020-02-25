@@ -1,13 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:900|Nunito&display=swap');
+
 @tailwind base;
 
+h1 {
+  font-family: Montserrat;
+}
+
+body {
+  font-family: Nunito;
+}
+
+a {
+  color: white
+}
+
 @tailwind components;
-
-.btn-blue {
-  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
-}
-
-.btn-blue:hover {
-  @apply bg-blue-700;
-}
 
 @tailwind utilities;
