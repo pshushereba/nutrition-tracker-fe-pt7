@@ -5,10 +5,6 @@ const Introduction = () => {
     return(
         <>
             <Layout />
-            <div>
-                <LogInSVG />
-            </div>
-            
             <Calculator />
         </>
     )

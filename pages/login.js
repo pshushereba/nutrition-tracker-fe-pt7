@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Router from "next/router";
+import Link from 'next/link';
 import Cookie from "js-cookie";
 import { useMutation } from "@apollo/react-hooks";
 
@@ -64,7 +65,7 @@ const Login = () => {
           </div>
           <Button type="primary" onClick={handleSubmit}>Login</Button>
           <h3 className="py-2">Don't have an account?</h3>
-          <Button>Sign Up</Button>
+          <Button><Link href="/signup"><a>Sign Up</a></Link></Button>
         </Form>
       </div>
       <div className="mt-8">
