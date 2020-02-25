@@ -1,8 +1,4 @@
 import InLineSVG from 'svg-inline-react'
-<<<<<<< HEAD
-import InlineSVG from 'react-inlinesvg'
-=======
->>>>>>> b979c53fe6b4cf35f7a29a969cfcb43c4f96f6a8
 
 const svgSource = `<svg width="294" height="247" viewBox="0 0 294 247" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0)">
@@ -52,10 +48,6 @@ const svgSource = `<svg width="294" height="247" viewBox="0 0 294 247" fill="non
 </svg>
 `
 
-<<<<<<< HEAD
-const SplashSVG = () => <InlineSVG src={svgSource} />
-=======
 const SplashSVG = () => <InLineSVG src={svgSource} />
->>>>>>> b979c53fe6b4cf35f7a29a969cfcb43c4f96f6a8
 
 export default SplashSVG

@@ -2,7 +2,7 @@
 
 @tailwind base;
 
-h1 {
+.title {
   font-family: Montserrat;
 }
 
