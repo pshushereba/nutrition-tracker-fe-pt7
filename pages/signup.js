@@ -18,7 +18,7 @@ const SignUp = () => {
 
   function prevFormStep() {
     let step = formStep;
-    if (step === 1) {
+    if (step <= 1) {
       router.push("/");
     }
     setFormStep((step -= 1));
