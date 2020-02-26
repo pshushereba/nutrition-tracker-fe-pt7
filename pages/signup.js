@@ -15,29 +15,29 @@ const SignUp =() => {
         <div className="flex flex-col my-2">
           <label className="text-xs">Your Name</label>
           <input
-            className="w-full border border-gray-200 rounded pl-2 py-4"
+            className="w-full border rounded pl-2 py-3"
             placeholder="First and Last Name"
           />
         </div>
         <div className="flex flex-col my-2">
-          <label className="text-xs">E-mail</label>
+          <label className="text-xs px-2">E-mail</label>
           <input
-            className="w-full border rounded pl-2 py-4"
+            className="w-full border border-gray-200 rounded pl-2 py-3"
             placeholder="email@email.com"
           />
         </div>
         <div className="flex flex-col my-2">
-          <label className="text-xs">Phone Number</label>
+          <label className="text-xs">Password</label>
           <input
-            className="w-full border border-gray-200 rounded pl-2 py-4"
-            placeholder="+1 (999) 123-4567"
+            className="w-full border border-gray-200 rounded pl-2 py-3"
+            placeholder="password"
           />
         </div>
         <div className="flex flex-col my-2">
-          <label className="text-xs">Your Name</label>
+          <label className="text-xs">Verify Password</label>
           <input
-            className="w-full border border-gray-200 rounded pl-2 py-4"
-            placeholder="First and Last Name"
+            className="w-full border border-gray-200 rounded pl-2 py-3"
+            placeholder="password"
           />
         </div>
         

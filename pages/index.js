@@ -16,7 +16,7 @@ const Home = () => {
           className="min-w-full py-3 border-app-primary rounded-md bg-app-primary my-8 hover:bg-indigo-600"
         >
           <a 
-            className="text-myText-white"
+            className="text-white"
             href="/login"
           >
             Sign In
