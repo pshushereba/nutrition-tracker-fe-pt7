@@ -1,46 +1,57 @@
-import AltLayout from '../components/AltLayout'
-import ThunderboltSVG from '../components/svg/ThunderboltSVG';
-import FormInput from '../components/form/FormInput';
+import AltLayout from "../components/AltLayout";
+import ThunderboltSVG from "../components/svg/ThunderboltSVG";
+import { useState } from "react";
+import { Router } from "next/dist/client/router";
 
-const SignUp =() => {
+import ContactInfo from "../components/form/ContactInfo";
+import DietPreference from "../components/form/DietPreference";
+
+const SignUp = () => {
+  const [formStep, setFormStep] = useState(1);
+
+  function nextFormStep() {
+    let step = formStep;
+    setFormStep((step += 1));
+    console.log(formStep);
+  }
+
+  function prevFormStep() {
+    let step = formStep;
+    if (step === 1) {
+      Router.push("/");
+    }
+    setFormStep((step -= 1));
+    console.log(formStep);
+  }
+
   return (
     <AltLayout>
-      <div className="flex flex-col items-center mt-12">
-        <div className="flex" >
+      <div className="mt-12">
+        <div className="flex">
           <ThunderboltSVG />
           <h1 className="text-2xl font-medium">Let's Get Started</h1>
         </div>
-        <h2 className="text-xl font-extrabold my-4">Sign Up</h2>
       </div>
-      <form className="flex flex-col w-full">
-        <FormInput
-          content="Your Name"
-          placeHolder="First and Last Name"
-          type="text"
-        />
-        <FormInput
-          content="E-mail"
-          placeHolder="email@email.com"
-          type="email"
-        />
-        <FormInput
-          content="Password"
-          placeHolder="password"
-          type="password"
-        />
-        <FormInput
-          content="Verify Password"
-          placeHolder="password"
-          type="password"
-        />
-      </form>
-      <h3 className="font-bold my-6">You're one step closer to achieving your goals</h3>
+      {formStep === 1 ? (
+        <ContactInfo />
+      ) : formStep === 2 ? (
+        <DietPreference />
+      ) : (
+        "Not Done Yet"
+      )}
       <div className="flex w-full justify-around my-10">
-        <button className="text-xs">Cancel</button>
-        <button className="text-xs text-white px-6 py-1 bg-indigo-500 border-indigo-500 rounded">Continue</button>
+        <button className="text-xs px-6 py-1" onClick={prevFormStep}>
+          {formStep === 1 ? "Cancel" : "Go Back"}
+        </button>
+        <button
+          className="text-xs text-white px-6 py-1 bg-indigo-500 border-indigo-500 rounded"
+          onClick={nextFormStep}
+        >
+          {formStep === 1 ? "Let's Go!" : "Continue"}
+        </button>
       </div>
     </AltLayout>
-  )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;
