@@ -9,11 +9,11 @@ const SignUp =() => {
           <ThunderboltSVG />
           <h1 className="text-2xl font-medium">Let's Get Started</h1>
         </div>
-        <h2 className="text-xl font-extrabold">Sign Up</h2>
+        <h2 className="text-xl font-extrabold my-4">Sign Up</h2>
       </div>
       <form className="flex flex-col w-full">
         <div className="flex flex-col my-2">
-          <label className="text-xs">Your Name</label>
+          <label className="text-xs px-2">Your Name</label>
           <input
             className="w-full border rounded pl-2 py-3"
             placeholder="First and Last Name"
@@ -27,25 +27,24 @@ const SignUp =() => {
           />
         </div>
         <div className="flex flex-col my-2">
-          <label className="text-xs">Password</label>
+          <label className="text-xs px-2">Password</label>
           <input
             className="w-full border border-gray-200 rounded pl-2 py-3"
             placeholder="password"
           />
         </div>
         <div className="flex flex-col my-2">
-          <label className="text-xs">Verify Password</label>
+          <label className="text-xs px-2">Verify Password</label>
           <input
             className="w-full border border-gray-200 rounded pl-2 py-3"
             placeholder="password"
           />
-        </div>
-        
+        </div>        
       </form>
-      <h3 className="text-bold">You're one step closer to achieving your goals</h3>
-      <div className="flex content-around">
-        <button>Cancel</button>
-        <button>Continue</button>
+      <h3 className="text-bold my-4">You're one step closer to achieving your goals</h3>
+      <div className="flex w-full justify-around my-8">
+        <button className="text-xs">Cancel</button>
+        <button className="text-xs text-white px-6 py-1 bg-indigo-500 border-indigo-500 rounded">Continue</button>
       </div>
     </AltLayout>
   )
