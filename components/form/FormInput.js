@@ -1,4 +1,4 @@
-export default function FormInput({ content, placeHolder }) {
+export default function FormInput({ content, placeHolder, type }) {
   return (
     <div className="flex flex-col my-2">
       <div className="-mb-3 z-0 pl-2">
@@ -7,6 +7,7 @@ export default function FormInput({ content, placeHolder }) {
       <input
         className="w-full border border-gray-400 rounded pl-2 py-2"
         placeholder={placeHolder}
+        type={type}
       />
     </div>
   )
