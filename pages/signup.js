@@ -30,7 +30,7 @@ const SignUp = () => {
       <div className="mt-12">
         <div className="flex">
           <ThunderboltSVG />
-          <h1 className="text-2xl font-medium">Let's Get Started</h1>
+          <h1 className="text-2xl font-bold">Let's Get Started</h1>
         </div>
       </div>
       {formStep === 1 ? (
