@@ -1,12 +1,13 @@
 import AltLayout from "../components/AltLayout";
 import ThunderboltSVG from "../components/svg/ThunderboltSVG";
 import { useState } from "react";
-import { Router } from "next/dist/client/router";
+import { useRouter } from "next/router";
 
 import ContactInfo from "../components/form/ContactInfo";
 import DietPreference from "../components/form/DietPreference";
 
 const SignUp = () => {
+  const router = useRouter();
   const [formStep, setFormStep] = useState(1);
 
   function nextFormStep() {
@@ -18,7 +19,7 @@ const SignUp = () => {
   function prevFormStep() {
     let step = formStep;
     if (step === 1) {
-      Router.push("/");
+      router.push("/");
     }
     setFormStep((step -= 1));
     console.log(formStep);

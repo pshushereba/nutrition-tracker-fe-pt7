@@ -1,3 +1,3 @@
 export default function DietPreference() {
-  return <div>Diet Preference</div>;
+  return <h2 className="text-xl my-4">SELECT A DIET PREFERENCE</h2>;
 }
