@@ -30,8 +30,8 @@ const SignUp =() => {
           placeHolder="password"
         />
       </form>
-      <h3 className="text-bold my-4">You're one step closer to achieving your goals</h3>
-      <div className="flex w-full justify-around my-8">
+      <h3 className="font-bold my-6">You're one step closer to achieving your goals</h3>
+      <div className="flex w-full justify-around my-10">
         <button className="text-xs">Cancel</button>
         <button className="text-xs text-white px-6 py-1 bg-indigo-500 border-indigo-500 rounded">Continue</button>
       </div>
