@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 
 import ContactInfo from "../components/form/ContactInfo";
 import DietPreference from "../components/form/DietPreference";
+import Macros from '../components/form/Macros';
+import LogInSVG from '../components/svg/LogInSVG';
 
 const SignUp = () => {
   const router = useRouter();
@@ -30,17 +32,19 @@ const SignUp = () => {
       <div className="mt-12">
         <div className="flex">
           <ThunderboltSVG />
-          <h1 className="text-2xl font-bold">Let's Get Started</h1>
+          <h1 className="text-2xl font-bold">{formStep === 3 ? "Almost Finished" : "Let's Get Started"}</h1>
         </div>
       </div>
       {formStep === 1 ? (
         <ContactInfo />
       ) : formStep === 2 ? (
         <DietPreference />
+      ) : formStep === 3 ? (
+        <Macros />
       ) : (
         "Not Done Yet"
       )}
-      <div className="flex w-full justify-around my-10">
+      <div className="flex w-full justify-around mt-10">
         <button className="text-xs px-6 py-1" onClick={prevFormStep}>
           {formStep === 1 ? "Cancel" : "Go Back"}
         </button>
@@ -51,6 +55,7 @@ const SignUp = () => {
           {formStep === 1 ? "Let's Go!" : "Continue"}
         </button>
       </div>
+      {formStep === 3 && <LogInSVG />}
     </AltLayout>
   );
 };
