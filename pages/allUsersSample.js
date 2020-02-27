@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/react-hooks";
 
 import withApollo from "../lib/apollo";
 import { GET_ALL_USERS } from "../gql/queries";
-import Layout from "../components/Layout";
+import AltLayout from "../components/AltLayout";
 import UserCard from "../components/UserCard";
 
 function AllUsers(props) {
@@ -21,6 +21,6 @@ function AllUsers(props) {
     return <UserCard key={id} id={id} name={name} email={email} />;
   });
 
-  return <Layout>{users && allUsers}</Layout>;
+  return <AltLayout>{users && allUsers}</AltLayout>;
 }
 export default withApollo(AllUsers);

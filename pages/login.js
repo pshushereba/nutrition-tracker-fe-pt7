@@ -27,7 +27,7 @@ const Login = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    console.log("In handlesubmit")
+    console.log(variables)
     const {
       data: {
         login: {
@@ -58,6 +58,7 @@ const Login = () => {
               </div>
               <input
                 className="w-full border border-gray-400 rounded pl-2 py-2"
+                name="email"
                 placeholder="Email"
                 type="text"
                 onChange={handleChange}
@@ -73,20 +74,21 @@ const Login = () => {
               </div>
               <input
                 className="w-full border border-gray-400 rounded pl-2 py-2"
+                name="password"
                 placeholder="Password"
                 type="password"
                 onChange={handleChange}
               />
             </div>
           </div>
-          <button onClick={handleSubmit}>Login</button>
-          <h3 className="py-2">Don't have an account?</h3>
-          <button><Link href="/signup"><a>Sign Up</a></Link></button>
         </form>
+        <button onClick={handleSubmit}>Login</button>
+        <h3 className="py-2">Don't have an account?</h3>
+        <button className="text-black"><a className="text-black" href="/signup">Sign Up</a></button>
       </div>
-      <div className="mt-8">
+      {/* <div className="mt-8">
         <LogInSVG />
-      </div>
+      </div> */}
     </AltLayout>
   );
 };
