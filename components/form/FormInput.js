@@ -1,4 +1,13 @@
-export default function FormInput({ content, placeHolder, type, required }) {
+import {useState} from 'react';
+
+export default function FormInput({ content, placeHolder, type, required, value, name }) {
+  const [thisInput, setThisInput] = useState("");
+
+  const handleChange = e => {
+    setThisInput({ ...thisInput, [e.target.name]: e.target.value });
+    console.log(e.target.value);
+  };
+  
   return (
     <div className="flex flex-col my-2">
       <div className="-mb-3 z-0 pl-2">
@@ -18,7 +27,10 @@ export default function FormInput({ content, placeHolder, type, required }) {
       <input
         className="w-full border border-gray-400 rounded pl-2 py-3"
         placeholder={placeHolder}
+        name={name}
         type={type}
+        // value={thisInput[name].value}
+        onChange={handleChange}
       />
     </div>
   );
