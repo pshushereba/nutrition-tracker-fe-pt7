@@ -23,10 +23,10 @@ const Home = () => {
           </a>
         </button>
         <button
-          className="min-w-full py-3 border-solid border-2 border-indigo-500 rounded-md hover:bg-indigo-600"
+          className="min-w-full py-3 border-solid border-2 border-indigo-500 rounded-md hover:bg-indigo-500 text-white"
         >
           <a
-            className="text-indigo-500"
+            className="text-indigo-500 hover:text-white"
             href="/signup"
           >
             Sign Up
