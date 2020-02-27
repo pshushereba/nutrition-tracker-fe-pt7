@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Router from "next/router";
+import Link from 'next/link';
 import Cookie from "js-cookie";
 import { useMutation } from "@apollo/react-hooks";
 
 import Layout from "../components/Layout.js";
+import LogInSVG from '../components/svg/LogInSVG';
 import {Form, Input, Button} from 'antd';
 import withApollo from "../lib/apollo";
 import { LOG_IN } from "../gql/mutations";
@@ -41,25 +43,33 @@ const Login = () => {
 
   return (
     <Layout>
-      <div className="w-64 h-64 p-3 shadow-md flex-col">
-        <h1 className="p-1 text-center">Login to your Account</h1>
+      <div className="mt-8 w-64 h-64 p-3 flex-col">
+        <h1 className="p-4 text-center">Sign In</h1>
+        <p className="pb-8 text-center">Let's Start Crushing Those Goals!</p>
         <Form className="flex-col">
-          <Input
-            type="text"
-            name="email"
-            placeholder="Email"
-            onChange={handleChange}
-          ></Input>
-          <Input
-            type="password"
-            name="password"
-            placeholder="Password"
-            onChange={handleChange}
-          ></Input>
+          <div className="py-2">
+            <Input
+              type="text"
+              name="email"
+              placeholder="Email"
+              onChange={handleChange}
+            ></Input>
+          </div>
+          <div className="pb-2">
+            <Input
+              type="password"
+              name="password"
+              placeholder="Password"
+              onChange={handleChange}
+            ></Input>
+          </div>
           <Button type="primary" onClick={handleSubmit}>Login</Button>
           <h3 className="py-2">Don't have an account?</h3>
-          <Button>Sign Up</Button>
+          <Button><Link href="/signup"><a>Sign Up</a></Link></Button>
         </Form>
+      </div>
+      <div className="mt-8">
+        <LogInSVG />
       </div>
     </Layout>
   );
