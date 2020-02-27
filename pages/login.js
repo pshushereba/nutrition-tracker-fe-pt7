@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import Router from "next/router";
-import Link from 'next/link';
 import Cookie from "js-cookie";
 import { useMutation } from "@apollo/react-hooks";
 
 import LogInSVG from '../components/svg/LogInSVG';
-import FormInput from '../components/form/FormInput.js';
 import withApollo from "../lib/apollo";
 import { LOG_IN } from "../gql/mutations";
 import AppLayout from "../components/AppLayout";
@@ -15,7 +13,6 @@ const Login = () => {
 
   const handleChange = e => {
     setThisUser({ ...thisUser, [e.target.name]: e.target.value });
-    console.log(e.target.value);
   };
   
   const variables = {
@@ -27,7 +24,6 @@ const Login = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    console.log(variables)
     const {
       data: {
         login: {
@@ -39,7 +35,6 @@ const Login = () => {
 
     Cookie.set("token", token);
     Cookie.set("id", id);
-    // const user = name;
     Router.push(`/allUsersSample`);
   };
 
@@ -86,9 +81,9 @@ const Login = () => {
         <h3 className="py-2">Don't have an account?</h3>
         <button className="text-black"><a className="text-black" href="/signup">Sign Up</a></button>
       </div>
-      {/* <div className="mt-8">
+      <div className="mt-8">
         <LogInSVG />
-      </div> */}
+      </div>
     </AppLayout>
   );
 };
