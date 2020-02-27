@@ -4,11 +4,11 @@ import Link from 'next/link';
 import Cookie from "js-cookie";
 import { useMutation } from "@apollo/react-hooks";
 
-import AltLayout from "../components/AltLayout.js";
 import LogInSVG from '../components/svg/LogInSVG';
 import FormInput from '../components/form/FormInput.js';
 import withApollo from "../lib/apollo";
 import { LOG_IN } from "../gql/mutations";
+import AppLayout from "../components/AppLayout";
 
 const Login = () => {
   const [thisUser, setThisUser] = useState("");
@@ -44,7 +44,7 @@ const Login = () => {
   };
 
   return (
-    <AltLayout>
+    <AppLayout>
       <div className="mt-8 w-64 h-64 p-3 flex-col">
         <h1 className="p-4 text-center">Sign In</h1>
         <p className="pb-8 text-center">Let's Start Crushing Those Goals!</p>
@@ -89,7 +89,7 @@ const Login = () => {
       {/* <div className="mt-8">
         <LogInSVG />
       </div> */}
-    </AltLayout>
+    </AppLayout>
   );
 };
 

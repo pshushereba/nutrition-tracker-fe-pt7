@@ -1,9 +1,9 @@
-import AltLayout from "../components/AltLayout";
+import AppLayout from "../components/AppLayout";
 import SplashSVG from "../components/svg/SplahSVG";
 
 const Home = () => {
   return (
-    <AltLayout>
+    <AppLayout>
       <h1 className="title my-6 font-black text-gray-900 text-xl">NUTRITION TRACKER</h1>
       <h2 className="font-black text-base tracking-tight" >Tracking your calories just got easier.</h2>
       <div className="m-8">
@@ -33,7 +33,7 @@ const Home = () => {
           </a>
         </button>
       </div>
-    </AltLayout>
+    </AppLayout>
   );
 };
 

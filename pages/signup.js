@@ -1,12 +1,13 @@
-import AltLayout from "../components/AltLayout";
-import ThunderboltSVG from "../components/svg/ThunderboltSVG";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
+import ThunderboltSVG from "../components/svg/ThunderboltSVG";
+import AppLayout from "../components/AppLayout";
 import ContactInfo from "../components/form/ContactInfo";
 import DietPreference from "../components/form/DietPreference";
 import Macros from '../components/form/Macros';
 import LogInSVG from '../components/svg/LogInSVG';
+import withApollo from '../lib/apollo';
 
 const SignUp = () => {
   const router = useRouter();
@@ -28,7 +29,7 @@ const SignUp = () => {
   }
 
   return (
-    <AltLayout>
+    <AppLayout>
       <div className="mt-12">
         <div className="flex">
           <ThunderboltSVG />
@@ -56,8 +57,8 @@ const SignUp = () => {
         </button>
       </div>
       {formStep === 3 && <LogInSVG />}
-    </AltLayout>
+    </AppLayout>
   );
 };
 
-export default SignUp;
+export default withApollo(SignUp)
