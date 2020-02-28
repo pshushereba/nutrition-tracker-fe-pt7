@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 
 import MenuSVG from "./svg/MenuSVG";
 
-const AltHeader = () => {
+const AppHeader = () => {
   const router = useRouter();
 
   return (
@@ -17,4 +17,4 @@ const AltHeader = () => {
   );
 };
 
-export default AltHeader;
+export default AppHeader;

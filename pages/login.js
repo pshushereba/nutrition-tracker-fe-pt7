@@ -1,21 +1,18 @@
 import React, { useState } from "react";
 import Router from "next/router";
-import Link from 'next/link';
 import Cookie from "js-cookie";
 import { useMutation } from "@apollo/react-hooks";
 
-import AltLayout from "../components/AltLayout.js";
 import LogInSVG from '../components/svg/LogInSVG';
-import FormInput from '../components/form/FormInput.js';
 import withApollo from "../lib/apollo";
 import { LOG_IN } from "../gql/mutations";
+import AppLayout from "../components/AppLayout";
 
 const Login = () => {
   const [thisUser, setThisUser] = useState("");
 
   const handleChange = e => {
     setThisUser({ ...thisUser, [e.target.name]: e.target.value });
-    console.log(e.target.value);
   };
   
   const variables = {
@@ -27,7 +24,6 @@ const Login = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    console.log(variables)
     const {
       data: {
         login: {
@@ -39,12 +35,11 @@ const Login = () => {
 
     Cookie.set("token", token);
     Cookie.set("id", id);
-    // const user = name;
     Router.push(`/allUsersSample`);
   };
 
   return (
-    <AltLayout>
+    <AppLayout>
       <div className="mt-8 w-64 h-64 p-3 flex-col">
         <h1 className="p-4 text-center">Sign In</h1>
         <p className="pb-8 text-center">Let's Start Crushing Those Goals!</p>
@@ -86,10 +81,10 @@ const Login = () => {
         <h3 className="py-2">Don't have an account?</h3>
         <button className="text-black"><a className="text-black" href="/signup">Sign Up</a></button>
       </div>
-      {/* <div className="mt-8">
+      <div className="mt-8">
         <LogInSVG />
-      </div> */}
-    </AltLayout>
+      </div>
+    </AppLayout>
   );
 };
 
