@@ -1,8 +1,5 @@
 import {useState} from 'react';
-import {Form, Input, Button, Popover, InputNumber} from 'antd';
-// import Layout from '../components/Layout.js';
-// import {Layout} from 'antd';
-// const {Content} = Layout;
+
 
 const Calculator = () => {
     const [bmiInfo, setBmiInfo] = useState({height: 0, weight: 0, age: 0, bmi: 0});
@@ -10,7 +7,6 @@ const Calculator = () => {
 
     const handleChange = (e) => {
         setBmiInfo({...bmiInfo, [e.target.name]: e.target.value})
-        
     }
     
     const handleSubmit = (e) => {
