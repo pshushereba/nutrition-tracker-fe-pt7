@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import fetch from 'isomorphic-unfetch';
+import IngredientDetails from './IngredientDetails.js';
 
 const NutritionData = () => {
     const [item, setItem] = useState("")
@@ -12,18 +13,20 @@ const NutritionData = () => {
         setItem(e.target.value)
     }
     // console.log(item);
-    
-    const handleSubmit = () => {
+
+    const search = async () => {
         let list;
 
-        const response = fetch(`https://api.edamam.com/api/food-database/parser?app_id=8de772d5&app_key=ba31a7a9230043a9bc36135b1a432184&ingr=${query}`)
-                .then((res) => {
-                   list = res.json();
-                    console.log(list);
-                    // setResults(list.hints);
-                })
-                .catch((err) => console.log(err));
+        const response = await fetch(`https://api.edamam.com/api/food-database/parser?app_id=8de772d5&app_key=ba31a7a9230043a9bc36135b1a432184&ingr=${query}`)
+        list = await response.json();
+        return setResults(list.hints);
     }
+    
+    const handleSubmit = (e) => {
+        search();
+    }
+
+    console.log(results);
 
     return (
         <div>
@@ -38,6 +41,11 @@ const NutritionData = () => {
                     onClick={handleSubmit}
                 >Search</button>
             </div>
+            {/* <div>
+                {(results === {}) ? <h2>Search for a food</h2> : results.map((item) => {
+                    <IngredientDetails details={item} />
+                })}
+            </div> */}
         </div>
     )
 }
