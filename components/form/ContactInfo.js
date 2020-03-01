@@ -1,28 +1,85 @@
-import FormInput from "../form/FormInput";
+import { useEffect, useState } from 'react';
+import { useMutation } from '@apollo/react-hooks'
+import Cookie from 'js-cookie'
 
-export default function() {
+import FormInput from "../form/FormInput";
+import {ADD_USER } from '../../gql/mutations'
+
+export default function({ setFormStep, shouldSubmit, setShouldSubmit }) {
+  const [user, setUser] = useState({ name: '', email: '', password: '' });
+
+  
+  const variables = {
+    name: user.name,
+    email: user.email,
+    password: user.password
+  };
+
+  const [addUser, {}] = useMutation(ADD_USER);
+  
+  const handleSubmit = async () => {
+    console.log(user)
+    const {
+      data: {
+        login: {
+          token,
+          user: { id }
+        }
+      },
+      error
+    } = await addUser({ variables: variables });
+    if (error) { 
+      window.alert(`ERROR: ${error}`)
+    }
+    if (data) {
+      Cookie.set("token", token);
+      Cookie.set("id", id);
+      setFormStep(2)
+    }
+  };
+
+  useEffect(() => {
+    shouldSubmit && handleSubmit()
+    shouldSubmit && setShouldSubmit(false)
+  }, [shouldSubmit]);
+
   return (
     <>
       <h2 className="text-xl font-extrabold my-4">Sign Up</h2>
       <form className="flex flex-col w-full">
         <FormInput
-          content="Your Name"
+          name="name"
+          label="Your Name"
           placeHolder="First and Last Name"
           type="text"
           required={true}
+          setInput={setUser}
+          data={user}
         />
         <FormInput
-          content="E-mail"
+          name="email"
+          label="E-mail"
           placeHolder="email@email.com"
           type="email"
           required={true}
+          setInput={setUser}
+          data={user}
         />
-        <FormInput content="Password" placeHolder="password" type="password" />
+        <FormInput 
+          name="password"
+          label="Password" 
+          placeHolder="password" 
+          type="password"
+          setInput={setUser}
+          data={user}
+        />
         <FormInput
-          content="Verify Password"
+          label="Verify Password"
           placeHolder="password"
           type="password"
           required={true}
+          setInput={setUser}
+          data={user}
         />
       </form>
       <h3 className="font-bold my-6">

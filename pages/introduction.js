@@ -1,10 +1,10 @@
-import Layout from '../components/Layout.js';
+import AppLayout from '../components/AppLayout';
 import Calculator from '../components/Calculator.js';
 
 const Introduction = () => {
     return(
         <>
-            <Layout />
+            <AppLayout />
             <Calculator />
         </>
     )

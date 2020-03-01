@@ -1,58 +1,64 @@
-import AltLayout from "../components/AltLayout";
-import ThunderboltSVG from "../components/svg/ThunderboltSVG";
-import { useState } from "react";
-import { useRouter } from "next/router";
+import { useState } from "react"
+import { useRouter } from "next/router"
 
-import ContactInfo from "../components/form/ContactInfo";
-import DietPreference from "../components/form/DietPreference";
+import ThunderboltSVG from "../components/svg/ThunderboltSVG"
+import AppLayout from "../components/AppLayout"
+import ContactInfo from "../components/form/ContactInfo"
+import DietPreference from "../components/form/DietPreference"
+import Macros from '../components/form/Macros'
+import LogInSVG from '../components/svg/LogInSVG'
+import withApollo from '../lib/apollo'
 
 const SignUp = () => {
   const router = useRouter();
-  const [formStep, setFormStep] = useState(1);
-
-  function nextFormStep() {
-    let step = formStep;
-    setFormStep((step += 1));
-    console.log(formStep);
-  }
+  const [formStep, setFormStep] = useState(1)
+  const [shouldSubmit, setShouldSubmit] = useState(false);
 
   function prevFormStep() {
-    let step = formStep;
+    let step = formStep
     if (step <= 1) {
-      router.push("/");
+      router.push("/")
     }
-    setFormStep((step -= 1));
-    console.log(formStep);
+    if (step !== 1) {
+      setFormStep((step -= 1))
+    }
   }
 
   return (
-    <AltLayout>
+    <AppLayout>
       <div className="mt-12">
         <div className="flex">
           <ThunderboltSVG />
-          <h1 className="text-2xl font-bold">Let's Get Started</h1>
+          <h1 className="text-2xl font-bold">{formStep === 3 ? "Almost Finished" : "Let's Get Started"}</h1>
         </div>
       </div>
       {formStep === 1 ? (
-        <ContactInfo />
+        <ContactInfo 
+          setFormStep={setFormStep} 
+          shouldSubmit={shouldSubmit}
+          setShouldSubmit={setShouldSubmit}
+        />
       ) : formStep === 2 ? (
         <DietPreference />
+      ) : formStep === 3 ? (
+        <Macros />
       ) : (
         "Not Done Yet"
       )}
-      <div className="flex w-full justify-around my-10">
+      <div className="flex w-full justify-around mt-10">
         <button className="text-xs px-6 py-1" onClick={prevFormStep}>
           {formStep === 1 ? "Cancel" : "Go Back"}
         </button>
         <button
           className="text-xs text-white px-6 py-1 bg-indigo-500 border-indigo-500 rounded"
-          onClick={nextFormStep}
+          onClick={() => setShouldSubmit(!shouldSubmit)}
         >
           {formStep === 1 ? "Let's Go!" : "Continue"}
         </button>
       </div>
-    </AltLayout>
+      {formStep === 3 && <LogInSVG />}
+    </AppLayout>
   );
 };
 
-export default SignUp;
+export default withApollo(SignUp)
