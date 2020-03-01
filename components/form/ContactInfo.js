@@ -21,7 +21,7 @@ export default function({ setFormStep, shouldSubmit, setShouldSubmit }) {
     console.log(user)
     const {
       data: {
-        login: {
+        createUser: {
           token,
           user: { id }
         }
@@ -31,7 +31,7 @@ export default function({ setFormStep, shouldSubmit, setShouldSubmit }) {
     if (error) { 
       window.alert(`ERROR: ${error}`)
     }
-    if (data) {
+    if (user) {
       Cookie.set("token", token);
       Cookie.set("id", id);
       setFormStep(2)
