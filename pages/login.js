@@ -77,7 +77,7 @@ const Login = () => {
             </div>
           </div>
         </form>
-        <button onClick={handleSubmit}>Login</button>
+        <button className="text-xs text-white px-6 py-1 bg-indigo-500 border-indigo-500 rounded" onClick={handleSubmit}>Login</button>
         <h3 className="py-2">Don't have an account?</h3>
         <button className="text-black"><a className="text-black" href="/signup">Sign Up</a></button>
       </div>
