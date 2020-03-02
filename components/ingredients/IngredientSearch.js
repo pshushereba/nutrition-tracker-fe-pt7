@@ -1,19 +1,17 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import fetch from 'isomorphic-unfetch';
-import IngredientDetails from './IngredientDetails.js';
+import IngredientCard from './IngredientCard.js';
 
-const NutritionData = () => {
+const IngredientSearch = () => {
     const [item, setItem] = useState("")
-    const [results, setResults] = useState({})
+    const [results, setResults] = useState([])
 
     const query = item.replace(' ', '%20');
-    // console.log(query)
 
     const handleChange = (e) => {
         setItem(e.target.value)
     }
-    // console.log(item);
-
+ 
     const search = async () => {
         let list;
 
@@ -23,31 +21,31 @@ const NutritionData = () => {
     }
     
     const handleSubmit = (e) => {
+        e.preventDefault();
         search();
     }
-
-    console.log(results);
 
     return (
         <div>
             <div>
+                <h2>Search for a Food</h2>
                 <input 
                     type="text"
-                    placeholder="Search for a food..."
+                    placeholder="Search..."
                     name="food"
                     onChange={handleChange}></input>
                 <button 
-                    className="text-xs text-white px-6 py-1 bg-indigo-500 border-indigo-500 rounded"
+                    className="text-xs text-white px-6 py-1 bg-indigo-500 border-indigo-500 rounded m-2"
                     onClick={handleSubmit}
                 >Search</button>
             </div>
-            {/* <div>
-                {(results === {}) ? <h2>Search for a food</h2> : results.map((item) => {
-                    <IngredientDetails details={item} />
+            <div>
+                {results.map((item) => {
+                  return <IngredientCard key={item.food.foodId} details={item} />
                 })}
-            </div> */}
+            </div>
         </div>
     )
 }
 
-export default NutritionData;
+export default IngredientSearch;

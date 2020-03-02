@@ -21,48 +21,40 @@ const Calculator = () => {
     }
 
     const bmiCalc = (bmiInfo) => {
-        const userBMI = Math.ceil(703 * (Number(bmiInfo.weight) / Math.pow(Number(bmiInfo.height), 2)));
+        const userBMI = Math.ceil(703 * (Number(bmiInfo.weight) / Math.pow(Number(bmiInfo.height), 2))); // Calculating the BMI for the user using height in inches, weight in pounds.
         setBmiInfo({...bmiInfo, bmi: userBMI})
         return userBMI;
     }
-    console.log(bmiInfo);
-    const content = (
-        <div>
-            <p className="leading-tight">Body mass index (BMI) is a value derived from the mass (weight) and height of a person.</p>
-            <p className="leading-tight">The BMI is a convenient rule of thumb used to broadly categorize a person as underweight,</p>
-            <p className="leading-tight"> normal weight, overweight, or obese based on tissue mass (muscle, fat, and bone) and height.</p>
-        </div>
-    )
     
     return(
         <>
             <div className="shadow-md mx-auto p-4 m-4 w-56 min-h-0">
                 <div className="flex-row content-around p-2">
                     <h1 className="inline pr-2">What is your BMI?</h1>
-                    <Popover content={content}>
-                        <Button type="primary" className="p-2">?</Button>
-                    </Popover>
                 </div>
                 
-                <Form onSubmit={handleSubmit} className="flex-col">
-                    <Input 
+                <form onSubmit={handleSubmit} className="flex-col">
+                    <input 
                         placeholder="Height"
                         name="height"
                         type="text"
-                        onChange={handleChange}></Input>
-                    <Input 
+                        onChange={handleChange}
+                        className="m-2"></input>
+                    <input 
                         type="text"
                         name="weight"
                         placeholder="Weight"
-                        onChange={handleChange}></Input>
-                    <Input 
+                        onChange={handleChange}
+                        className="m-2"></input>
+                    <input 
                         type="text"
                         name="age"
                         placeholder="Age"
-                        onChange={handleChange}></Input>
-                    <Button htmlType="submit">Calculate My BMI</Button>
-                    <Button onClick={clearForm}>Clear</Button>
-                </Form>
+                        onChange={handleChange}
+                        className="m-2"></input>
+                    <button className="text-xs text-white px-6 py-1 bg-indigo-500 border-indigo-500 rounded my-4" htmlType="submit">Calculate My BMI</button>
+                    <button className="text-xs text-white px-6 py-1 bg-indigo-500 border-indigo-500 rounded" onClick={clearForm}>Clear</button>
+                </form>
             </div>
             <div>
                 {complete && <h1 className="px-4 text-center">Your BMI is: {bmiInfo.bmi}</h1>}
