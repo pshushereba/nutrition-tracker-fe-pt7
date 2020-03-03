@@ -10,7 +10,11 @@ module.exports = {
     //     white: 'white'
     //   }
     // },
-    extend: {}
+    extend: {
+      colors: {
+        'soft-gray': '#e5e5e5'
+      }
+    }
   },
   variants: {},
   plugins: []
