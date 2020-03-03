@@ -3,7 +3,7 @@ import FormRadio from "./FormRadio";
 export default function Macros({ setProfileStep }) {
 
   function handleSubmit() {
-    setProfileStep("heatAndWeight")
+    setProfileStep("heightWeight")
   }
   // * UI designed for booleans on macro selection, schema set for Int *
   return (

@@ -2,10 +2,8 @@ import { useState } from "react";
 
 export default function AgeGender({ user, setUser, setProfileStep }) {
 
-  const updateUser = (key, value) => setUser({ ...user, key: value })
-
   function handleSubmit() {
-    setProfileStep("dietPrefernces")
+    setProfileStep("dietPreferences")
   }
 
   // * Gender is set to a Boolean in the schema, UI set for age range on age, schema set for Int, select option values temporary workaround*
@@ -30,9 +28,9 @@ export default function AgeGender({ user, setUser, setProfileStep }) {
         </h3> 
           <select id="gender" required="">
             <option disabled="" defaultValue >Gender</option>
-            <option value="f">Female</option>
-            <option value="m">Male</option>
-            <option value="false">Prefer not to say</option>
+            <option value={true}>Female</option>
+            <option value={false}>Male</option>
+            <option value="null">Prefer not to say</option>
           </select>
       </form>
       <button className="w-full mt-4 py-2 text-white bg-pink-500 rounded hover:bg-pink-600" onClick={handleSubmit}>Continue</button>
