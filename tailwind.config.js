@@ -19,7 +19,11 @@ module.exports = {
       ...theme('colors'),
       footerText: "#5A5A5A"
     }),
-    extend: {}
+    extend: {
+      colors: {
+        'soft-gray': '#e5e5e5'
+      }
+    }
   },
   variants: {
     backgroundColor: ['responsive', 'hover', 'focus', 'active', 'disabled', 'group-hover'],

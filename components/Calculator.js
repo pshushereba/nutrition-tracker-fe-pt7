@@ -28,7 +28,7 @@ const Calculator = () => {
     
     return(
         <>
-            <div className="shadow-md mx-auto p-4 m-4 w-56 min-h-0">
+            <div className="flex-row shadow-md p-4 m-4 w-56 min-h-0">
                 <div className="flex-row content-around p-2">
                     <h1 className="inline pr-2">What is your BMI?</h1>
                 </div>
