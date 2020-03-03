@@ -1,6 +1,6 @@
 import InlineSVG from 'svg-inline-react';
 
-const svgSource = `<svg width="306" height="225" viewBox="0 0 306 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+const svgSource = `<svg width="306" height="225" viewBox="0 0 306 225" fill="none" xmlns="http://www.w3.org/2000/svg" id="undraw_researching_22gp>
 <g id="undraw_researching_22gp">
 <path id="Vector" d="M151.518 225C235.199 225 303.036 220.192 303.036 214.26C303.036 208.329 235.199 203.521 151.518 203.521C67.837 203.521 0 208.329 0 214.26C0 220.192 67.837 225 151.518 225Z" fill="#E6E6E6"/>
 <path id="Vector_2" d="M269.892 220.275C245.185 215.886 218.168 216.616 189.828 220.275C202.745 209.392 213.893 198.509 200.976 187.626C226.172 192.814 229.702 192.289 257.73 187.626C251.229 198.509 263.391 209.392 269.892 220.275Z" fill="#6C63FF"/>

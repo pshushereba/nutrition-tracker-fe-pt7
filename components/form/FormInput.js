@@ -2,7 +2,6 @@ export default function FormInput({ name, label = null, placeHolder = '', type =
 
   const handleChange = e => {
     setInput({ ...data, [e.target.name]: e.target.value})
-    console.log(data);
   };
   
   return (

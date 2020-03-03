@@ -30,3 +30,22 @@ export const ADD_USER = gql`
   }
 }
 `
+
+export const CREATE_PROFILE = gql`
+mutation CREATE_PROFILE($age: Int!, $weight: Int!, $height: Int!, $gender: Boolean!) {
+  createProfile (
+    data: {
+			age: $age,
+      weight: $weight,
+      height: $height,
+      gender: $gender,
+    }
+  ) {
+  	id
+    age
+    weight
+    height
+    gender
+	}
+}
+`
