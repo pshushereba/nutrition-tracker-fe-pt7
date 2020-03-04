@@ -14,15 +14,7 @@ export default function AgeGender({ user, setUser, setProfileStep }) {
         <h3 className="font-extrabold text-sm self-start px-12 my-4">
           How Old Are You
         </h3>
-          <select id="age" required="">
-            <option disabled="" defaultValue >Age</option>
-            <option value="17">Under 18</option>
-            <option value="18">18-25</option>
-            <option value="25">25-30</option>          
-            <option value="30">30-35</option>
-            <option value="35">35-45</option>
-            <option value="45">45+</option>
-          </select>
+          <input placeholder="Age" />
         <h3 className="font-extrabold text-sm self-start px-12 my-4">
           How Do You Identify?
         </h3> 
