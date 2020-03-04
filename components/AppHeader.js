@@ -16,7 +16,7 @@ const AppHeader = () => {
           <a className="p-2">Community</a>
         </div> */}
         <h1 className="title text-white justify-center">
-          {router.pathname === "/" ? "" : "NUTRITION TRACKER"}
+          {router.pathname === "/" ? "" : "NUTRIVURV"}
         </h1>
       </div>
     </div>
