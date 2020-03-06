@@ -46,11 +46,11 @@ export default function CreateProfileForm({ setFormStep, user, setUser}) {
       <div className="flex flex-col w-full">
         {profileStep ==="ageGender" ? (
           <AgeGender user={user} setUser={setUser} setProfileStep={setProfileStep}/>
-          ) : profileStep === "dietPrefernces" ? (
+          ) : profileStep === "dietPreferences" ? (
           <DietPreference user={user} setUser={setUser} setProfileStep={setProfileStep}/>
           ) : profileStep === "macros" ? (
           <Macros user={user} setUser={setUser} setProfileStep={setProfileStep}/>
-          ) : profileStep === "heatAndWeight" ? (
+          ) : profileStep === "heightWeight" ? (
           <HeightWeight user={user} setUser={setUser} setProfileStep={setProfileStep} handleSubmit={handleSubmit}/>
           ) : "Error"   //TODO: Proper error handling or default. Will using AgeGender or HeightWeight as default lead to bugs?
         }
