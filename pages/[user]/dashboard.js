@@ -1,4 +1,4 @@
-import React from 'react';
+import withApollo from '../../lib/apollo'
 import AppLayout from '../../components/AppLayout.js';
 import DashFoodSearch from '../../components/ingredients/DashFoodSearch'
 
