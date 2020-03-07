@@ -11,6 +11,10 @@ const Introduction = () => {
             <div className="flex justify-around">
                 <div>
                     <Calculator />
+                    <div className="my-16">
+                        <button className="text-xs px-12 py-1 rounded relative mx-12">Skip</button>
+                        <button className="text-xs text-white px-12 py-1 rounded bg-btn-pink relative mx-12">Next</button>
+                    </div>
                 </div>
                 <div className="container-lg flex-row justify-around">
                     <MarketingSVG />

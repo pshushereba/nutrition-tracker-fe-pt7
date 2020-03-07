@@ -13,7 +13,8 @@ module.exports = {
     extend: {
       colors: {
         'soft-gray': '#e5e5e5',
-        'dark-gray': '#5A5A5A'
+        'dark-gray': '#5A5A5A',
+        'btn-pink': '#FE42B3'
       }
     }
   },
