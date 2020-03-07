@@ -21,6 +21,7 @@ next.config.js
 .env*
 yarn.lock
 package.json.lock
+scratchPaper.json
 
 # debug
 npm-debug.log*

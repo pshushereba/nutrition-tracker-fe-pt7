@@ -10,10 +10,6 @@ body {
   font-family: Nunito;
 }
 
-a {
-  color: white
-}
-
 @tailwind components;
 
 @tailwind utilities;
