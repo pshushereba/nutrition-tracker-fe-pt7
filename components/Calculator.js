@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import FormInput from '../components/form/FormInput.js';
 
 
 const Calculator = () => {
@@ -28,36 +29,48 @@ const Calculator = () => {
     
     return(
         <>
-            <div className="flex-row shadow-md p-4 m-4 w-56 min-h-0">
+            <div className="flex-row p-4 m-4 min-h-0">
                 <div className="flex-row content-around p-2">
-                    <h1 className="inline pr-2">What is your BMI?</h1>
+                    <h1 className="inline text-2xl">First, Select a Type</h1>
                 </div>
-                
-                <form onSubmit={handleSubmit} className="flex-col">
-                    <input 
-                        placeholder="Height"
-                        name="height"
-                        type="text"
-                        onChange={handleChange}
-                        className="m-2"></input>
-                    <input 
-                        type="text"
-                        name="weight"
-                        placeholder="Weight"
-                        onChange={handleChange}
-                        className="m-2"></input>
-                    <input 
-                        type="text"
-                        name="age"
-                        placeholder="Age"
-                        onChange={handleChange}
-                        className="m-2"></input>
-                    <button className="text-xs text-white px-6 py-1 bg-indigo-500 border-indigo-500 rounded my-4" htmlType="submit">Calculate My BMI</button>
-                    <button className="text-xs text-white px-6 py-1 bg-indigo-500 border-indigo-500 rounded" onClick={clearForm}>Clear</button>
-                </form>
+                <div className="flex">
+                    <button className="text-xs text-white px-12 py-1 bg-dark-gray border-dark-gray rounded relative mx-6">Standard</button>
+                    <p>or</p>
+                    <button className="text-xs text-white px-12 py-1 bg-dark-gray border-dark-gray rounded relative mx-6">Metric</button>
+                </div>
+                <h1 className="text-xl">Enter Height & Weight</h1>
+                    <form onSubmit={handleSubmit}>
+                        <div className="flex">
+                            <FormInput 
+                                placeholder="Height"
+                                label="Height"
+                                name="height"
+                                type="text"
+                                onChange={handleChange}
+                                className="m-2"></FormInput>
+                            <FormInput 
+                                type="text"
+                                label="Weight"
+                                name="weight"
+                                placeholder="Weight"
+                                onChange={handleChange}
+                                className="m-2"></FormInput>
+                            <FormInput 
+                                type="text"
+                                label="Age"
+                                name="age"
+                                placeholder="Age"
+                                onChange={handleChange}
+                                className="m-2"></FormInput>
+                            {/* <div className="flex">
+                                <button className="text-xs text-white px-6 py-1 bg-indigo-500 border-indigo-500 rounded my-4" htmlType="submit">Calculate My BMI</button>
+                                <button className="text-xs text-white px-6 py-1 bg-indigo-500 border-indigo-500 rounded" onClick={clearForm}>Clear</button>
+                            </div> */}
+                        </div>
+                    </form>
             </div>
-            <div>
-                {complete && <h1 className="px-4 text-center">Your BMI is: {bmiInfo.bmi}</h1>}
+            <div className="border-b">
+                <h1 className="pl-8 text-2xl">Your BMI: {bmiInfo.bmi}</h1>
             </div>
         </>
     )

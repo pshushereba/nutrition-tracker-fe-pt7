@@ -14,8 +14,8 @@ const IngredientSearch = () => {
  
     const search = async () => {
         let list;
-
-        const response = await fetch(`https://api.edamam.com/api/food-database/parser?app_id=8de772d5&app_key=${process.env.FOOD_DB_KEY}&ingr=${query}`)
+ 
+        const response = await fetch(`https://api.edamam.com/api/food-database/parser?app_id=8de772d5&app_key=${process.env.FOOD_DB_KEY}&ingr=${query}&health=dairy-free`)
         list = await response.json();
         return setResults(list.hints);
     }

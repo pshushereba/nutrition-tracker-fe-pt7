@@ -12,7 +12,8 @@ module.exports = {
     // },
     extend: {
       colors: {
-        'soft-gray': '#e5e5e5'
+        'soft-gray': '#e5e5e5',
+        'dark-gray': '#5A5A5A'
       }
     }
   },
