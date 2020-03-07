@@ -16,10 +16,10 @@ const Calculator = () => {
         setComplete(true);
     }
 
-    const clearForm = () => {
-        setBmiInfo({height: 0, weight: 0, age: 0, bmi: 0})
-        setComplete(false);
-    }
+    // const clearForm = () => {
+    //     setBmiInfo({height: 0, weight: 0, age: 0, bmi: 0})
+    //     setComplete(false);
+    // }
 
     const bmiCalc = (bmiInfo) => {
         const userBMI = Math.ceil(703 * (Number(bmiInfo.weight) / Math.pow(Number(bmiInfo.height), 2))); // Calculating the BMI for the user using height in inches, weight in pounds.
@@ -41,27 +41,34 @@ const Calculator = () => {
                 <h1 className="text-xl">Enter Height & Weight</h1>
                     <form onSubmit={handleSubmit}>
                         <div className="flex">
-                            <FormInput 
-                                placeholder="Height"
-                                label="Height"
-                                name="height"
-                                type="text"
-                                onChange={handleChange}
-                                className="m-2"></FormInput>
-                            <FormInput 
-                                type="text"
-                                label="Weight"
-                                name="weight"
-                                placeholder="Weight"
-                                onChange={handleChange}
-                                className="m-2"></FormInput>
+                            <div className="m-2">
+                                <FormInput 
+                                    placeHolder="ft"
+                                    label="Your Height"
+                                    name="height"
+                                    type="text"
+                                    onChange={handleChange}
+                                ></FormInput>
+                            </div>
+                            <div className="m-2">
                             <FormInput 
                                 type="text"
-                                label="Age"
+                                label="In"
                                 name="age"
-                                placeholder="Age"
+                                placeHolder="inch"
                                 onChange={handleChange}
-                                className="m-2"></FormInput>
+                            ></FormInput>
+                            </div>
+                            <div className="m-2">
+                            <FormInput 
+                                type="text"
+                                label="Your Weight"
+                                name="weight"
+                                placeHolder="lbs"
+                                onChange={handleChange}
+                            ></FormInput>
+                            </div>
+                            
                             {/* <div className="flex">
                                 <button className="text-xs text-white px-6 py-1 bg-indigo-500 border-indigo-500 rounded my-4" htmlType="submit">Calculate My BMI</button>
                                 <button className="text-xs text-white px-6 py-1 bg-indigo-500 border-indigo-500 rounded" onClick={clearForm}>Clear</button>
