@@ -15,7 +15,7 @@ const Footer = () => {
         <div className="bg-white w-8 h-1 relative left-halfCircle-Y top-halfCircle-X rounded-md"></div>
         <div className="bg-white w-1 h-8 relative left-halfCircle|X top-halfCircle|Y rounded-md"></div>
       </div>
-      <div className="footer-right flex flex-col items-center cursor-pointer lg:hidden">
+      <div className="footer-right flex flex-col items-center cursor-pointer invisible">
         <TrophyIcon />
         <p className="muli text-sm text-footerText font-semibold">Challenges</p>
       </div>
