@@ -30,10 +30,13 @@ module.exports = {
       colors: {
         'soft-gray': '#e5e5e5',
         'dark-gray': '#5A5A5A',
-        'btn-pink': '#FE42B3'
+        'btn-pink': '#FE42B3',
+        'active-blue': '#8D4CFF'
       }
     }
   },
-  variants: {},
+  variants: {
+    backgroundColor: ['responsive', 'hover', 'focus', 'active'],
+  },
   plugins: []
 };
