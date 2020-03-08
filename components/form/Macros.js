@@ -2,13 +2,42 @@ import FormRadio from "./FormRadio";
 
 export default function Macros({ setProfileStep }) {
 
-  function handleSubmit() {
-    setProfileStep("heightWeight")
+  const router = useRouter()
+
+  const nameWithoutWhitespace = name => name.trim().split(' ').join('')
+  
+  const variables = {
+    age: parseInt(user.age),
+    weight: parseInt(user.weight),
+    goal_weight:(user.goalWeight),
+    height: parseInt(user.height),
+    gender: user.gender,
+    activity_level: parseInt(user.activityLevel)
+  };
+
+  const [createProfile, {}] = useMutation(CREATE_PROFILE)  
+  
+  const handleSubmit = async () => {
+    // TODO: Needs to also update user w/profile id after successful createProfile
+    
+    const {
+      loading,
+      data,
+      error
+    } = await createProfile({ variables: variables })
+
+    if (error) { 
+    }
+
+    if (data) {
+      router.push('/[user]/dashboard', `/${nameWithoutWhitespace(user.name)}/dashboard`)  
+    }
   }
-  // * UI designed for booleans on macro selection, schema set for Int *
+  // *  Not wired,  no mch
+  acros in schema? *
   return (
     <>
-      <h2 className="text-xl font-semibold mt-6 self-start pl-12">TRACKING MACROS</h2>
+      <h2 className="text-2xl my-6 self-center">Tracking Macros</h2>
       <h3 className="font-extrabold text-sm self-start px-12 my-4">
         Select all that apply:
       </h3>

@@ -9,6 +9,7 @@ module.exports = {
       mobileFoot: "#F9F9F9"
     }),
     inset: theme => ({
+      "0": "0px",
       "halfCircle-X": "21px",
       "halfCircle-Y": "8px",
       "halfCircle|X": "22px",
@@ -18,16 +19,11 @@ module.exports = {
       ...theme('colors'),
       footerText: "#5A5A5A"
     }),
-    // colors: {
-    //   app: {
-    //     primary: '#6C63FF'
-    //   },
-    //   myText: {
-    //     white: 'white'
-    //   }
-    // },
     extend: {}
   },
-  variants: {},
+  variants: {
+    backgroundColor: ['responsive', 'hover', 'focus', 'active', 'disabled', 'group-hover'],
+    borderColor: ['responsive', 'hover', 'focus', 'active', 'disabled', 'group-hover']
+  },
   plugins: []
 };
