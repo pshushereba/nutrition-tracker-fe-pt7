@@ -33,8 +33,7 @@ export default function Macros({ setProfileStep }) {
       router.push('/[user]/dashboard', `/${nameWithoutWhitespace(user.name)}/dashboard`)  
     }
   }
-  // *  Not wired,  no mch
-  acros in schema? *
+  // *  Not wired,  no macros in schema? *
   return (
     <>
       <h2 className="text-2xl my-6 self-center">Tracking Macros</h2>
