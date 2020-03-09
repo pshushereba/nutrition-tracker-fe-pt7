@@ -16,6 +16,8 @@ export default function({ setFormStep, user, setUser }) {
   const [addUser, {}] = useMutation(ADD_USER);
   
   const handleSubmit = async () => {
+
+    console.log(user)
     
     const {
       data: {

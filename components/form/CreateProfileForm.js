@@ -1,8 +1,5 @@
 import { useState } from 'react';
-import { useMutation } from '@apollo/react-hooks'
-import { useRouter } from 'next/router';
 
-import { CREATE_PROFILE } from '../../gql/mutations'
 import AgeGenderHeight from './AgeGenderHeight';
 import DietPreference from './DietPreference';
 import Macros from './Macros';

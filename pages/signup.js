@@ -7,7 +7,7 @@ import withApollo from '../lib/apollo'
 import CreateProfileForm from "../components/form/CreateProfileForm"
 
 const SignUp = () => {
-  const [formStep, setFormStep] = useState("createProfile")
+  const [formStep, setFormStep] = useState("createUser")
   const [user, setUser] = useState({})  
 
   return (

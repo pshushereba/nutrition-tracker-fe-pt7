@@ -4,15 +4,12 @@ export default function AgeGender({ user, setUser, setProfileStep }) {
 
   function handleSubmit() {
     setProfileStep("weightGoalWeight")
-    console.log(user)
   }
 
   function handleChange(e) {
-    console.log(user)
     setUser({ ...user, [e.target.name]: e.target.value})
   }
 
-  // * Gender is set to a Boolean in the schema, UI set for age range on age, schema set for Int, select option values temporary workaround*
   return (
     <>
       <h1 className="text-2xl my-6 self-center">Getting Personal</h1>
@@ -40,7 +37,7 @@ export default function AgeGender({ user, setUser, setProfileStep }) {
         </h3> 
           <select 
             className="border border-gray-400 px-2 py-2 mt-1 mb-20 bg-white max-w-sm"
-            id="gender" 
+            name="gender" 
             required="">
             <option className="text-gray-100" disabled="" defaultValue >Gender</option>
             <option value={true}>Female</option>
