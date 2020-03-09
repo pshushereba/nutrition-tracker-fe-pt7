@@ -1,11 +1,13 @@
 import withApollo from '../../lib/apollo'
 import AppLayout from '../../components/AppLayout.js';
 import DashFoodSearch from '../../components/ingredients/DashFoodSearch'
+import IngredientSearch from '../../components/ingredients/IngredientSearch.js';
 
 
 const Dashboard = () => {
     return (
-        <AppLayout>
+        <div>
+            <AppLayout />
             <div className="flex w-full justify-around pt-6">
                 <div className="mt-8">
                     <div className="h-16 w-16 border-2 border-gray-900 rounded-full"></div>
@@ -28,6 +30,7 @@ const Dashboard = () => {
             </div>
             <div className="container-md flex justify-center my-4">
                 <DashFoodSearch />
+                {/* <IngredientSearch /> */}
             </div>
             <div className=" border rounded-lg shadow-xl mt-2">
                 <div className="flex justify-center rounded w-auto mt-3">
@@ -99,7 +102,7 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
-        </AppLayout>
+        </div>
     )
 }
 

@@ -5,7 +5,7 @@ import MarketingSVG from '../components/svg/MarketingSVG.js';
 const Introduction = () => {
     return(
         <>
-            <AppLayout />
+            <AppLayout>
             <h1 className="text-center text-lg m-8 muli">Now, let's track your current weight & log your BMI</h1>
             <div className="flex justify-around">
                 <div>
@@ -26,6 +26,7 @@ const Introduction = () => {
                     </div>
                 </div>
             </div>
+            </AppLayout>
         </>
     )
 }
