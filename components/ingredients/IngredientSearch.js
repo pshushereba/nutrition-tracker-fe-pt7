@@ -8,6 +8,8 @@ const IngredientSearch = () => {
 
     const query = item.replace(' ', '%20');
 
+    const filter = null;
+
     const handleChange = (e) => {
         setItem(e.target.value)
     }
@@ -39,6 +41,15 @@ const IngredientSearch = () => {
                     onClick={handleSubmit}
                 >Search</button>
             </div>
+            {results.length > 0 ? 
+            <div className="flex justify-around p-4">
+                <p className="px-4">Food Item</p>
+                <p className="px-4">Serving Size</p>
+                <p className="px-4">Fats %</p>
+                <p className="px-4">Protein %</p>
+                <p className="px-4">Carb %</p>
+                <p className="px-4">Quick View</p>
+            </div> : null}
             <div>
                 {results.map((item) => {
                   return <IngredientCard key={item.food.foodId} details={item} />

@@ -4,7 +4,7 @@ import InfoSVG from './svg/InfoSVG.js';
 
 
 const Calculator = () => {
-    const [bmiInfo, setBmiInfo] = useState({height: 0, weight: 0, age: 0, bmi: null});
+    const [bmiInfo, setBmiInfo] = useState({height: 0, weight: 0, age: 0, kilograms: 0, centimeters: 0, standard: true, bmi: null});
     const [complete, setComplete] = useState(false);
     
     const handleSubmit = (e) => {
@@ -20,6 +20,7 @@ const Calculator = () => {
 
     const bmiCalc = (bmiInfo) => {
         const userBMI = Math.ceil(703 * (Number(bmiInfo.weight) / Math.pow(((Number(bmiInfo.height) * 12) + Number(bmiInfo.inch)), 2)));
+        // Number(bmiInfo.kilograms) / Math.pow((Number(bmiInfo.centimeters) / 100), 2)
         setBmiInfo({...bmiInfo, bmi: userBMI})
         return userBMI;
     }
@@ -33,7 +34,10 @@ const Calculator = () => {
                 </div>
                 <div className="flex justify-center my-10">
                     <button 
-                        className="text-xs text-white px-12 py-1 bg-dark-gray active:bg-active-blue border-dark-gray rounded relative mx-10">Standard</button>
+                        className="text-xs text-white px-12 py-1 bg-dark-gray active:bg-active-blue border-dark-gray rounded relative mx-10"
+                        name="standard"
+                        active="standard"
+                        >Standard</button>
                     <p>or</p>
                     <button className="text-xs text-white px-12 py-1 bg-dark-gray border-dark-gray rounded relative mx-10">Metric</button>
                 </div>
@@ -89,5 +93,3 @@ const Calculator = () => {
 }
 
 export default Calculator;
-
-// #8D4CFF - Active button color
