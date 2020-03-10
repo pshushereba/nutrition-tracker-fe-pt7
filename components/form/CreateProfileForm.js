@@ -6,7 +6,7 @@ import Macros from './Macros';
 import WeightGoalWeight from './WeightGoalWeight';
 import ActivityLevel from './ActivityLevel';
 
-export default function CreateProfileForm({ setFormStep, user, setUser}) {
+export default function CreateProfileForm({ user, setUser}) {
   const [profileStep, setProfileStep] = useState("ageGenderHeight")
 
   return (
@@ -21,7 +21,7 @@ export default function CreateProfileForm({ setFormStep, user, setUser}) {
           ) : profileStep === "dietPreferences" ? (
           <DietPreference user={user} setUser={setUser} setProfileStep={setProfileStep}/>
           ) : profileStep === "macros" ? (
-          <Macros user={user} setUser={setUser} setProfileStep={setProfileStep}/>
+          <Macros user={user} setUser={setUser}/>
           ) : "Error"   //TODO: Proper error handling or default. Will using AgeGender or HeightWeight as default lead to bugs?
         }
       </div>
