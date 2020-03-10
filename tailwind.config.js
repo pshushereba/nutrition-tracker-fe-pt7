@@ -9,7 +9,6 @@ module.exports = {
       mobileFoot: "#F9F9F9"
     }),
     inset: theme => ({
-      "0": "0px",
       "halfCircle-X": "21px",
       "halfCircle-Y": "8px",
       "halfCircle|X": "22px",
@@ -30,8 +29,7 @@ module.exports = {
     }
   },
   variants: {
-    backgroundColor: ['responsive', 'hover', 'focus', 'active', 'disabled', 'group-hover'],
-    borderColor: ['responsive', 'hover', 'focus', 'active', 'disabled', 'group-hover']
+    backgroundColor: ['responsive', 'hover', 'focus', 'active'],
   },
   plugins: []
 };

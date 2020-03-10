@@ -38,4 +38,3 @@ const CreateProfile = () => {
 };
 
 export default withApollo(CreateProfile)
-{/* <CreateProfileForm user={user} setUser={setUser}/> */}

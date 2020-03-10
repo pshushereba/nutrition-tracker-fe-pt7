@@ -106,4 +106,4 @@ const Dashboard = () => {
     )
 }
 
-export default withApollo(Dashboard);
+export default withApollo(Dashboard)
