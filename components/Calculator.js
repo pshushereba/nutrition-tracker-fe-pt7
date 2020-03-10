@@ -1,11 +1,14 @@
 import {useState} from 'react';
 import FormInput from '../components/form/FormInput.js';
 import InfoSVG from './svg/InfoSVG.js';
+import StandardCalc from './StandardCalc.js';
+import MetricCalc from './MetricCalc.js';
 
 
 const Calculator = () => {
     const [bmiInfo, setBmiInfo] = useState({height: 0, weight: 0, age: 0, kilograms: 0, centimeters: 0, standard: true, bmi: null});
     const [complete, setComplete] = useState(false);
+    const [active, setActive] = useState(true);
     
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -34,56 +37,20 @@ const Calculator = () => {
                 </div>
                 <div className="flex justify-center my-10">
                     <button 
-                        className="text-xs text-white px-12 py-1 bg-dark-gray active:bg-active-blue border-dark-gray rounded relative mx-10"
+                        className={`text-xs text-white px-12 py-1 active:bg-active-blue border-dark-gray rounded relative mx-10 ${active ? "bg-active-blue" : "bg-dark-gray"}`}
                         name="standard"
                         active="standard"
+                        onClick={() => setActive(!active)}
                         >Standard</button>
                     <p>or</p>
-                    <button className="text-xs text-white px-12 py-1 bg-dark-gray border-dark-gray rounded relative mx-10">Metric</button>
+                    <button className={`text-xs text-white px-12 py-1 border-dark-gray rounded relative mx-10 ${active ? "bg-active-blue" : "bg-dark-gray"}`}>Metric</button>
                 </div>
                 <div className="flex justify-center">
                     <h1 className="text-xl mx-10 muli">Enter Height & Weight</h1>
                     <InfoSVG />
                 </div>
-                    <form onSubmit={handleSubmit}>
-                        <div className="flex">
-                            <div className="m-2 w-24">
-                                <FormInput 
-                                    placeHolder="ft"
-                                    label="Your Height"
-                                    name="height"
-                                    type="text"
-                                    setInput={setBmiInfo}
-                                    data={bmiInfo}
-                                ></FormInput>
-                            </div>
-                            <div className="m-2 w-24">
-                            <FormInput 
-                                type="text"
-                                label="In"
-                                name="inch"
-                                placeHolder="inch"
-                                setInput={setBmiInfo}
-                                data={bmiInfo}
-                            ></FormInput>
-                            </div>
-                            <div className="m-2 mx-6 w-24">
-                            <FormInput 
-                                type="text"
-                                label="Your Weight"
-                                name="weight"
-                                placeHolder="lbs"
-                                setInput={setBmiInfo}
-                                data={bmiInfo}
-                            ></FormInput>
-                            </div>
-                            
-                            <div className="flex self-center">
-                                <button className="text-xs text-white px-6 py-1 bg-indigo-500 border-indigo-500 rounded" htmlType="submit">Calculate My BMI</button>
-                                {/* <button className="text-xs text-white px-6 py-1 bg-indigo-500 border-indigo-500 rounded" onClick={clearForm}>Clear</button> */}
-                            </div>
-                        </div>
-                    </form>
+                    {active ? <StandardCalc bmiInfo={bmiInfo} setBmiInfo={setBmiInfo} /> :
+                    <MetricCalc bmiInfo={bmiInfo} setBmiInfo={setBmiInfo} /> }
             </div>
             <div className="border-b">
                 <h1 className="pl-8 text-2xl muli">Your BMI: {bmiInfo.bmi}</h1>
