@@ -20,7 +20,7 @@ export default function HeightWeight({ setProfileStep, user, setUser, handleSubm
           <FormInput
             name="weight"
             label="Weight"
-            placeHolder="Wieght in Lbs"
+            placeHolder="Weight in Lbs"
             type="number"
             required={true}
             setInput={setUser}

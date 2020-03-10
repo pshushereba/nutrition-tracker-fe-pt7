@@ -9,7 +9,6 @@ module.exports = {
       mobileFoot: "#F9F9F9"
     }),
     inset: theme => ({
-      "0": "0px",
       "halfCircle-X": "21px",
       "halfCircle-Y": "8px",
       "halfCircle|X": "22px",
@@ -19,11 +18,26 @@ module.exports = {
       ...theme('colors'),
       footerText: "#5A5A5A"
     }),
-    extend: {}
+    // colors: {
+    //   app: {
+    //     primary: '#6C63FF'
+    //   },
+    //   myText: {
+    //     white: 'white'
+    //   }
+    // },
+    extend: {
+      colors: {
+        'soft-gray': '#e5e5e5',
+        'dark-gray': '#5A5A5A',
+        'btn-pink': '#FE42B3',
+        'active-blue': '#8D4CFF',
+        'item-hover': '#FFA5DB'
+      }
+    }
   },
   variants: {
-    backgroundColor: ['responsive', 'hover', 'focus', 'active', 'disabled', 'group-hover'],
-    borderColor: ['responsive', 'hover', 'focus', 'active', 'disabled', 'group-hover']
+    backgroundColor: ['responsive', 'hover', 'focus', 'active'],
   },
   plugins: []
 };
