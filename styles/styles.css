@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:900|Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 
 @tailwind base;
 
@@ -8,6 +9,10 @@
 
 body {
   font-family: Nunito;
+}
+
+.muli {
+  font-family: 'Muli', sans-serif;
 }
 
 @tailwind components;
