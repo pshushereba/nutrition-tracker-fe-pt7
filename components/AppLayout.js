@@ -4,13 +4,15 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 export default ({ children }) => {
-  const [mobileSignUp, setMobileSignUp] = useState(false)
+  const [hideFooter, setHideFooter] = useState(false)
   const Router = useRouter()
   
   useEffect(() => {
     const frameWidth = window.innerWidth
-    Router.pathname === "/signup" && frameWidth <= 500 && setMobileSignUp(true)
-    Router.pathname === "/login" && frameWidth <= 500 && setMobileSignUp(true)
+    Router.pathname === "/createProfile" && frameWidth <= 500 && setHideFooter(true)
+    Router.pathname === "/signup" && frameWidth <= 500 && setHideFooter(true)
+    Router.pathname === "/login" && frameWidth <= 500 && setHideFooter(true)
+    Router.pathname === "/" && frameWidth <= 500 && setHideFooter(true)
   }, [])
   
   return (
@@ -19,7 +21,7 @@ export default ({ children }) => {
       <div className="antialiased text-gray-900 flex flex-col items-center justify-center px-3 overflow-scroll">
         {children}
       </div>
-      {!mobileSignUp && <Footer />}
+      {!hideFooter && <Footer />}
     </>
   );
 };

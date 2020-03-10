@@ -37,9 +37,10 @@ export default function Macros({ user, setUser }) {
     }
     
     if (data) {
-      const nameWithoutWhitespace = name => name.trim().split(' ').join('')
+      // const nameWithoutWhitespace = name => name.trim().split(' ').join('')
       //  Need to discuss how we will handle user.name not being there
-      router.push('/[user]/dashboard', `/${nameWithoutWhitespace(user.name)}/dashboard`)  
+      // router.push('/[user]/dashboard', `/${nameWithoutWhitespace(user.name)}/dashboard`)  
+      router.push('/[user]/dashboard', `/user/dashboard`)  
     }
   }
   
