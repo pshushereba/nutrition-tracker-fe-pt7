@@ -9,14 +9,12 @@ import ActivityLevel from '../components/form/ActivityLevel';
 import AppLayout from "../components/AppLayout"
 import LogInSVG from '../components/svg/LogInSVG'
 import withApollo from '../lib/apollo'
-import CreateProfileForm from "../components/form/CreateProfileForm"
 
 const CreateProfile = () => {
   const [user, setUser] = useState({})  
   const [profileStep, setProfileStep] = useState("ageGenderHeight")
 
   const cookie = Cookie.get('token')
-//   console.log(cookie)
 
   return (
     <AppLayout>
