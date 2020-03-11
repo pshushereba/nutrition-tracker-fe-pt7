@@ -29,14 +29,14 @@ const Login = () => {
       data: {
         login: {
           token,
-          user: { id }
+          user: { id, name }
         }
       }
     } = await login({ variables: variables });
 
     Cookie.set("token", token);
     Cookie.set("id", id);
-    Router.push(`/dashboard`);
+    Router.push(`/${name}/dashboard`);
   };
 
   return (
