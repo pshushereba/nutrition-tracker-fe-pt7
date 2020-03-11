@@ -15,12 +15,17 @@ function AllUsers(props) {
   if (loading) return <div>Loading ...</div>;
   if (error) return <div>Error: {error}</div>;
 
-  const users = data.users
+    const users = data.users
 
   const allUsers = users.map(({ id, name, email }) => {
     return <UserCard key={id} id={id} name={name} email={email} />;
   });
 
-  return <AppLayout>{users && allUsers}</AppLayout>;
+  return (
+  
+  <AppLayout>
+    <button onClick={handleClick}>run query</button>
+    {users && allUsers}
+  </AppLayout>);
 }
 export default withApollo(AllUsers);

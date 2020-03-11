@@ -1,11 +1,14 @@
 import { useMutation } from '@apollo/react-hooks'
 import Cookie from 'js-cookie'
+import { useRouter } from 'next/router'
 
 import FormInput from "./FormInput";
 import {ADD_USER } from '../../gql/mutations'
 import ThunderboltSVG from '../svg/ThunderboltSVG';
 
-export default function({ setFormStep, user, setUser }) {
+export default function({ user, setUser }) {
+
+  const Router = useRouter()
   
   const variables = {
     name: user.name,
@@ -16,7 +19,7 @@ export default function({ setFormStep, user, setUser }) {
   const [addUser, {}] = useMutation(ADD_USER);
   
   const handleSubmit = async () => {
-    
+
     const {
       data: {
         createUser: {
@@ -32,9 +35,10 @@ export default function({ setFormStep, user, setUser }) {
     }
     if (user) {
       Cookie.set("token", token);
-      Cookie.set("id", user.id);
-      setFormStep("createProfile")
+      Cookie.set("name", user.name);
+      Router.push('/createProfile')
     }
+
   };
 
 

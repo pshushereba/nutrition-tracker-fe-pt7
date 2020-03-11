@@ -1,4 +1,4 @@
-export default function FormRadio({ radioFor, inputName }) {
+export default function FormRadio({ radioFor, inputName, icon }) {
   return (
     <div className="flex justify-between">
       <div className="my-3">
@@ -7,7 +7,7 @@ export default function FormRadio({ radioFor, inputName }) {
           {radioFor}
         </label>
       </div>
-      <i>Icon</i>
+      {icon && <i>Icon</i>}
     </div>
   );
 }

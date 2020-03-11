@@ -18,14 +18,6 @@ module.exports = {
       ...theme('colors'),
       footerText: "#5A5A5A"
     }),
-    // colors: {
-    //   app: {
-    //     primary: '#6C63FF'
-    //   },
-    //   myText: {
-    //     white: 'white'
-    //   }
-    // },
     extend: {
       colors: {
         'soft-gray': '#e5e5e5',
