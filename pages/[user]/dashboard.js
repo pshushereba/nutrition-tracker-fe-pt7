@@ -3,6 +3,7 @@ import AppLayout from '../../components/AppLayout.js';
 import DashFoodSearch from '../../components/ingredients/DashFoodSearch'
 import { useQuery } from '@apollo/react-hooks';
 import { ME } from '../../gql/queries';
+import { useRouter } from 'next/router';
 
 
 const Dashboard = () => {
