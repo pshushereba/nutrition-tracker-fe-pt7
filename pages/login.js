@@ -23,6 +23,7 @@ const Login = () => {
   const [login, {}] = useMutation(LOG_IN);
   
   const handleSubmit = async e => {
+    console.log("In handleSubmit");
     e.preventDefault();
     const {
       data: {
@@ -77,9 +78,9 @@ const Login = () => {
             </div>
           </div>
         </form>
-        <button className="text-xs text-white px-6 py-1 bg-indigo-500 border-indigo-500 rounded" onClick={handleSubmit}>Login</button>
+        <button className="text-xs text-white px-6 py-1 bg-indigo-500 border-indigo-500 rounded relative" onClick={handleSubmit}>Login</button>
         <h3 className="py-2">Don't have an account?</h3>
-        <button className="text-black"><a className="text-black" href="/signup">Sign Up</a></button>
+        <button className="text-black relative"><a className="text-black" href="/signup">Sign Up</a></button>
       </div>
       <div className="mt-8">
         <LogInSVG />

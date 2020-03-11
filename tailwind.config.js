@@ -26,8 +26,18 @@ module.exports = {
     //     white: 'white'
     //   }
     // },
-    extend: {}
+    extend: {
+      colors: {
+        'soft-gray': '#e5e5e5',
+        'dark-gray': '#5A5A5A',
+        'btn-pink': '#FE42B3',
+        'active-blue': '#8D4CFF',
+        'item-hover': '#FFA5DB'
+      }
+    }
   },
-  variants: {},
+  variants: {
+    backgroundColor: ['responsive', 'hover', 'focus', 'active'],
+  },
   plugins: []
 };

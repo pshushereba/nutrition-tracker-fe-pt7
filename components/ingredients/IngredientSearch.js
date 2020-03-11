@@ -8,14 +8,16 @@ const IngredientSearch = () => {
 
     const query = item.replace(' ', '%20');
 
+    const filter = null;
+
     const handleChange = (e) => {
         setItem(e.target.value)
     }
  
     const search = async () => {
         let list;
-
-        const response = await fetch(`https://api.edamam.com/api/food-database/parser?app_id=8de772d5&app_key=ba31a7a9230043a9bc36135b1a432184&ingr=${query}`)
+ 
+        const response = await fetch(`https://api.edamam.com/api/food-database/parser?app_id=8de772d5&app_key=${process.env.FOOD_DB_KEY}&ingr=${query}&health=dairy-free`)
         list = await response.json();
         return setResults(list.hints);
     }
@@ -39,6 +41,15 @@ const IngredientSearch = () => {
                     onClick={handleSubmit}
                 >Search</button>
             </div>
+            {results.length > 0 ? 
+            <div className="flex justify-around p-4">
+                <p className="px-4">Food Item</p>
+                <p className="px-4">Serving Size</p>
+                <p className="px-4">Fats %</p>
+                <p className="px-4">Protein %</p>
+                <p className="px-4">Carb %</p>
+                <p className="px-4">Quick View</p>
+            </div> : null}
             <div>
                 {results.map((item) => {
                   return <IngredientCard key={item.food.foodId} details={item} />
