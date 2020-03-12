@@ -9,6 +9,7 @@ const IngredientSearch = () => {
     const query = item.replace(' ', '%20');
 
     const filter = null;
+    // Need to add filter options to component. Right now 'dairy-free' is the hardcoded filter.
 
     const handleChange = (e) => {
         setItem(e.target.value)
