@@ -10,8 +10,8 @@
 .next
 /out/
 
+# # next.config.js
 # next.config.js
-next.config.js
 
 # production
 /build
