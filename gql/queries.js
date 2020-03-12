@@ -19,3 +19,39 @@ export const GET_ALL_USERS = gql`
     }
   }
 `;
+
+export const ME = gql`
+  {
+    me{
+      id
+      name
+      email
+      profile{
+        id
+        age
+        weight
+        height
+        gender
+        goal_weight
+        activity_level
+        diet
+        fat
+        carbs
+        protein
+        calories
+      }
+      dailyRecords{
+        id
+        date
+        current_weight
+        calories
+        fat
+        carbs
+        fiber
+        protein
+        food_string
+        meal_type
+      }
+    }
+  }
+`

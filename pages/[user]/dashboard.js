@@ -1,10 +1,17 @@
 import withApollo from '../../lib/apollo'
 import AppLayout from '../../components/AppLayout.js';
 import DashFoodSearch from '../../components/ingredients/DashFoodSearch'
-import IngredientSearch from '../../components/ingredients/IngredientSearch.js';
+import { useQuery } from '@apollo/react-hooks';
+import { ME } from '../../gql/queries';
+import { useRouter } from 'next/router';
 
 
 const Dashboard = () => {
+    const { loading, error, data} = useQuery(ME)
+
+    if (loading) return 'Loading...';
+    if (error) return `Error! ${error.message}`;
+
     return (
         <div>
             <AppLayout>
@@ -18,7 +25,7 @@ const Dashboard = () => {
                     <div className="mb-8">
                         <div className="h-16 w-16 border-2 border-gray-900 rounded-full"></div>
                         <div className="">
-                            UserName
+                            {data.me.name}
                         </div>
                     </div>
                     <div className="mt-8">

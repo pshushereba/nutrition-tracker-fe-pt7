@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import Cookie from "js-cookie";
 import { useMutation } from "@apollo/react-hooks";
 
@@ -10,6 +10,8 @@ import AppLayout from "../components/AppLayout";
 
 const Login = () => {
   const [thisUser, setThisUser] = useState("");
+  const Router = useRouter()  
+
 
   const handleChange = e => {
     setThisUser({ ...thisUser, [e.target.name]: e.target.value });
@@ -29,14 +31,15 @@ const Login = () => {
       data: {
         login: {
           token,
-          user: { id }
+          user: { id, name }
         }
       }
     } = await login({ variables: variables });
 
     Cookie.set("token", token);
     Cookie.set("id", id);
-    Router.push(`/dashboard`);
+    const nameWithoutWhitespace = name => name.trim().split(' ').join('')
+    Router.push('/[user]/dashboard', `/${nameWithoutWhitespace(name)}/dashboard`)  
   };
 
   return (
