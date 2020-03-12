@@ -32,13 +32,28 @@ export const ADD_USER = gql`
 `
 
 export const CREATE_PROFILE = gql`
-mutation CREATE_PROFILE($age: Int!, $weight: Int!, $height: Int!, $gender: Boolean!) {
+mutation CREATE_PROFILE(
+    $age: Int!, 
+    $weight: Int!, 
+    $height: Int!, 
+    $gender: Boolean,
+    $goal_weight: Int,
+    $activity_level: Int,
+    $fat: Int,
+    $carbs: Int,
+    $protein: Int
+) {
   createProfile (
     data: {
 			age: $age,
       weight: $weight,
       height: $height,
       gender: $gender,
+      goal_weight: $goal_weight,
+      activity_level: $activity_level,
+      fat: $fat,
+      carbs: $carbs,
+      protein: $protein
     }
   ) {
   	id

@@ -36,7 +36,7 @@ const Login = () => {
 
     Cookie.set("token", token);
     Cookie.set("id", id);
-    Router.push(`/allUsersSample`);
+    Router.push(`/dashboard`);
   };
 
   return (
