@@ -11,15 +11,19 @@ const DashboardChartItem = props => {
 
   return (
     <tr className="flex align-center border-gray-300 border">
-      <div className="flex align-center justify-center w-8 border-r p-2">
-        <td className="cursor-pointer">{fav ? <FullHeartSVG /> : <HeartOutlineSVG />}</td>
+      <div className="w-1/2 flex align-center">
+        <div className="flex align-center justify-center w-8 border-r p-2">
+          <td className="cursor-pointer">
+            {fav ? <FullHeartSVG /> : <HeartOutlineSVG />}
+          </td>
+        </div>
+        <div className="flex align-center p-2">
+          <td>
+            {quantity} {name}
+          </td>
+        </div>
       </div>
-      <div className="w-3/5 flex align-center p-2">
-        <td>
-          {quantity} {name}
-        </td>
-      </div>
-      <div className="flex w-2/5 justify-around align-center p-2">
+      <div className="flex w-1/2 justify-around align-center p-2">
         <td>{calories}</td>
         <td>{fats}g</td>
         <td>{protein}g</td>
