@@ -3,13 +3,11 @@ import fetch from 'isomorphic-unfetch';
 import withApollo from '../../lib/apollo';
 
 import Dropdown from '../Dropdown.js';
+import QuickViewSVG from '../svg/QuickView.js';
 
 const IngredientCard = (props) => {
     const [foodObj, setFoodObj] = useState({quantity: 1, foodId: null, measureURI: null})
-    
-    // When a user clicks the 'Quick View', store the foodID and quantity selected in an ingredients object, along with a quantity of 1.
-    // make the second API call passing the ingredients object as a JSON object in the body of the POST requeest.
-    //
+
     const ingredients = [];
 
     const handleChange = (e) => {
@@ -22,7 +20,8 @@ const IngredientCard = (props) => {
     }
 
     console.log(foodObj)
-    console.log(props.details);
+    // console.log(props.details);
+    console.log("Ingredients Array", ingredients)
     
     const search = async () => {
         const response = await fetch(`https://api.edamam.com/api/food-database/nutrients?app_id=8de772d5&app_key=${process.env.FOOD_DB_KEY}`, {
@@ -30,11 +29,9 @@ const IngredientCard = (props) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: {"ingredients": JSON.stringify({
-                quantity: 1,
-                measureURI: "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
-                foodId: "food_bp7ot2obefuy2na414mk5blx41k8"
-              })}
+            body: {
+                "ingredients": JSON.stringify(foodObj)
+            }
         })
         console.log(response);
         return response;
@@ -49,7 +46,9 @@ const IngredientCard = (props) => {
                     <p>{Math.ceil(props.details.food.nutrients.FAT)} g</p>
                     <p>{Math.ceil(props.details.food.nutrients.PROCNT)} g</p>
                     <p>{Math.ceil(props.details.food.nutrients.CHOCDF)} g</p>
-                    <button onClick={handleChange}>Quick View</button>
+                    <div onClick={handleChange}>
+                        <QuickViewSVG>Quick View</QuickViewSVG>
+                    </div>
                     <button onClick={handleSubmit}>Get Info</button>
                 </div>
             </div>
