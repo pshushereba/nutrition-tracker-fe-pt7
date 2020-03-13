@@ -13,7 +13,7 @@ const IngredientCard = (props) => {
     const ingredients = [];
 
     const handleChange = (e) => {
-        setFoodObj({...foodObj, foodId: props.details.food.foodId, measureURI: props.details.measures[0].uri})
+        setFoodObj({...foodObj, foodId: props.details.food.foodId})
     }
 
     const handleSubmit = () => {
@@ -30,7 +30,11 @@ const IngredientCard = (props) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: {"ingredients": JSON.stringify(ingredients)}
+            body: {"ingredients": JSON.stringify({
+                quantity: 1,
+                measureURI: "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+                foodId: "food_bp7ot2obefuy2na414mk5blx41k8"
+              })}
         })
         console.log(response);
         return response;

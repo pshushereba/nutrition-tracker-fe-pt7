@@ -16,7 +16,7 @@ class Dropdown extends Component {
     }
     
     handleSelect(e) {
-      this.props.setFoodObj({...this.props.foodObj, measureURI: e.value })
+      this.props.setFoodObj({...this.props.foodObj, measureURI: e.target.value })
     }
         // Displays menu and adds event listener to close
     showMenu(event) {
