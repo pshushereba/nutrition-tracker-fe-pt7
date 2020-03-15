@@ -31,7 +31,7 @@ const Dashboard = () => {
                 </div>
                 <div className="flex bg-mobileFoot">
                     <div className="flex-1"></div>
-                    <div className="flex-1 flex justify-around text-lg font-medium">
+                    <div className="flex-1 flex justify-around text-lg font-medium py-2">
                         <div 
                             className={`${activeControl === "journal" ? "border-b-2 border-pink-500" : ""} cursor-pointer`}
                             onClick={() => setActiveControl("journal")}
@@ -57,15 +57,16 @@ const Dashboard = () => {
                             Challenges
                         </div>
                     </div>
-                    <div className="flex flex-1 text-sm justify-end">
+                    <div className="flex flex-1 text-sm justify-end items-center">
                         <div className="pr-32">{currentDate.toLocaleDateString()}</div>
+                        {/* Needs reformatting */}
                     </div>
                 </div>
                 <div className="flex py-4">
                     <DailyVibe />
                     <div className="flex-1"></div>
                     <div className="border border-black mr-32 ml-6">
-                        Charts
+                        Macro Charts
                     </div>
                 </div>
 
