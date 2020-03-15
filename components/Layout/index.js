@@ -18,7 +18,7 @@ export default ({ children }) => {
   return (
       <div className="flex flex-col h-screen">
         <Header/>
-        <div className="flex-1">
+        <div className="flex flex-col flex-1">
           {children}
         </div>
         {!hideFooter && <Footer />}

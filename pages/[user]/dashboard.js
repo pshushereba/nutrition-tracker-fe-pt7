@@ -8,6 +8,9 @@ import Layout from '../../components/Layout/index'
 import FoodSearchBox from '../../components/ingredients/FoodSearchBox';
 import DashUser from '../../components/DashUser';
 import DailyVibe from '../../components/DailyVibe';
+import DashboardChart from '../../components/dashboardChart/DashboardChart';
+import DashFoodJournalSVG from '../../components/svg/DashFoodJournalSVG';
+import DesktopFoodJournal from '../../components/foodJournal/DesktopFoodJounal';
 
 
 const Dashboard = () => {
@@ -58,8 +61,8 @@ const Dashboard = () => {
                         </div>
                     </div>
                     <div className="flex flex-1 text-sm justify-end items-center">
-                        <div className="pr-32">{currentDate.toLocaleDateString()}</div>
                         {/* Needs reformatting */}
+                        <div className="pr-32">{currentDate.toLocaleDateString()}</div>
                     </div>
                 </div>
                 <div className="flex py-4">
@@ -69,7 +72,18 @@ const Dashboard = () => {
                         Macro Charts
                     </div>
                 </div>
-
+                <div className="ml-20 mr-32">
+                    {/* Replace strings with corresponding components */}
+                    {activeControl === "journal" ? (
+                        <DesktopFoodJournal />
+                    ) : activeControl === "progress" ? (
+                        "Progress"
+                    ) : activeControl === "badges" ? (
+                        "Badges"
+                    ) : activeControl === "challenges" ? (
+                        "Challenges"
+                    ) : "Error"}
+                </div> 
             </Layout>
         </div>
     )
