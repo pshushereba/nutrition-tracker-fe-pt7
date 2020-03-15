@@ -1,9 +1,10 @@
-import withApollo from '../../lib/apollo'
-import AppLayout from '../../components/AppLayout.js';
-import DashFoodSearch from '../../components/ingredients/DashFoodSearch'
 import { useQuery } from '@apollo/react-hooks';
-import { ME } from '../../gql/queries';
 import { useRouter } from 'next/router';
+
+import Layout from '../../components/Layout/index'
+import withApollo from '../../lib/apollo'
+import { ME } from '../../gql/queries';
+import DashFoodSearch from '../../components/ingredients/DashFoodSearch'
 
 
 const Dashboard = () => {
@@ -14,7 +15,7 @@ const Dashboard = () => {
 
     return (
         <div>
-            <AppLayout>
+            <Layout>
                 <div className="flex w-full justify-around pt-6">
                     <div className="mt-8">
                         <div className="h-16 w-16 border-2 border-gray-900 rounded-full"></div>
@@ -109,7 +110,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div>
-            </AppLayout>
+            </Layout>
         </div>
     )
 }

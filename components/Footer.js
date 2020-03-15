@@ -4,7 +4,7 @@ import TrophyIcon from "./svg/TrophySVG.js";
 
 const Footer = () => {
   return (
-    <footer className="flex justify-around items-center h-16 lg:bg-headFoot bg-mobileFoot fixed bottom-0 w-full">
+    <footer className="flex justify-around items-center h-16 lg:bg-headFoot bg-mobileFoot w-full">
       <div className="footer-left flex flex-col items-center cursor-pointer lg:hidden">
         <HomeIcon />
         <p className="muli text-sm text-footerText font-semibold">Home</p>

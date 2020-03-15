@@ -1,26 +1,20 @@
 import { useRouter } from "next/router";
 
-import MenuSVG from "./svg/MenuSVG";
-
-const AppHeader = () => {
+const Header = () => {
   const router = useRouter();
 
   return (
-    <div className="flex w-full text-xl bg-gray-900 pt-8 pb-4 px-4">
-      <MenuSVG />
-      <div className="flex w-full justify-center">
-        {/* <div className="flex">
-          <a className="p-2">Home</a>
-          <a className="p-2">Badges</a>
-          <a className="p-2">Journal</a>
-          <a className="p-2">Community</a>
-        </div> */}
-        <h1 className="title text-white justify-center">
-          {router.pathname === "/" ? "" : "NUTRIVURV"}
-        </h1>
-      </div>
+    <div className="flex w-full py-4 bg-mobileFoot">
+      <h1 className="flex-1 text-2xl font-medium pl-20">Nutrivurv</h1>
+      <span className="flex flex-1 justify-center">
+        <ul className="flex items-center">
+          <a className="px-5">Log Food +</a>
+          <a className="px-5">Settings</a>
+          <a className="px-5">Sign Out</a>
+        </ul>
+      </span>
     </div>
   );
 };
 
-export default AppHeader;
+export default Header;
