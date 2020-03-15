@@ -1,15 +1,41 @@
 import React, {useState} from 'react';
 import fetch from 'isomorphic-unfetch';
 import IngredientCard from './IngredientCard.js';
+import Dropdown from '../Dropdown'
 
 const IngredientSearch = () => {
     const [item, setItem] = useState("")
     const [results, setResults] = useState([])
-
+    const [filter, setFilter] = useState("")
     const query = item.replace(' ', '%20');
 
-    const filter = null;
-    // Need to add filter options to component. Right now 'dairy-free' is the hardcoded filter.
+   // Object for FilterDropdown
+   const filterDropdown = {
+       dropName: "Diet",
+       options: [
+           
+        {
+            id: 1,
+           label:'Dairy Free',
+           value: 'dairy-free'
+        },
+        
+        {
+            id: 2,
+            label: 'Keto',
+            value: 'keto-friendly'
+         },
+         
+         {
+            id:3,
+            label: 'Gluten Free',
+            value: 'gluten-free'
+          },
+        
+        {   id: 4,
+            label: 'Vegan',
+            value: 'vegan'}]
+   }
 
     const handleChange = (e) => {
         setItem(e.target.value)
@@ -18,7 +44,8 @@ const IngredientSearch = () => {
     const search = async () => {
         let list;
  
-        const response = await fetch(`https://api.edamam.com/api/food-database/parser?app_id=8de772d5&app_key=${process.env.FOOD_DB_KEY}&ingr=${query}&health=dairy-free`)
+    // Checks if filter is active and appends to API call if needed
+        const response = await fetch(`https://api.edamam.com/api/food-database/parser?app_id=8de772d5&app_key=${process.env.FOOD_DB_KEY}&ingr=${query}${filter ? '&health=' + filter : ''}`)
         list = await response.json();
         return setResults(list.hints);
     }
@@ -32,6 +59,7 @@ const IngredientSearch = () => {
         <div>
             <div>
                 <h2>Search for a Food</h2>
+                <Dropdown filterDropdown={filterDropdown} setFilter={setFilter}/>
                 <input 
                     type="text"
                     placeholder="Search..."

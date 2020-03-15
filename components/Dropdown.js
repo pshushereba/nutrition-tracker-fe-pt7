@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import MenuButton from './MenuButton';
 
 class Dropdown extends Component {
     constructor(props) {
@@ -13,7 +14,9 @@ class Dropdown extends Component {
         this.closeMenu = this.closeMenu.bind(this);
 
         this.foodObj={ measureURI: null }
-    }
+
+        this.filterDropdown = props.filterDropdown
+        }
     
     handleSelect(e) {
       this.props.setFoodObj({...this.props.foodObj, measureURI: e.target.value })
@@ -36,11 +39,23 @@ class Dropdown extends Component {
       }
     }
   
+
+      /* Expects a JSON object structured like
+       const filterDropdown = 
+       {dropName: 'somestringtoshowbeforehtemenudropsdown'
+          options: [
+            {
+              id: 1
+              label: 'sometexttodisplaytotheuser',
+              value: 'somevaluetopasstotheapp'
+            }
+        ]} */          
+
     render() {
     return (
       <div>
         <button onClick={this.showMenu}>
-          Serving Size
+          {this.filterDropdown.dropName}
         </button>
         { this.state.showMenu
         ? (
@@ -48,13 +63,10 @@ class Dropdown extends Component {
         <div className="menu" ref={(element) => {
             this.dropdownMenu = element;
           }}>
-          <button value="http://www.edamam.com/ontologies/edamam.owl#Measure_ounce" onClick={e => this.handleSelect(e)}> Ounce </button>
-          <button value="http://www.edamam.com/ontologies/edamam.owl#Measure_gram" onClick={e => this.handleSelect(e)}> Gram </button>
-          <button value="http://www.edamam.com/ontologies/edamam.owl#Measure_pound" onClick={e => this.handleSelect(e)}> Pound </button>
-          <button value="http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram" onClick={e => this.handleSelect(e)}> Kilo </button>
-          <button value="http://www.edamam.com/ontologies/edamam.owl#Measure_fluid_ounce" onClick={e => this.handleSelect(e)}> Fluid Ounce </button>
-          <button value="http://www.edamam.com/ontologies/edamam.owl#Measure_pint" onClick={e => this.handleSelect(e)}> Pint </button>
-          <button value="http://www.edamam.com/ontologies/edamam.owl#Measure_liter" onClick={e => this.handleSelect(e)}> Liter </button>
+             {this.filterDropdown.options.map(cv => {
+          return <button foodObj = {this.foodObj} data={cv} key={cv.id} value = {cv.value} onClick={e => this.handleSelect(e)}> {cv.label} </button>;
+        })}
+
         </div>
         )
         : (
