@@ -1,7 +1,7 @@
-import AppHeader from "./AppHeader";
-import Footer from "./Footer.js"
+import Footer from "../Footer"
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Header from "../Layout/Header";
 
 export default ({ children }) => {
   const [hideFooter, setHideFooter] = useState(false)
@@ -17,7 +17,7 @@ export default ({ children }) => {
   
   return (
       <div className="flex flex-col h-screen">
-        <AppHeader />
+        <Header/>
         <div className="antialiased flex-1 text-gray-900 flex flex-col items-center justify-center px-3 m-auto">
           {children}
         </div>
