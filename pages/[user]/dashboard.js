@@ -1,115 +1,89 @@
 import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
-import Layout from '../../components/Layout/index'
 import withApollo from '../../lib/apollo'
 import { ME } from '../../gql/queries';
-import DashFoodSearch from '../../components/ingredients/DashFoodSearch'
+import Layout from '../../components/Layout/index'
+import FoodSearchBox from '../../components/ingredients/FoodSearchBox';
+import DashUser from '../../components/DashUser';
+import DailyVibe from '../../components/DailyVibe';
+import DashboardChart from '../../components/dashboardChart/DashboardChart';
+import DashFoodJournalSVG from '../../components/svg/DashFoodJournalSVG';
+import DesktopFoodJournal from '../../components/foodJournal/DesktopFoodJounal';
 
 
 const Dashboard = () => {
+    const [activeControl, setActiveControl] = useState("journal")
     const { loading, error, data} = useQuery(ME)
 
     if (loading) return 'Loading...';
     if (error) return `Error! ${error.message}`;
 
+    const currentDate = new Date(Date.now())
+
     return (
         <div>
             <Layout>
-                <div className="flex w-full justify-around pt-6">
-                    <div className="mt-8">
-                        <div className="h-16 w-16 border-2 border-gray-900 rounded-full"></div>
-                        <div className="">
-                            Calories
-                        </div>
-                    </div>
-                    <div className="mb-8">
-                        <div className="h-16 w-16 border-2 border-gray-900 rounded-full"></div>
-                        <div className="">
-                            {data.me.name}
-                        </div>
-                    </div>
-                    <div className="mt-8">
-                        <div className="h-16 w-16 border-2 border-gray-900 rounded-full "></div>
-                        <div className="">
-                            Streak
-                        </div>
+                <div className="flex">
+                    <DashUser data={data} />
+                    <div className="flex-1"></div>
+                    <div className="flex-1 px-32 self-center">
+                        <FoodSearchBox />
                     </div>
                 </div>
-                <div className="container-md flex justify-center my-4">
-                    <DashFoodSearch />
-                    {/* <IngredientSearch /> */}
-                </div>
-                <div className=" border rounded-lg shadow-xl mt-2">
-                    <div className="flex justify-center rounded w-auto mt-3">
-                        <span className="px-8 py-1 bg-gray-300 rounded text-sm hover:bg-purple-500 hover:text-white hover:z-auto">
-                            Dash
-                        </span>
-                        <span className="px-8 py-1 bg-gray-300 rounded text-sm hover:bg-purple-500 hover:text-white hover:z-auto -ml-1 -mr-1">
-                            Daily Food
-                        </span>
-                        <span className="px-8 py-1 bg-gray-300 rounded text-sm hover:bg-purple-500 hover:text-white hover:z-auto">
-                            Weight
-                        </span>
-                    </div>
-                    <div className="flex flex-col my-6 px-4">
-                        <h2 className="text-2xl">
-                            Daily Vibe
-                        </h2>
-                        <p className="text-base text-gray-500 mb-2">
-                            Nothing worth having is going to be easy.
-                        </p>
-                        <hr />
-                    </div>
-                    <div className="px-2">
-                        <div className="flex flex-wrap ">
-                            <div className="w-1/2 border-2 p-2 h-32 rounded-lg bg-purple-600 flex flex-col justify-between text-white">
-                                 <div className="">
-                                     MenuIcon
-                                 </div>
-                                 <div className="">
-                                     Food Journal
-                                 </div>
-                                 <div className="">
-                                     2 logged
-                                 </div>
-                            </div>
-                            <div className="w-1/2 border-2 p-2 h-32 rounded-lg bg-purple-600 flex flex-col justify-between text-white">
-                                 <div className="">
-                                     MenuIcon
-                                 </div>
-                                 <div className="">
-                                     Food Journal
-                                 </div>
-                                 <div className="">
-                                     2 logged
-                                 </div>
-                            </div>
-                            <div className="w-1/2 border-2 p-2 h-32 rounded-lg bg-purple-600 flex flex-col justify-between text-white">
-                                 <div className="">
-                                     MenuIcon
-                                 </div>
-                                 <div className="">
-                                     Food Journal
-                                 </div>
-                                 <div className="">
-                                     2 logged
-                                 </div>
-                            </div>
-                            <div className="w-1/2 border-2 p-2 h-32 rounded-lg bg-purple-600 flex flex-col justify-between text-white">
-                                 <div className="">
-                                     MenuIcon
-                                 </div>
-                                 <div className="">
-                                     Food Journal
-                                 </div>
-                                 <div className="">
-                                     2 logged
-                                 </div>
-                            </div>
+                <div className="flex bg-mobileFoot">
+                    <div className="flex-1"></div>
+                    <div className="flex-1 flex justify-around text-lg font-medium py-2">
+                        <div 
+                            className={`${activeControl === "journal" ? "border-b-2 border-pink-500" : ""} cursor-pointer`}
+                            onClick={() => setActiveControl("journal")}
+                        >
+                            Food Journal
+                        </div>
+                        <div 
+                            className={`${activeControl === "progress" ? "border-b-2 border-pink-500" : ""} cursor-pointer`}
+                            onClick={() => setActiveControl("progress")}
+                        >
+                            Progress
+                        </div>
+                        <div 
+                            className={`${activeControl === "badges" ? "border-b-2 border-pink-500" : ""} cursor-pointer`}
+                            onClick={() => setActiveControl("badges")}
+                        >
+                            Badges
+                        </div>
+                        <div 
+                            className={`${activeControl === "challenges" ? "border-b-2 border-pink-500" : ""} cursor-pointer`}
+                            onClick={() => setActiveControl("challenges")}
+                        >
+                            Challenges
                         </div>
                     </div>
+                    <div className="flex flex-1 text-sm justify-end items-center">
+                        {/* Needs reformatting */}
+                        <div className="pr-32">{currentDate.toLocaleDateString()}</div>
+                    </div>
                 </div>
+                <div className="flex py-4">
+                    <DailyVibe />
+                    <div className="flex-1"></div>
+                    <div className="border border-black mr-32 ml-6">
+                        Macro Charts
+                    </div>
+                </div>
+                <div className="ml-20 mr-32">
+                    {/* Replace strings with corresponding components */}
+                    {activeControl === "journal" ? (
+                        <DesktopFoodJournal />
+                    ) : activeControl === "progress" ? (
+                        "Progress"
+                    ) : activeControl === "badges" ? (
+                        "Badges"
+                    ) : activeControl === "challenges" ? (
+                        "Challenges"
+                    ) : "Error"}
+                </div> 
             </Layout>
         </div>
     )
