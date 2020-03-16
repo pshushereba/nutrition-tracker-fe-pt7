@@ -11,10 +11,11 @@ import DailyVibe from '../../components/DailyVibe';
 import DashboardChart from '../../components/dashboardChart/DashboardChart';
 import DashFoodJournalSVG from '../../components/svg/DashFoodJournalSVG';
 import DesktopFoodJournal from '../../components/foodJournal/DesktopFoodJounal';
+import FoodSearchResults from '../../components/FoodSearchResults';
 
 
 const Dashboard = () => {
-    const [activeControl, setActiveControl] = useState("journal")
+    const [activeControl, setActiveControl] = useState("searchResults")
     const { loading, error, data} = useQuery(ME)
 
     if (loading) return 'Loading...';
@@ -82,6 +83,8 @@ const Dashboard = () => {
                         "Badges"
                     ) : activeControl === "challenges" ? (
                         "Challenges"
+                    ) : activeControl === "searchResults" ? (
+                        <FoodSearchResults />
                     ) : "Error"}
                 </div> 
             </Layout>
