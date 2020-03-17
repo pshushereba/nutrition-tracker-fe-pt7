@@ -6,7 +6,7 @@
 
 # Nutrition Tracker
 
-1️⃣ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
+1️⃣ You can find the deployed project at [Nutrivurv](https://www.nutrivurv.com/).
 
 ## 4️⃣ Contributors
 
@@ -33,13 +33,12 @@
 
 ## Project Overview
 
-1️⃣ [Trello Board](🚫add link to trello board here)
+1️⃣ [Trello Board](https://trello.com/b/Xix9XSlj/labspt7-nutrition-tracker)
 
 1️⃣ [Product Canvas](https://www.notion.so/Nutrition-Tracker-c05986bd547e429f97d2e3a75e97b32d)
 
 1️⃣ [UX Design files](https://www.figma.com/file/yqpTM7IYO90dVNPBsxaQrG/NutriJournal%2C-Ashes-%26-Tricia?node-id=122%3A2)
 
-🚫 Replace lorem ipsum with a description of your project
 
 Learning how to eat healthy and making a lifestyle change is overwhelming and difficult. There is a lack of education and many new habits that need to be developed which deter people from meeting their health goals. Reading food labels to track calories and other nutritional factors is tedious and time-consuming.  
 

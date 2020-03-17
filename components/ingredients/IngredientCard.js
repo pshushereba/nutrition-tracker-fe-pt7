@@ -6,7 +6,8 @@ import Dropdown from '../Dropdown.js';
 import QuickViewSVG from '../svg/QuickView.js';
 
 const IngredientCard = (props) => {
-    const [foodObj, setFoodObj] = useState({quantity: 1, foodId: null, measureURI: null})
+    const [foodObj, setFoodObj] = useState({quantity: 1, measureURI: null, foodId: null})
+    const [nutrients, setNutrients] = useState({});
 
     const ingredients = [];
 
@@ -14,27 +15,22 @@ const IngredientCard = (props) => {
         setFoodObj({...foodObj, foodId: props.details.food.foodId})
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         ingredients.push(foodObj);
         search();
     }
-
-    console.log(foodObj)
-    // console.log(props.details);
-    console.log("Ingredients Array", ingredients)
     
     const search = async () => {
         const response = await fetch(`https://api.edamam.com/api/food-database/nutrients?app_id=8de772d5&app_key=${process.env.FOOD_DB_KEY}`, {
             method: 'POST',
             headers: {
+                'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: {
-                "ingredients": JSON.stringify(foodObj)
-            }
+            body: JSON.stringify({"ingredients": ingredients})
         })
-        console.log(response);
-        return response;
+        return setNutrients(response);
     }
     
     return (
