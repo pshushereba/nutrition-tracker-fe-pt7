@@ -3,7 +3,7 @@ import Graph from '../../components/graphs/Graph.js';
 
 const SampleChart = () => {
     return (
-        <div>
+        <div className="container-sm">
             <Graph />
         </div>
     )
