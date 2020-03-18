@@ -35,6 +35,7 @@ const IngredientCard = (props) => {
             },
             body: JSON.stringify({"ingredients": ingredients})
         })
+        console.log(response)
         return setNutrients(response);
     }
     console.log(nutrients);

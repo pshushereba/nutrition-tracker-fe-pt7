@@ -1,41 +1,34 @@
 import React, {useState} from 'react';
 import fetch from 'isomorphic-unfetch';
-import IngredientCard from './IngredientCard.js';
+import { foodDbSearch } from '../../lib/edamam.js';
 
-export default function FoodSearchBox() {
+export default function FoodSearchBox({ setSearchResults, setActiveControl }) {
     const [item, setItem] = useState("")
-    const [results, setResults] = useState([])
 
-    const query = item.replace(' ', '%20');
-
+    
     const handleChange = (e) => {
         setItem(e.target.value)
     }
- 
-    const search = async () => {
-        let list;
-
-        const response = await fetch(`https://api.edamam.com/api/food-database/parser?app_id=8de772d5&app_key=ba31a7a9230043a9bc36135b1a432184&ingr=${query}`)
-        list = await response.json();
-        return setResults(list.hints);
-    }
     
-    const handleSubmit = (e) => {
+    const query = item.replace(' ', '%20');             //format the entered food item for the API call
+
+    
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        search();
+        const list = await foodDbSearch(query);         //hit the foodDB API
+        setSearchResults(list.hints)                    //set the searchResult so they can be read by the food list component
+        setActiveControl("searchResults")               //switch the dash component to searc results
     }
 
     return (
-        <>
-            <form onSubmit={handleSubmit}>
-                <input 
-                    className="w-full border border-purple-400 rounded focus:border-purple-200 px-4 py-2"
-                    type="text"
-                    placeholder="Search Food Item"
-                    name="food"
-                    onChange={handleChange} />
-            </form>
-        </>
+        <form onSubmit={handleSubmit}>
+            <input 
+                className="w-full border border-purple-400 rounded focus:border-purple-200 px-4 py-2"
+                type="text"
+                placeholder="Search Food Item"
+                name="food"
+                onChange={handleChange} />
+        </form>
     )
 }
 
