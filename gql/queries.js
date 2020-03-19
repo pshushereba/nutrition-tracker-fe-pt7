@@ -55,3 +55,11 @@ export const ME = gql`
     }
   }
 `
+
+export const GET_WEIGHTS = gql`
+  {
+    myDailyRecords{
+      current_weight
+    }
+  }
+`
