@@ -6,7 +6,8 @@ module.exports = {
       ...theme("colors"),
       plusPink: "#FF19A3",
       headFoot: "#363537",
-      mobileFoot: "#F9F9F9"
+      mobileFoot: "#F9F9F9",
+      chartPurple: "#DAC5FF"
     }),
     inset: theme => ({
       "halfCircle-X": "21px",
