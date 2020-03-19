@@ -4,8 +4,14 @@ import NutritionFacts from "./NutritionFacts";
 import SplashSVG from "./svg/SplahSVG";
 import PhoneManBigSVG from "./svg/PhoneManBigSVG";
 
+import {ADD_FOOD} from '../gql/mutations';
+import {useMutation} from '@apollo/react-hooks';
+
 export default function FoodSearchResults ({ searchResults }) {
     const [nutrInfo, setNutrInfo] = useState()
+    const [addFood, {}] = useMutation(ADD_FOOD);
+
+
 
     const svg = (
       <div className="flex flex-col mt-40">
@@ -22,7 +28,9 @@ export default function FoodSearchResults ({ searchResults }) {
             <div className="w-1/2 max-h flex">
               <div className="flex-1"></div>
                 {/* {nutrInfo ? <NutritionFacts data={nutrInfo} /> : svg}  //uncomment after food search list is functional, delete line below */}
-                <NutritionFacts data={data}/>
+                <NutritionFacts 
+                  addFood={addFood} 
+                  data={data}/>
               <div className="flex-1"></div>
             </div>
         </section>

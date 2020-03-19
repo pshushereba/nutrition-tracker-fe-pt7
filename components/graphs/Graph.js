@@ -2,7 +2,7 @@ import React from 'react'
 import { Line } from 'react-chartjs-2';
 
 const Graph = (props) => {
-    
+    console.log(props.data)
     const graphData = {
         datasets:
             [{
@@ -51,9 +51,3 @@ const Graph = (props) => {
 }
 
 export default Graph;
-
-{/* <style jsx>{`
-    .chartjs-render-monitor {
-        width: 400px !important;
-    }
-`}</style> */}

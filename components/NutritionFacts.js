@@ -1,15 +1,20 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
-export default function NutritionFacts ({ data }) {
+export default function NutritionFacts ({ data, addFood }) {
     const [enteredQty, setEnteredQty] = useState(1)     //No of servings
-
+    const [finalQty, setFinalQty] = useState(data)
     const name = data.ingredients[0].parsed[0].food.split(" ").slice(0,2).join(" ")
     const nutrients = Object.keys(data.totalNutrients).splice(1)
     const servingSize = Math.floor(data.totalWeight/data.yield)
 
-    const handleChange = e => {
+    const handleChange = e => {ß
         setEnteredQty(e.target.value)
     }
+
+    // useEffect(() => {
+    //     enteredQty != 1 && // Helper function
+    //     enteredQty != 1 setFinalQty(// Return value of Helper Function)
+    // }, [enteredQty]);
 
     const nutrientList = nutrients.map(nutrient => {
         const nutrientTotals = data.totalNutrients              // Macros
