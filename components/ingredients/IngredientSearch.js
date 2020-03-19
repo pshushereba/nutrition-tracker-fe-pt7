@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import fetch from 'isomorphic-unfetch';
 import IngredientCard from './IngredientCard.js';
-import Dropdown from '../Dropdown'
+import Dropdown from '../DropdownFunc'
 
 const IngredientSearch = () => {
     const [item, setItem] = useState("")
@@ -15,24 +15,28 @@ const IngredientSearch = () => {
        options: [
            
         {
-            id: 1,
+           id: 1,
+           field: 'health',
            label:'Dairy Free',
            value: 'dairy-free'
         },
         
         {
             id: 2,
+            field: 'health',
             label: 'Keto',
             value: 'keto-friendly'
          },
          
          {
             id:3,
+            field: 'health',
             label: 'Gluten Free',
             value: 'gluten-free'
           },
         
         {   id: 4,
+            field: 'health',
             label: 'Vegan',
             value: 'vegan'}]
    }
@@ -45,7 +49,7 @@ const IngredientSearch = () => {
         let list;
  
     // Checks if filter is active and appends to API call if needed
-        const response = await fetch(`https://api.edamam.com/api/food-database/parser?app_id=8de772d5&app_key=${process.env.FOOD_DB_KEY}&ingr=${query}${filter ? '&health=' + filter : ''}`)
+        const response = await fetch(`https://api.edamam.com/api/food-database/parser?app_id=8de772d5&app_key=${process.env.FOOD_DB_KEY}&ingr=${query}${filter ? field + `=` + filter : ''}`)
         list = await response.json();
         return setResults(list.hints);
     }
