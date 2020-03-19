@@ -1,37 +1,6 @@
 import React, { useState } from 'react';
 
 
-function Dropdown(props) {
-    
-        // Sets menu to hidden by default
-        const [showMenu, setShowMenu] = useState(false)
-
-        //Set Food Object to State
-        const [foodObj, setFoodObj] = useState({...props.foodObj})
-
-        // Load Menu from Config Object
-        const [filterDropdown, setFilterDropdown] = useState({...props.filterDropdown})
-
-        const dropdownMenu = document.getElementsByClassName('dropdownMenu')
-
-        const field = props.filterDropdown.field
-
-
-        // Displays menu and adds event listener to close
-    function toggleMenu(event) {
-        event.preventDefault();
-        setShowMenu(true);
-        document.addEventListener('click', closeMenu);
-        };
-        // Hides menu and removes event listener
-    function closeMenu(event) {
-        // Check to make sure click does not originate inside the menu
-          if (!dropdownMenu.contains(event.target))
-        {
-        setShowMenu(false), () => {
-          document.remoimport React, { useState } from 'react';
-
-
           function Dropdown(props) {
               
                   // Sets menu to hidden by default
