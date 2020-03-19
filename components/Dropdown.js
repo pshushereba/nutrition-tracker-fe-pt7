@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MenuButton from './MenuButton';
+
 
 class Dropdown extends Component {
     constructor(props) {
@@ -12,15 +12,14 @@ class Dropdown extends Component {
         this.showMenu = this.showMenu.bind(this);
         // Set up clickhandler for hide
         this.closeMenu = this.closeMenu.bind(this);
+        this.handleSelect = this.handleSelect.bind(this);
 
         this.foodObj={ measureURI: null }
 
         this.filterDropdown = props.filterDropdown
         }
     
-    handleSelect(e) {
-      this.props.setFoodObj({...this.props.foodObj, measureURI: e.value })
-    }
+      
         // Displays menu and adds event listener to close
     showMenu(event) {
         event.preventDefault();
@@ -37,6 +36,9 @@ class Dropdown extends Component {
           document.removeEventListener('click', this.closeMenu);
         });
       }
+    }
+    handleSelect = (e) => {
+      this.props.setFoodObj({...this.props.foodObj, measureURI: e.value })
     }
   
 

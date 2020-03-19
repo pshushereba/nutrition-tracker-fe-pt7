@@ -12,36 +12,43 @@ const IngredientCard = (props) => {
         options: [
             {
                 id: 1,
+                field: 'MeasureURI',
                 label: 'Ounce',
                 value: 'http://www.edamam.com/ontologies/edamam.owl#Measure_ounce'
             },
             {
                 id: 2,
+                field: 'MeasureURI',
                 label: 'Gram',
                 value: 'http://www.edamam.com/ontologies/edamam.owl#Measure_gram'
             },
             {
                 id: 3,
+                field: 'MeasureURI',
                 label: 'Pound',
                 value: 'http://www.edamam.com/ontologies/edamam.owl#Measure_pound'
             },
             {
                 id: 4,
+                field: 'MeasureURI',
                 label: 'Kilogram',
                 value: 'http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram'
             },
             {
                 id: 5,
+                field: 'MeasureURI',
                 label: 'Fluid Oz.',
                 value: 'http://www.edamam.com/ontologies/edamam.owl#Measure_fluid_ounce'
             },
             {
                 id: 6,
+                field: 'MeasureURI',
                 label: 'Pint',
                 value: 'http://www.edamam.com/ontologies/edamam.owl#Measure_pint'
             },
             {
                 id: 7,
+                field: 'MeasureURI',
                 label: 'Liter',
                 value: 'http://www.edamam.com/ontologies/edamam.owl#Measure_liter'
             },
