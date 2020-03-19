@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import fetch from 'isomorphic-unfetch';
 import { foodDbSearch } from '../../lib/edamam.js';
 
 export default function FoodSearchBox({ setSearchResults, setActiveControl }) {
@@ -17,7 +16,7 @@ export default function FoodSearchBox({ setSearchResults, setActiveControl }) {
         e.preventDefault();
         const list = await foodDbSearch(query);         //hit the foodDB API
         setSearchResults(list.hints)                    //set the searchResult so they can be read by the food list component
-        setActiveControl("searchResults")               //switch the dash component to searc results
+        setActiveControl("searchResults")               //switch the dash component to search results
     }
 
     return (
@@ -31,4 +30,3 @@ export default function FoodSearchBox({ setSearchResults, setActiveControl }) {
         </form>
     )
 }
-

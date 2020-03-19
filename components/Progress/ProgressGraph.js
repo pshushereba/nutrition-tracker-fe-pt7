@@ -3,7 +3,7 @@ import Graph from '../graphs/Graph.js';
 
 const ProgressGraph = () => {
     return (
-        <div>
+        <div className="w-1/3">
             <Graph />
         </div>
     )

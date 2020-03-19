@@ -45,10 +45,15 @@ const Graph = (props) => {
             <Line 
                 data={graphData}
                 options={graphOptions}
-                width={500}
-                height={400} />
+                width={400} />
         </div>
     )
 }
 
 export default Graph;
+
+{/* <style jsx>{`
+    .chartjs-render-monitor {
+        width: 400px !important;
+    }
+`}</style> */}
