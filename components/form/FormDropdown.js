@@ -1,10 +1,10 @@
 export default function FormDropdown({ data, name, setValue, obj }) {
-  const handleChange = e => {
-    console.log(e.target.value);
-    setValue(e.target.value);
-  };
 
-  console.log("FormDropDown", data)
+  const handleChange = e => {
+    const parseValue = value => value.split("&&")
+    const [ id, uri, label ] = parseValue(e.target.value)
+    setValue({ ...obj, info: { quantity: 1, foodId: id, measureURI: uri }, label: label });
+  };
 
   const options = data.measures.map(option =>{
     const label = option.label
@@ -16,11 +16,9 @@ export default function FormDropdown({ data, name, setValue, obj }) {
     return (
         <option 
             key={measure ? measure : option.uri}
-            value={label ? label.toLowerCase() : "missing"}
-            info={ { quantity:1, foodId: id, measureURI: (measure ? measure : otherMeasure) } }
-            
+            value={`${id}&&${measure ? measure : otherMeasure}&&${label}`}
         >
-            {option.label}
+            {label}
         </option>
     )
 })
