@@ -1,8 +1,6 @@
 import React, {useState} from 'react'
 import fetch from 'isomorphic-unfetch';
-import withApollo from '../../lib/apollo';
 
-import Dropdown from '../Dropdown.js';
 import QuickViewSVG from '../svg/QuickView.js';
 
 const IngredientCard = (props) => {
@@ -89,7 +87,7 @@ const IngredientCard = (props) => {
             <div className="container-md flex justify-around my-2">
                 <div className="flex justify-around w-full hover:bg-item-hover hover:opacity-50">
                     <p>{props.details.food.label}</p>
-                    <Dropdown filterDropdown={filterDropdown} foodObj={foodObj} setFoodObj={setFoodObj}/>
+                    {/* <Dropdown filterDropdown={filterDropdown} foodObj={foodObj} setFoodObj={setFoodObj}/> */}
                     <p>{Math.ceil(props.details.food.nutrients.FAT)} g</p>
                     <p>{Math.ceil(props.details.food.nutrients.PROCNT)} g</p>
                     <p>{Math.ceil(props.details.food.nutrients.CHOCDF)} g</p>
@@ -103,4 +101,4 @@ const IngredientCard = (props) => {
     )
 }
 
-export default withApollo(IngredientCard);
+export default IngredientCard;

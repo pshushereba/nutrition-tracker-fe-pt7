@@ -63,7 +63,7 @@ const IngredientSearch = () => {
         <div>
             <div>
                 <h2>Search for a Food</h2>
-                <Dropdown filterDropdown={filterDropdown} setFilter={setFilter}/>
+                {/* <Dropdown filterDropdown={filterDropdown} setFilter={setFilter}/> */}
                 <input 
                     type="text"
                     placeholder="Search..."
