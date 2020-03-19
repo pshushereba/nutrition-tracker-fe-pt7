@@ -9,6 +9,7 @@ import DashUser from '../../components/DashUser';
 import DailyVibe from '../../components/DailyVibe';
 import DesktopFoodJournal from '../../components/foodJournal/DesktopFoodJounal';
 import FoodSearchResults from '../../components/FoodSearchResults';
+import Progress from '../../components/Progress/Progress.js';
 
 
 const Dashboard = () => {
@@ -76,7 +77,7 @@ const Dashboard = () => {
                     {activeControl === "journal" ? (
                         <DesktopFoodJournal />
                     ) : activeControl === "progress" ? (
-                        "Progress"
+                        <Progress />
                     ) : activeControl === "badges" ? (
                         "Badges"
                     ) : activeControl === "challenges" ? (

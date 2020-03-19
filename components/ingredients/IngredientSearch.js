@@ -67,33 +67,36 @@ const IngredientSearch = () => {
     search();
   };
 
-  return (
-    <div>
-      <div>
-        <h2>Search for a Food</h2>
-        <FormDropdown data={filterDropdown} setValue={setFilter} obj={filter} />
-        {/* <Dropdown filterDropdown={filterDropdown} setFilter={setFilter}/> */}
-        <input
-          type="text"
-          placeholder="Search..."
-          name="food"
-          onChange={handleChange}
-        ></input>
-        <button
-          className="text-xs text-white px-6 py-1 bg-indigo-500 border-indigo-500 rounded m-2"
-          onClick={handleSubmit}
-        >
-          Search
-        </button>
-      </div>
-      {results.length > 0 ? (
-        <div className="flex justify-around p-4">
-          <p className="px-4">Food Item</p>
-          <p className="px-4">Serving Size</p>
-          <p className="px-4">Fats %</p>
-          <p className="px-4">Protein %</p>
-          <p className="px-4">Carb %</p>
-          <p className="px-4">Quick View</p>
+    return (
+        <div>
+            <div>
+                <h2>Search for a Food</h2>
+                {/* <Dropdown filterDropdown={filterDropdown} setFilter={setFilter}/> */}
+                <input 
+                    type="text"
+                    placeholder="Search..."
+                    name="food"
+                    onChange={handleChange}></input>
+                <button 
+                    className="text-xs text-white px-6 py-1 bg-indigo-500 border-indigo-500 rounded m-2"
+                    onClick={handleSubmit}
+                >Search</button>
+            </div>
+            {results.length > 0 ? 
+            (<div>
+            <div className="flex justify-around p-4">
+                <p className="px-4">Food Item</p>
+                <p className="px-4">Serving Size</p>
+                <p className="px-4">Fats %</p>
+                <p className="px-4">Protein %</p>
+                <p className="px-4">Carb %</p>
+                <p className="px-4">Quick View</p>
+            </div> : null}
+            <div>
+                {results.map((item) => {
+                  return <IngredientCard key={item.food.foodId} details={item} />
+                })}
+            </div>
         </div>
       ) : null}
       <div>
