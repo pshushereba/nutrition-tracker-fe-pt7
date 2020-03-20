@@ -64,3 +64,42 @@ mutation CREATE_PROFILE(
 	}
 }
 `
+
+export const ADD_FOOD = gql`
+  mutation ADD_FOOD(
+    $date: String!
+    $current_weight: Int!
+    $calories: Int!
+    $fat: Int!
+    $carbs: Int!
+    $fiber: Int!
+    $protein: Int!
+    $food_string: String!
+    $meal_type: String!
+  ) {
+    createDailyRecord (
+      data: {
+        date: $date
+        current_weight: $current_weight
+        calories: $calories
+        fat: $fat
+        carbs: $carbs
+        fiber: $fiber
+        protein: $protein
+        food_string: $food_string
+        meal_type: $meal_type
+      }
+    ) {
+      date
+      current_weight
+      calories
+      fat
+      carbs
+      fiber
+      protein
+      food_string
+      meal_type
+      createdAt
+    }
+  }
+`

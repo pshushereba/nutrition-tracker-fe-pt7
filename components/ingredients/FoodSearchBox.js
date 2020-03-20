@@ -30,4 +30,3 @@ export default function FoodSearchBox({ setSearchResults, setActiveControl }) {
         </form>
     )
 }
-

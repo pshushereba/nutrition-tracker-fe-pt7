@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import fetch from 'isomorphic-unfetch';
 
 import QuickViewSVG from '../svg/QuickView.js';
+import FullHeartSVG from '../svg/FullHeartSVG.js';
+import HeartOutlineSVG from '../svg/HeartOutlineSVG.js';
 
 const IngredientCard = (props) => {
     const [foodObj, setFoodObj] = useState({quantity: 1, foodId: null, measureURI: null})
@@ -81,6 +83,7 @@ const IngredientCard = (props) => {
         console.log(response)
         return setNutrients(response);
     }
+    console.log(nutrients);
     
     return (
         <>
@@ -97,6 +100,25 @@ const IngredientCard = (props) => {
                     <button onClick={handleSubmit}>Get Info</button>
                 </div>
             </div>
+
+            <tr className="flex align-center border-gray-300 border">
+                <div className="flex align-center">
+                    <div className="flex align-center justify-center w-8 border-r p-2">
+                        <td className="cursor-pointer">
+                            {fav ? <FullHeartSVG /> : <HeartOutlineSVG />}
+                        </td>
+                    </div>
+                </div>
+                <div className="flex justify-around align-center p-2">
+                    <td className="mx-4">{props.details.food.label}</td>
+                    <td className="mx-4"><Dropdown foodObj={foodObj} setFoodObj={setFoodObj} /></td>
+                    <td className="mx-4">{Math.ceil(props.details.food.nutrients.FAT)}g</td>
+                    <td className="mx-4">{Math.ceil(props.details.food.nutrients.PROCNT)}g</td>
+                    <td className="mx-4">{Math.ceil(props.details.food.nutrients.CHOCDF)}g</td>
+                    <td className="mx-4 justify-end" onClick={handleChange}><QuickViewSVG /></td>
+                    <button onClick={handleSubmit}>Get Info</button>
+                </div>
+            </tr>
         </>
     )
 }

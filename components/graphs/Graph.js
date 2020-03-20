@@ -1,8 +1,8 @@
 import React from 'react'
 import { Line } from 'react-chartjs-2';
 
-const Graph = () => {
-    
+const Graph = (props) => {
+    console.log(props.data)
     const graphData = {
         datasets:
             [{
@@ -17,6 +17,8 @@ const Graph = () => {
         layout: {
             padding: 50
         },
+
+        maintainAspectRatio: false,
 
         title: {
             display: true,
@@ -40,7 +42,10 @@ const Graph = () => {
     
     return (
         <div>
-            <Line data={graphData} options={graphOptions} />
+            <Line 
+                data={graphData}
+                options={graphOptions}
+                width={400} />
         </div>
     )
 }

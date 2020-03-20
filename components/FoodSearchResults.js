@@ -4,8 +4,14 @@ import NutritionFacts from "./NutritionFacts";
 import PhoneManBigSVG from "./svg/PhoneManBigSVG";
 import FoodSearchList from "./FoodSearchList";
 
+import {ADD_FOOD} from '../gql/mutations';
+import {useMutation} from '@apollo/react-hooks';
+
 export default function FoodSearchResults ({ searchResults }) {
     const [nutrInfo, setNutrInfo] = useState()
+    const [addFood, {}] = useMutation(ADD_FOOD);
+
+
 
     const svg = (
       <div className="flex flex-col mt-40">
