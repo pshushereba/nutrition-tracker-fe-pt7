@@ -13,7 +13,7 @@ import Progress from '../../components/Progress/Progress.js';
 
 
 const Dashboard = () => {
-    const [activeControl, setActiveControl] = useState("journal")       //Sets which component is rendered on the lower half of dash
+    const [activeControl, setActiveControl] = useState("searchResults")       //Sets which component is rendered on the lower half of dash
     const [searchResults, setSearchResults] = useState()                //Sets search results returned from FoodSearchBox
     const { loading, error, data} = useQuery(ME)                        //Gets logged in user
 
