@@ -1,49 +1,32 @@
 import { useState, useEffect } from "react";
 
 export default function NutritionFacts({ data: { info, label } }) {
-  //
+  const [qty, setQty] = useState(1);    //qty value used to get final values
   const [enteredQty, setEnteredQty] = useState(1); //No of servings entered into the nutrition display
-  const [foodLogData, setFoodLogData] = useState({ //Obj for storing the vales used in the nutrition graphic and the dailyRecord mutation
+  const {
+    calories,
+    totalNutrients: {
+      FAT: { quantity: fatQuantity },
+      CHOCDF: { quantity: carbsQuantity },
+      PROCNT: { quantity: proteinQuantity },
+      FIBTG: { quantity: fiberQuantity }
+    },
+    ingredients: { parsed }
+  } = info;
+  const [foodLogData, setFoodLogData] = useState({
+    //Obj for storing the vales used in the nutrition graphic and the dailyRecord mutation
     recordData: {
       current_weight: 175,
-      calories: 0,
-      fat: 0,
-      carbs: 0,
-      fiber: 0,
-      protein: 0,
-      food_string: "food",
+      calories: calories * qty || 0,
+      fat: Math.floor(fatQuantity * qty) || 0,
+      carbs: Math.floor(carbsQuantity * qty) || 0,
+      fiber: Math.floor(fiberQuantity * qty) || 0,
+      protein: Math.floor(proteinQuantity * qty) || 0,
+      food_string: JSON.stringify(parsed),
       meal_type: ""
     },
-    graphicData: {
-      info: info
-    }
+    graphicData: info
   });
-
-  function loadFoodValues(data) {
-    const {
-      graphicData: { info: { calories, totalNutrients }}
-    } = data;
-    const macroArray = ["fat", "carbs", "fiber", "protein"];
-
-    macroArray.map(label => {
-    //   setFoodLogData({
-    //     ...foodLogData,
-    //     recordData: {          
-    //       [label]: totalNutrients[label].quantity * enteredQty
-    //     }
-    //   }); 
-    console.log(totalNutrients[label])
-    });
-
-    setFoodLogData({
-      ...foodLogData,
-      recordData: { calories: calories }
-    });
-  }
-  
-  useEffect(() => {
-    info && setFoodLogData(loadFoodValues(foodLogData));
-  }, [enteredQty]);
 
   const {
     ingredients,
@@ -51,26 +34,21 @@ export default function NutritionFacts({ data: { info, label } }) {
     totalWeight,
     totalDaily,
     yield: itemYield
-  } = foodLogData.graphicData.info;
+  } = foodLogData.graphicData;
   const name = ingredients[0].parsed[0].food;
   const nutrients = Object.keys(totalNutrients).splice(1);
   const servingSize = Math.floor(totalWeight / itemYield);
-
-  const handleChange = e => {
-    setEnteredQty(e.target.value);
-  };
-
 
   const nutrientList = nutrients.map(nutrient => {
     const nutrientTotals = totalNutrients; // Macros
     const dailyTotals = totalDaily; //percent daily values
     const label = nutrientTotals[nutrient].label; //Macro name
     const nutrientQuantity = Math.floor(
-      nutrientTotals[nutrient].quantity * enteredQty
+      nutrientTotals[nutrient].quantity * qty
     );
     const nutrientUnit = nutrientTotals[nutrient].unit;
     const totalQuantity = dailyTotals[nutrient]
-      ? Math.floor(dailyTotals[nutrient].quantity * enteredQty)
+      ? Math.floor(dailyTotals[nutrient].quantity * qty)
       : "";
     const totalUnit = dailyTotals[nutrient]
       ? dailyTotals[nutrient].unit
@@ -88,26 +66,35 @@ export default function NutritionFacts({ data: { info, label } }) {
     );
   });
 
+  const handleChange = e => {
+    setEnteredQty(e.target.value);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    setQty(enteredQty)
+  };
+
   return (
     <div className="flex flex-col w-2/5 max-w-sm">
       <h1 className="text-2xl font-semibold capitalize pb-4">
         {name.toLowerCase()}
       </h1>
       <label>No. of Servings</label>
-      <span className="flex">
+      <form className="flex" value={enteredQty} onSubmit={handleSubmit}>
         <input
           className="border border-gray-500 w-2/12"
           value={enteredQty}
           onChange={handleChange}
         />
         <p className="pl-2 -mb-1">{label}</p>
-      </span>
+      </form>
       <h2 className="text-2xl font-semibold mt-4 mb-2">Nutrition Facts</h2>
-      <p>{`Serving Amt. ${servingSize * enteredQty}g`}</p>
+      <p>{`Serving Amt. ${servingSize * qty}g`}</p>
       <div className="flex text-xl py-2">
         <p className="">Calories</p>
         <p className="flex-1"></p>
-        <p className="">{info.calories}</p>
+        <p className="">{info.calories * qty}</p>
       </div>
       <div className="flex">
         <p className="flex-1"></p>
@@ -119,7 +106,10 @@ export default function NutritionFacts({ data: { info, label } }) {
         contributes to a daily diet of 2,000 calories a day is used for general
         nutrition advice
       </p>
-      <button className="w-full text-white bg-pink-500 px-4 rounded-sm">
+      <button 
+        className="w-full text-white bg-pink-500 px-4 rounded-sm"
+        onClick={() => console.log(foodLogData)}  
+      >
         Log Food
       </button>
     </div>
