@@ -2,7 +2,6 @@ import { useState } from "react";
 import SearchResultsCard from "./SearchResultCard";
 
 export default function FoodSearchList({ setNutrInfo, searchResults }) {
-    console.log(searchResults)
 
     return (
         <div className="flex flex-col w-1/2">

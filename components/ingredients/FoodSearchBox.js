@@ -14,9 +14,9 @@ export default function FoodSearchBox({ setSearchResults, setActiveControl }) {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const list = await foodDbSearch(query);         //hit the foodDB API
-        setSearchResults(list.hints)                    //set the searchResult so they can be read by the food list component
-        setActiveControl && setActiveControl("searchResults")               //switch the dash component to searc results
+        const list = await foodDbSearch(query);                  //hit the foodDB API
+        setSearchResults(list.hints)                             //set the searchResult so they can be read by the food list component
+        setActiveControl && setActiveControl("searchResults")    //switch the dash component to search results if the control is passed in props
     }
 
     return (
