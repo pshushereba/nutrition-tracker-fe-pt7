@@ -93,7 +93,7 @@ const Dashboard = () => {
           ) : activeControl === "challenges" ? (
             "Challenges"
           ) : activeControl === "searchResults" ? (
-            <FoodSearchResults searchResults={searchResults} />
+            <FoodSearchResults searchResults={searchResults} setActiveControl={setActiveControl}/>
           ) : (
             "Error"
           )}

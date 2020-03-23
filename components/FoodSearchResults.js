@@ -7,9 +7,8 @@ import FoodSearchList from "./FoodSearchList";
 import { ADD_FOOD } from "../gql/mutations";
 import { useMutation } from "@apollo/react-hooks";
 
-export default function FoodSearchResults({ searchResults }) {
+export default function FoodSearchResults({ searchResults, setActiveControl }) {
   const [nutrInfo, setNutrInfo] = useState()
-  const [addFood, {}] = useMutation(ADD_FOOD);
 
   const svg = (
     <div className="flex flex-col mt-40">
@@ -23,7 +22,7 @@ export default function FoodSearchResults({ searchResults }) {
       <div className="Flex w-1/2"></div>
       <div className="w-1/2 max-h flex">
         <div className="flex-1"></div>
-        {nutrInfo ? <NutritionFacts data={nutrInfo} /> : svg}
+        {nutrInfo ? <NutritionFacts data={nutrInfo} setActiveControl={setActiveControl}/> : svg}
         <div className="flex-1"></div>
       </div>
     </section>

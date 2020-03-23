@@ -1,8 +1,33 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-export default function NutritionFacts({ data: { info, label } }) {
-  const [qty, setQty] = useState(1);    //qty value used to get final values
+import { ADD_FOOD } from '../gql/mutations'
+import { useMutation } from "@apollo/react-hooks";
+
+export default function NutritionFacts({ data: { info, label, meal_type }, setActiveControl }) {
+  const [qty, setQty] = useState(1); //qty value used to get final values
   const [enteredQty, setEnteredQty] = useState(1); //No of servings entered into the nutrition display
+
+  const [addFood, {}] = useMutation(ADD_FOOD)
+  
+  // const [createProfile, {}] = useMutation(CREATE_PROFILE)  
+  
+  const logFood = async () => {
+    const {
+      loading,
+      data,
+      error
+    } = await addFood({ variables: foodLogData.recordData })
+    
+    if (error) { 
+      console.log(error)
+    }
+    
+    if (data) {
+      console.log(data)
+      setActiveControl("journal")
+    }
+  }
+
   const {
     calories,
     totalNutrients: {
@@ -11,22 +36,32 @@ export default function NutritionFacts({ data: { info, label } }) {
       PROCNT: { quantity: proteinQuantity },
       FIBTG: { quantity: fiberQuantity }
     },
-    ingredients: { parsed }
+    ingredients: [ parsed ]
   } = info;
+  console.log({parsed})
   const [foodLogData, setFoodLogData] = useState({
     //Obj for storing the vales used in the nutrition graphic and the dailyRecord mutation
     recordData: {
       current_weight: 175,
+      date: new Date(Date.now()).toString(),
       calories: calories * qty || 0,
       fat: Math.floor(fatQuantity * qty) || 0,
       carbs: Math.floor(carbsQuantity * qty) || 0,
       fiber: Math.floor(fiberQuantity * qty) || 0,
       protein: Math.floor(proteinQuantity * qty) || 0,
-      food_string: JSON.stringify(parsed),
-      meal_type: ""
+      food_string: JSON.stringify({parsed}),
+      meal_type: meal_type
     },
     graphicData: info
   });
+
+  const adjustQty = (obj, multiplier) => {
+    return Object.keys(obj).map(key => {
+      key !== "current_weight" && typeof obj[key] === "number"
+        ? (obj[key] = obj[key] * multiplier)
+        : (obj[key] = obj[key]);
+    });
+  };
 
   const {
     ingredients,
@@ -71,8 +106,11 @@ export default function NutritionFacts({ data: { info, label } }) {
   };
 
   const handleSubmit = e => {
+    console.log("first", foodLogData.recordData)
     e.preventDefault();
-    setQty(enteredQty)
+    setQty(enteredQty);
+    adjustQty(foodLogData.recordData, enteredQty)
+    console.log("second", foodLogData.recordData)
   };
 
   return (
@@ -94,7 +132,7 @@ export default function NutritionFacts({ data: { info, label } }) {
       <div className="flex text-xl py-2">
         <p className="">Calories</p>
         <p className="flex-1"></p>
-        <p className="">{info.calories * qty}</p>
+        <p className="">{info.calories * qty}</p>++
       </div>
       <div className="flex">
         <p className="flex-1"></p>
@@ -106,9 +144,9 @@ export default function NutritionFacts({ data: { info, label } }) {
         contributes to a daily diet of 2,000 calories a day is used for general
         nutrition advice
       </p>
-      <button 
+      <button
         className="w-full text-white bg-pink-500 px-4 rounded-sm"
-        onClick={() => console.log(foodLogData)}  
+        onClick={logFood}
       >
         Log Food
       </button>
