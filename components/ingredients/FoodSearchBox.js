@@ -9,14 +9,14 @@ export default function FoodSearchBox({ setSearchResults, setActiveControl }) {
         setItem(e.target.value)
     }
     
-    const query = item.replace(' ', '%20');             //format the entered food item for the API call
+    const query = item.replace(' ', '%20');  //format the entered food item for the API call
 
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const list = await foodDbSearch(query);         //hit the foodDB API
-        setSearchResults(list.hints)                    //set the searchResult so they can be read by the food list component
-        setActiveControl && setActiveControl("searchResults")               //switch the dash component to searc results
+        const list = await foodDbSearch(query);  //hit the foodDB API
+        setSearchResults(list.hints) //set the searchResult so they can be read by the food list component
+        setActiveControl && setActiveControl("searchResults") //switch the dash component to searc results
     }
 
     return (
