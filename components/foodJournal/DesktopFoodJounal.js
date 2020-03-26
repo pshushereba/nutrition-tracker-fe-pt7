@@ -39,8 +39,10 @@ export default function DesktopFoodJournal() {
                 ) : "Error"}
             </div>
             <div className="flex-1"></div>
-            <div className="mt-32">
-                <WaterGirlSVG />
+            <div className="flex flex-col">
+                <div className="flex-1"></div>
+                    <WaterGirlSVG />
+                <div className="flex-1"></div>
             </div>
         </div>
     )

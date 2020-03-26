@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import FullHeartSVG from "../svg/FullHeartSVG.js";
 import HeartOutlineSVG from "../svg/HeartOutlineSVG.js";
+import { useClient } from "../../lib/useClient.js";
 
 const DashboardChartItem = props => {
   // used to determine if heart is full or not?
   const [fav, setFav] = useState(false);
+  const client = useClient()
+
+  console.log("Client accessed from DashboardChartItem", client)
 
   // this might not actually be the props, but we will get there
   const { quantity, name, calories, fats, protein, carbs } = props.data;

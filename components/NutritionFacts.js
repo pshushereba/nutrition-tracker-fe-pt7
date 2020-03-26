@@ -28,13 +28,13 @@ export default function NutritionFacts({
     // recordData is used for createDailyRecord mutation variables, graphicData is for creating the nutrition label
     recordData: {
       current_weight: 175,
-      date: new Date(Date.now()).toString(),
+      date: new Date(Date.now()).toLocaleDateString(),
       calories: calories * qty || 0,
       fat: Math.floor(fatQuantity * qty) || 0,
       carbs: Math.floor(carbsQuantity * qty) || 0,
       fiber: Math.floor(fiberQuantity * qty) || 0,
       protein: Math.floor(proteinQuantity * qty) || 0,
-      food_string: JSON.stringify({ parsed }),
+      food_string: JSON.stringify(parsed[0]),
       meal_type: meal_type
     },
     graphicData: info

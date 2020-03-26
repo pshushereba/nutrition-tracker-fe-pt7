@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { GET_FOOD_LOG } from '../../gql/queries';
-import { useLazyQuery } from '@apollo/react-hooks';
+import { useLazyQuery, useQuery } from '@apollo/react-hooks';
 
 import DashboardChart from "../dashboardChart/DashboardChart";
 
@@ -10,15 +10,11 @@ export default function FoodLog() {
 
   const [foodData, setFoodData] = useState();
 
-  const [getFood, {called, loading, data}] = useLazyQuery(GET_FOOD_LOG);
-  if (called && loading) return 'Loading...';
-  if (!called) return <button 
-                        onClick={async () => {
-                          console.log("First", foodData)
-                          const res = await getFood()
-                          // setFoodData(data)
-                          console.log("Second", res)}}>Get Food
-                      </button>
+  const { loading, error, data } = useQuery(GET_FOOD_LOG)
+
+  if (loading) return 'Loading...';
+  if (error) return `Error: ${error}`
+
 
   const handleClick = e => {
     setActiveControl(e.target.name);
@@ -75,22 +71,3 @@ export default function FoodLog() {
     </>
   );
 }
-
-// const data = {
-//   data: {
-//     createDailyRecord: {
-//       date: "Mon Mar 23 2020 09:46:52 GMT-0500 (Central Daylight Time)",
-//       current_weight: 175,
-//       calories: 188,
-//       fat: 0,
-//       carbs: 50,
-//       fiber: 8,
-//       protein: 0,
-//       food_string:
-//         '{"parsed":{"parsed":[{"quantity":1,"measure":"whole","food":"apple","foodId":"food_a1gb9ubb72c7snbuxr3weagwv0dd","weight":182,"retainedWeight":182,"measureURI":"http://www.edamam.com/ontologies/edamam.owl#Measure_unit","status":"OK"}]}}',
-//       meal_type: "breakfast",
-//       createdAt: "2020-03-24T03:46:53.242Z",
-//       __typename: "DailyRecord"
-//     }
-//   }
-// };
