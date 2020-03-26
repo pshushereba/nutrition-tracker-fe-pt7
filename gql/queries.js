@@ -64,3 +64,19 @@ export const GET_PROGRESS_DATA = gql`
     }
   }
 `
+
+export const GET_FOOD_LOG = gql`
+  {
+    myDailyRecords{
+      id
+      date
+      calories
+      fat
+      carbs
+      fiber
+      protein
+      food_string
+      meal_type
+    }
+  }
+`

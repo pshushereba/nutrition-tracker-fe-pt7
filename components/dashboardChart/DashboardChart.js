@@ -3,7 +3,7 @@ import DashboardChartItem from "./DashboardChartItem.js";
 
 const DashboardChart = ({ data }) => {
   const [records, setRecords] = useState([]);
-
+  console.log("In DashboardChart", data);
   // this only exists to keep things from breaking.
   // you will need to replace count with the actual data from the useEffect call
   // or the props
@@ -14,7 +14,7 @@ const DashboardChart = ({ data }) => {
       <table className="w-full">
         <tr className="flex justify-around align-center">
           <div className="flex w-2/5 justify-start mb-3">
-            <th className="mr-8 muli text-sm font-normal text-gray-900">{data.length} items logged</th>
+            <th className="mr-8 muli text-sm font-normal text-gray-900">3 items logged</th>
             <th className="muli text-sm font-normal text-gray-600">{calCount} total calories</th>
           </div>
           <div className="flex w-2/5 justify-around">
