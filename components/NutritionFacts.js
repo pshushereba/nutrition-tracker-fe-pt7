@@ -34,20 +34,20 @@ export default function NutritionFacts({ data: { info, label, meal_type }, setAc
       PROCNT: { quantity: proteinQuantity },
       FIBTG: { quantity: fiberQuantity }
     },
-    ingredients: [ parsed ]
+    ingredients: [ { parsed } ]
   } = info;
-  console.log({parsed})
+  
   const [foodLogData, setFoodLogData] = useState({
     //Obj for storing the vales used in the nutrition graphic and the dailyRecord mutation
     recordData: {
       current_weight: 175,
-      date: new Date(Date.now()).toString(),
+      date: new Date(Date.now()).toLocaleDateString(),
       calories: calories * qty || 0,
       fat: Math.floor(fatQuantity * qty) || 0,
       carbs: Math.floor(carbsQuantity * qty) || 0,
       fiber: Math.floor(fiberQuantity * qty) || 0,
       protein: Math.floor(proteinQuantity * qty) || 0,
-      food_string: JSON.stringify({parsed}),
+      food_string: JSON.stringify(parsed[0]),
       meal_type: meal_type
     },
     graphicData: info
