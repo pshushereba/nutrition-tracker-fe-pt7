@@ -20,12 +20,11 @@ export default function NutritionFacts({
       PROCNT: { quantity: proteinQuantity },
       FIBTG: { quantity: fiberQuantity }
     },
-    ingredients: [parsed]
+    ingredients: [ { parsed } ]
   } = info;
-
-  const foodLogData = {
-    //  Obj for storing the vales used in the nutrition graphic and the dailyRecord mutation.
-    // recordData is used for createDailyRecord mutation variables, graphicData is for creating the nutrition label
+  
+  const [foodLogData, setFoodLogData] = useState({
+    //Obj for storing the vales used in the nutrition graphic and the dailyRecord mutation
     recordData: {
       current_weight: 175,
       date: new Date(Date.now()).toLocaleDateString(),
