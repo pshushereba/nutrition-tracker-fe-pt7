@@ -1,11 +1,13 @@
 import AppLayout from '../components/AppLayout';
 import Calculator from '../components/Calculator.js';
 import MarketingSVG from '../components/svg/MarketingSVG.js';
+import MarketingTop from '../components/marketing/MarketingTop.js';
 
 const Introduction = () => {
     return(
         <>
             <AppLayout>
+            <MarketingTop />
             <h1 className="text-center text-lg m-8 muli">Now, let's track your current weight & log your BMI</h1>
             <div className="flex justify-around">
                 <div>

@@ -9,7 +9,7 @@ export default function FoodSearchBox({ setSearchResults, setActiveControl }) {
         setItem(e.target.value)
     }
     
-    const query = item.replace(' ', '%20');             //format the entered food item for the API call
+    const query = item.replace(' ', '%20');  //format the entered food item for the API call
 
     
     const handleSubmit = async (e) => {
