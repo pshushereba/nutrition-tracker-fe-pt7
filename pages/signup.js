@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react"
 
-import AppLayout from "../components/AppLayout"
 import CreateUserForm from "../components/form/CreateUserForm"
 import LogInSVG from '../components/svg/LogInSVG'
 import withApollo from '../lib/apollo'
+import Layout from '../components/Layout/index.js';
 
 const SignUp = () => {
   const [user, setUser] = useState({})  
 
   return (
-    <AppLayout>
+    <Layout>
       <CreateUserForm user={user} setUser={setUser}/>
       <LogInSVG />
-    </AppLayout>
+    </Layout>
   );
 };
 

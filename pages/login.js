@@ -7,7 +7,7 @@ import ThunderboltSVG from '../components/svg/ThunderboltSVG.js';
 import LogInSVG from '../components/svg/LogInSVG';
 import withApollo from "../lib/apollo";
 import { LOG_IN } from "../gql/mutations";
-import AppLayout from "../components/AppLayout";
+import Layout from '../components/Layout/index.js';
 
 const Login = () => {
   const [thisUser, setThisUser] = useState("");
@@ -44,7 +44,7 @@ const Login = () => {
   };
 
   return (
-    <AppLayout>
+    <Layout>
       <div className="mt-8 w-64 h-64 p-3 flex-col">
         <div className="flex justify-center align-middle">
           <ThunderboltSVG />
@@ -91,7 +91,7 @@ const Login = () => {
       <div className="mt-16">
         <LogInSVG />
       </div>
-    </AppLayout>
+    </Layout>
   );
 };
 
