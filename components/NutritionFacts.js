@@ -37,7 +37,7 @@ export default function NutritionFacts({
       meal_type: meal_type
     },
     graphicData: info
-  };
+  });
 
   const {
     //  Access needed data from foodLogdata to build our Nutrition Label
