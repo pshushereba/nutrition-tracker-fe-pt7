@@ -1,32 +1,18 @@
 import { useState } from "react";
 
-import { ADD_FOOD } from '../gql/mutations'
+import { ADD_FOOD } from "../gql/mutations";
 import { useMutation } from "@apollo/react-hooks";
 
-export default function NutritionFacts({ data: { info, label, meal_type }, setActiveControl }) {
-  const [qty, setQty] = useState(1); //qty value used to get final values
-  const [enteredQty, setEnteredQty] = useState(1); //No of servings entered into the nutrition display
+export default function NutritionFacts({
+  data: { info, label, meal_type },
+  setActiveControl
+}) {
 
-  const [addFood, {}] = useMutation(ADD_FOOD)  
-  
-  const logFood = async () => {
-    const {
-      loading,
-      data,
-      error
-    } = await addFood({ variables: foodLogData.recordData })
-    
-    if (error) { 
-      console.log(error)
-    }
-    
-    if (data) {
-      console.log(data)
-      setActiveControl("journal")
-    }
-  }
+  const [qty, setQty] = useState(1); //  Qty value used to get final values
+  const [enteredQty, setEnteredQty] = useState(1); //  No of servings entered into the nutrition display, default value of 1
 
   const {
+    //  Destructure info for access to properties we're loading into foodLogData
     calories,
     totalNutrients: {
       FAT: { quantity: fatQuantity },
@@ -34,11 +20,12 @@ export default function NutritionFacts({ data: { info, label, meal_type }, setAc
       PROCNT: { quantity: proteinQuantity },
       FIBTG: { quantity: fiberQuantity }
     },
-    ingredients: [ parsed ]
+    ingredients: [parsed]
   } = info;
-  console.log({parsed})
-  const [foodLogData, setFoodLogData] = useState({
-    //Obj for storing the vales used in the nutrition graphic and the dailyRecord mutation
+
+  const foodLogData = {
+    //  Obj for storing the vales used in the nutrition graphic and the dailyRecord mutation.
+    // recordData is used for createDailyRecord mutation variables, graphicData is for creating the nutrition label
     recordData: {
       current_weight: 175,
       date: new Date(Date.now()).toString(),
@@ -47,43 +34,43 @@ export default function NutritionFacts({ data: { info, label, meal_type }, setAc
       carbs: Math.floor(carbsQuantity * qty) || 0,
       fiber: Math.floor(fiberQuantity * qty) || 0,
       protein: Math.floor(proteinQuantity * qty) || 0,
-      food_string: JSON.stringify({parsed}),
+      food_string: JSON.stringify({ parsed }),
       meal_type: meal_type
     },
     graphicData: info
-  });
-
-  const adjustQty = (obj, multiplier) => {
-    return Object.keys(obj).map(key => {
-      key !== "current_weight" && typeof obj[key] === "number"
-        ? (obj[key] = obj[key] * multiplier)
-        : (obj[key] = obj[key]);
-    });
   };
 
   const {
+    //  Access needed data from foodLogdata to build our Nutrition Label
     ingredients,
     totalNutrients,
     totalWeight,
     totalDaily,
     yield: itemYield
   } = foodLogData.graphicData;
-  const name = ingredients[0].parsed[0].food;
-  const nutrients = Object.keys(totalNutrients).splice(1);
-  const servingSize = Math.floor(totalWeight / itemYield);
+
+  const name = ingredients[0].parsed[0].food;  // Name of food item
+  const nutrients = Object.keys(totalNutrients).splice(1); // Array of returned nutrients for creating nutrition lable
+  const servingSize = Math.floor(totalWeight / itemYield); // Weight of a single serving
 
   const nutrientList = nutrients.map(nutrient => {
+    //  Programatically grab our return nutrients and create items for display in the Nutrition Label
     const nutrientTotals = totalNutrients; // Macros
-    const dailyTotals = totalDaily; //percent daily values
-    const label = nutrientTotals[nutrient].label; //Macro name
+    const dailyTotals = totalDaily; //  Percent daily values
+    const label = nutrientTotals[nutrient].label; //  Macro name
+
     const nutrientQuantity = Math.floor(
+      //  Total per selected serving
       nutrientTotals[nutrient].quantity * qty
     );
-    const nutrientUnit = nutrientTotals[nutrient].unit;
-    const totalQuantity = dailyTotals[nutrient]
+
+    const nutrientUnit = nutrientTotals[nutrient].unit; //  Unit for serving total
+
+    const totalQuantity = dailyTotals[nutrient] //  Qty for the % daily value
       ? Math.floor(dailyTotals[nutrient].quantity * qty)
       : "";
-    const totalUnit = dailyTotals[nutrient]
+
+    const totalUnit = dailyTotals[nutrient] //  Unit for the % daily value
       ? dailyTotals[nutrient].unit
       : "N/A";
 
@@ -99,20 +86,42 @@ export default function NutritionFacts({ data: { info, label, meal_type }, setAc
     );
   });
 
+  const [addFood, {}] = useMutation(ADD_FOOD); // Returns CB needed to make mutation call
+
+  const logFood = async () => {
+    //  CB that runs mutation for us iin handleSubmit
+    const { loading, data, error } = await addFood({
+      variables: foodLogData.recordData
+    });
+
+    if (error) return `Error: ${error}`;
+
+    if (data) {
+      //  On success set Dashboard to Food Journal
+      setActiveControl("journal");
+    }
+  };
+
   const handleChange = e => {
     setEnteredQty(e.target.value);
   };
 
   const handleSubmit = e => {
-    console.log("first", foodLogData.recordData)
+    //  Adjusts values on macros according to the quantity set by the user and returns a new object
     e.preventDefault();
+    const adjustQty = (obj, multiplier) => {
+      return Object.keys(obj).map(key => {
+        key !== "current_weight" && typeof obj[key] === "number"
+          ? (obj[key] = obj[key] * multiplier)
+          : (obj[key] = obj[key]);
+      });
+    };
     setQty(enteredQty);
-    adjustQty(foodLogData.recordData, enteredQty)
-    console.log("second", foodLogData.recordData)
+    adjustQty(foodLogData.recordData, enteredQty);
   };
 
   return (
-    <div className="flex flex-col w-2/5 max-w-sm">
+    <div className="flex flex-col w-3/5 max-w-sm">
       <h1 className="text-2xl font-semibold capitalize pb-4">
         {name.toLowerCase()}
       </h1>
