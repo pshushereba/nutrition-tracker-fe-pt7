@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Cookie from "js-cookie";
 import { useMutation } from "@apollo/react-hooks";
+import ThunderboltSVG from '../components/svg/ThunderboltSVG.js';
 
 import LogInSVG from '../components/svg/LogInSVG';
 import withApollo from "../lib/apollo";
@@ -45,7 +46,10 @@ const Login = () => {
   return (
     <AppLayout>
       <div className="mt-8 w-64 h-64 p-3 flex-col">
-        <h1 className="p-4 text-center">Sign In</h1>
+        <div className="flex justify-center align-middle">
+          <ThunderboltSVG />
+          <h1 className="p-4 text-center text-2xl muli">Sign In</h1>
+        </div>
         <p className="pb-8 text-center">Let's Start Crushing Those Goals!</p>
         <form className="flex-col">
         <div className="pb-2">
@@ -81,11 +85,10 @@ const Login = () => {
             </div>
           </div>
         </form>
-        <button className="text-xs text-white px-6 py-1 bg-indigo-500 border-indigo-500 rounded relative" onClick={handleSubmit}>Login</button>
-        <h3 className="py-2">Don't have an account?</h3>
-        <button className="text-black relative"><a className="text-black" href="/signup">Sign Up</a></button>
+        <button className="text-xs text-white w-full px-6 py-1 bg-btn-pink border-btn-pink rounded relative" onClick={handleSubmit}>Let's Go!</button>
+        <h3 className="py-2 text-center">Not a member?<span className="mx-1 font-semibold"><a className="text-black" href="/signup">Sign Up</a></span></h3>
       </div>
-      <div className="mt-8">
+      <div className="mt-16">
         <LogInSVG />
       </div>
     </AppLayout>

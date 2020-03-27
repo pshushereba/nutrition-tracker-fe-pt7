@@ -7,9 +7,7 @@ export default function NutritionFacts({ data: { info, label, meal_type }, setAc
   const [qty, setQty] = useState(1); //qty value used to get final values
   const [enteredQty, setEnteredQty] = useState(1); //No of servings entered into the nutrition display
 
-  const [addFood, {}] = useMutation(ADD_FOOD)
-  
-  // const [createProfile, {}] = useMutation(CREATE_PROFILE)  
+  const [addFood, {}] = useMutation(ADD_FOOD)  
   
   const logFood = async () => {
     const {
