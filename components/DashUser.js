@@ -1,4 +1,13 @@
-export default function DashUser ({ data }) {
+import { useQuery } from "@apollo/react-hooks"
+
+import { USER_DASH_HEADER } from '../gql/queries'
+
+export default function DashUser () {
+    const { loading, error, data } = useQuery(USER_DASH_HEADER)
+
+    if (loading) return "Loading ..."
+    if (error) return `Error: ${error}`
+
     return (
         <div className="flex-1 flex pl-20">
             <div className="flex flex-col items-center py-2">

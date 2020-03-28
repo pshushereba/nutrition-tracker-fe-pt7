@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { ADD_FOOD } from "../gql/mutations";
 import { useMutation } from "@apollo/react-hooks";
+import { GET_FOOD_LOG } from "../gql/queries";
 
 export default function NutritionFacts({
   data: { info, label, meal_type },
@@ -85,7 +86,18 @@ export default function NutritionFacts({
     );
   });
 
-  const [addFood, {}] = useMutation(ADD_FOOD); // Returns CB needed to make mutation call
+  const [addFood] = useMutation(   // Returns CB needed to make mutation call, updates cache with returned values *** no it doesn't **
+    ADD_FOOD,
+    {
+      update(cache, { data: { addFood } }) {
+        const { todos } = cache.readQuery({ query: GET_FOOD_LOG });
+        cache.writeQuery({
+          query: GET_FOOD_LOG,
+          data: { todos: todos.concat([addFood]) },
+        });
+      }
+    }
+  );
 
   const logFood = async () => {
     //  CB that runs mutation for us iin handleSubmit
@@ -97,6 +109,7 @@ export default function NutritionFacts({
 
     if (data) {
       //  On success set Dashboard to Food Journal
+      console.log(data)
       setActiveControl("journal");
     }
   };

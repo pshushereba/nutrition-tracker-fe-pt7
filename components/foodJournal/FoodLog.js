@@ -10,7 +10,11 @@ export default function FoodLog() {
 
   const [foodData, setFoodData] = useState();
 
-  const { loading, error, data } = useQuery(GET_FOOD_LOG)
+  const { loading, error, data, refetch } = useQuery(GET_FOOD_LOG)
+
+  useEffect(() => {
+    refetch()
+  }, [])
 
   if (loading) return 'Loading...';
   if (error) return `Error: ${error}`

@@ -33,7 +33,7 @@ const Dashboard = ({ apollo }) => {
     <div>
       <Layout>
         <div className="flex">
-          <DashUser data={data} />
+          <DashUser />
           <div className="flex-1"></div>
           <div className="flex-1 px-32 self-center">
             <FoodSearchBox
