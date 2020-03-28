@@ -95,8 +95,14 @@ export const GET_FOOD_LOG = gql`
   }
 `;
 
-export const GET_LOWERNAV_STATE = gql`
+export const GET_DASHBOARD_STATE = gql`
   {
     lowerNav @client
+  }
+`
+
+export const GET_SEARCH_RESULTS = gql`
+  {
+    searchResults @client
   }
 `

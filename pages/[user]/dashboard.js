@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { useState, useEffect } from "react";
 
 import withApollo from "../../lib/apollo";
-import { GET_LOWERNAV_STATE } from "../../gql/queries";
+import { GET_DASHBOARD_STATE } from "../../gql/queries";
 import Layout from "../../components/Layout/index";
 import FoodSearchBox from "../../components/ingredients/FoodSearchBox";
 import DashUser from "../../components/DashUser";
@@ -14,7 +14,7 @@ import Progress from "../../components/Progress/Progress.js";
 const Dashboard = ({ apollo }) => {
   const [activeControl, setActiveControl] = useState("journal"); //Sets which component is rendered on the lower half of dash
   const [searchResults, setSearchResults] = useState(); //Sets search results returned from FoodSearchBox
-  const { data, client } = useQuery(GET_LOWERNAV_STATE); //Gets active dashboard component from client cache
+  const { data, client } = useQuery(GET_DASHBOARD_STATE); //Gets active dashboard component from client cache
 
   const lowerNav = data ? data.lowerNav : apollo.cache.data.data.data.lowerNav; // gets the label for the component to render from the client instance passed in props the first render, and from useQuery after that
 

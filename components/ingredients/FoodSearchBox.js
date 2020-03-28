@@ -1,23 +1,30 @@
 import { useState } from "react";
 import { foodDbSearch } from "../../lib/edamam.js";
 import { useQuery } from "@apollo/react-hooks";
-import { GET_LOWERNAV_STATE } from "../../gql/queries.js";
+import { GET_DASHBOARD_STATE } from "../../gql/queries.js";
 
 export default function FoodSearchBox({ setSearchResults, setActiveControl }) {
   const [item, setItem] = useState("");
-  const { data, client } = useQuery(GET_LOWERNAV_STATE); //Gets active dashboard component from client cache
+  const { data, client } = useQuery(GET_DASHBOARD_STATE); //  Pull in the client so result data can be written to the cache
 
   const handleChange = e => {
     setItem(e.target.value);
   };
 
-  const query = item.replace(" ", "%20"); //format the entered food item for the API call
+  const query = item.replace(" ", "%20"); // Format the entered food item for the API call
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const list = await foodDbSearch(query); //hit the foodDB API
-    setSearchResults(list.hints); //set the searchResult so they can be read by the food list component
-    client.writeData({ data: { ...data,  lowerNav: "searchResults"}})
+    //  Hit the foodDB API
+    const list = await foodDbSearch(query);
+    // Change the needed data to a string
+    const searchResults = JSON.stringify(list.hints);
+    // Write the searchResults to the cache, change the dash component to search results
+    client.writeData({
+      data: { ...data, lowerNav: "searchResults", searchResults: searchResults }
+    });
+    // Reset the input
+    setItem("");
   };
 
   return (
