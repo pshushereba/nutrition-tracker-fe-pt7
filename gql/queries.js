@@ -94,3 +94,9 @@ export const GET_FOOD_LOG = gql`
     }
   }
 `;
+
+export const GET_LOWERNAV_STATE = gql`
+  {
+    lowerNav @client
+  }
+`
