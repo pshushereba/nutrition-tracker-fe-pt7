@@ -1,6 +1,7 @@
 import { useState } from "react"
 import FoodLog from "./FoodLog"
 import DashFoodJournalSVG from "../svg/DashFoodJournalSVG"
+import WaterGirlSVG from "../svg/WayerGirlSVG"
 
 export default function DesktopFoodJournal() {
     const [activeControl, setActiveControl] = useState("daily")
@@ -38,8 +39,10 @@ export default function DesktopFoodJournal() {
                 ) : "Error"}
             </div>
             <div className="flex-1"></div>
-            <div className="mt-32">
-                <DashFoodJournalSVG />
+            <div className="flex flex-col">
+                <div className="flex-1"></div>
+                    <WaterGirlSVG />
+                <div className="flex-1"></div>
             </div>
         </div>
     )

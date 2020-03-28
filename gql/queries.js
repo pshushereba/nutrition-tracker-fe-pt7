@@ -22,11 +22,11 @@ export const GET_ALL_USERS = gql`
 
 export const ME = gql`
   {
-    me{
+    me {
       id
       name
       email
-      profile{
+      profile {
         id
         age
         weight
@@ -40,7 +40,7 @@ export const ME = gql`
         protein
         calories
       }
-      dailyRecords{
+      dailyRecords {
         id
         date
         current_weight
@@ -54,20 +54,33 @@ export const ME = gql`
       }
     }
   }
-`
+`;
+
+export const USER_DASH_HEADER = gql`
+  {
+    me {
+      id
+      name
+      profile {
+        id
+        weight
+      }
+    }
+  }
+`;
 
 export const GET_PROGRESS_DATA = gql`
   {
-    myDailyRecords{
+    myDailyRecords {
       current_weight
       date
     }
   }
-`
+`;
 
 export const GET_FOOD_LOG = gql`
   {
-    myDailyRecords{
+    myDailyRecords {
       id
       date
       calories
@@ -79,4 +92,4 @@ export const GET_FOOD_LOG = gql`
       meal_type
     }
   }
-`
+`;
