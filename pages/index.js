@@ -1,3 +1,4 @@
+import Layout from '../components/Layout/index'
 import SplashSVG from "../components/svg/SplahSVG";
 import Layout from '../components/Layout/index.js';
 
