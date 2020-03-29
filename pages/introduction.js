@@ -3,6 +3,7 @@ import Calculator from '../components/Calculator.js';
 import MarketingSVG from '../components/svg/MarketingSVG.js';
 import MarketingTop from '../components/marketing/MarketingTop.js';
 import MarketingCenter from '../components/marketing/MarketingCenter.js';
+import withApollo from '../lib/apollo';
 
 const Introduction = () => {
     return(
