@@ -20,7 +20,7 @@ export default function FoodSearchResults({ searchResults, setActiveControl }) {
       <div className="w-1/2 max-h flex">
         <div className="flex-1"></div>
         {nutrInfo ? (
-          <NutritionFacts data={nutrInfo} setActiveControl={setActiveControl} />
+          <NutritionFacts info={nutrInfo} setActiveControl={setActiveControl} />
         ) : (
           svg
         )}

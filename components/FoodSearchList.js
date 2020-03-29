@@ -17,13 +17,13 @@ export default function FoodSearchList({ setNutrInfo }) {
           <p className="w-1/6 text-center">Carb %</p>
           <p className="w-1/6 text-center">Meal Type</p>
         </div>
-      ) : null}
+      ) : null }
       <div>
         {results.map(item => {
           return (
             <SearchResultsCard
               key={item.food.foodId}
-              data={item}
+              item={item}
               setNutrInfo={setNutrInfo}
             />
           );

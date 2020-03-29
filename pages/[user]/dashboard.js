@@ -25,6 +25,12 @@ const Dashboard = ({ apollo }) => {
   };
 
 
+  useEffect(() => {
+    data && 
+    console.log("dashboard.js useEffect: data=", data)
+  }, [data])
+
+
   return (
     <div>
       <Layout>
@@ -32,10 +38,7 @@ const Dashboard = ({ apollo }) => {
           <DashUser />
           <div className="flex-1"></div>
           <div className="flex-1 px-32 self-center">
-            <FoodSearchBox
-              setSearchResults={setSearchResults}
-              setActiveControl={setActiveControl}
-            />
+            <FoodSearchBox />
           </div>
         </div>
         <nav className="flex bg-mobileFoot">
@@ -90,7 +93,6 @@ const Dashboard = ({ apollo }) => {
           <div className="border border-black mr-32 ml-6">Macro Charts</div>
         </div>
         <div className="ml-20 mr-32">
-          {/* Replace strings with corresponding components */}
           {lowerNav === "journal" ? (
             <DesktopFoodJournal />
           ) : lowerNav === "progress" ? (

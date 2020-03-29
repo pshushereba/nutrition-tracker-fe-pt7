@@ -3,7 +3,7 @@ import { foodDbSearch } from "../../lib/edamam.js";
 import { useQuery } from "@apollo/react-hooks";
 import { GET_DASHBOARD_STATE } from "../../gql/queries.js";
 
-export default function FoodSearchBox({ setSearchResults, setActiveControl }) {
+export default function FoodSearchBox() {
   const [item, setItem] = useState("");
   const { data, client } = useQuery(GET_DASHBOARD_STATE); //  Pull in the client so result data can be written to the cache
 
@@ -18,13 +18,14 @@ export default function FoodSearchBox({ setSearchResults, setActiveControl }) {
     //  Hit the foodDB API
     const list = await foodDbSearch(query);
     // Change the needed data to a string
+    console.log(list)
     const searchResults = JSON.stringify(list.hints);
+    // Reset the input
+    setItem("");
     // Write the searchResults to the cache, change the dash component to search results
     client.writeData({
       data: { ...data, lowerNav: "searchResults", searchResults: searchResults }
     });
-    // Reset the input
-    setItem("");
   };
 
   return (
