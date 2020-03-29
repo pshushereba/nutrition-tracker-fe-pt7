@@ -39,4 +39,4 @@ const Introduction = () => {
     )
 }
 
-export default Introduction;
+export default withApollo(Introduction)
