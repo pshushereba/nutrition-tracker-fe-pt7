@@ -29,6 +29,7 @@ const Dashboard = ({ apollo }) => {
     data && 
     console.log("dashboard.js useEffect: data=", data)
   }, [data])
+  
 
 
   return (
