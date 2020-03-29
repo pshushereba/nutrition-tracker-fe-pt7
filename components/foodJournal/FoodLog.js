@@ -56,7 +56,7 @@ export default function FoodLog() {
         </div>
         <div
           className={`${
-            activeControl === "Snack" ? "border-b-2 border-pink-500" : ""
+            activeControl === "snack" ? "border-b-2 border-pink-500" : ""
           } cursor-pointer mr-12`}
           onClick={() => setActiveControl("Snack")}
         >
@@ -71,7 +71,7 @@ export default function FoodLog() {
           Water
         </div>
       </div>
-      <DashboardChart data={data.myDailyRecords} />
+      <DashboardChart data={data.myDailyRecords} activeControl={activeControl} />
     </>
   );
 }

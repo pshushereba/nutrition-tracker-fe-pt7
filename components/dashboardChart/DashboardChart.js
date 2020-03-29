@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import DashboardChartItem from "./DashboardChartItem.js";
 
-const DashboardChart = ({ data }) => {
+const DashboardChart = ({ data, activeControl }) => {
   const [records, setRecords] = useState([]);
   console.log("In DashboardChart", data);
   // this only exists to keep things from breaking.
   // you will need to replace count with the actual data from the useEffect call
   // or the props
+
   const calCount = 50;
 
   return (
@@ -26,7 +27,7 @@ const DashboardChart = ({ data }) => {
         </tr>
         {/* change temp to records / props */}
         {data.map(cv => {
-          return <DashboardChartItem data={cv} key={cv.id} />;
+          return <DashboardChartItem data={cv} key={cv.id} activeControl={activeControl} />;
         })}
       </table>
     </section>

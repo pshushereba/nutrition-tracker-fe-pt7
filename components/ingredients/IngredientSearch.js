@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import fetch from "isomorphic-unfetch";
 import IngredientCard from "./IngredientCard.js";
-import Dropdown from "../DropdownFunc";
-import FormDropdown from "../form/FormDropdown";
+// import Dropdown from "../DropdownFunc";
+// import FormDropdown from "../form/FormDropdown";
 
 const IngredientSearch = () => {
   const [item, setItem] = useState("");
