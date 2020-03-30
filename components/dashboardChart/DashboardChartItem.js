@@ -16,10 +16,10 @@ const DashboardChartItem = ({ data, activeControl, toggleFav }) => {
         <div className="w-1/2 flex align-center">
           <div className="flex align-center justify-center w-8 border-r p-2">
             <td className="cursor-pointer"
-                onClick={() => {
-                  console.log(food_string.favorite)
-                  setItem(toggleFav(data))
-                  console.log(food_string.favorite)
+                onClick={() =>{
+                  
+                  setItem(toggleFav(item))
+                    // console.log("newItem", newItem);
                     }
                   }>
               {foodItem.favorite ? <FullHeartSVG /> : <HeartOutlineSVG />}

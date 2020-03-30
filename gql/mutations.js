@@ -103,3 +103,28 @@ export const ADD_FOOD = gql`
     }
   }
 `
+
+export const UPDATE_FOOD_STRING = gql`
+  mutation UPDATE_FOOD_STRING (
+    $id: String! 
+    $food_string: String!
+    ) {
+  updateDailyRecord (
+    id: $id,
+    data: {
+      food_string: $food_string
+    }
+  ) {
+    date
+    current_weight
+    calories
+    fat
+    carbs
+    fiber
+    protein
+    food_string
+    meal_type
+    createdAt
+  }
+}
+`

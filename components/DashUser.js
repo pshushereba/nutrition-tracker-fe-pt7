@@ -4,6 +4,8 @@ import { USER_DASH_HEADER } from '../gql/queries'
 
 import MalePlaceHolderSVG from '../components/svg/MalePlaceHolderSVG.js';
 import FemalePlaceHolderSVG from '../components/svg/FemalePlaceHolderSVG.js';
+import MaleImg from '../public/undraw_male_avatar_323b.png'
+import FemaleImg from '../public/undraw_female_avatar_w3jk.png'
 
 export default function DashUser () {
     const { loading, error, data } = useQuery(USER_DASH_HEADER)
@@ -15,7 +17,8 @@ export default function DashUser () {
         <div className="flex-1 flex pl-20">
             <div className="flex flex-col items-center py-2">
             <div className="h-16 w-16 border border-gray-900 rounded-full bg-transparent">
-                {/* {data.me.profile.gender ? <div><FemalePlaceHolderSVG /></div> : <div><MalePlaceHolderSVG /></div>} */}
+                {data.me.profile.gender ? <img src={FemaleImg} className="h-16 w-16 border rounded-full" /> : <img src={MaleImg} className="h-16 w-16 border rounded-full" />}
+                
             </div>
                 <div className="mt-2">
                     {data.me.name}
