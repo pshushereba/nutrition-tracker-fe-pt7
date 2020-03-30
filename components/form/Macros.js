@@ -5,7 +5,7 @@ import { CREATE_PROFILE } from '../../gql/mutations'
 import FormRadio from "./FormRadio";
 
 export default function Macros({ user, setUser }) {
-
+console.log(user);
   const router = useRouter()  
   
   const variables = {
@@ -15,9 +15,9 @@ export default function Macros({ user, setUser }) {
     weight: user.weight,
     goal_weight: user.goalWeight,
     activity_level: user.activityLevel,
-    fat: user.fat,
-    carbs: user.carbs,
-    protein: user.protein
+    fat: user.fat || 0,
+    carbs: user.carbs || 0,
+    protein: user.protein || 0
   };
   
   function handleChange(e) {
@@ -47,16 +47,13 @@ export default function Macros({ user, setUser }) {
   return (
     <>
       <h2 className="text-2xl my-6 self-center">Tracking Macros</h2>
-      <h3 className="font-extrabold text-sm self-start px-12 my-4">
-        Select all that apply:
+      <h3 className="font-extrabold text-sm self-start px-2 my-4">
+        Enter your goal amount for each macro:
       </h3>
       <form className="flex flex-col w-full px-12">
-        <div className="flex">
+        <div className="flex my-4">
           <div className="w-1/2">
-            <FormRadio 
-              radioFor="Carbs" 
-              formName="macro" 
-            />
+            Carbs
           </div>
           <input 
             onChange={handleChange}
@@ -64,12 +61,9 @@ export default function Macros({ user, setUser }) {
             className="w-1/2 flex-shrink border-b" 
             placeholder="Daily Goal" />
         </div>
-        <div className="flex">
+        <div className="flex my-4">
           <div className="w-1/2">
-            <FormRadio 
-              radioFor="Fat" 
-              formName="macro" 
-            />
+            Fat
           </div>
           <input 
             onChange={handleChange}
@@ -77,12 +71,9 @@ export default function Macros({ user, setUser }) {
             className="w-1/2 flex-shrink border-b" 
             placeholder="Daily Goal" />
         </div>
-        <div className="flex">
+        <div className="flex my-4">
           <div className="w-1/2">
-            <FormRadio 
-              radioFor="Protein" 
-              formName="macro" 
-            />
+            Protein
           </div>
           <input 
             onChange={handleChange}
@@ -90,24 +81,15 @@ export default function Macros({ user, setUser }) {
             className="w-1/2 flex-shrink border-b" 
             placeholder="Daily Goal" />
         </div>
-        <div className="flex">
+        <div className="flex my-4">
           <div className="w-1/2">
-            <FormRadio 
-              radioFor="Calories" 
-              formName="macro" 
-            />
+            Calories
           </div>
           <input 
             onChange={handleChange}
             name="calories"
             className="w-1/2 flex-shrink border-b" 
             placeholder="Daily Goal" />
-        </div>
-        <div className="flex">
-          <FormRadio
-           radioFor="None" 
-           formName="macro" 
-          />
         </div>
       </form>
       <button className="w-full mt-4 py-2 text-white bg-pink-500 rounded hover:bg-pink-600" onClick={handleSubmit}>Continue</button>

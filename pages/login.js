@@ -45,61 +45,7 @@ const Login = () => {
 
   return (
     <Layout>
-      <div className="flex justify-around">
-        <div className="w-1/2">
-          <div className="flex justify-center align-middle">
-            <ThunderboltSVG />
-            <h1 className="p-4 text-center text-2xl muli">Sign In</h1>
-          </div>
-          <p className="pb-8 text-center">Let's Start Crushing Those Goals!</p>
-          <form className="flex-col">
-            <div className="pb-2">
-                <div className="flex flex-col my-2">
-                  <div className="-mb-3 z-0 pl-2">
-                    <label className="text-xs bg-white p-1">
-                      Email
-                    </label>
-                  </div>
-                  <input
-                    className="w-full border border-gray-400 rounded pl-2 py-2"
-                    name="email"
-                    placeholder="Email"
-                    type="text"
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-              <div className="pb-2">
-                <div className="flex flex-col my-2">
-                  <div className="-mb-3 z-0 pl-2">
-                    <label className="text-xs bg-white p-1">
-                      Password
-                    </label>
-                  </div>
-                  <input
-                    className="w-full border border-gray-400 rounded pl-2 py-2"
-                    name="password"
-                    placeholder="Password"
-                    type="password"
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-          </form>
-        </div>
-        <div className="w-1/2">
-          <div className="mt-16">
-            <LogInSVG />
-          </div>
-        </div>
-      </div>
-    </Layout>
-  );
-};
-
-export default withApollo(Login);
-
-{/* <div className="mt-8 w-64 h-64 p-3 flex-col">
+      <div className="mt-8 w-64 h-64 p-3 flex-col">
 <div className="flex justify-center align-middle">
   <ThunderboltSVG />
   <h1 className="p-4 text-center text-2xl muli">Sign In</h1>
@@ -144,4 +90,60 @@ export default withApollo(Login);
 </div>
 <div className="mt-16">
 <LogInSVG />
+</div>
+    </Layout>
+  );
+};
+
+export default withApollo(Login);
+
+
+
+{/* <div className="flex justify-around">
+<div className="w-1/2">
+  <div className="flex justify-center align-middle">
+    <ThunderboltSVG />
+    <h1 className="p-4 text-center text-2xl muli">Sign In</h1>
+  </div>
+  <p className="pb-8 text-center">Let's Start Crushing Those Goals!</p>
+  <form className="flex-col">
+    <div className="pb-2">
+        <div className="flex flex-col my-2">
+          <div className="-mb-3 z-0 pl-2">
+            <label className="text-xs bg-white p-1">
+              Email
+            </label>
+          </div>
+          <input
+            className="w-full border border-gray-400 rounded pl-2 py-2"
+            name="email"
+            placeholder="Email"
+            type="text"
+            onChange={handleChange}
+          />
+        </div>
+      </div>
+      <div className="pb-2">
+        <div className="flex flex-col my-2">
+          <div className="-mb-3 z-0 pl-2">
+            <label className="text-xs bg-white p-1">
+              Password
+            </label>
+          </div>
+          <input
+            className="w-full border border-gray-400 rounded pl-2 py-2"
+            name="password"
+            placeholder="Password"
+            type="password"
+            onChange={handleChange}
+          />
+        </div>
+      </div>
+  </form>
+</div>
+<div className="w-1/2">
+  <div className="mt-16">
+    <LogInSVG />
+  </div>
+</div>
 </div> */}
