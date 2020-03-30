@@ -3,10 +3,14 @@ import DashboardChartItem from "./DashboardChartItem.js";
 
 const DashboardChart = ({ data, activeControl }) => {
   const [records, setRecords] = useState([]);
-  console.log("In DashboardChart", data);
+  // console.log("In DashboardChart", data);
   // this only exists to keep things from breaking.
   // you will need to replace count with the actual data from the useEffect call
   // or the props
+
+  const toggleFav = (data, fav) => {
+    return {...data, favorite: !fav }
+  }
 
   const calCount = 50;
 
@@ -27,7 +31,12 @@ const DashboardChart = ({ data, activeControl }) => {
         </tr>
         {/* change temp to records / props */}
         {data.map(cv => {
-          return <DashboardChartItem data={cv} key={cv.id} activeControl={activeControl} />;
+          return <DashboardChartItem 
+                  data={cv} 
+                  key={cv.id} 
+                  activeControl={activeControl}
+                  toggleFav={toggleFav}
+                  />;
         })}
       </table>
     </section>

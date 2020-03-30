@@ -10,7 +10,7 @@ const Header = () => {
         <ul className="flex items-center">
           <a className="px-5">Log Food +</a>
           <a className="px-5">Settings</a>
-          <a className="px-5">Sign Out</a>
+          <a className="px-5 cursor-pointer">Sign Out</a>
         </ul>
       </span>
     </div>

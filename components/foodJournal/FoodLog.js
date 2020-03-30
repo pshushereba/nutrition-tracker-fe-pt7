@@ -58,7 +58,7 @@ export default function FoodLog() {
           className={`${
             activeControl === "snack" ? "border-b-2 border-pink-500" : ""
           } cursor-pointer mr-12`}
-          onClick={() => setActiveControl("Snack")}
+          onClick={() => setActiveControl("snack")}
         >
           Snack
         </div>
