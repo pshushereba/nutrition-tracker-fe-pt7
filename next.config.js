@@ -1,4 +1,5 @@
 require('dotenv').config();
+const withImages = require('next-images')
 
 module.exports = {
     env: {
@@ -7,3 +8,6 @@ module.exports = {
         GA_ID: process.env.GA_ID
     },
   }
+
+
+  module.exports = withImages()

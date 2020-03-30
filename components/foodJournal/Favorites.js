@@ -4,7 +4,7 @@ import { useLazyQuery, useQuery } from '@apollo/react-hooks';
 
 import DashboardChart from "../dashboardChart/DashboardChart";
 
-export default function FoodLog() {
+export default function Favorites() {
   // We'll pull in the food data off the user, filter the items by the control selected, then pass that array to the chart component
   const [activeControl, setActiveControl] = useState("breakfast");
 
@@ -33,7 +33,8 @@ const currentDate = new Date(Date.now());
 const currentRecord = (data) => {
   let newArr = []
   data.map((record) => {
-    if(record.date === currentDate.toLocaleDateString().toString()) {
+      const favorite = JSON.parse(record.food_string).favorite;
+    if(favorite) {
       newArr.push(record)
     }
   })

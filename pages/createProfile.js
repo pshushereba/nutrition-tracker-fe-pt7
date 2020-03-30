@@ -12,8 +12,8 @@ import withApollo from '../lib/apollo'
 
 const CreateProfile = () => {
   const [user, setUser] = useState({})  
-  const [profileStep, setProfileStep] = useState("ageGenderHeight")
-
+  const [profileStep, setProfileStep] = useState("ageGenderHeight");
+  console.log("In CreateProfile", user);
   const cookie = Cookie.get('token')
 
   return (
@@ -38,3 +38,6 @@ const CreateProfile = () => {
 };
 
 export default withApollo(CreateProfile)
+
+
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjazhlMDhmaTIwMGQyMDcyOGd3NGtkZ2I1IiwiaWF0IjoxNTg1NTQ0NDYwLCJleHAiOjE1ODYxNDkyNjB9.Db-F9dBY7rKy2tP4gWQotNczjocmlu8I8wgMoZsGy24

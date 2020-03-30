@@ -4,7 +4,7 @@ import PhoneManBigSVG from '../../components/svg/PhoneManBigSVG.js';
 const MarketingTop = () => {
     return (
         <div className="flex justify-center m-4 w-full">
-            <div className="w-1/2">
+            <div className="w-1/2 flex justify-end mr-8">
                 <PhoneManBigSVG />
             </div>
             <div className="w-1/2 flex flex-col">

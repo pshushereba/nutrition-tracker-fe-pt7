@@ -1,12 +1,32 @@
 import React, { useState } from "react";
 import DashboardChartItem from "./DashboardChartItem.js";
+import { useMutation } from '@apollo/react-hooks';
+import { UPDATE_FOOD_STRING } from "../../gql/mutations.js";
 
-const DashboardChart = ({ data }) => {
-  const [records, setRecords] = useState([]);
-  console.log("In DashboardChart", data);
+const DashboardChart = ({ records, activeControl }) => {
+  // const [records, setRecords] = useState([]);
+  // console.log("In DashboardChart", data);
   // this only exists to keep things from breaking.
   // you will need to replace count with the actual data from the useEffect call
   // or the props
+
+  const [updateFoodString] = useMutation(UPDATE_FOOD_STRING)
+
+  const toggleFav = (item) => {
+    
+    let parsedFood = JSON.parse(item.food_string)
+    const fav = parsedFood.favorite
+    parsedFood = {...parsedFood, favorite: !fav }
+    updateFoodString({
+      variables: {
+        id: item.id,
+        food_string: JSON.stringify(parsedFood)
+      }
+    })
+    const updateItem = {...item, food_string: JSON.stringify(parsedFood)}
+    return updateItem;
+  }
+
   const calCount = 50;
 
   return (
@@ -25,8 +45,13 @@ const DashboardChart = ({ data }) => {
           </div>
         </tr>
         {/* change temp to records / props */}
-        {data.map(cv => {
-          return <DashboardChartItem data={cv} key={cv.id} />;
+        {records.map(cv => {
+          return <DashboardChartItem 
+                  data={cv} 
+                  key={cv.id} 
+                  activeControl={activeControl}
+                  toggleFav={toggleFav}
+                  />;
         })}
       </table>
     </section>

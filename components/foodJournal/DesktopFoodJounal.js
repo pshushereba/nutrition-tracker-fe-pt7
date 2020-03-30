@@ -1,5 +1,7 @@
 import { useState } from "react"
 import FoodLog from "./FoodLog"
+import PreviousLog from "./PreviousLog";
+import Favorites from "./Favorites.js";
 import DashFoodJournalSVG from "../svg/DashFoodJournalSVG"
 import WaterGirlSVG from "../svg/WayerGirlSVG"
 
@@ -33,9 +35,9 @@ export default function DesktopFoodJournal() {
                 { activeControl === "daily" ? (
                     <FoodLog />
                 ) : activeControl === "favorites" ? (
-                    "Favorites"
+                    <Favorites />
                 ) : activeControl === "previous" ? (
-                    "Previous"
+                    <PreviousLog />
                 ) : "Error"}
             </div>
             <div className="flex-1"></div>

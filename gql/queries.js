@@ -64,6 +64,7 @@ export const USER_DASH_HEADER = gql`
       profile {
         id
         weight
+        gender
       }
     }
   }
