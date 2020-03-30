@@ -8,8 +8,13 @@ const DashboardChart = ({ data, activeControl }) => {
   // you will need to replace count with the actual data from the useEffect call
   // or the props
 
-  const toggleFav = (data, fav) => {
-    return {...data, favorite: !fav }
+  const toggleFav = (item) => {
+    console.log("First toggleFav", item)
+    let parsedFood = JSON.parse(item.food_string)
+    const fav = parsedFood.favorite
+    parsedFood = {...parsedFood, favorite: !fav }
+    console.log("Second toggleFav", parsedFood)
+    return {...item, food_string: JSON.stringify(parsedFood)}
   }
 
   const calCount = 50;

@@ -24,8 +24,10 @@ export default function NutritionFacts({
     ingredients: [ { parsed } ]
   } = info;
   
-  const [foodLogData, setFoodLogData] = useState({
+  const foodString = {...parsed[0], favorite: false}
+  const foodLogData = {
     //Obj for storing the vales used in the nutrition graphic and the dailyRecord mutation
+
     recordData: {
       current_weight: 175,
       date: new Date(Date.now()).toLocaleDateString(),
@@ -34,11 +36,11 @@ export default function NutritionFacts({
       carbs: Math.floor(carbsQuantity * qty) || 0,
       fiber: Math.floor(fiberQuantity * qty) || 0,
       protein: Math.floor(proteinQuantity * qty) || 0,
-      food_string: JSON.stringify(parsed[0]),
+      food_string: JSON.stringify(foodString),
       meal_type: meal_type
     },
     graphicData: info
-  });
+  };
 
   const {
     //  Access needed data from foodLogdata to build our Nutrition Label

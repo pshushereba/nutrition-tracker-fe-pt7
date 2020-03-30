@@ -4,14 +4,11 @@ import HeartOutlineSVG from "../svg/HeartOutlineSVG.js";
 import { useClient } from "../../lib/useClient.js";
 
 const DashboardChartItem = ({ data, activeControl, toggleFav }) => {
-
+  const [item, setItem] = useState(data)
   // this might not actually be the props, but we will get there
-  const { quantity, name, calories, fats, protein, carbs, food_string, meal_type, favorite } = data;
-  const fav = false;
+  const { quantity, name, calories, fats, protein, carbs, food_string, meal_type } = item;
   
-  // console.log("Favorite", favorite);
   const foodItem = JSON.parse(food_string);
-  // console.log("In DashboardChartItem toggleFav", toggleFav);
 
   return (
     <div className={`${(meal_type !== activeControl) ? "hidden" : null}`}>
@@ -20,11 +17,12 @@ const DashboardChartItem = ({ data, activeControl, toggleFav }) => {
           <div className="flex align-center justify-center w-8 border-r p-2">
             <td className="cursor-pointer"
                 onClick={() => {
-                  toggleFav(data, fav)
-                  console.log("In onClick", data)
+                  console.log(food_string.favorite)
+                  setItem(toggleFav(data))
+                  console.log(food_string.favorite)
                     }
                   }>
-              {favorite ? <FullHeartSVG /> : <HeartOutlineSVG />}
+              {foodItem.favorite ? <FullHeartSVG /> : <HeartOutlineSVG />}
             </td>
           </div>
           <div className="flex align-center p-2">
