@@ -102,7 +102,6 @@ mutation UPDATE_PROFILE(
 export const ADD_FOOD = gql`
   mutation ADD_FOOD(
     $date: String!
-    $current_weight: Int!
     $calories: Int!
     $fat: Int!
     $carbs: Int!
@@ -114,7 +113,6 @@ export const ADD_FOOD = gql`
     createDailyRecord (
       data: {
         date: $date
-        current_weight: $current_weight
         calories: $calories
         fat: $fat
         carbs: $carbs
@@ -125,7 +123,6 @@ export const ADD_FOOD = gql`
       }
     ) {
       date
-      current_weight
       calories
       fat
       carbs
@@ -150,7 +147,6 @@ export const UPDATE_FOOD_STRING = gql`
     }
   ) {
     date
-    current_weight
     calories
     fat
     carbs
@@ -162,3 +158,48 @@ export const UPDATE_FOOD_STRING = gql`
   }
 }
 `
+// export const UPDATE_WEIGHT = gql`
+//   mutation UPDATE_WEIGHT (
+//     $id: String!
+//     $current_weight: Int!
+//     ) {
+//   updateDailyRecord (
+//     id: $id,
+//     data: {
+//       current_weight: $current_weight
+//     }
+//   ) {
+//     current_weight
+//   }
+  
+// }`
+
+// export const CREATE_DAILY_RECORD_WITH_WEIGHT = gql`
+// mutation CREATE_DAILY_RECORD_WITH_WEIGHT (
+//   $date: String!
+//   $current_weight: Int!
+//   $calories: Int!
+//   $fat: Int!
+//   $carbs: Int!
+//   $fiber: Int!
+//   $protein: Int!
+//   $food_string: String!
+//   $meal_type: String!
+// ) {
+//   createDailyRecord(
+//     data: {
+//       date: $date
+//       current_weight: $current_weight
+//       calories: $calories
+//       fat: $fat
+//       carbs: $carbs
+//       fiber: $fiber
+//       protein: $protein
+//       food_string: $food_string
+//       meal_type: $meal_type
+//     }
+//   ) {
+//     current_weight
+//   }
+// }
+// `

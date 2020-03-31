@@ -43,7 +43,6 @@ export const ME = gql`
       dailyRecords {
         id
         date
-        current_weight
         calories
         fat
         carbs
@@ -73,7 +72,6 @@ export const USER_DASH_HEADER = gql`
 export const GET_PROGRESS_DATA = gql`
   {
     myDailyRecords {
-      current_weight
       date
     }
   }
