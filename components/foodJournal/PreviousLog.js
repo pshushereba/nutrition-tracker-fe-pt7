@@ -84,7 +84,7 @@ const currentRecord = (data) => {
           Water
         </div>
       </div>
-      <DashboardChart data={currentRecord(data.myDailyRecords)} activeControl={activeControl} />
+      <DashboardChart records={currentRecord(data.myDailyRecords)} activeControl={activeControl} />
     </>
   );
 }

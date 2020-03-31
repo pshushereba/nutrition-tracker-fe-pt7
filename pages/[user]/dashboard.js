@@ -1,4 +1,4 @@
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery, useMutation } from "@apollo/react-hooks";
 import { useState } from "react";
 
 import withApollo from "../../lib/apollo";
@@ -12,22 +12,66 @@ import FoodSearchResults from "../../components/FoodSearchResults";
 import Progress from "../../components/Progress/Progress.js";
 import App from "next/app";
 import { initClient } from "../../lib/useClient";
+import { UPDATE_WEIGHT, CREATE_DAILY_RECORD_WITH_WEIGHT } from "../../gql/mutations.js"
+
 
 const Dashboard = ({ apollo }) => {
 
   const [activeControl, setActiveControl] = useState("journal"); //Sets which component is rendered on the lower half of dash
   const [searchResults, setSearchResults] = useState(); //Sets search results returned from FoodSearchBox
+  const [weight, setWeight] = useState(0);
   const { loading, error, data } = useQuery(ME); //Gets logged in user
-
+  const [updateWeight] = useMutation(UPDATE_WEIGHT);
+  const [createWeightRecord] = useMutation(CREATE_DAILY_RECORD_WITH_WEIGHT)
+  
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
 
-  initClient(apollo)
-
-  // console.log(cache)
-  
   const dateOptions = { year: 'numeric', month: 'long', day: 'numeric'}
   const currentDate = new Date(Date.now()); //Sets date for lower dash nav, format does not match UX design
+  const todaysDate = currentDate.toLocaleDateString().toString()
+  const hasDailyRecord = data.me.dailyRecords;
+  console.log(hasDailyRecord);
+
+  // Server date is configured YYYY-MM-DD
+
+  const handleChange = (e) => {
+    setWeight(e.target.value);
+  }
+
+  const currentRecord = () => {
+    let newArr = []
+    console.log("In currentRecord", hasDailyRecord);
+    hasDailyRecord.map((record) => {
+      console.log("record.date", record.date, todaysDate)
+      if(record.date === todaysDate) {
+        newArr.push(record);
+        console.log(newArr)
+      }
+    })
+    console.log(newArr[0])
+    return newArr[0]
+  }
+
+  const myRecord = currentRecord()
+  console.log(parseInt(weight));
+  const hasRecord = {
+    id: myRecord.id,
+    current_weight: parseInt(weight)
+  }
+
+  const hasNoRecord = {
+      date: JSON.stringify(todaysDate),
+      current_weight: weight,
+      calories: 0,
+      fat: 0,
+      carbs: 0,
+      fiber: 0,
+      protein: 0,
+      food_string: "",
+      meal_type: ""
+    }
+ 
 
   return (
     <div>
@@ -87,7 +131,15 @@ const Dashboard = ({ apollo }) => {
         <div className="flex py-4">
           <DailyVibe />
           <div className="flex-1"></div>
-          <div className="border border-black mr-32 ml-6">Macro Charts</div>
+          <div className="border border-black mr-32 ml-6">
+            <input
+              type="text"
+              placeholder="Enter today's weight"
+              name="dailyWeight"
+              value={weight}
+              onChange={handleChange}
+              onClick={() => {currentRecord ? updateWeight({variables: hasRecord}) : createWeightRecord({variables: hasNoRecord})}}>
+            </input></div>
         </div>
         <div className="ml-20 mr-32">
           {/* Replace strings with corresponding components */}
