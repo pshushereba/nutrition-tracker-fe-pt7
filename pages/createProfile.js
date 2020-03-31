@@ -14,7 +14,7 @@ import { Spacer } from "../components/Layout/LaytoutPrimitives";
 
 const CreateProfile = () => {
   const [user, setUser] = useState({});
-  const [profileStep, setProfileStep] = useState("weightGoalWeight");
+  const [profileStep, setProfileStep] = useState("dietPreferences");
 
   return (
     <Layout>
