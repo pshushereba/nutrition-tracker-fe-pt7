@@ -29,7 +29,6 @@ export default function NutritionFacts({
     //Obj for storing the vales used in the nutrition graphic and the dailyRecord mutation
 
     recordData: {
-      current_weight: 175,
       date: new Date(Date.now()).toLocaleDateString(),
       calories: calories * qty || 0,
       fat: Math.floor(fatQuantity * qty) || 0,
@@ -125,7 +124,7 @@ export default function NutritionFacts({
     e.preventDefault();
     const adjustQty = (obj, multiplier) => {
       return Object.keys(obj).map(key => {
-        key !== "current_weight" && typeof obj[key] === "number"
+        typeof obj[key] === "number"
           ? (obj[key] = obj[key] * multiplier)
           : (obj[key] = obj[key]);
       });
