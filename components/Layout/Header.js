@@ -8,7 +8,7 @@ const Header = () => {
 
   return (
     <div className="flex w-full p-4 bg-gray-10">
-      <h1 className="flex-1 text-2xl font-medium pl-20">Nutrivurv</h1>
+      <h1 className="flex-1 text-3xl font-semibold pl-20">Nutrivurv</h1>
       {!isSignUp && (
         <span className="flex flex-1 justify-center">
           <ul className="flex items-center">

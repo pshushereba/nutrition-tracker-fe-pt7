@@ -17,3 +17,13 @@ export const Spacer = () => {
     <div className="flex-1"></div>
   )
 }
+
+export const VerticalRow = ({ children, extraClasses }) => {
+  return (
+    <div className={`flex flex-col ${extraClasses}`}>
+    <div className="flex-1"></div>
+    {children}
+    <div className="flex-1"></div>
+    </div>
+  )
+}
