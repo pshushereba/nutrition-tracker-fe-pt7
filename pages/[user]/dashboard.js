@@ -12,7 +12,7 @@ import FoodSearchResults from "../../components/FoodSearchResults";
 import Progress from "../../components/Progress/Progress.js";
 import App from "next/app";
 import { initClient } from "../../lib/useClient";
-import { UPDATE_WEIGHT, CREATE_DAILY_RECORD_WITH_WEIGHT } from "../../gql/mutations.js"
+// import { UPDATE_WEIGHT, CREATE_DAILY_RECORD_WITH_WEIGHT } from "../../gql/mutations.js"
 
 
 const Dashboard = ({ apollo }) => {
@@ -21,8 +21,8 @@ const Dashboard = ({ apollo }) => {
   const [searchResults, setSearchResults] = useState(); //Sets search results returned from FoodSearchBox
   const [weight, setWeight] = useState(0);
   const { loading, error, data } = useQuery(ME); //Gets logged in user
-  const [updateWeight] = useMutation(UPDATE_WEIGHT);
-  const [createWeightRecord] = useMutation(CREATE_DAILY_RECORD_WITH_WEIGHT)
+  // const [updateWeight] = useMutation(UPDATE_WEIGHT);
+  // const [createWeightRecord] = useMutation(CREATE_DAILY_RECORD_WITH_WEIGHT)
   
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
