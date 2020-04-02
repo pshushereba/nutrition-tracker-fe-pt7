@@ -45,7 +45,7 @@ const Login = () => {
 
   return (
     <Layout>
-      <div className="mt-8 w-64 h-64 p-3 flex-col">
+     <div className="mt-8 w-64 h-64 p-3 flex-col">
 <div className="flex justify-center align-middle">
   <ThunderboltSVG />
   <h1 className="p-4 text-center text-2xl muli">Sign In</h1>
@@ -85,7 +85,7 @@ const Login = () => {
     </div>
   </div>
 </form>
-<button className="text-xs text-white w-full px-6 py-1 bg-btn-pink border-btn-pink rounded relative" onClick={handleSubmit}>Let's Go!</button>
+<button className="text-xs text-white w-full px-6 py-1 bg-pink-400 border-btn-pink rounded relative" onClick={handleSubmit}>Let's Go!</button>
 <h3 className="py-2 text-center">Not a member?<span className="mx-1 font-semibold"><a className="text-black" href="/signup">Sign Up</a></span></h3>
 </div>
 <div className="mt-16">
@@ -98,9 +98,8 @@ const Login = () => {
 export default withApollo(Login);
 
 
-
 {/* <div className="flex justify-around">
-<div className="w-1/2">
+<div className="flex-1">
   <div className="flex justify-center align-middle">
     <ThunderboltSVG />
     <h1 className="p-4 text-center text-2xl muli">Sign In</h1>
@@ -141,9 +140,7 @@ export default withApollo(Login);
       </div>
   </form>
 </div>
-<div className="w-1/2">
-  <div className="mt-16">
+<div className="flex-1">
     <LogInSVG />
-  </div>
 </div>
 </div> */}

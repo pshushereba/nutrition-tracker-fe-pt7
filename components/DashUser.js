@@ -11,8 +11,8 @@ export default function DashUser () {
     if (loading) return "Loading ..."
     if (error) return `Error: ${error}`
     const client = useApolloClient();
-
-    console.log(client.link.request);
+    
+    console.log(data.me.weightLogs[0]);
     return (
         <div className="flex-1 flex pl-20">
             <div className="flex flex-col items-center py-2">
@@ -30,7 +30,7 @@ export default function DashUser () {
             </div>
             <div className="flex flex-col items-center pl-12 py-2">
                 <div className="flex-1"></div>
-                <div className="">{`${data.me.profile ? data.me.profile.weight : 0} lbs`}</div>
+                <div className="">{`${data.me.profile ? data.me.weightLogs[0].current_weight : 0} lbs`}</div>
                 <div className="">
                     Current Weight
                 </div>
