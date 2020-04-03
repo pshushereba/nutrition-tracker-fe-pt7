@@ -102,7 +102,6 @@ mutation UPDATE_PROFILE(
 export const ADD_FOOD = gql`
   mutation ADD_FOOD(
     $date: String!
-    $current_weight: Int!
     $calories: Int!
     $fat: Int!
     $carbs: Int!
@@ -114,7 +113,6 @@ export const ADD_FOOD = gql`
     createDailyRecord (
       data: {
         date: $date
-        current_weight: $current_weight
         calories: $calories
         fat: $fat
         carbs: $carbs
@@ -125,7 +123,6 @@ export const ADD_FOOD = gql`
       }
     ) {
       date
-      current_weight
       calories
       fat
       carbs
@@ -150,7 +147,6 @@ export const UPDATE_FOOD_STRING = gql`
     }
   ) {
     date
-    current_weight
     calories
     fat
     carbs

@@ -43,7 +43,6 @@ export const ME = gql`
       dailyRecords {
         id
         date
-        current_weight
         calories
         fat
         carbs
@@ -70,14 +69,6 @@ export const USER_DASH_HEADER = gql`
   }
 `;
 
-export const GET_PROGRESS_DATA = gql`
-  {
-    myDailyRecords {
-      current_weight
-      date
-    }
-  }
-`;
 
 export const GET_FOOD_LOG = gql`
   {
@@ -108,6 +99,7 @@ export const GET_SEARCH_RESULTS = gql`
 `
 export const GET_NUTRITION = gql`
   {
-    nutrition @client
+    nutritionInfo @client
+    lowerNav @client
   }
 `

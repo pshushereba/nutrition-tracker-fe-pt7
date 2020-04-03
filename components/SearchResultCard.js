@@ -3,33 +3,33 @@ import React, { useState, useEffect } from "react";
 import { getNutritionInfo } from "../lib/edamam";
 import FormDropdown from "./form/FormDropdown";
 import MealDropdown from "./form/MealDropDown";
-import { useQuery, useApolloClient } from "@apollo/react-hooks";
-import { GET_NUTRITION, GET_DASHBOARD_STATE } from "../gql/queries";
+import { useQuery } from "@apollo/react-hooks";
+import { GET_NUTRITION } from "../gql/queries";
 
-const SearchResultsCard = ({ item }) => {
+export default function SearchResultsCard({ item }) {
   const [foodObj, setFoodObj] = useState();
-  // const client = useApolloClient();
-  const { data, client } = useQuery(GET_NUTRITION)
+  const { data, client } = useQuery(GET_NUTRITION);
+
   // When a dropdown option is selected, get the nutrition info and write it to the client cache
-  const setNutrition = (data, obj) => {
-    console.log(data, obj)
+  const setNutrition = someData => {
     const nutrition = JSON.stringify({
-      nutrition: obj,
+      nutrition: someData,
       label: foodObj.label,
       meal_type: foodObj.meal_type
-    })
-    console.log(nutrition)
-    client.writeData({ ...data, 
-      nutritionInfo: nutrition
     });
+
+    client.writeData({ data: { ...data, nutritionInfo: nutrition } });
   };
 
-  // console.log(item);
 
-  useEffect( () => {
-    foodObj &&
-      foodObj.meal_type &&
-        getNutritionInfo(foodObj, setNutrition, data)
+  const getInfo = async () => {
+    const foodData = await getNutritionInfo(foodObj);
+    setNutrition(foodData);
+  };
+
+
+  useEffect(() => {
+    foodObj && foodObj.meal_type && getInfo();
   }, [foodObj]);
 
   return (
@@ -37,7 +37,7 @@ const SearchResultsCard = ({ item }) => {
       <div className="flex my-2">
         <div className="flex justify-around w-full hover:bg-item-hover hover:opacity-50">
           <p className="w-1/6 h-auto my-2 mx-4 self-center">
-          {item.food.label} 
+            {item.food.label}
           </p>
           <FormDropdown
             data={item}
@@ -60,5 +60,3 @@ const SearchResultsCard = ({ item }) => {
     </>
   );
 };
-
-export default SearchResultsCard;
