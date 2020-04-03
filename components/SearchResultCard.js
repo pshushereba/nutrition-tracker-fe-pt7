@@ -13,7 +13,7 @@ export default function SearchResultsCard({ item }) {
   // When a dropdown option is selected, get the nutrition info and write it to the client cache
   const setNutrition = someData => {
     const nutrition = JSON.stringify({
-      nutrition: someData,
+      info: someData,
       label: foodObj.label,
       meal_type: foodObj.meal_type
     });
@@ -23,6 +23,7 @@ export default function SearchResultsCard({ item }) {
 
 
   const getInfo = async () => {
+    console.log(foodObj)
     const foodData = await getNutritionInfo(foodObj);
     setNutrition(foodData);
   };

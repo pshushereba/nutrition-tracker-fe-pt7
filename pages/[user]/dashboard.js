@@ -10,6 +10,8 @@ import DailyVibe from "../../components/DailyVibe";
 import DesktopFoodJournal from "../../components/foodJournal/DesktopFoodJounal";
 import FoodSearchResults from "../../components/FoodSearchResults";
 import Progress from "../../components/Progress/Progress.js";
+import WeightInput from "../../components/WeightInput";
+import LowerNav from "../../components/LowerNav";
 
 const Dashboard = ({ apollo }) => {
   const [activeControl, setActiveControl] = useState("journal"); //Sets which component is rendered on the lower half of dash
@@ -18,19 +20,16 @@ const Dashboard = ({ apollo }) => {
 
   const lowerNav = data ? data.lowerNav : apollo.cache.data.data.data.lowerNav; // gets the label for the component to render from the client instance passed in props the first render, and from useQuery after that
 
-  const lowerNavDate = () => {  //  Sets date for lower dash nav, format does not match UX design
+  const lowerNavDate = () => {
+    //  Sets date for lower dash nav, format does not match UX design
     const dateOptions = { year: "numeric", month: "long", day: "numeric" };
-    const currentDate = new Date(Date.now()); 
+    const currentDate = new Date(Date.now());
     return currentDate.toLocaleString("en-US", dateOptions);
   };
 
-
   useEffect(() => {
-    data && 
-    console.log("dashboard.js useEffect: data=", data)
-  }, [data])
-  
-
+    data && console.log("dashboard.js useEffect: data=", data);
+  }, [data]);
 
   return (
     <div>
@@ -42,11 +41,11 @@ const Dashboard = ({ apollo }) => {
             <FoodSearchBox />
           </div>
         </div>
-
+        <LowerNav />
         <div className="flex py-4">
           <DailyVibe />
           <div className="flex-1"></div>
-          <div className="border border-black mr-32 ml-6">Macro Charts</div>
+          <WeightInput />
         </div>
         <div className="ml-20 mr-32">
           {lowerNav === "journal" ? (

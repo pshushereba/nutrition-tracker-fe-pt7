@@ -158,3 +158,19 @@ export const UPDATE_FOOD_STRING = gql`
   }
 }
 `
+
+export const UPDATE_WEIGHT_LOG = gql`
+mutation UPDATE_WEIGHT_LOG (
+  $id: String!
+  $current_weight: Int
+) {
+  updateWeightLog(
+    id: $id
+    data: {
+      current_weight: $current_weight
+    }
+  ) {
+    current_weight
+  }
+}
+`

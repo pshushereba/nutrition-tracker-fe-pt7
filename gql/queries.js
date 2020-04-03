@@ -51,6 +51,10 @@ export const ME = gql`
         food_string
         meal_type
       }
+      weightLogs {
+        id
+        current_weight
+      }
     }
   }
 `;
@@ -68,7 +72,6 @@ export const USER_DASH_HEADER = gql`
     }
   }
 `;
-
 
 export const GET_FOOD_LOG = gql`
   {
@@ -90,16 +93,16 @@ export const GET_DASHBOARD_STATE = gql`
   {
     lowerNav @client
   }
-`
+`;
 
 export const GET_SEARCH_RESULTS = gql`
   {
     searchResults @client
   }
-`
+`;
 export const GET_NUTRITION = gql`
   {
     nutritionInfo @client
     lowerNav @client
   }
-`
+`;
