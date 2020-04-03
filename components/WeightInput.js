@@ -13,14 +13,14 @@ export default function WeightInput() {
     updateWeight({
       variables: {
         id: "ck8j2lr0d0005073371gzc8ya",
-        current_weight: parseInt(weight)
+        current_weight: weight
       }
     });
   };
   return (
-    <div className="border border-black mr-32 ml-6">
+    <div className="flex border mr-32 ml-6">
       <input
-        type="text"
+        type="number"
         placeholder="Enter today's weight"
         name="dailyWeight"
         value={weight}

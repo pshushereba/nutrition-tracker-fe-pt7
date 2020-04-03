@@ -97,15 +97,15 @@ export const GET_DASHBOARD_STATE = gql`
   {
     lowerNav @client
   }
-`
+`;
 
 export const GET_SEARCH_RESULTS = gql`
   {
     searchResults @client
   }
-`
+`;
 export const GET_NUTRITION = gql`
   {
-    nutrition @client
+    nutritionInfo @client
   }
-`
+`;

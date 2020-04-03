@@ -10,6 +10,9 @@ import DailyVibe from "../../components/DailyVibe";
 import DesktopFoodJournal from "../../components/foodJournal/DesktopFoodJounal";
 import FoodSearchResults from "../../components/FoodSearchResults";
 import Progress from "../../components/Progress/Progress.js";
+import { Spacer } from "../../components/Layout/LaytoutPrimitives";
+import LowerNav from "../../components/LowerNav";
+import WeightInput from "../../components/WeightInput";
 
 const Dashboard = ({ apollo }) => {
   const [activeControl, setActiveControl] = useState("journal"); //Sets which component is rendered on the lower half of dash
@@ -17,13 +20,6 @@ const Dashboard = ({ apollo }) => {
   const { data, client } = useQuery(GET_DASHBOARD_STATE); //Gets active dashboard component from client cache
 
   const lowerNav = data ? data.lowerNav : apollo.cache.data.data.data.lowerNav; // gets the label for the component to render from the client instance passed in props the first render, and from useQuery after that
-
-  const lowerNavDate = () => {
-    //  Sets date for lower dash nav, format does not match UX design
-    const dateOptions = { year: "numeric", month: "long", day: "numeric" };
-    const currentDate = new Date(Date.now());
-    return currentDate.toLocaleString("en-US", dateOptions);
-  };
 
   useEffect(() => {
     data && console.log("dashboard.js useEffect: data=", data);
@@ -34,80 +30,16 @@ const Dashboard = ({ apollo }) => {
       <Layout>
         <div className="flex">
           <DashUser />
-          <div className="flex-1"></div>
+          <Spacer />
           <div className="flex-1 px-32 self-center">
             <FoodSearchBox />
           </div>
         </div>
-        <nav className="flex bg-mobileFoot">
-          <div className="flex-1"></div>
-          <ul className="flex-1 flex justify-around text-lg font-medium py-2">
-            <li
-              className={`${
-                lowerNav === "journal" ? "border-b-2 border-pink-500" : ""
-              } cursor-pointer`}
-              value={"journal"}
-              onClick={() =>
-                client.writeData({ data: { ...data, lowerNav: "journal" } })
-              }
-            >
-              Food Journal
-            </li>
-            <li
-              className={`${
-                lowerNav === "progress" ? "border-b-2 border-pink-500" : ""
-              } cursor-pointer`}
-              value={"progress"}
-              onClick={() =>
-                client.writeData({ data: { ...data, lowerNav: "progress" } })
-              }
-            >
-              Progress
-            </li>
-            <li
-              className={`${
-                lowerNav === "badges" ? "border-b-2 border-pink-500" : ""
-              } cursor-pointer`}
-              value={"badges"}
-              onClick={() =>
-                client.writeData({ data: { ...data, lowerNav: "badges" } })
-              }
-            >
-              Badges
-            </li>
-            <li
-              className={`${
-                lowerNav === "challenges" ? "border-b-2 border-pink-500" : ""
-              } cursor-pointer`}
-              value={"challenges"}
-              onClick={() =>
-                client.writeData({ data: { ...data, lowerNav: "challenges" } })
-              }
-            >
-              Challenges
-            </li>
-          </ul>
-          <span className="flex flex-1 text-sm justify-end items-center">
-            <time className="pr-32">{lowerNavDate}</time>
-          </span>
-        </nav>
+        <LowerNav />
         <div className="flex py-4">
           <DailyVibe />
           <div className="flex-1"></div>
-          <div className="border border-black mr-32 ml-6">
-            <input
-              type="text"
-              placeholder="Enter today's weight"
-              name="dailyWeight"
-              value={weight}
-              onChange={handleChange}
-              onClick={() => {
-                currentRecord
-                  ? updateWeight({ variables: hasRecord })
-                  : createWeightRecord({ variables: hasNoRecord });
-              }}
-            ></input>
-          </div>
+          <WeightInput />
         </div>
         <div className="ml-20 mr-32">
           {lowerNav === "journal" ? (

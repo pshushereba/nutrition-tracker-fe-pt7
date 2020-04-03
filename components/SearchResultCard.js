@@ -9,27 +9,25 @@ import { GET_NUTRITION, GET_DASHBOARD_STATE } from "../gql/queries";
 const SearchResultsCard = ({ item }) => {
   const [foodObj, setFoodObj] = useState();
   // const client = useApolloClient();
-  const { data, client } = useQuery(GET_NUTRITION)
+  const { data, client } = useQuery(GET_NUTRITION);
   // When a dropdown option is selected, get the nutrition info and write it to the client cache
   const setNutrition = (data, obj) => {
-    console.log(data, obj)
+    console.log(data, obj);
     const nutrition = JSON.stringify({
       nutrition: obj,
       label: foodObj.label,
       meal_type: foodObj.meal_type
-    })
-    console.log(nutrition)
-    client.writeData({ ...data, 
-      nutritionInfo: nutrition
     });
+    console.log(nutrition);
+    client.writeData({ data: { ...data, nutritionInfo: nutrition } });
   };
 
   // console.log(item);
 
-  useEffect( () => {
+  useEffect(() => {
     foodObj &&
       foodObj.meal_type &&
-        getNutritionInfo(foodObj, setNutrition, data)
+      getNutritionInfo(foodObj, setNutrition, data);
   }, [foodObj]);
 
   return (
@@ -37,7 +35,7 @@ const SearchResultsCard = ({ item }) => {
       <div className="flex my-2">
         <div className="flex justify-around w-full hover:bg-item-hover hover:opacity-50">
           <p className="w-1/6 h-auto my-2 mx-4 self-center">
-          {item.food.label} 
+            {item.food.label}
           </p>
           <FormDropdown
             data={item}
