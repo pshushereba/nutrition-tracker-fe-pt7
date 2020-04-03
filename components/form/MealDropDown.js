@@ -11,7 +11,7 @@ export default function MealDropdown({ setValue, obj }) {
         required=""
         onChange={handleChange}>
         <option className="text-gray-100" disabled="" defaultValue >Meal Type</option>
-        <option value="breakfast">Beakfast</option>
+        <option value="breakfast">Breakfast</option>
         <option value="lunch">Lunch</option>
         <option value="dinner">Dinner</option>
         <option value="snack">Snack</option>

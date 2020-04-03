@@ -73,6 +73,14 @@ export const USER_DASH_HEADER = gql`
   }
 `;
 
+export const GET_PROGRESS_DATA = gql`
+  {
+    myDailyRecords {
+      date
+    }
+  }
+`;
+
 export const GET_FOOD_LOG = gql`
   {
     myDailyRecords {
