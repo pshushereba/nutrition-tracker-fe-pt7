@@ -1,9 +1,7 @@
 import { useRouter } from "next/router";
-import { Spacer } from "./LaytoutPrimitives";
 
 const Header = () => {
   const router = useRouter();
-  console.log(router.asPath);
   const isSignUp = router.asPath === "/signup";
 
   return (
@@ -18,7 +16,6 @@ const Header = () => {
           </ul>
         </span>
       )}
-      {/* <Spacer /> */}
       {isSignUp && (
         <span className="">
           <ul className="flex  pr-40">
@@ -33,6 +30,3 @@ const Header = () => {
 
 export default Header;
 
-// Header.getInitialProps = async ctx => {
-//   const
-// }

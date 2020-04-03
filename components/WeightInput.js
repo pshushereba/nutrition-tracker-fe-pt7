@@ -1,27 +1,36 @@
 import { useState } from "react";
-import { useMutation, useApolloClient } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import { UPDATE_WEIGHT_LOG } from "../gql/mutations";
+import { GET_LAST_WEIGHT_LOG, USER_DASH_HEADER } from "../gql/queries";
 
 export default function WeightInput() {
   const [weight, setWeight] = useState();
-  const [updateWeight, { data }] = useMutation(UPDATE_WEIGHT_LOG);
-  const client = useApolloClient()
-  console.log(client)
-  const handleChange = e => {
+  const [updateWeight] = useMutation(UPDATE_WEIGHT_LOG);
+  const { data, loading } = useQuery(GET_LAST_WEIGHT_LOG);
+
+  if (loading) return "Loading ...";
+  const handleChange = (e) => {
     setWeight(e.target.value);
   };
-  const handleSubmit = e => {
-    // e.preventDefault();
+  const lastWeightLogId = data.myWeightLogs[0].id;
+
+  const handleSubmit = () => {
     updateWeight({
       variables: {
-        id: "ck8j2lr0d0005073371gzc8ya",
-        current_weight: weight
-      }
+        id: lastWeightLogId,
+        current_weight: parseInt(weight),
+      },
+      update: (cache) => {
+        cache.writeQuery({
+          query: USER_DASH_HEADER,
+          data: { me: { profile: { weight: parseInt(weight) } } },
+        });
+      },
     });
-    console.log("WeightInput: handleSubmit", data)
   };
+
   return (
-    <div className="flex border mr-32 ml-6">
+    <div className="flex border rounded pl-4 ml-6 mr-32">
       <input
         type="number"
         placeholder="Enter today's weight"
@@ -38,26 +47,3 @@ export default function WeightInput() {
     </div>
   );
 }
-
-// const [someMutation] = useMutation(SOME_MUTATION);
-// const handleSubmit = e => {
-//   e.preventDefault();
-//   // Run the callback you set in the useMutation hook
-//   someMutation({
-//     variables: variables,
-//     optimisticResponse: null,
-//     update: cache => {  // Grab the cache to work with it
-//       // Run the query related to the field you want to update against the cache
-//       const exisitingData = cache.readQuery({ query: SOME_RELEVANT_QUERY });
-//       //  Do what you need to do to change the data
-//       const updatedData = existingData.filter(
-//         data => data.property === someValue
-//       );
-//     }
-//   });
-//   //  Write the results back to the cache immediately
-//   cache.writeQuery({
-//     query: SOME_RELEVANT_QUERY,
-//     data: {itemInCache: updatatedData}
-//   })
-// };

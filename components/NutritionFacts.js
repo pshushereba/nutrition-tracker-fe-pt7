@@ -6,7 +6,6 @@ import { GET_FOOD_LOG } from "../gql/queries";
 export default function NutritionFacts({
   nutrition: { info, label, meal_type },
 }) {
-
   const [qty, setQty] = useState(1); //  Qty value used to get final values
   const [enteredQty, setEnteredQty] = useState(1); //  No of servings entered into the nutrition display, default value of 1
 

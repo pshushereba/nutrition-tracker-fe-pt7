@@ -11,25 +11,24 @@ export default function SearchResultsCard({ item }) {
   const { data, client } = useQuery(GET_NUTRITION);
 
   // When a dropdown option is selected, get the nutrition info and write it to the client cache
-  const setNutrition = someData => {
+  const setNutrition = (someData) => {
     const nutrition = JSON.stringify({
       info: someData,
       label: foodObj.label,
-      meal_type: foodObj.meal_type
+      meal_type: foodObj.meal_type,
     });
 
     client.writeData({ data: { ...data, nutritionInfo: nutrition } });
   };
 
-
   const getInfo = async () => {
-    console.log(foodObj)
+    // CB for use in useEffect when the meal_type is selected in MealDropdown
     const foodData = await getNutritionInfo(foodObj);
     setNutrition(foodData);
   };
 
-
   useEffect(() => {
+    //  When a the meal_type gets set, hit edamam and render the Nurtrition Label
     foodObj && foodObj.meal_type && getInfo();
   }, [foodObj]);
 
@@ -60,4 +59,4 @@ export default function SearchResultsCard({ item }) {
       </div>
     </>
   );
-};
+}
