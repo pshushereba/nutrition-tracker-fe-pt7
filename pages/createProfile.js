@@ -66,4 +66,3 @@ const CreateProfile = () => {
 };
 
 export default withApollo(CreateProfile);
-

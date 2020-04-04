@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useQuery } from "@apollo/react-hooks";
 
 import NutritionFacts from "./NutritionFacts";
 import PhoneManBigSVG from "./svg/PhoneManBigSVG";
 import FoodSearchList from "./FoodSearchList";
-
-import { ADD_FOOD } from "../gql/mutations";
-import { useMutation } from "@apollo/react-hooks";
+import { GET_NUTRITION } from "../gql/queries";
 
 export default function FoodSearchResults({ searchResults, setActiveControl }) {
-  const [nutrInfo, setNutrInfo] = useState()
+  const { data, client } = useQuery(GET_NUTRITION);
+
+  const nutrition = data
+    ? data.nutritionInfo
+    : client.cache.data.data.data.nutritionInfo;
 
   const svg = (
     <div className="flex flex-col mt-40">
@@ -18,11 +20,18 @@ export default function FoodSearchResults({ searchResults, setActiveControl }) {
 
   return (
     <section className="flex flex-1">
-      <FoodSearchList setNutrInfo={setNutrInfo} searchResults={searchResults} />
+      <FoodSearchList />
       <div className="Flex w-1/2"></div>
       <div className="w-1/2 max-h flex">
         <div className="flex-1"></div>
-        {nutrInfo ? <NutritionFacts data={nutrInfo} setActiveControl={setActiveControl}/> : svg}
+        {data ? (
+          <NutritionFacts
+            nutrition={JSON.parse(nutrition)}
+            setActiveControl={setActiveControl}
+          />
+        ) : (
+          svg
+        )}
         <div className="flex-1"></div>
       </div>
     </section>

@@ -6,7 +6,7 @@ const ProgressGraph = (props) => {
     
     return (
         <div>
-            <Graph data={props.data} />
+            <Graph />
         </div>
     )
 }

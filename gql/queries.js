@@ -51,6 +51,10 @@ export const ME = gql`
         food_string
         meal_type
       }
+      myWeightLogs(orderBy: createdAt_DESC, first: 1) {
+        id
+        current_weight
+      }
     }
   }
 `;
@@ -58,10 +62,8 @@ export const ME = gql`
 export const USER_DASH_HEADER = gql`
   {
     me {
-      id
       name
       profile {
-        id
         weight
         gender
       }
@@ -89,6 +91,38 @@ export const GET_FOOD_LOG = gql`
       protein
       food_string
       meal_type
+    }
+  }
+`;
+
+export const GET_DASHBOARD_STATE = gql`
+  {
+    lowerNav @client
+  }
+`;
+
+export const GET_SEARCH_RESULTS = gql`
+  {
+    searchResults @client
+  }
+`;
+export const GET_NUTRITION = gql`
+  {
+    nutritionInfo @client
+    lowerNav @client
+  }
+`;
+
+export const GET_LAST_WEIGHT_LOG = gql`
+  {
+    me {
+      profile {
+        weight
+      }
+    }
+    myWeightLogs(orderBy: createdAt_DESC, first: 1) {
+      id
+      current_weight
     }
   }
 `;
