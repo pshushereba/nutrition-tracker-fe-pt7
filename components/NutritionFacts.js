@@ -1,14 +1,11 @@
 import { useState } from "react";
-
 import { ADD_FOOD } from "../gql/mutations";
 import { useMutation } from "@apollo/react-hooks";
 import { GET_FOOD_LOG } from "../gql/queries";
 
 export default function NutritionFacts({
-  data: { info, label, meal_type },
-  setActiveControl
+  nutrition: { info, label, meal_type },
 }) {
-
   const [qty, setQty] = useState(1); //  Qty value used to get final values
   const [enteredQty, setEnteredQty] = useState(1); //  No of servings entered into the nutrition display, default value of 1
 
@@ -19,15 +16,15 @@ export default function NutritionFacts({
       FAT: { quantity: fatQuantity },
       CHOCDF: { quantity: carbsQuantity },
       PROCNT: { quantity: proteinQuantity },
-      FIBTG: { quantity: fiberQuantity }
+      FIBTG: { quantity: fiberQuantity },
     },
-    ingredients: [ { parsed } ]
+    ingredients: [{ parsed }],
   } = info;
-  
-  const foodString = {...parsed[0], favorite: false}
+
+  const foodString = { ...parsed[0], favorite: false }; //  add favorite property to food_string
+
   const foodLogData = {
     //Obj for storing the vales used in the nutrition graphic and the dailyRecord mutation
-
     recordData: {
       date: new Date(Date.now()).toLocaleDateString(),
       calories: calories * qty || 0,
@@ -36,9 +33,9 @@ export default function NutritionFacts({
       fiber: Math.floor(fiberQuantity * qty) || 0,
       protein: Math.floor(proteinQuantity * qty) || 0,
       food_string: JSON.stringify(foodString),
-      meal_type: meal_type
+      meal_type: meal_type,
     },
-    graphicData: info
+    graphicData: info,
   };
 
   const {
@@ -47,14 +44,14 @@ export default function NutritionFacts({
     totalNutrients,
     totalWeight,
     totalDaily,
-    yield: itemYield
+    yield: itemYield,
   } = foodLogData.graphicData;
 
-  const name = ingredients[0].parsed[0].food;  // Name of food item
+  const name = ingredients[0].parsed[0].food; // Name of food item
   const nutrients = Object.keys(totalNutrients).splice(1); // Array of returned nutrients for creating nutrition lable
   const servingSize = Math.floor(totalWeight / itemYield); // Weight of a single serving
 
-  const nutrientList = nutrients.map(nutrient => {
+  const nutrientList = nutrients.map((nutrient) => {
     //  Programatically grab our return nutrients and create items for display in the Nutrition Label
     const nutrientTotals = totalNutrients; // Macros
     const dailyTotals = totalDaily; //  Percent daily values
@@ -87,43 +84,44 @@ export default function NutritionFacts({
     );
   });
 
-  const [addFood] = useMutation(   // Returns CB needed to make mutation call, updates cache with returned values *** no it doesn't **
+  const [addFood, { client }] = useMutation(
+    /* Returns CB needed to make mutation call, updates cache with returned values,  
+        gives us access to the client to change the dashboard back to the food journal */
     ADD_FOOD,
     {
       update(cache, { data: { addFood } }) {
-        const { todos } = cache.readQuery({ query: GET_FOOD_LOG });
+        const { records } = cache.readQuery({ query: GET_FOOD_LOG });
         cache.writeQuery({
           query: GET_FOOD_LOG,
-          data: { todos: todos.concat([addFood]) },
+          data: { records: records.concat([addFood]) },
         });
-      }
+      },
     }
   );
 
   const logFood = async () => {
-    //  CB that runs mutation for us iin handleSubmit
+    //  CB that runs mutation in handleSubmit
     const { loading, data, error } = await addFood({
-      variables: foodLogData.recordData
+      variables: foodLogData.recordData,
     });
 
     if (error) return `Error: ${error}`;
 
     if (data) {
       //  On success set Dashboard to Food Journal
-      console.log(data)
-      setActiveControl("journal");
+      client.writeData({ data: { ...data, lowerNav: "journal" } });
     }
   };
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setEnteredQty(e.target.value);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     //  Adjusts values on macros according to the quantity set by the user and returns a new object
     e.preventDefault();
     const adjustQty = (obj, multiplier) => {
-      return Object.keys(obj).map(key => {
+      return Object.keys(obj).map((key) => {
         typeof obj[key] === "number"
           ? (obj[key] = obj[key] * multiplier)
           : (obj[key] = obj[key]);
@@ -165,7 +163,7 @@ export default function NutritionFacts({
         nutrition advice
       </p>
       <button
-        className="w-full text-white bg-pink-500 px-4 rounded-sm"
+        className="w-full text-white bg-pink-400 py-4 rounded-sm"
         onClick={logFood}
       >
         Log Food
