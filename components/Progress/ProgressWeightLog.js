@@ -6,6 +6,8 @@ const ProgressWeightLog = props => {
   // keep
   var sorted = {};
 
+  console.log("In ProgressWeightLog", props.data)
+
   // this is what will get mapped to generate elements
   // keep
   const [sortedLogs, setSortedLogs] = useState({});
@@ -29,17 +31,33 @@ const ProgressWeightLog = props => {
 
   // replace this whenever real data comes in
   // do not keep
-  const logs = [
-    { date: "01/02/2020", weight: 160 },
-    { date: "01/09/2020", weight: 165 },
-    { date: "01/16/2020", weight: 163 },
-    { date: "02/02/2020", weight: 160 },
-    { date: "02/09/2020", weight: 162 },
-    { date: "02/16/2020", weight: 167 },
-    { date: "03/02/2020", weight: 161 },
-    { date: "03/09/2020", weight: 166 },
-    { date: "03/16/2020", weight: 164 }
-  ];
+  // const logs = [
+  //   { date: "01/02/2020", weight: 160 },
+  //   { date: "01/09/2020", weight: 165 },
+  //   { date: "01/16/2020", weight: 163 },
+  //   { date: "02/02/2020", weight: 160 },
+  //   { date: "02/09/2020", weight: 162 },
+  //   { date: "02/16/2020", weight: 167 },
+  //   { date: "03/02/2020", weight: 161 },
+  //   { date: "03/09/2020", weight: 166 },
+  //   { date: "03/16/2020", weight: 164 }
+  // ];
+
+  const logs = () => {
+    let logArr = []
+    props.data.myWeightLogs.map((record) => {
+      logArr.push({date: formatDate(record.date), weight: record.current_weight})
+    })
+    return logArr;
+  }
+
+  const formatDate = (date) => {
+    let month = date.split("-")[1]
+    let day = date.split("-")[2]
+    let year = date.split("-")[0]
+    return `${month}/${day}/${year}`
+  }
+  console.log(formatDate("2020-04-01"));
 
   useEffect(() => {
     // change logs to real data that comes in
@@ -49,7 +67,7 @@ const ProgressWeightLog = props => {
     // sacrificial object
     // has a ternary operator to check for existence of current key
     // this is to prevent spreading not iterable error
-    logs.map(cv => {
+    logs().map(cv => {
       const monthChars = cv.date.charAt(0) + cv.date.charAt(1);
       const currentMonth = Object.keys(monthObj).filter(curval => {
         return monthObj[curval] == monthChars;

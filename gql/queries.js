@@ -74,6 +74,12 @@ export const GET_PROGRESS_DATA = gql`
     myDailyRecords {
       date
     }
+    me {
+      profile {
+        goal_weight
+        weight
+      }
+    }
   }
 `;
 
@@ -111,18 +117,32 @@ export const GET_NUTRITION = gql`
   }
 `;
 
-// export const GET_LAST_WEIGHT_LOG = gql`
-//   {
-//     me {
-//       name
-//       profile {
-//         id
-//         weight
-//         gender
-//       }
-//     myWeightLogs(orderBy: createdAt_DESC, first: 1) {
-//       id
-//       current_weight
-//     }
-//   }
-// `;
+export const GET_LAST_WEIGHT_LOG = gql`
+  {
+    me {
+      profile {
+        weight
+      }
+    }
+    myWeightLogs(orderBy: createdAt_DESC, first: 1) {
+      id
+      current_weight
+    }
+  }
+`;
+
+export const GET_WEIGHT_LOGS = gql`
+{
+  myWeightLogs{
+    date
+    current_weight
+    id
+  }
+  me {
+    profile {
+      goal_weight
+      weight
+    }
+  }
+}
+`;

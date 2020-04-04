@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { UPDATE_WEIGHT_LOG } from "../gql/mutations";
-import { GET_LAST_WEIGHT_LOG, USER_DASH_HEADER } from "../gql/queries";
+import { USER_DASH_HEADER } from "../gql/queries";
 
 export default function WeightInput() {
   const [weight, setWeight] = useState();
@@ -24,14 +24,17 @@ export default function WeightInput() {
   };
 
   const lastWeightLogId = weightLogs[0].id;
+  const currentLog = weightLogs[0];
 
   const handleSubmit = () => {
+    
     updateWeight({
       variables: {
         id: lastWeightLogId,
         current_weight: parseInt(weight),
       },
       update: (cache) => {
+        
         cache.writeQuery({
           query: USER_DASH_HEADER,
           data: {
@@ -47,7 +50,6 @@ export default function WeightInput() {
             },
           },
         });
-        setWeight(null);
         return cache;
       },
     });
