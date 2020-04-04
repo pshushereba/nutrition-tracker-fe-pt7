@@ -40,16 +40,9 @@ export const ME = gql`
         protein
         calories
       }
-      dailyRecords {
+      weightLogs {
+        current_weight
         id
-        date
-        calories
-        fat
-        carbs
-        fiber
-        protein
-        food_string
-        meal_type
       }
       myWeightLogs(orderBy: createdAt_DESC, first: 1) {
         id
@@ -67,7 +60,12 @@ export const USER_DASH_HEADER = gql`
         weight
         gender
       }
-    }
+        weightLogs{
+          date
+          current_weight
+          id
+        }
+      }
   }
 `;
 

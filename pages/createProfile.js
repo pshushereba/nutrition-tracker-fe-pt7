@@ -1,16 +1,14 @@
 import { useState } from "react";
-import Cookie from "js-cookie";
 
 import AgeGenderHeight from "../components/form/AgeGenderHeight";
 import DietPreference from "../components/form/DietPreference";
 import Macros from "../components/form/Macros";
 import WeightGoalWeight from "../components/form/WeightGoalWeight";
 import ActivityLevel from "../components/form/ActivityLevel";
-import AppLayout from "../components/AppLayout";
 import LogInSVG from "../components/svg/LogInSVG";
 import withApollo from "../lib/apollo";
 import Layout from "../components/Layout/index";
-import { Spacer } from "../components/Layout/LaytoutPrimitives";
+import { Spacer } from "../components/Layout/LayoutPrimitives";
 
 const CreateProfile = () => {
   const [user, setUser] = useState({});

@@ -1,5 +1,12 @@
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjazhlMDhmaTIwMGQyMDcyOGd3NGtkZ2I1IiwiaWF0IjoxNTg1NTQ0NDYwLCJleHAiOjE1ODYxNDkyNjB9.Db-F9dBY7rKy2tP4gWQotNczjocmlu8I8wgMoZsGy24"
 
-const otherToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjazhlMDhmaTIwMGQyMDcyOGd3NGtkZ2I1IiwiaWF0IjoxNTg1NTQ0NDYwLCJleHAiOjE1ODYxNDkyNjB9.Db-F9dBY7rKy2tP4gWQotNczjocmlu8I8wgMoZsGy24"
+const hasRecord = {
+    id: data.me.weightLogs[0].id,
+    current_weight: weight
+  }
 
-console.log(token === otherToken);
+  const hasNoRecord = {
+    current_weight: weight,
+    date: formatDate(currentDate)
+  }
+
+  const currentRecord = data.me.weightLogs[0].current_weight;
