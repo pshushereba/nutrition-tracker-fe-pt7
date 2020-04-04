@@ -57,7 +57,6 @@ export const USER_DASH_HEADER = gql`
     me {
       name
       profile {
-        id
         weight
         gender
       }
@@ -112,17 +111,18 @@ export const GET_NUTRITION = gql`
   }
 `;
 
-export const GET_LAST_WEIGHT_LOG = gql`
-  {
-    me {
-      profile {
-        id
-        weight
-      }
-    }
-    myWeightLogs(orderBy: createdAt_DESC, first: 1) {
-      id
-      current_weight
-    }
-  }
-`;
+// export const GET_LAST_WEIGHT_LOG = gql`
+//   {
+//     me {
+//       name
+//       profile {
+//         id
+//         weight
+//         gender
+//       }
+//     myWeightLogs(orderBy: createdAt_DESC, first: 1) {
+//       id
+//       current_weight
+//     }
+//   }
+// `;
