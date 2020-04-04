@@ -3,12 +3,9 @@ import ProgressSVG from "../svg/ProgressSVG.js";
 import { useQuery } from "@apollo/react-hooks";
 
 const ProgressCenter = props => {
-  // delete this props object
-  // and switch the data in the paragraph
   const weight = props.data.myWeightLogs[0].current_weight;
   const goal_weight = props.data.me.profile.goal_weight;
 
-  console.log(props.data)
 
   // returns the absolute value (always positive)
   // difference between the two.
