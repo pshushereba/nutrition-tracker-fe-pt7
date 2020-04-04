@@ -6,12 +6,21 @@ const DailyVibe = () => {
   const [current, setCurrent] = useState({});
 
   useEffect(() => {
-    fetch("https://type.fit/api/quotes")
-      .then((r) => r.json())
-      .then((data) => {
-        setQuotes(data);
-        setCurrent(data[randomizer()]);
-      });
+    const abortController = new AbortController();
+
+    try {
+      fetch("https://type.fit/api/quotes", { signal: abortController.signal })
+        .then((r) => r.json())
+        .then((data) => {
+          setQuotes(data);
+          setCurrent(data[randomizer()]);
+        });
+    } catch (error) {
+      !abortController.signal.aborted &&
+        console.log(`There was a problem with yout request: ${error}`);
+    }
+
+    return () => abortController.abort()
   }, []);
 
   const randomizer = () => {

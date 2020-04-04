@@ -57,6 +57,7 @@ export const USER_DASH_HEADER = gql`
     me {
       name
       profile {
+        id
         weight
         gender
       }
@@ -115,6 +116,7 @@ export const GET_LAST_WEIGHT_LOG = gql`
   {
     me {
       profile {
+        id
         weight
       }
     }
