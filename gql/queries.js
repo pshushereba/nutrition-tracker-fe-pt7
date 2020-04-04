@@ -141,7 +141,6 @@ export const GET_WEIGHT_LOGS = gql`
   me {
     profile {
       goal_weight
-      weight
     }
   }
 }
