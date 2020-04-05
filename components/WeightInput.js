@@ -1,30 +1,56 @@
 import { useState } from "react";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { UPDATE_WEIGHT_LOG } from "../gql/mutations";
-import { GET_LAST_WEIGHT_LOG, USER_DASH_HEADER } from "../gql/queries";
+import { USER_DASH_HEADER } from "../gql/queries";
 
 export default function WeightInput() {
   const [weight, setWeight] = useState();
   const [updateWeight] = useMutation(UPDATE_WEIGHT_LOG);
-  const { data, loading } = useQuery(GET_LAST_WEIGHT_LOG);
+  const { data, loading, error } = useQuery(USER_DASH_HEADER);
 
+  if (error) return `${error}`;
   if (loading) return "Loading ...";
+
+  const {
+    me: {
+      name,
+      profile: { gender },
+      weightLogs,
+    },
+  } = data;
+
   const handleChange = (e) => {
     setWeight(e.target.value);
   };
-  const lastWeightLogId = data.myWeightLogs[0].id;
+
+  const lastWeightLogId = weightLogs[0].id;
+  const currentLog = weightLogs[0];
 
   const handleSubmit = () => {
+    
     updateWeight({
       variables: {
         id: lastWeightLogId,
         current_weight: parseInt(weight),
       },
       update: (cache) => {
+        
         cache.writeQuery({
           query: USER_DASH_HEADER,
-          data: { me: { profile: { weight: parseInt(weight) } } },
+          data: {
+            me: {
+              name: name,
+              profile: {
+                weight: weight,
+                gender: gender,
+                __typename: "Profile",
+              },
+              weightLogs: weightLogs,
+              __typename: "User",
+            },
+          },
         });
+        return cache;
       },
     });
   };

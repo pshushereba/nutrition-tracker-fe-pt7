@@ -29,7 +29,7 @@ export default function DashUser() {
       <div className="flex flex-col items-center pl-12 py-2">
         <div className="flex-1"></div>
         <div className="">{`${
-          data.me.profile ? data.me.profile.weight : 0
+          data.me.profile ? data.me.weightLogs[0].current_weight : 0
         } lbs`}</div>
         <div className="">Current Weight</div>
       </div>

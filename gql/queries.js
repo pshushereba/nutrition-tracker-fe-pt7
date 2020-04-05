@@ -74,6 +74,12 @@ export const GET_PROGRESS_DATA = gql`
     myDailyRecords {
       date
     }
+    me {
+      profile {
+        goal_weight
+        weight
+      }
+    }
   }
 `;
 
@@ -123,4 +129,20 @@ export const GET_LAST_WEIGHT_LOG = gql`
       current_weight
     }
   }
+`;
+
+export const GET_WEIGHT_LOGS = gql`
+{
+  myWeightLogs{
+    date
+    current_weight
+    id
+  }
+  me {
+    profile {
+      goal_weight
+      weight
+    }
+  }
+}
 `;

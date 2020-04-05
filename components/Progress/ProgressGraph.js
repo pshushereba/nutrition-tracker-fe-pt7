@@ -3,10 +3,10 @@ import Graph from '../graphs/Graph.js';
 
 
 const ProgressGraph = (props) => {
-    
+    console.log("In ProgressGraph", props.data)
     return (
         <div>
-            <Graph />
+            <Graph data={props.data.myWeightLogs} />
         </div>
     )
 }

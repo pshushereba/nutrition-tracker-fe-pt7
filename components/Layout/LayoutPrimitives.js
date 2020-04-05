@@ -1,4 +1,4 @@
-export const CenteredContiainer = ({ children, extraClasses }) => {
+export const CenteredContainer = ({ children, extraClasses }) => {
     return (
       <div className={`flex ${extraClasses}`}>
         <div className="flex-1"></div>
