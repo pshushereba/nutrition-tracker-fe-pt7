@@ -187,6 +187,7 @@ mutation UPDATE_WEIGHT_LOG (
     }
   ) {
     current_weight
+    id
   }
 }
 `
