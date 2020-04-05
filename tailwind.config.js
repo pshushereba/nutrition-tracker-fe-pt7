@@ -2,19 +2,6 @@ const plugin = require("tailwindcss/plugin");
 
 module.exports = {
   theme: {
-    theme: {
-      customForms: theme => ({
-        default: {
-          radio: {
-            icon: iconColor => '<svg width="26" height="31" viewBox="0 0 26 31" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.25 15.6406C23.25 21.3015 18.6609 25.8906 13 25.8906C7.33908 25.8906 2.75 21.3015 2.75 15.6406C2.75 9.97971 7.33908 5.39062 13 5.39062C18.6609 5.39062 23.25 9.97971 23.25 15.6406Z" fill="white" stroke="#5A5A5A" stroke-width="1.5"/></svg>',
-            iconColor: theme("colors.pink.400"),
-            '&active': {
-              icon: '<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M11 22C17.0751 22 22 17.0751 22 11C22 4.92487 17.0751 0 11 0C4.92487 0 0 4.92487 0 11C0 17.0751 4.92487 22 11 22Z" fill="#8D4CFF"/></svg>',
-            }
-          }
-        }
-      })
-    },
     backgroundColor: theme => ({
       ...theme("colors"),
       plusPink: "#FF19A3",

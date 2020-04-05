@@ -1,121 +1,33 @@
-import React, { useState } from "react";
-import { useRouter } from "next/router";
-import Cookie from "js-cookie";
-import { useMutation } from "@apollo/react-hooks";
-import ThunderboltSVG from "../components/svg/ThunderboltSVG.js";
+import { useState, useEffect } from "react";
 
+import CreateUserForm from "../components/form/CreateUserForm";
 import LogInSVG from "../components/svg/LogInSVG";
 import withApollo from "../lib/apollo";
-import { LOG_IN } from "../gql/mutations";
 import Layout from "../components/Layout/index.js";
-import { CenteredContainer, VerticalRow } from '../components/Layout/LayoutPrimitives.js';
+import {
+  CenteredContainer,
+  Spacer,
+} from "../components/Layout/LayoutPrimitives";
+import LoginForm from "../components/form/LoginForm";
 
-const Login = () => {
-  const [thisUser, setThisUser] = useState("");
-  const Router = useRouter();
-
-  const handleChange = (e) => {
-    setThisUser({ ...thisUser, [e.target.name]: e.target.value });
-  };
-
-  const variables = {
-    email: thisUser.email,
-    password: thisUser.password,
-  };
-
-  const [login, {}] = useMutation(LOG_IN);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const existingToken = Cookie.get("token")
-
-    if ( existingToken) {
-      Cookie.remove("token")
-    }
-    
-    const {
-      data: {
-        login: {
-          token,
-          user: { id, name },
-        },
-      },
-    } = await login({ variables: variables });
-
-    Cookie.set("token", token);
-    Cookie.set("id", id);
-    const nameWithoutWhitespace = (name) => name.trim().split(" ").join("");
-    Router.push(
-      "/[user]/dashboard",
-      `/${nameWithoutWhitespace(name)}/dashboard`
-    );
-  };
+const SignUp = () => {
 
   return (
     <Layout>
-      <div className="flex">
-        <div className="w-1/2 mt-16">
-          <CenteredContainer>
-            <VerticalRow>
-              <div className="flex justify-center align-middle">
-                <ThunderboltSVG />
-                <h1 className="mb-4 text-center text-3xl muli">Sign In</h1>
-              </div>
-              <p className="text-center">Let's Start Crushing Those Goals!</p>
-
-              <form>
-                <div className="pb-2">
-                  <div className="flex flex-col my-2">
-                    <div className="-mb-3 z-0 pl-2">
-                      <label className="text-xs bg-white p-1">Email</label>
-                    </div>
-                    <input
-                      className="w-full border border-gray-400 rounded pl-2 py-2"
-                      name="email"
-                      placeholder="Email"
-                      type="text"
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
-                <div className="pb-2">
-                  <div className="flex flex-col my-2">
-                    <div className="-mb-3 z-0 pl-2">
-                      <label className="text-xs bg-white p-1">Password</label>
-                    </div>
-                    <input
-                      className="w-full border border-gray-400 rounded pl-2 py-2"
-                      name="password"
-                      placeholder="Password"
-                      type="password"
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
-              </form>
-              <button
-                className="text-xs text-white w-full px-6 py-1 bg-btn-pink border-btn-pink rounded relative"
-                onClick={handleSubmit}
-              >
-                Let's Go!
-              </button>
-              <h3 className="py-2 text-center">
-                Not a member?
-                <span className="mx-1 font-semibold">
-                  <a className="text-black" href="/signup">
-                    Sign Up
-                  </a>
-                </span>
-              </h3>
-            </VerticalRow>
+      <div className="flex w-full h-full pt-20">
+        <Spacer />
+        <div className="w-3/12">
+          <LoginForm />
+        </div>
+        <div className="w-5/12">
+          <CenteredContainer extraClasses={"mr-6"}>
+            <LogInSVG />
           </CenteredContainer>
         </div>
-        <div className="w-1/2 -mt-8 mb-10">
-            <LogInSVG />
-        </div>
+        <Spacer />
       </div>
     </Layout>
   );
 };
 
-export default withApollo(Login);
+export default withApollo(SignUp);

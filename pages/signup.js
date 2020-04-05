@@ -17,10 +17,10 @@ const SignUp = () => {
       <div className="flex w-full h-full pt-20">
         <Spacer />
         <div className="w-3/12">
-          <CreateUserForm user={user} setUser={setUser} />
+          <CreateUserForm />
         </div>
         <div className="w-5/12">
-          <CenteredContainer>
+        <CenteredContainer extraClasses={"ml-48"}>
             <LogInSVG />
           </CenteredContainer>
         </div>

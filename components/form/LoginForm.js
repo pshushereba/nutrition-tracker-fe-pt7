@@ -3,46 +3,48 @@ import Cookie from "js-cookie";
 import { useRouter } from "next/router";
 
 import FormInput from "./FormInput";
-import { ADD_USER } from "../../gql/mutations";
+import { LOG_IN } from "../../gql/mutations";
 import ThunderboltSVG from "../svg/ThunderboltSVG";
 import { Spacer } from "../Layout/LayoutPrimitives";
 import { useState } from "react";
 
 export default function () {
-  const [user, setUser] = useState({});
-  const Router = useRouter();
+    const [user, setUser] = useState("");
+    const Router = useRouter();
+  
+    const variables = {
+      email: user.email,
+      password: user.password,
+    };
+  
+    const [login, {}] = useMutation(LOG_IN);
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault();
 
-  const variables = {
-    name: user.name,
-    email: user.email,
-    password: user.password,
-  };
-
-  const [addUser] = useMutation(ADD_USER);
-
-  const handleSubmit = async () => {
-    const existingToken = Cookie.get("token");
-
-    const {
-      data: {
-        createUser: { token, user },
-      },
-      error,
-    } = await addUser({ variables: variables });
-    //TODO: Proper error handling
-    if (error) {
-      window.alert(`ERROR: ${error}`);
-    }
-    if (existingToken) {
-      Cookie.remove("token");
-    }
-
-    if (user) {
+      const existingToken = Cookie.get("token")
+  
+      if ( existingToken) {
+        Cookie.remove("token")
+      }
+      
+      const {
+        data: {
+          login: {
+            token,
+            user: { id, name },
+          },
+        },
+      } = await login({ variables: variables });
+  
       Cookie.set("token", token);
-      Cookie.set("name", user.name);
-      Router.push("/createProfile");
-    }
-  };
+      Cookie.set("id", id);
+      const nameWithoutWhitespace = (name) => name.trim().split(" ").join("");
+      Router.push(
+        "/[user]/dashboard",
+        `/${nameWithoutWhitespace(name)}/dashboard`
+      );
+    };
 
   return (
     <div className="flex flex-col w-full">
@@ -56,19 +58,10 @@ export default function () {
       </div>
       <div className="flex">
         <Spacer />
-        <p className="text-xl mb-2">You're one step closer to your goals!</p>
+        <p className="text-xl mb-2">Let's start crushing those goals!</p>
         <Spacer />
       </div>
       <form className="flex flex-col w-full">
-        <FormInput
-          name="name"
-          label="Your Name"
-          placeHolder="First and Last Name"
-          type="text"
-          required={true}
-          setInput={setUser}
-          data={user}
-        />
         <FormInput
           name="email"
           label="E-mail"
@@ -81,14 +74,6 @@ export default function () {
         <FormInput
           name="password"
           label="Password"
-          placeHolder="password"
-          type="password"
-          required={true}
-          setInput={setUser}
-          data={user}
-        />
-        <FormInput
-          label="Verify Password"
           placeHolder="password"
           type="password"
           required={true}

@@ -32,7 +32,7 @@ export default function WeightGoalWeight({ user, setUser, setProfileStep }) {
         />
       </form>
       <button
-        className="w-full py-2 text-white text-2xl bg-pink-500 rounded hover:bg-pink-400 self-center"
+        className="w-full py-2 text-white text-2xl bg-pink-400 rounded hover:bg-pink-500 self-center"
         onClick={handleSubmit}
       >
         Continue

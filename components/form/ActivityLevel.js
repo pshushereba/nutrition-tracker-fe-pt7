@@ -22,7 +22,7 @@ export default function ActivityLevel({ setProfileStep, user, setUser }) {
         <FormRadio radioFor="Very Active" inputName={4} />
         <FormRadio radioFor="None" inputName={''} />
       </form>
-      <button className="w-full mt-4 py-2 text-white bg-pink-500 rounded hover:bg-pink-600 self-center max-w-xs" onClick={handleSubmit}>Continue</button>
+      <button className="w-full py-2 text-white text-2xl bg-pink-400 rounded hover:bg-pink-500 self-center" onClick={handleSubmit}>Continue</button>
     </div>
   );
 }
