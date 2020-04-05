@@ -27,6 +27,12 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const existingToken = Cookie.get("token")
+
+    if ( existingToken) {
+      Cookie.remove("token")
+    }
+    
     const {
       data: {
         login: {

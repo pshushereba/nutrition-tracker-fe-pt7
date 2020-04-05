@@ -1,52 +1,61 @@
-import { useMutation } from '@apollo/react-hooks'
-import Cookie from 'js-cookie'
-import { useRouter } from 'next/router'
+import { useMutation } from "@apollo/react-hooks";
+import Cookie from "js-cookie";
+import { useRouter } from "next/router";
 
 import FormInput from "./FormInput";
-import {ADD_USER } from '../../gql/mutations'
-import ThunderboltSVG from '../svg/ThunderboltSVG';
+import { ADD_USER } from "../../gql/mutations";
+import ThunderboltSVG from "../svg/ThunderboltSVG";
+import { Spacer } from "../Layout/LayoutPrimitives";
 
-export default function({ user, setUser }) {
+export default function ({ user, setUser }) {
+  const Router = useRouter();
 
-  const Router = useRouter()
-  
   const variables = {
     name: user.name,
     email: user.email,
-    password: user.password
+    password: user.password,
   };
 
-  const [addUser, {}] = useMutation(ADD_USER);
-  
+  const [addUser] = useMutation(ADD_USER);
+
   const handleSubmit = async () => {
+    const existingToken = Cookie.get("token");
 
     const {
       data: {
-        createUser: {
-          token,
-          user
-        }
+        createUser: { token, user },
       },
-      error
+      error,
     } = await addUser({ variables: variables });
     //TODO: Proper error handling
-    if (error) { 
-      window.alert(`ERROR: ${error}`)
+    if (error) {
+      window.alert(`ERROR: ${error}`);
     }
+    if (existingToken) {
+      Cookie.remove("token");
+    }
+
     if (user) {
       Cookie.set("token", token);
       Cookie.set("name", user.name);
-      Router.push('/createProfile')
+      Router.push("/createProfile");
     }
-
   };
 
-
   return (
-    <>
+    <div className="flex flex-col w-full">
       <div className="flex mt-2">
-        <ThunderboltSVG />
-        <h2 className="text-xl font-extrabold my-4">Sign Up</h2>
+        <Spacer />
+        <div className="flex flex-col justify-center pb-3">
+          <ThunderboltSVG />
+        </div>
+        <h2 className="text-3xl font-medium my-4">Sign Up</h2>
+        <Spacer />
+      </div>
+      <div className="flex">
+        <Spacer />
+        <p className="text-xl mb-2">You're one step closer to your goals!</p>
+        <Spacer />
       </div>
       <form className="flex flex-col w-full">
         <FormInput
@@ -67,10 +76,10 @@ export default function({ user, setUser }) {
           setInput={setUser}
           data={user}
         />
-        <FormInput 
+        <FormInput
           name="password"
-          label="Password" 
-          placeHolder="password" 
+          label="Password"
+          placeHolder="password"
           type="password"
           required={true}
           setInput={setUser}
@@ -85,10 +94,22 @@ export default function({ user, setUser }) {
           data={user}
         />
       </form>
-      <button className="w-full mt-4 py-2 text-white bg-pink-500 rounded hover:bg-pink-600" onClick={handleSubmit}>Let's Go</button>
-      <p className="mt-8 -mb-12">
-        Already a member? <a className="text-gray-900 font-semibold" href="/signin">Sign In</a>
-      </p>
-    </>
+      <button
+        className="w-full mt-8 py-2 text-white bg-pink-500 rounded hover:bg-pink-600"
+        onClick={handleSubmit}
+      >
+        Let's Go!
+      </button>
+      <div className="flex">
+        <Spacer />
+        <p className="mt-6 -mb-12">
+          Already a member?{" "}
+          <a className="text-gray-900 font-semibold" href="/signin">
+            Sign In
+          </a>
+        </p>
+        <Spacer />
+      </div>
+    </div>
   );
 }
