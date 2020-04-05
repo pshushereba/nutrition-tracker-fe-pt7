@@ -20,7 +20,7 @@ const SignUp = () => {
           <LoginForm />
         </div>
         <div className="w-5/12">
-          <CenteredContainer extraClasses={"mr-6"}>
+          <CenteredContainer extraClasses={"ml-48"}>
             <LogInSVG />
           </CenteredContainer>
         </div>

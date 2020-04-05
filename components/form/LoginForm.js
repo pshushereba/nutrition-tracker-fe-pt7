@@ -53,7 +53,7 @@ export default function () {
         <div className="flex flex-col justify-center pb-3">
           <ThunderboltSVG />
         </div>
-        <h2 className="text-3xl font-medium my-4">Sign Up</h2>
+        <h2 className="text-3xl font-medium my-4">Sign In</h2>
         <Spacer />
       </div>
       <div className="flex">
