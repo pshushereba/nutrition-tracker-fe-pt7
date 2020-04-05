@@ -41,7 +41,9 @@ export default function Macros({ user, setUser }) {
 
   return (
     <>
-      <h2 className="flex flex-col text-5xl self-center mb-8">Tracking Macros</h2>
+      <h2 className="flex flex-col text-5xl self-center mb-8">
+        Tracking Macros
+      </h2>
       <h3 className="font-extrabold text-md self-start px-2 my-4">
         Enter your goal amount for each macro:
       </h3>

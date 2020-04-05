@@ -9,7 +9,9 @@ export default function DietPreference({ setProfileStep, user, setUser }) {
 
   return (
     <>
-      <h2 className="flex flex-col text-5xl self-center mb-8">Dietary Preference</h2>
+      <h2 className="flex flex-col text-5xl self-center mb-8">
+        Dietary Preference
+      </h2>
       <h3 className="font-extrabold text-md self-start px-12 my-4">
         Choose a type:
       </h3>

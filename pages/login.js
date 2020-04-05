@@ -11,7 +11,6 @@ import {
 import LoginForm from "../components/form/LoginForm";
 
 const SignUp = () => {
-
   return (
     <Layout>
       <div className="flex w-full h-full pt-20">

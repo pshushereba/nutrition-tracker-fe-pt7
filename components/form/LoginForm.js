@@ -9,42 +9,42 @@ import { Spacer } from "../Layout/LayoutPrimitives";
 import { useState } from "react";
 
 export default function () {
-    const [user, setUser] = useState("");
-    const Router = useRouter();
-  
-    const variables = {
-      email: user.email,
-      password: user.password,
-    };
-  
-    const [login, {}] = useMutation(LOG_IN);
-  
-    const handleSubmit = async (e) => {
-      e.preventDefault();
+  const [user, setUser] = useState("");
+  const Router = useRouter();
 
-      const existingToken = Cookie.get("token")
-  
-      if ( existingToken) {
-        Cookie.remove("token")
-      }
-      
-      const {
-        data: {
-          login: {
-            token,
-            user: { id, name },
-          },
+  const variables = {
+    email: user.email,
+    password: user.password,
+  };
+
+  const [login, {}] = useMutation(LOG_IN);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const existingToken = Cookie.get("token");
+
+    if (existingToken) {
+      Cookie.remove("token");
+    }
+
+    const {
+      data: {
+        login: {
+          token,
+          user: { id, name },
         },
-      } = await login({ variables: variables });
-  
-      Cookie.set("token", token);
-      Cookie.set("id", id);
-      const nameWithoutWhitespace = (name) => name.trim().split(" ").join("");
-      Router.push(
-        "/[user]/dashboard",
-        `/${nameWithoutWhitespace(name)}/dashboard`
-      );
-    };
+      },
+    } = await login({ variables: variables });
+
+    Cookie.set("token", token);
+    Cookie.set("id", id);
+    const nameWithoutWhitespace = (name) => name.trim().split(" ").join("");
+    Router.push(
+      "/[user]/dashboard",
+      `/${nameWithoutWhitespace(name)}/dashboard`
+    );
+  };
 
   return (
     <div className="flex flex-col w-full">
