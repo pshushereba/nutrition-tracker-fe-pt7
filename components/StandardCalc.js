@@ -19,7 +19,7 @@ const StandardCalc = ({ bmiInfo, setBmiInfo }) => {
   };
 
   return (
-    <div>
+    <div className="flex">
       <form onSubmit={handleSubmit}>
         <div className="flex">
           <div className="m-2 w-24">
@@ -55,12 +55,11 @@ const StandardCalc = ({ bmiInfo, setBmiInfo }) => {
 
           <div className="flex self-center">
             <button
-              className="text-xs text-white px-6 py-1 bg-indigo-500 border-indigo-500 rounded"
+              className="mr-96 m-6 text-xs text-white px-6 py-1 bg-pink-400 border-pink-400 rounded relative"
               htmlType="submit"
             >
-              Calculate My BMI
+              Calculate
             </button>
-            {/* <button className="text-xs text-white px-6 py-1 bg-indigo-500 border-indigo-500 rounded" onClick={clearForm}>Clear</button> */}
           </div>
         </div>
       </form>
