@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import { UPDATE_WEIGHT_LOG } from "../gql/mutations";
+import { UPDATE_WEIGHT_LOG, CREATE_WEIGHT_LOG } from "../gql/mutations";
 import { GET_WEIGHT_LOGS } from "../gql/queries";
+import { formatDate } from "../lib/utils";
 
 export default function WeightInput() {
   const [weight, setWeight] = useState({ value: undefined });
-  const [updateWeightLog, { data: newData }] = useMutation(UPDATE_WEIGHT_LOG);
+  const [updateWeightLog, { data: updateData }] = useMutation(UPDATE_WEIGHT_LOG);
+  const [createWeightLog, { data: newData}] = useMutation(CREATE_WEIGHT_LOG)
   const { data, loading, error } = useQuery(GET_WEIGHT_LOGS);
 
   if (error) return `${error}`;
@@ -14,13 +16,32 @@ export default function WeightInput() {
   const { myWeightLogs } = data;
 
   const handleChange = (e) => {
-    console.log(weight)
     setWeight(e.target.value);
   };
 
   const lastWeightLogId = myWeightLogs[0].id;
+  const lastWeightLogDate = myWeightLogs[0].date
+  const date = new Date(Date.now())
+  const currentDate = formatDate(date).split("-").reverse().join("-")
 
-  const handleSubmit = () => {
+  function createWeight() {
+    createWeightLog({
+      variables: {
+        date: currentDate,
+        current_weight: parseInt(weight),
+      },
+      optimisticResponse: {
+        __typename: "Mutation",
+        createWeightLog: {
+          current_weight: parseInt(weight),
+          date: currentDate,
+          __typename: "WeightLog",
+        },
+      },
+    });
+  }
+
+  function updateWeight() {
     updateWeightLog({
       variables: {
         id: lastWeightLogId,
@@ -35,6 +56,12 @@ export default function WeightInput() {
         },
       },
     });
+  }
+
+  const handleSubmit = () => {
+    currentDate === lastWeightLogDate ?
+    updateWeight() :
+    createWeight()
   };
 
   return (
