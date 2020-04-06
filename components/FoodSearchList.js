@@ -9,7 +9,7 @@ export default function FoodSearchList({ setNutrInfo }) {
   return (
     <div className="flex flex-col w-1/2">
       {results.length > 0 ? (
-        <div className="flex justify-around">
+        <div className="flex justify-around text-lg border-b border-gray-300">
           <p className="w-1/6 mx-4">Food Item</p>
           <p className="w-1/6 mx-4">Serving Size</p>
           <p className="w-1/6 text-center">Fats %</p>

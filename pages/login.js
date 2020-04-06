@@ -1,6 +1,3 @@
-import { useState, useEffect } from "react";
-
-import CreateUserForm from "../components/form/CreateUserForm";
 import LogInSVG from "../components/svg/LogInSVG";
 import withApollo from "../lib/apollo";
 import Layout from "../components/Layout/index.js";

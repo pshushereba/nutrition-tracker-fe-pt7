@@ -11,6 +11,7 @@ import FoodSearchResults from "../../components/FoodSearchResults";
 import Progress from "../../components/Progress/Progress.js";
 import WeightInput from "../../components/WeightInput";
 import LowerNav from "../../components/LowerNav";
+import { Spacer } from "../../components/Layout/LayoutPrimitives";
 
 const Dashboard = ({ apollo }) => {
   //Gets active dashboard component from client cache

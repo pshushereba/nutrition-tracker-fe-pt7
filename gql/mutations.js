@@ -143,8 +143,8 @@ export const UPDATE_FOOD_STRING = gql`
       createdAt
     }
   }
-}
 `;
+
 export const CREATE_WEIGHT_LOG = gql`
   mutation CREATE_WEIGHT_LOG($current_weight: Int!, $date: String!) {
     createWeightLog(data: { current_weight: $current_weight, date: $date }) {
