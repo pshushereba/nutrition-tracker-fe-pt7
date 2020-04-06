@@ -2,16 +2,13 @@ import React, { useState, useEffect } from "react";
 import ProgressWeightLogItem from "./ProgressWeightLogItem.js";
 
 const ProgressWeightLog = props => {
-  // sorted is a sacrificial variable that we need
-  // keep
   var sorted = {};
 
+
   // this is what will get mapped to generate elements
-  // keep
   const [sortedLogs, setSortedLogs] = useState({});
 
   // this object is used to pair string values to months
-  // keep it
   const monthObj = {
     January: "01",
     February: "02",
@@ -27,29 +24,30 @@ const ProgressWeightLog = props => {
     December: "12"
   };
 
-  // replace this whenever real data comes in
-  // do not keep
-  const logs = [
-    { date: "01/02/2020", weight: 160 },
-    { date: "01/09/2020", weight: 165 },
-    { date: "01/16/2020", weight: 163 },
-    { date: "02/02/2020", weight: 160 },
-    { date: "02/09/2020", weight: 162 },
-    { date: "02/16/2020", weight: 167 },
-    { date: "03/02/2020", weight: 161 },
-    { date: "03/09/2020", weight: 166 },
-    { date: "03/16/2020", weight: 164 }
-  ];
+
+  const logs = () => {
+    let logArr = []
+    props.data.myWeightLogs.map((record) => {
+      logArr.push({date: formatDate(record.date), weight: record.current_weight})
+    })
+    return logArr;
+  }
+
+  const formatDate = (date) => {
+    const month = date.split("-")[1]
+    const day = date.split("-")[2]
+    const year = date.split("-")[0]
+    return `${month}/${day}/${year}`
+  }
 
   useEffect(() => {
-    // change logs to real data that comes in
     // expects an array of objects that have a date key
     // expects date key to be MM/DD/YYYY
     // matches the MM to a month string, sets the key of
     // sacrificial object
     // has a ternary operator to check for existence of current key
     // this is to prevent spreading not iterable error
-    logs.map(cv => {
+    logs().map(cv => {
       const monthChars = cv.date.charAt(0) + cv.date.charAt(1);
       const currentMonth = Object.keys(monthObj).filter(curval => {
         return monthObj[curval] == monthChars;
@@ -62,11 +60,8 @@ const ProgressWeightLog = props => {
       });
     });
 
-    // set the state once
-    // cannot set state from the map
-    // too many re-renders
     setSortedLogs(sorted);
-  }, []);
+  }, [props.data]);
 
   return (
     <div className="p-3">

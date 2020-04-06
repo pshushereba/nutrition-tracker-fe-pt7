@@ -9,9 +9,7 @@ const Footer = () => {
         <HomeIcon />
         <p className="muli text-sm text-footerText font-semibold">Home</p>
       </div>
-      <div
-        className="footer-plus bg-plusPink w-12 h-12 rounded-full cursor-pointer lg:hidden"
-      >
+      <div className="footer-plus bg-plusPink w-12 h-12 rounded-full cursor-pointer lg:hidden">
         <div className="bg-white w-8 h-1 relative left-halfCircle-Y top-halfCircle-X rounded-md"></div>
         <div className="bg-white w-1 h-8 relative left-halfCircle|X top-halfCircle|Y rounded-md"></div>
       </div>

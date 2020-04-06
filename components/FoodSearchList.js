@@ -3,9 +3,9 @@ import { useQuery } from "@apollo/react-hooks";
 import { GET_SEARCH_RESULTS } from "../gql/queries";
 
 export default function FoodSearchList({ setNutrInfo }) {
-    const { data } = useQuery(GET_SEARCH_RESULTS)
-    console.log("FoodSearchList: client.data=", JSON.parse(data.searchResults))
-    const results = JSON.parse(data.searchResults)
+  const { data } = useQuery(GET_SEARCH_RESULTS);
+  const results = JSON.parse(data.searchResults);
+
   return (
     <div className="flex flex-col w-1/2">
       {results.length > 0 ? (
@@ -17,9 +17,9 @@ export default function FoodSearchList({ setNutrInfo }) {
           <p className="w-1/6 text-center">Carb %</p>
           <p className="w-1/6 text-center">Meal Type</p>
         </div>
-      ) : null }
+      ) : null}
       <div>
-        {results.map(item => {
+        {results.map((item) => {
           return (
             <SearchResultsCard
               key={item.food.foodId}

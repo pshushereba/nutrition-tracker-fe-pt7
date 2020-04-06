@@ -1,16 +1,17 @@
-import { Spacer } from "./Layout/LaytoutPrimitives";
-import { useApolloClient, useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/react-hooks";
 import { GET_DASHBOARD_STATE } from "../gql/queries";
+import { Spacer } from "./Layout/LayoutPrimitives";
 
 export default function LowerNav() {
   const { data, client } = useQuery(GET_DASHBOARD_STATE); //Gets active dashboard component from client cache
 
-  const lowerNavDate = () => {
+  const getFormattedDate = () => {
     //  Sets date for lower dash nav, format does not match UX design
     const dateOptions = { year: "numeric", month: "long", day: "numeric" };
     const currentDate = new Date(Date.now());
     return currentDate.toLocaleString("en-US", dateOptions);
   };
+  const lowerNavDate = getFormattedDate();
   const lowerNav = data ? data.lowerNav : client.cache.data.data.data.lowerNav;
 
   return (

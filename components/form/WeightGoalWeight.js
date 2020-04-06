@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 export default function WeightGoalWeight({ user, setUser, setProfileStep }) {
   function handleSubmit() {
     setProfileStep("activityLevel");
@@ -11,7 +9,9 @@ export default function WeightGoalWeight({ user, setUser, setProfileStep }) {
 
   return (
     <div className="flex flex-col">
-      <h1 className="flex flex-col text-5xl self-center mb-8">Set your Goals</h1>
+      <h1 className="flex flex-col text-5xl self-center mb-8">
+        Set your Goals
+      </h1>
       <form
         className="flex flex-col w-full self-center"
         onChange={handleChange}

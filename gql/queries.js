@@ -40,16 +40,13 @@ export const ME = gql`
         protein
         calories
       }
-      dailyRecords {
+      weightLogs {
+        current_weight
         id
-        date
-        calories
-        fat
-        carbs
-        fiber
-        protein
-        food_string
-        meal_type
+      }
+      myWeightLogs(orderBy: createdAt_DESC, first: 1) {
+        id
+        current_weight
       }
     }
   }
@@ -58,12 +55,15 @@ export const ME = gql`
 export const USER_DASH_HEADER = gql`
   {
     me {
-      id
       name
       profile {
-        id
         weight
         gender
+      }
+      weightLogs {
+        date
+        current_weight
+        id
       }
     }
   }
@@ -73,6 +73,12 @@ export const GET_PROGRESS_DATA = gql`
   {
     myDailyRecords {
       date
+    }
+    me {
+      profile {
+        goal_weight
+        weight
+      }
     }
   }
 `;
@@ -107,5 +113,35 @@ export const GET_SEARCH_RESULTS = gql`
 export const GET_NUTRITION = gql`
   {
     nutritionInfo @client
+    lowerNav @client
+  }
+`;
+
+export const GET_LAST_WEIGHT_LOG = gql`
+  {
+    me {
+      profile {
+        weight
+      }
+    }
+    myWeightLogs(orderBy: createdAt_DESC, first: 1) {
+      id
+      current_weight
+    }
+  }
+`;
+
+export const GET_WEIGHT_LOGS = gql`
+  {
+    myWeightLogs {
+      date
+      current_weight
+      id
+    }
+    me {
+      profile {
+        goal_weight
+      }
+    }
   }
 `;
