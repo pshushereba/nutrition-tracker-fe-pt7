@@ -20,7 +20,7 @@ export default function LowerNav() {
       <ul className="flex-1 flex justify-around text-lg font-medium py-2">
         <li
           className={`${
-            lowerNav === "journal" ? "border-b-2 border-pink-500" : ""
+            lowerNav === "journal" ? "border-b-4 border-pink-500" : ""
           } cursor-pointer`}
           value={"journal"}
           onClick={() =>
@@ -31,7 +31,7 @@ export default function LowerNav() {
         </li>
         <li
           className={`${
-            lowerNav === "progress" ? "border-b-2 border-pink-500" : ""
+            lowerNav === "progress" ? "border-b-4 border-pink-500" : ""
           } cursor-pointer`}
           value={"progress"}
           onClick={() =>
@@ -42,7 +42,7 @@ export default function LowerNav() {
         </li>
         <li
           className={`${
-            lowerNav === "badges" ? "border-b-2 border-pink-500" : ""
+            lowerNav === "badges" ? "border-b-4 border-pink-500" : ""
           } cursor-pointer`}
           value={"badges"}
           onClick={() =>
@@ -53,7 +53,7 @@ export default function LowerNav() {
         </li>
         <li
           className={`${
-            lowerNav === "challenges" ? "border-b-2 border-pink-500" : ""
+            lowerNav === "challenges" ? "border-b-4 border-pink-500" : ""
           } cursor-pointer`}
           value={"challenges"}
           onClick={() =>
