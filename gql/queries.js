@@ -133,7 +133,7 @@ export const GET_LAST_WEIGHT_LOG = gql`
 
 export const GET_WEIGHT_LOGS = gql`
   {
-    myWeightLogs {
+    myWeightLogs(orderBy: date_DESC) {
       date
       current_weight
       id

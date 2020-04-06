@@ -34,8 +34,8 @@ const Graph = (props) => {
 };
 
     const weightObj = {
-        labels: weightLabels().reverse(),
-        data: weightData().reverse()
+        labels: weightLabels(),
+        weights: weightData()
     }
 
     console.log(weightObj);
@@ -44,7 +44,7 @@ const Graph = (props) => {
         datasets:
             [{
                 labels: weightObj.labels,
-                data: weightObj.data,
+                data: weightObj.weights,
                 label: 'Weight'
             }]
     }

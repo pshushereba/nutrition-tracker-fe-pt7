@@ -9,8 +9,10 @@ export default function DietPreference({ setProfileStep, user, setUser }) {
 
   return (
     <>
-      <h2 className="text-2xl my-6 self-center">Dietary Preference</h2>
-      <h3 className="font-extrabold text-sm self-start px-12 my-4">
+      <h2 className="flex flex-col text-5xl self-center mb-8">
+        Dietary Preference
+      </h2>
+      <h3 className="font-extrabold text-md self-start px-12 my-4">
         Choose a type:
       </h3>
       <form
@@ -22,14 +24,14 @@ export default function DietPreference({ setProfileStep, user, setUser }) {
         <FormRadio radioFor="Keto" inputName={formName} icon="Icon" />
         <FormRadio radioFor="Paleo" inputName={formName} icon="Icon" />
         <FormRadio
-          radioFor="US Govt Nutrition Guidelines"
+          radioFor="US Nutrition Guidelines"
           inputName={formName}
           icon="Icon"
         />
         <FormRadio radioFor="None" inputName={formName} icon="Icon" />
       </form>
       <button
-        className="w-full mt-4 py-2 text-white bg-pink-500 rounded hover:bg-pink-600"
+        className="w-full py-2 text-white text-2xl bg-pink-400 rounded hover:bg-pink-500 self-center"
         onClick={handleSubmit}
       >
         Continue
