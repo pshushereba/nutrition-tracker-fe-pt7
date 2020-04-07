@@ -7,12 +7,9 @@ import MarketingBoxSVG from '../../components/svg/MarketingBoxSVG.js';
 const MarketingCenter = () => {
     return (
         <div className="flex-col">
-            <div className="w-1/3 justify-center">
-                
-            </div>
             <div className="flex justify-center">
                 <div className="m-32">
-                <MarketingBoxSVG />
+                    <MarketingBoxSVG />
                 </div>
                 <Calculator />
             </div>
