@@ -4,13 +4,14 @@ import PreviousLog from "./PreviousLog";
 import Favorites from "./Favorites.js";
 import DashFoodJournalSVG from "../svg/DashFoodJournalSVG";
 import WaterGirlSVG from "../svg/WayerGirlSVG";
+import { CenteredContainer } from "../Layout/LayoutPrimitives";
 
 export default function DesktopFoodJournal() {
   const [activeControl, setActiveControl] = useState("daily");
 
   return (
     <div className="flex-1 flex">
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-1/2">
         <div className="flex text-lg font-medium py-2 mb-8">
           <div
             className={`${
@@ -49,11 +50,9 @@ export default function DesktopFoodJournal() {
         )}
       </div>
       <div className="flex-1"></div>
-      <div className="flex flex-col">
-        <div className="flex-1"></div>
+      <CenteredContainer extraClasses={`pt-20`}>
         <WaterGirlSVG />
-        <div className="flex-1"></div>
-      </div>
+      </CenteredContainer>
     </div>
   );
 }

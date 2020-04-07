@@ -60,12 +60,12 @@ export const USER_DASH_HEADER = gql`
         weight
         gender
       }
-        weightLogs{
-          date
-          current_weight
-          id
-        }
+      weightLogs {
+        date
+        current_weight
+        id
       }
+    }
   }
 `;
 
@@ -132,17 +132,16 @@ export const GET_LAST_WEIGHT_LOG = gql`
 `;
 
 export const GET_WEIGHT_LOGS = gql`
-{
-  myWeightLogs{
-    date
-    current_weight
-    id
-  }
-  me {
-    profile {
-      goal_weight
-      weight
+  {
+    myWeightLogs(orderBy: date_DESC) {
+      date
+      current_weight
+      id
+    }
+    me {
+      profile {
+        goal_weight
+      }
     }
   }
-}
 `;

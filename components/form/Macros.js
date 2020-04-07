@@ -41,12 +41,14 @@ export default function Macros({ user, setUser }) {
 
   return (
     <>
-      <h2 className="text-2xl my-6 self-center">Tracking Macros</h2>
-      <h3 className="font-extrabold text-sm self-start px-2 my-4">
+      <h2 className="flex flex-col text-5xl self-center mb-8">
+        Tracking Macros
+      </h2>
+      <h3 className="font-extrabold text-md self-start px-2 my-4">
         Enter your goal amount for each macro:
       </h3>
-      <form className="flex flex-col w-full px-12">
-        <div className="flex my-4">
+      <form className="flex flex-col w-full px-12 mb-12">
+        <div className="flex my-8">
           <div className="w-1/2">Carbs</div>
           <input
             onChange={handleChange}
@@ -55,7 +57,7 @@ export default function Macros({ user, setUser }) {
             placeholder="Daily Goal"
           />
         </div>
-        <div className="flex my-4">
+        <div className="flex my-8">
           <div className="w-1/2">Fat</div>
           <input
             onChange={handleChange}
@@ -64,7 +66,7 @@ export default function Macros({ user, setUser }) {
             placeholder="Daily Goal"
           />
         </div>
-        <div className="flex my-4">
+        <div className="flex my-8">
           <div className="w-1/2">Protein</div>
           <input
             onChange={handleChange}
@@ -73,7 +75,7 @@ export default function Macros({ user, setUser }) {
             placeholder="Daily Goal"
           />
         </div>
-        <div className="flex my-4">
+        <div className="flex my-8">
           <div className="w-1/2">Calories</div>
           <input
             onChange={handleChange}
@@ -84,7 +86,7 @@ export default function Macros({ user, setUser }) {
         </div>
       </form>
       <button
-        className="w-full mt-4 py-2 text-white bg-pink-500 rounded hover:bg-pink-600"
+        className="w-full py-2 text-white text-2xl bg-pink-400 rounded hover:bg-pink-500 self-center"
         onClick={handleSubmit}
       >
         Continue

@@ -11,11 +11,12 @@ import FoodSearchResults from "../../components/FoodSearchResults";
 import Progress from "../../components/Progress/Progress.js";
 import WeightInput from "../../components/WeightInput";
 import LowerNav from "../../components/LowerNav";
+import { Spacer } from "../../components/Layout/LayoutPrimitives";
 
 const Dashboard = ({ apollo }) => {
   //Gets active dashboard component from client cache
-  const { data, client } = useQuery(GET_DASHBOARD_STATE); 
-  
+  const { data, client } = useQuery(GET_DASHBOARD_STATE);
+
   const lowerNav = data ? data.lowerNav : apollo.cache.data.data.data.lowerNav; // gets the label for the component to render from the client instance passed in props the first render, and from useQuery after that
 
   return (
@@ -23,7 +24,7 @@ const Dashboard = ({ apollo }) => {
       <Layout>
         <div className="flex">
           <DashUser />
-          <div className="flex-1"></div>
+          <Spacer />
           <div className="flex-1 px-32 self-center">
             <FoodSearchBox />
           </div>

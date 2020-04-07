@@ -5,12 +5,13 @@ import { Spacer } from "./Layout/LayoutPrimitives";
 export default function LowerNav() {
   const { data, client } = useQuery(GET_DASHBOARD_STATE); //Gets active dashboard component from client cache
 
-  const lowerNavDate = () => {
+  const getFormattedDate = () => {
     //  Sets date for lower dash nav, format does not match UX design
     const dateOptions = { year: "numeric", month: "long", day: "numeric" };
     const currentDate = new Date(Date.now());
     return currentDate.toLocaleString("en-US", dateOptions);
   };
+  const lowerNavDate = getFormattedDate();
   const lowerNav = data ? data.lowerNav : client.cache.data.data.data.lowerNav;
 
   return (
@@ -19,7 +20,7 @@ export default function LowerNav() {
       <ul className="flex-1 flex justify-around text-lg font-medium py-2">
         <li
           className={`${
-            lowerNav === "journal" ? "border-b-2 border-pink-500" : ""
+            lowerNav === "journal" ? "border-b-4 border-pink-500" : ""
           } cursor-pointer`}
           value={"journal"}
           onClick={() =>
@@ -30,7 +31,7 @@ export default function LowerNav() {
         </li>
         <li
           className={`${
-            lowerNav === "progress" ? "border-b-2 border-pink-500" : ""
+            lowerNav === "progress" ? "border-b-4 border-pink-500" : ""
           } cursor-pointer`}
           value={"progress"}
           onClick={() =>
@@ -41,7 +42,7 @@ export default function LowerNav() {
         </li>
         <li
           className={`${
-            lowerNav === "badges" ? "border-b-2 border-pink-500" : ""
+            lowerNav === "badges" ? "border-b-4 border-pink-500" : ""
           } cursor-pointer`}
           value={"badges"}
           onClick={() =>
@@ -52,7 +53,7 @@ export default function LowerNav() {
         </li>
         <li
           className={`${
-            lowerNav === "challenges" ? "border-b-2 border-pink-500" : ""
+            lowerNav === "challenges" ? "border-b-4 border-pink-500" : ""
           } cursor-pointer`}
           value={"challenges"}
           onClick={() =>
