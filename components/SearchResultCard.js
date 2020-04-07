@@ -35,23 +35,23 @@ export default function SearchResultsCard({ item }) {
   return (
     <>
       <div className="flex my-2">
-        <div className="flex justify-around w-full hover:bg-item-hover hover:opacity-50">
+        <div className="flex justify-around w-full hover:bg-item-hover hover:opacity-50 border-b-1 border-gray-300">
           <p className="w-1/6 h-auto my-2 mx-4 self-center">
             {item.food.label}
           </p>
           <FormDropdown
             data={item}
             setValue={setFoodObj}
-            name={"Serving Amt."}
+            name={"Serving"}
             obj={foodObj}
           />
-          <p className="w-1/6 text-center">
+          <p className="w-1/6 self-center text-center">
             {Math.ceil(item.food.nutrients.FAT) || 0} g
           </p>
-          <p className="w-1/6 text-center">
+          <p className="w-1/6 self-center text-center">
             {Math.ceil(item.food.nutrients.PROCNT || 0)} g
           </p>
-          <p className="w-1/6 text-center">
+          <p className="w-1/6 self-center text-center">
             {Math.ceil(item.food.nutrients.CHOCDF) || 0} g
           </p>
           <MealDropdown obj={foodObj} setValue={setFoodObj} />

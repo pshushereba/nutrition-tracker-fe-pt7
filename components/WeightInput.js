@@ -14,6 +14,7 @@ export default function WeightInput() {
   const { myWeightLogs } = data;
 
   const handleChange = (e) => {
+    console.log(weight)
     setWeight(e.target.value);
   };
 
@@ -30,15 +31,14 @@ export default function WeightInput() {
         updateWeightLog: {
           id: lastWeightLogId,
           __typename: "WeightLog",
-          current_weight: parseInt(weight)
-        }      
-      }
+          current_weight: parseInt(weight),
+        },
+      },
     });
   };
 
   return (
     <div className="flex border rounded pl-4 ml-6 mr-32">
-      <form>
         <input
           type="number"
           placeholder="Enter today's weight"
@@ -46,7 +46,6 @@ export default function WeightInput() {
           value={weight.value}
           onChange={handleChange}
         ></input>
-      </form>
       <button
         className="border rounded bg-purple-300 text-white px-4 py-2"
         onClick={handleSubmit}
