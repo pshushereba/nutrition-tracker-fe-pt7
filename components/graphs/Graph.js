@@ -38,7 +38,6 @@ const Graph = (props) => {
         weights: weightData()
     }
 
-    console.log(weightObj);
     
     const graphData = {
         datasets:
