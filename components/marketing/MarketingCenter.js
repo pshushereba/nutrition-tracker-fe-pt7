@@ -9,9 +9,6 @@ const MarketingCenter = () => {
             <div className="flex justify-end">
                <Calculator />
             </div>
-            <div className="flex justify-center">
-                {/* <JoyrideSVG /> */}
-            </div>
         </div>
     )
 }
