@@ -5,7 +5,7 @@ import { CenteredContainer, VerticalRow } from '../Layout/LayoutPrimitives.js';
 const MarketingTop = () => {
     return (
         <div className="flex">
-            <div className="w-1/2">
+            <div className="w-1/2 ml-48 -mr-16 mt-16">
                 <CenteredContainer>
                     <VerticalRow>
                         <h1 className="text-4xl muli w-2/3">You're one click away from a healthier you.</h1>
