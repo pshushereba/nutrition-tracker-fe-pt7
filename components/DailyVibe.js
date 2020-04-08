@@ -28,7 +28,7 @@ const DailyVibe = () => {
   };
 
   return (
-    <div className=" mx-20 border-b border-gray-200 w-auto">
+    <div className=" mx-20 border-b border-gray-200 w-auto max-w-lg">
       <h2 className="muli text-gray-900 text-xl font-medium">Daily Vibe</h2>
       <p className="muli text-gray-600">{`${current.text} ${
         current.author === null ? "" : ` -- ${current.author}`

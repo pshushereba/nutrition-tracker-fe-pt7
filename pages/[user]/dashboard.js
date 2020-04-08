@@ -5,38 +5,29 @@ import withApollo from "../../lib/apollo";
 import { GET_DASHBOARD_STATE } from "../../gql/queries";
 import Layout from "../../components/Layout/index";
 import FoodSearchBox from "../../components/ingredients/FoodSearchBox";
-import DashUser from "../../components/DashUser";
 import DailyVibe from "../../components/DailyVibe";
 import DesktopFoodJournal from "../../components/foodJournal/DesktopFoodJounal";
 import FoodSearchResults from "../../components/FoodSearchResults";
 import Progress from "../../components/Progress/Progress.js";
-import WeightInput from "../../components/WeightInput";
-import LowerNav from "../../components/LowerNav";
 import { Spacer } from "../../components/Layout/LayoutPrimitives";
 
 const Dashboard = ({ apollo }) => {
   //Gets active dashboard component from client cache
-  const { data, client } = useQuery(GET_DASHBOARD_STATE);
+  const { data } = useQuery(GET_DASHBOARD_STATE);
 
   const lowerNav = data ? data.lowerNav : "journal" // gets the label for the component to render 
 
   return (
     <div>
       <Layout>
-        <div className="flex">
-          <DashUser />
+        <div className="flex my-10">
+          <DailyVibe />
           <Spacer />
-          <div className="flex-1 px-32 self-center">
+          <div className="w-3/12 mt-2 mr-40">
             <FoodSearchBox />
           </div>
         </div>
-        <LowerNav />
-        <div className="flex py-4">
-          <DailyVibe />
-          <div className="flex-1"></div>
-          <WeightInput />
-        </div>
-        <div className="ml-20 mr-32">
+        <div className="ml-20 mr-40">
           {lowerNav === "journal" ? (
             <DesktopFoodJournal />
           ) : lowerNav === "progress" ? (
