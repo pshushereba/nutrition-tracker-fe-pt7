@@ -8,7 +8,7 @@ export default function WeightInput() {
   const [weight, setWeight] = useState({ value: undefined });
   const [updateWeightLog, { data: updateData }] = useMutation(UPDATE_WEIGHT_LOG);
   const [createWeightLog, { data: newData}] = useMutation(CREATE_WEIGHT_LOG)
-  const { data, loading, error } = useQuery(GET_WEIGHT_LOGS);
+  const { data, loading, error, refetch } = useQuery(GET_WEIGHT_LOGS);
 
   if (error) return `${error}`;
   if (loading) return "Loading ...";
@@ -30,15 +30,8 @@ export default function WeightInput() {
         date: currentDate,
         current_weight: parseInt(weight),
       },
-      optimisticResponse: {
-        __typename: "Mutation",
-        createWeightLog: {
-          current_weight: parseInt(weight),
-          date: currentDate,
-          __typename: "WeightLog",
-        },
-      },
     });
+    refetch()
   }
 
   function updateWeight() {
@@ -62,6 +55,8 @@ export default function WeightInput() {
     currentDate === lastWeightLogDate ?
     updateWeight() :
     createWeight()
+    // console.log("current") :
+    // console.log(lastWeightLogDate)
   };
 
   return (

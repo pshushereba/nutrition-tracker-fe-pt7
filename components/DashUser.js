@@ -8,7 +8,7 @@ export default function DashUser() {
   const { loading, error, data } = useQuery(GET_WEIGHT_LOGS);
   if (loading) return "Loading ...";
   if (error) return `Error: ${error}`;
-console.log(data.me.profile)
+
   return (
     <div className="flex-1 flex pl-20">
       <div className="flex flex-col items-center py-2">

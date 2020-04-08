@@ -2,7 +2,6 @@ import React from 'react'
 import { Line } from 'react-chartjs-2';
 
 const Graph = (props) => {
-    console.log("In Graph", props.data)
 
     const formatDate = (date) => {
         let month = date.split("-")[1]
@@ -34,7 +33,7 @@ const Graph = (props) => {
 };
 
     const weightObj = {
-        labels: weightLabels(),
+        labels: weightLabels().reverse(),
         weights: weightData()
     }
 
