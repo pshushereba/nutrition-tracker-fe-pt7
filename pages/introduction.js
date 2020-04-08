@@ -15,11 +15,6 @@ const Introduction = () => {
         <div className="my-8 mr-24">
           <MarketingCenter />
         </div>
-        <div className="flex justify-around">
-          <div className="container-lg flex-row justify-around mx-10">
-            {/* <MarketingSVG /> */}
-          </div>
-        </div>
       </Layout>
     </>
   );
