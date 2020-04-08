@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/react-hooks";
+import { getDataFromTree } from '@apollo/react-ssr'
 
 import withApollo from "../../lib/apollo";
 import { GET_DASHBOARD_STATE } from "../../gql/queries";
@@ -17,7 +18,7 @@ const Dashboard = ({ apollo }) => {
   //Gets active dashboard component from client cache
   const { data, client } = useQuery(GET_DASHBOARD_STATE);
 
-  const lowerNav = data ? data.lowerNav : apollo.cache.data.data.data.lowerNav; // gets the label for the component to render from the client instance passed in props the first render, and from useQuery after that
+  const lowerNav = data ? data.lowerNav : "journal" // gets the label for the component to render 
 
   return (
     <div>
@@ -55,4 +56,4 @@ const Dashboard = ({ apollo }) => {
   );
 };
 
-export default withApollo(Dashboard);
+export default withApollo(Dashboard, { getDataFromTree });

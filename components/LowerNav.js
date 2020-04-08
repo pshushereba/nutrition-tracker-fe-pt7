@@ -12,7 +12,7 @@ export default function LowerNav() {
     return currentDate.toLocaleString("en-US", dateOptions);
   };
   const lowerNavDate = getFormattedDate();
-  const lowerNav = data ? data.lowerNav : client.cache.data.data.data.lowerNav;
+  const lowerNav = data ? data.lowerNav : "journal";
 
   return (
     <nav className="flex bg-mobileFoot">

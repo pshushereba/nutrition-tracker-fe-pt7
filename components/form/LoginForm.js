@@ -1,6 +1,6 @@
-import { useMutation } from "@apollo/react-hooks";
 import Cookie from "js-cookie";
 import { useRouter } from "next/router";
+import { request } from "graphql-request";
 
 import FormInput from "./FormInput";
 import { LOG_IN } from "../../gql/mutations";
@@ -17,28 +17,21 @@ export default function () {
     password: user.password,
   };
 
-  const [login, {}] = useMutation(LOG_IN);
-
+  const API = "https://labspt7-nutrition-tracker-be.herokuapp.com";
+  
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     const existingToken = Cookie.get("token");
-
+    
     if (existingToken) {
       Cookie.remove("token");
     }
-
-    const {
-      data: {
-        login: {
-          token,
-          user: { id, name },
-        },
-      },
-    } = await login({ variables: variables });
+    
+    const { login: { token, user: { name }} } = await request(API, LOG_IN, variables)
 
     Cookie.set("token", token);
-    Cookie.set("id", id);
     const nameWithoutWhitespace = (name) => name.trim().split(" ").join("");
     Router.push(
       "/[user]/dashboard",
