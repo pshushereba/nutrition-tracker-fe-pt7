@@ -1,23 +1,13 @@
 import { useQuery } from "@apollo/react-hooks";
-import { GET_DASHBOARD_STATE } from "../gql/queries";
-import { Spacer } from "./Layout/LayoutPrimitives";
+import { GET_DASHBOARD_STATE } from "../../gql/queries";
 
-export default function LowerNav() {
+export default function DashNav() {
   const { data, client } = useQuery(GET_DASHBOARD_STATE); //Gets active dashboard component from client cache
 
-  const getFormattedDate = () => {
-    //  Sets date for lower dash nav, format does not match UX design
-    const dateOptions = { year: "numeric", month: "long", day: "numeric" };
-    const currentDate = new Date(Date.now());
-    return currentDate.toLocaleString("en-US", dateOptions);
-  };
-  const lowerNavDate = getFormattedDate();
   const lowerNav = data ? data.lowerNav : client.cache.data.data.data.lowerNav;
 
   return (
-    <nav className="flex bg-mobileFoot">
-      <Spacer />
-      <ul className="flex-1 flex justify-around text-lg font-medium py-2">
+      <ul className="w-1/3 flex justify-around text-lg font-medium py-2">
         <li
           className={`${
             lowerNav === "journal" ? "border-b-4 border-pink-500" : ""
@@ -63,9 +53,5 @@ export default function LowerNav() {
           Challenges
         </li>
       </ul>
-      <span className="flex flex-1 text-sm justify-end items-center">
-        <time className="pr-32">{lowerNavDate}</time>
-      </span>
-    </nav>
   );
 }

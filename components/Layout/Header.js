@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { Spacer } from "./LayoutPrimitives";
+import DashNav from "./DashNav";
 
 const Header = () => {
   const router = useRouter();
@@ -12,37 +13,51 @@ const Header = () => {
   return (
     <div className="flex w-full p-4 bg-gray-10">
       <h1
-        className="flex-1 text-3xl font-semibold pl-20 cursor-pointer"
+        className="w-1/3 text-3xl font-semibold pl-16 cursor-pointer"
         onClick={() => router.push("/")}
       >
         Nutrivurv
       </h1>
-      {!inOnboarding && (
-        <span className="flex flex-1 justify-center">
-          <ul className="flex items-center">
-            <a className="px-5">Log Food +</a>
-            <a className="px-5">Settings</a>
-            <a className="px-5 cursor-pointer">Sign Out</a>
-          </ul>
-        </span>
-      )}
-      {inOnboarding && (
-        <span className="">
-          <ul className="flex  pr-40">
-            <li
-              className="py-2 px-8 cursor-pointer"
-              onClick={() => router.push("/login")}
-            >
-              Sign In
-            </li>
-            <li
-              className="py-2 px-8 cursor-pointer"
-              onClick={() => router.push("/signup")}
-            >
-              Sign Up
-            </li>
-          </ul>
-        </span>
+      {!inOnboarding ? (
+        <>
+          <DashNav />
+          <span className="flex w-1/3 text-lg justify-end items-center">
+            <ul className="flex  pr-32">
+              <li
+                className="py-2 px-8 cursor-pointer"
+                onClick={() => router.push("/login")}
+              >
+                Seetings
+              </li>
+              <li
+                className="py-2 px-8 cursor-pointer"
+                onClick={() => router.push("/signup")}
+              >
+                Sign Out
+              </li>
+            </ul>
+          </span>
+        </>
+      ) : (
+        <>
+          <Spacer />
+          <span className="flex w-1/3 text-lg justify-end items-center">
+            <ul className="flex  pr-32">
+              <li
+                className="py-2 px-8 cursor-pointer"
+                onClick={() => router.push("/login")}
+              >
+                Sign In
+              </li>
+              <li
+                className="py-2 px-8 cursor-pointer"
+                onClick={() => router.push("/signup")}
+              >
+                Sign Up
+              </li>
+            </ul>
+          </span>
+        </>
       )}
     </div>
   );
