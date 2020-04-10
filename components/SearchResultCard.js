@@ -34,8 +34,8 @@ export default function SearchResultsCard({ item }) {
 
   return (
     <>
-      <div className="flex my-2">
-        <div className="flex justify-around w-full hover:bg-item-hover hover:opacity-50 border-b-1 border-gray-300">
+      <div className="flex my-2 border-b">
+        <div className="flex justify-around w-full hover:bg-item-hover hover:opacity-50 border-b-1 border-gray-300 ">
           <p className="w-1/6 h-auto my-2 mx-4 self-center">
             {item.food.label}
           </p>

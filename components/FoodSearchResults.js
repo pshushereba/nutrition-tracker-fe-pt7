@@ -4,6 +4,7 @@ import NutritionFacts from "./NutritionFacts";
 import PhoneManBigSVG from "./svg/PhoneManBigSVG";
 import FoodSearchList from "./FoodSearchList";
 import { GET_NUTRITION } from "../gql/queries";
+import { Spacer } from "./Layout/LayoutPrimitives";
 
 export default function FoodSearchResults() {
   const { data } = useQuery(GET_NUTRITION);
@@ -19,12 +20,10 @@ export default function FoodSearchResults() {
   return (
     <section className="flex flex-1">
       <FoodSearchList />
-      <div className="Flex w-1/2"></div>
-      <div className="w-1/2 max-h flex">
-        <div className="flex-1"></div>
-        {data ? <NutritionFacts nutrition={JSON.parse(nutrition)} /> : svg}
-        <div className="flex-1"></div>
-      </div>
+      <Spacer />
+      <div className="flex-1"></div>
+      {data ? <NutritionFacts nutrition={JSON.parse(nutrition)} /> : svg}
+      <div className="flex-1"></div>
     </section>
   );
 }

@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/react-hooks";
-import { getDataFromTree } from '@apollo/react-ssr'
+import { getDataFromTree } from "@apollo/react-ssr";
 
 import withApollo from "../../lib/apollo";
 import { GET_DASHNAV_STATE } from "../../gql/queries";
@@ -17,12 +17,19 @@ const Dashboard = ({ apollo }) => {
   const { data, client } = useQuery(GET_DASHNAV_STATE);
 
   useEffect(() => {
-    client.writeData({ data: { ...data, lowerNav: "journal", logType: "daily", mealType: "breakfast" } })
-    return () => null
-  }, [])
+    client.writeData({
+      data: {
+        ...data,
+        lowerNav: "journal",
+        logType: "daily",
+        mealType: "breakfast",
+      },
+    });
+    return () => null;
+  }, []);
 
-  const lowerNav = data ? data.lowerNav : "journal" // gets the label for the component to render 
-  
+  const lowerNav = data ? data.lowerNav : "journal"; // gets the label for the component to render
+
   return (
     <div>
       <Layout>

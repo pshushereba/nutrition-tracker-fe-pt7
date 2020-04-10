@@ -22,7 +22,7 @@ export default function NutritionFacts({
     ingredients: [{ parsed }],
   } = info;
 
-  const foodString = { ...parsed[0], favorite: false, quantity: enteredQty }; //  add favorite and logged qty properties to food_string
+  const foodString = { ...parsed[0], favorite: false, loggedQty: enteredQty }; //  add favorite and logged qty properties to food_string
 
   const foodLogData = {
     //Obj for storing the vales used in the nutrition graphic and the dailyRecord mutation
@@ -74,7 +74,7 @@ export default function NutritionFacts({
       : "N/A";
 
     return (
-      <div className="flex" key={label}>
+      <div className={`flex ${ nutrientQuantity === 0 ? "hidden" : ""}`} key={label}>
         <p className="">{label}</p>
         <p className="flex-1"></p>
         <p className="mx-3">{`${nutrientQuantity} ${nutrientUnit}`}</p>
@@ -131,7 +131,7 @@ export default function NutritionFacts({
   };
 
   return (
-    <div className="flex flex-col w-3/5 max-w-sm">
+    <div className="flex flex-col w-4/5 max-w-sm">
       <h1 className="text-2xl font-semibold capitalize pb-4">
         {name.toLowerCase()}
       </h1>
