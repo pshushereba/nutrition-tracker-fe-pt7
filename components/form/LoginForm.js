@@ -32,6 +32,7 @@ export default function () {
     const { login: { token, user: { name }} } = await request(API, LOG_IN, variables)
 
     Cookie.set("token", token);
+    Cookie.set("Authorization", `Bearer ${token}`)
     const nameWithoutWhitespace = (name) => name.trim().split(" ").join("");
     Router.push(
       "/[user]/dashboard",

@@ -27,7 +27,7 @@ const Header = () => {
                 className="py-2 px-8 cursor-pointer"
                 onClick={() => router.push("/login")}
               >
-                Seetings
+                Settings
               </li>
               <li
                 className="py-2 px-8 cursor-pointer"
