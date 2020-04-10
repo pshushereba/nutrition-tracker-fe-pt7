@@ -5,12 +5,10 @@ import PhoneManBigSVG from "./svg/PhoneManBigSVG";
 import FoodSearchList from "./FoodSearchList";
 import { GET_NUTRITION } from "../gql/queries";
 
-export default function FoodSearchResults({ searchResults, setActiveControl }) {
-  const { data, client } = useQuery(GET_NUTRITION);
+export default function FoodSearchResults() {
+  const { data } = useQuery(GET_NUTRITION);
 
-  const nutrition = data
-    ? data.nutritionInfo
-    : client.cache.data.data.data.nutritionInfo;
+  const nutrition = data ? data.nutritionInfo : "";
 
   const svg = (
     <div className="flex flex-col mt-40">
@@ -24,14 +22,7 @@ export default function FoodSearchResults({ searchResults, setActiveControl }) {
       <div className="Flex w-1/2"></div>
       <div className="w-1/2 max-h flex">
         <div className="flex-1"></div>
-        {data ? (
-          <NutritionFacts
-            nutrition={JSON.parse(nutrition)}
-            setActiveControl={setActiveControl}
-          />
-        ) : (
-          svg
-        )}
+        {data ? <NutritionFacts nutrition={JSON.parse(nutrition)} /> : svg}
         <div className="flex-1"></div>
       </div>
     </section>

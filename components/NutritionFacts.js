@@ -6,6 +6,7 @@ import { GET_FOOD_LOG } from "../gql/queries";
 export default function NutritionFacts({
   nutrition: { info, label, meal_type },
 }) {
+
   const [qty, setQty] = useState(1); //  Qty value used to get final values
   const [enteredQty, setEnteredQty] = useState(1); //  No of servings entered into the nutrition display, default value of 1
 
@@ -88,15 +89,6 @@ export default function NutritionFacts({
     /* Returns CB needed to make mutation call, updates cache with returned values,  
         gives us access to the client to change the dashboard back to the food journal */
     ADD_FOOD,
-    {
-      update(cache, { data: { addFood } }) {
-        const { records } = cache.readQuery({ query: GET_FOOD_LOG });
-        cache.writeQuery({
-          query: GET_FOOD_LOG,
-          data: { records: records.concat([addFood]) },
-        });
-      },
-    }
   );
 
   const logFood = async () => {
@@ -108,8 +100,15 @@ export default function NutritionFacts({
     if (error) return `Error: ${error}`;
 
     if (data) {
-      //  On success set Dashboard to Food Journal
-      client.writeData({ data: { ...data, lowerNav: "journal" } });
+      //  On success set Dashboard to Food Journal, logType to daily,  and mealType to the type last logged
+      client.writeData({
+        data: {
+          ...data,
+          lowerNav: "journal",
+          mealType: meal_type,
+          logType: "daily"
+        },
+      });
     }
   };
 

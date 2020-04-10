@@ -99,9 +99,45 @@ export const GET_FOOD_LOG = gql`
   }
 `;
 
-export const GET_DASHBOARD_STATE = gql`
+export const GET_FOODJOURNAL_LOGS = gql`
+  query getFoodJournalLogs{
+    myDailyRecords {
+      id
+      date
+      calories
+      fat
+      carbs
+      fiber
+      protein
+      food_string
+      meal_type
+    }
+    mealType @client
+  }
+`;
+
+export const GET_DASHNAV_STATE = gql`
   {
     lowerNav @client
+  }
+`;
+
+export const GET_MEAL_TYPE = gql`
+  {
+    mealType @client
+  }
+`;
+
+export const GET_OPEN_LOG_STATE = gql`
+  {
+    logType @client
+    mealType @client
+  }
+`;
+
+export const GET_LOG_TYPE_STATE = gql`
+  {
+    logType @client
   }
 `;
 

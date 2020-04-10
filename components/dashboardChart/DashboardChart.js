@@ -1,59 +1,74 @@
-import React, { useState } from "react";
+import React from "react";
 import DashboardChartItem from "./DashboardChartItem.js";
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import { UPDATE_FOOD_STRING } from "../../gql/mutations.js";
+import { Spacer } from "../Layout/LayoutPrimitives.js";
+import { GET_OPEN_LOG_STATE } from "../../gql/queries.js";
 
-const DashboardChart = ({ records, activeControl }) => {
-  // const [records, setRecords] = useState([]);
-  // console.log("In DashboardChart", data);
-  // this only exists to keep things from breaking.
-  // you will need to replace count with the actual data from the useEffect call
-  // or the props
+const DashboardChart = ({ records }) => {
+  const [updateFoodString] = useMutation(UPDATE_FOOD_STRING);
+  const { loading, error, data: { mealType, logType} } = useQuery(GET_OPEN_LOG_STATE)
 
-  const [updateFoodString] = useMutation(UPDATE_FOOD_STRING)
+  if(loading) return "Loading ..."
+  if(error) return `${error}`
 
   const toggleFav = (item) => {
-    
-    let parsedFood = JSON.parse(item.food_string)
-    const fav = parsedFood.favorite
-    parsedFood = {...parsedFood, favorite: !fav }
+    let parsedFood = JSON.parse(item.food_string);
+    const fav = parsedFood.favorite;
+    parsedFood = { ...parsedFood, favorite: !fav };
     updateFoodString({
       variables: {
         id: item.id,
-        food_string: JSON.stringify(parsedFood)
-      }
-    })
-    const updateItem = {...item, food_string: JSON.stringify(parsedFood)}
+        food_string: JSON.stringify(parsedFood),
+      },
+    });
+    const updateItem = { ...item, food_string: JSON.stringify(parsedFood) };
     return updateItem;
+  };
+  const activeRecords = records.filter(
+    (record) => record.meal_type === mealType
+  );
+
+  function totalUpPropertyValuesInArray(arr, prop) {
+    let total = 0;
+    arr.map(el => {
+      total = total += el[prop];
+    });
+    return total;
   }
 
-  const calCount = 50;
+  const totalCalories = totalUpPropertyValuesInArray(activeRecords, "calories")
+  
+  const calorieLabel = (
+    logType === "daily" ? `${totalCalories} total calories` : ""
+  )
 
   return (
-    <section className="dashboard-chart w-3/5">
-      <table className="w-full">
-        <tr className="flex justify-around align-center">
-          <div className="flex w-2/5 justify-start mb-3">
-            <th className="mr-8 muli text-sm font-normal text-gray-900">3 items logged</th>
-            <th className="muli text-sm font-normal text-gray-600">{calCount} total calories</th>
-          </div>
-          <div className="flex w-2/5 justify-around">
-            <th className="muli text-sm font-normal text-gray-900 mx-3">Calories</th>
-            <th className="muli text-sm font-normal text-gray-900 mx-4 ">Fats</th>
-            <th className="muli text-sm font-normal text-gray-900 mx-4">Protein</th>
-            <th className="muli text-sm font-normal text-gray-900 mx-4">Carbs</th>
-          </div>
-        </tr>
-        {/* change temp to records / props */}
-        {records.map(cv => {
-          return <DashboardChartItem 
-                  data={cv} 
-                  key={cv.id} 
-                  activeControl={activeControl}
-                  toggleFav={toggleFav}
-                  />;
+    <section className="dashboard-chart w-full">
+      <div className="w-full flex">
+        <div className="flex w-5/12 items-center justify-evenly py-3">
+          <div className="w-1/3 text-sm">{`${activeRecords.length} items logged`}</div>
+          <div className=" text-sm">{calorieLabel}</div>
+        </div>
+        <div className="flex w-7/12 justify-center items-center">
+          <div className="w-1/6 text-sm text-center">Calories</div>
+          <div className="w-1/6 text-sm text-center">Fats</div>
+          <div className="w-1/6 text-sm text-center">Protein</div>
+          <div className="w-1/6 text-sm text-center">Carbs</div>
+          <Spacer />
+        </div>
+      </div>
+      <div className="border-t border-l">
+        {activeRecords.map((cv) => {
+          return (
+            <DashboardChartItem
+              data={cv}
+              key={cv.id}
+              toggleFav={toggleFav}
+            />
+          );
         })}
-      </table>
+      </div>
     </section>
   );
 };
