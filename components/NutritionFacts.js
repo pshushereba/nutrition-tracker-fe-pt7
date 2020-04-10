@@ -22,7 +22,7 @@ export default function NutritionFacts({
     ingredients: [{ parsed }],
   } = info;
 
-  const foodString = { ...parsed[0], favorite: false }; //  add favorite property to food_string
+  const foodString = { ...parsed[0], favorite: false, quantity: enteredQty }; //  add favorite and logged qty properties to food_string
 
   const foodLogData = {
     //Obj for storing the vales used in the nutrition graphic and the dailyRecord mutation

@@ -9,7 +9,8 @@ const DashboardChartItem = ({ data,toggleFav }) => {
   // this might not actually be the props, but we will get there
   const { calories, fat, protein, carbs, food_string, meal_type } = item;
 
-  const { quantity, measure, food, favorite } = JSON.parse(food_string);
+  const { quantity, measure, food, favorite, loggedQty } = JSON.parse(food_string);
+  console.log(loggedQty)
 
   return (
     <div className="w-full flex border-b border-r">
@@ -24,7 +25,7 @@ const DashboardChartItem = ({ data,toggleFav }) => {
             </i>
           </CenteredContainer>
         </div>
-        <div className="flex w-11/12 pl-3 items-center py-2">{`${quantity} ${measure} ${food}`}</div>
+        <div className="flex w-11/12 pl-3 items-center py-2">{`${loggedQty ? loggedQty : quantity} ${measure} ${food}`}</div>
       </div>
       <div className="flex w-7/12 justify-center items-center">
         <div className="w-1/6 text-sm text-center">{calories}</div>
