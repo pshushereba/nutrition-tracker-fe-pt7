@@ -6,6 +6,7 @@ import { GET_FOOD_LOG } from "../gql/queries";
 export default function NutritionFacts({
   nutrition: { info, label, meal_type },
 }) {
+
   const [qty, setQty] = useState(1); //  Qty value used to get final values
   const [enteredQty, setEnteredQty] = useState(1); //  No of servings entered into the nutrition display, default value of 1
 
@@ -21,7 +22,7 @@ export default function NutritionFacts({
     ingredients: [{ parsed }],
   } = info;
 
-  const foodString = { ...parsed[0], favorite: false }; //  add favorite property to food_string
+  const foodString = { ...parsed[0], favorite: false, loggedQty: enteredQty }; //  add favorite and logged qty properties to food_string
 
   const foodLogData = {
     //Obj for storing the vales used in the nutrition graphic and the dailyRecord mutation
@@ -73,7 +74,7 @@ export default function NutritionFacts({
       : "N/A";
 
     return (
-      <div className="flex" key={label}>
+      <div className={`flex ${ nutrientQuantity === 0 ? "hidden" : ""}`} key={label}>
         <p className="">{label}</p>
         <p className="flex-1"></p>
         <p className="mx-3">{`${nutrientQuantity} ${nutrientUnit}`}</p>
@@ -88,15 +89,6 @@ export default function NutritionFacts({
     /* Returns CB needed to make mutation call, updates cache with returned values,  
         gives us access to the client to change the dashboard back to the food journal */
     ADD_FOOD,
-    {
-      update(cache, { data: { addFood } }) {
-        const { records } = cache.readQuery({ query: GET_FOOD_LOG });
-        cache.writeQuery({
-          query: GET_FOOD_LOG,
-          data: { records: records.concat([addFood]) },
-        });
-      },
-    }
   );
 
   const logFood = async () => {
@@ -108,8 +100,15 @@ export default function NutritionFacts({
     if (error) return `Error: ${error}`;
 
     if (data) {
-      //  On success set Dashboard to Food Journal
-      client.writeData({ data: { ...data, lowerNav: "journal" } });
+      //  On success set Dashboard to Food Journal, logType to daily,  and mealType to the type last logged
+      client.writeData({
+        data: {
+          ...data,
+          lowerNav: "journal",
+          mealType: meal_type,
+          logType: "daily"
+        },
+      });
     }
   };
 
@@ -132,7 +131,7 @@ export default function NutritionFacts({
   };
 
   return (
-    <div className="flex flex-col w-3/5 max-w-sm">
+    <div className="flex flex-col w-4/5 max-w-sm">
       <h1 className="text-2xl font-semibold capitalize pb-4">
         {name.toLowerCase()}
       </h1>

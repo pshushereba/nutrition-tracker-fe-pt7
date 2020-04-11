@@ -2,48 +2,58 @@ import { useState } from "react";
 import FoodLog from "./FoodLog";
 import PreviousLog from "./PreviousLog";
 import Favorites from "./Favorites.js";
-import DashFoodJournalSVG from "../svg/DashFoodJournalSVG";
 import WaterGirlSVG from "../svg/WayerGirlSVG";
 import { CenteredContainer } from "../Layout/LayoutPrimitives";
+import { useQuery } from "@apollo/react-hooks";
+import { GET_LOG_TYPE_STATE } from "../../gql/queries";
 
 export default function DesktopFoodJournal() {
-  const [activeControl, setActiveControl] = useState("daily");
+  const { data, client } = useQuery(GET_LOG_TYPE_STATE);
+
+  const logType = data ? data.logType : "daily";
+
+  const handleClick = (e) => {
+    const logType = e.target.dataset.logtype;
+    client.writeData({ data: { ...data, logType: logType } });
+  };
 
   return (
     <div className="flex-1 flex">
-      <div className="flex flex-col w-1/2">
+      <div className="flex flex-col w-7/12">
         <div className="flex text-lg font-medium py-2 mb-8">
           <div
             className={`${
-              activeControl === "daily" ? "border-b-4 border-pink-500" : ""
+              logType === "daily" ? "border-b-4 border-pink-500" : ""
             } cursor-pointer mr-12`}
-            onClick={() => setActiveControl("daily")}
+            data-logtype="daily"
+            onClick={handleClick}
           >
             Daily Food Log
           </div>
           <div
             className={`${
-              activeControl === "favorites" ? "border-b-4 border-pink-500" : ""
+              logType === "favorites" ? "border-b-4 border-pink-500" : ""
             } cursor-pointer mr-12`}
-            onClick={() => setActiveControl("favorites")}
+            data-logtype="favorites"
+            onClick={handleClick}
           >
             Favorites
           </div>
           <div
             className={`${
-              activeControl === "previous" ? "border-b-4 border-pink-500" : ""
+              logType === "previous" ? "border-b-4 border-pink-500" : ""
             } cursor-pointer mr-12`}
-            onClick={() => setActiveControl("previous")}
+            data-logtype="previous"
+            onClick={handleClick}
           >
             Previous
           </div>
         </div>
-        {/* Replace strings with corresponding components */}
-        {activeControl === "daily" ? (
+        {logType === "daily" ? (
           <FoodLog />
-        ) : activeControl === "favorites" ? (
+        ) : logType === "favorites" ? (
           <Favorites />
-        ) : activeControl === "previous" ? (
+        ) : logType === "previous" ? (
           <PreviousLog />
         ) : (
           "Error"

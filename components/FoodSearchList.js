@@ -17,8 +17,7 @@ export default function FoodSearchList({ setNutrInfo }) {
           <p className="w-1/6 text-center">Carb %</p>
           <p className="w-1/6 text-center">Meal Type</p>
         </div>
-      ) : null}
-      <div>
+      ) : "No Results Found"}
         {results.map((item) => {
           return (
             <SearchResultsCard
@@ -28,7 +27,6 @@ export default function FoodSearchList({ setNutrInfo }) {
             />
           );
         })}
-      </div>
     </div>
   );
 }
