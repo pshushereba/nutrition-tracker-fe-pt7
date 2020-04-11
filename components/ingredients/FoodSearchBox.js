@@ -8,11 +8,12 @@ export default function FoodSearchBox() {
   const { data, client } = useQuery(GET_SEARCH_RESULTS); //  Pull in the client so result data can be written to the cache
 
   const handleChange = (e) => {
+    console.log("first", item)
     setItem(e.target.value);
   };
-
+  
   const query = item.replace(" ", "%20"); // Format the entered food item for the API call
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     //  Hit the foodDB API
@@ -20,7 +21,7 @@ export default function FoodSearchBox() {
     // Change the needed data to a string
     const searchResults = JSON.stringify(list.hints);
     // Reset the input
-    setItem("");
+    setItem('');
     // Write the searchResults to the cache, change the dash component to search results
     client.writeData({
       data: {

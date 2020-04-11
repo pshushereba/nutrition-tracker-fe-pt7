@@ -5,9 +5,9 @@ import { GET_WEIGHT_LOGS } from "../gql/queries";
 import { formatDate } from "../lib/utils";
 
 export default function WeightInput() {
-  const [weight, setWeight] = useState({ value: undefined });
-  const [updateWeightLog, { data: updateData }] = useMutation(UPDATE_WEIGHT_LOG);
-  const [createWeightLog, { data: newData}] = useMutation(CREATE_WEIGHT_LOG)
+  const [weight, setWeight] = useState();
+  const [updateWeightLog] = useMutation(UPDATE_WEIGHT_LOG);
+  const [createWeightLog] = useMutation(CREATE_WEIGHT_LOG);
   const { data, loading, error, refetch } = useQuery(GET_WEIGHT_LOGS);
 
   if (error) return `${error}`;
@@ -16,60 +16,63 @@ export default function WeightInput() {
   const { myWeightLogs } = data;
 
   const handleChange = (e) => {
-    setWeight(e.target.value);
+    setWeight(e.target.valueAsNumber);
   };
 
   const lastWeightLogId = myWeightLogs[0].id;
-  const lastWeightLogDate = myWeightLogs[0].date
-  const date = new Date(Date.now())
-  const currentDate = formatDate(date).split("-").reverse().join("-")
+  const lastWeightLogDate = myWeightLogs[0].date;
+  const date = new Date(Date.now());
+  const currentDate = formatDate(date).split("-").reverse().join("-");
 
   function createWeight() {
     createWeightLog({
       variables: {
         date: currentDate,
-        current_weight: parseInt(weight),
+        current_weight: weight,
       },
     });
-    refetch()
+    setWeight(NaN);
+    refetch();
   }
 
   function updateWeight() {
     updateWeightLog({
       variables: {
         id: lastWeightLogId,
-        current_weight: parseInt(weight),
+        current_weight: weight,
       },
       optimisticResponse: {
         __typename: "Mutation",
         updateWeightLog: {
           id: lastWeightLogId,
           __typename: "WeightLog",
-          current_weight: parseInt(weight),
+          current_weight: weight,
         },
       },
     });
+    setWeight(NaN);
   }
 
+  const hasRecordForToday = currentDate === lastWeightLogDate;
+
   const handleSubmit = () => {
-    currentDate === lastWeightLogDate ?
-    updateWeight() :
-    createWeight()
-    // console.log("current") :
-    // console.log(lastWeightLogDate)
+    hasRecordForToday ? updateWeight() : createWeight();
   };
 
   return (
-    <div className="flex border rounded pl-4 ml-6 mr-32">
-        <input
-          type="number"
-          placeholder="Enter today's weight"
-          name="dailyWeight"
-          value={weight.value}
-          onChange={handleChange}
-        ></input>
+    <div className="flex border rounded w-full mt-6">
+      <input
+        className="flex-1 pl-2"
+        type="number"
+        placeholder={`${
+          hasRecordForToday ? "Update Weight" : "Enter Today's Weight"
+        }`}
+        name="dailyWeight"
+        value={weight}
+        onChange={handleChange}
+      ></input>
       <button
-        className="border rounded bg-purple-300 text-white px-4 py-2"
+        className="border rounded bg-purple-300 text-white px-6 py-2"
         onClick={handleSubmit}
       >
         Log Weight

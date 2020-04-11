@@ -21,7 +21,7 @@ const Dashboard = ({ apollo }) => {
       data: {
         ...data,
         lowerNav: "journal",
-        logType: "daily",
+        logType: "previous",
         mealType: "breakfast",
       },
     });

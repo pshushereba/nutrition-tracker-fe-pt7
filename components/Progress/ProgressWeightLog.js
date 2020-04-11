@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import ProgressWeightLogItem from "./ProgressWeightLogItem.js";
+import WeightInput from "../WeightInput.js";
 
-const ProgressWeightLog = props => {
+const ProgressWeightLog = (props) => {
   var sorted = {};
-
 
   // this is what will get mapped to generate elements
   const [sortedLogs, setSortedLogs] = useState({});
@@ -21,24 +21,26 @@ const ProgressWeightLog = props => {
     September: "09",
     October: "10",
     November: "11",
-    December: "12"
+    December: "12",
   };
 
-
   const logs = () => {
-    let logArr = []
+    let logArr = [];
     props.data.myWeightLogs.map((record) => {
-      logArr.push({date: formatDate(record.date), weight: record.current_weight})
-    })
+      logArr.push({
+        date: formatDate(record.date),
+        weight: record.current_weight,
+      });
+    });
     return logArr;
-  }
+  };
 
   const formatDate = (date) => {
-    const month = date.split("-")[1]
-    const day = date.split("-")[2]
-    const year = date.split("-")[0]
-    return `${month}/${day}/${year}`
-  }
+    const month = date.split("-")[1];
+    const day = date.split("-")[2];
+    const year = date.split("-")[0];
+    return `${month}/${day}/${year}`;
+  };
 
   useEffect(() => {
     // expects an array of objects that have a date key
@@ -47,16 +49,16 @@ const ProgressWeightLog = props => {
     // sacrificial object
     // has a ternary operator to check for existence of current key
     // this is to prevent spreading not iterable error
-    logs().map(cv => {
+    logs().map((cv) => {
       const monthChars = cv.date.charAt(0) + cv.date.charAt(1);
-      const currentMonth = Object.keys(monthObj).filter(curval => {
+      const currentMonth = Object.keys(monthObj).filter((curval) => {
         return monthObj[curval] == monthChars;
       })[0];
       return (sorted = {
         ...sorted,
         [currentMonth]: sorted[currentMonth]
           ? [...sorted[currentMonth], cv]
-          : [cv]
+          : [cv],
       });
     });
 
@@ -67,10 +69,11 @@ const ProgressWeightLog = props => {
     <div className="p-3">
       <h2 className="text-base muli font-normal">Your logs:</h2>
       {Object.keys(sortedLogs).length > 0
-        ? Object.keys(sortedLogs).map(cv => {
-            return <ProgressWeightLogItem data={sortedLogs[cv]} month={cv} />;
+        ? Object.keys(sortedLogs).map((cv) => {
+            return <ProgressWeightLogItem key={`${cv}`} data={sortedLogs[cv]} month={cv} />;
           })
         : ""}
+      <WeightInput />
     </div>
   );
 };

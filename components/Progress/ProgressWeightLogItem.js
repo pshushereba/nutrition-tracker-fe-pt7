@@ -8,7 +8,7 @@ const ProgressWeightLogItem = props => {
       </h3>
       {props.data.map(cv => {
         return (
-          <div className="flex justify-between px-5">
+          <div key={`${cv.date}-${cv.weight}`} className="flex justify-between px-5">
             <p className="muli font-bold text-base">{cv.date}</p>
             <p className="muli font-bold text-base">{cv.weight} lbs</p>
           </div>
