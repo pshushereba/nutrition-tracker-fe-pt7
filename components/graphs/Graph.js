@@ -34,7 +34,7 @@ const Graph = (props) => {
 
     const weightObj = {
         labels: weightLabels().reverse(),
-        weights: weightData()
+        weights: weightData().reverse()
     }
 
     
