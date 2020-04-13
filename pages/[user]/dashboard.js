@@ -11,6 +11,7 @@ import FoodSearchResults from "../../components/FoodSearchResults";
 import Progress from "../../components/Progress/Progress.js";
 import { Spacer } from "../../components/Layout/LayoutPrimitives";
 import { useEffect } from "react";
+import ForumContainer from "../../components/forum/ForumContainer";
 
 const Dashboard = ({ apollo }) => {
   //Gets active dashboard component from client cache
@@ -23,6 +24,7 @@ const Dashboard = ({ apollo }) => {
         lowerNav: "journal",
         logType: "daily",
         mealType: "breakfast",
+        activeCat: "featured"
       },
     });
     return () => null;
@@ -51,6 +53,8 @@ const Dashboard = ({ apollo }) => {
             "Challenges"
           ) : lowerNav === "searchResults" ? (
             <FoodSearchResults />
+          ) : lowerNav === "forums" ? (
+            <ForumContainer />
           ) : (
             "Error"
           )}
