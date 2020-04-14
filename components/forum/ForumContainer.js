@@ -9,7 +9,7 @@ const ForumContainer = () => {
     const activeCat = data ? data.activeCat : "featured"
 
     const handleClick = (e) => {
-        const activeCat = e.target.dataset.activeCat;
+        const activeCat = e.target.dataset.activecat;
         console.log(activeCat)
         client.writeData({ data: { ...data, activeCat: activeCat } });
       };
@@ -23,7 +23,7 @@ const ForumContainer = () => {
                     className={`${
                     activeCat === "featured" ? "border-b-4 border-pink-500" : ""
                     } cursor-pointer mr-12`}
-                    data-activeCat="featured"
+                    data-activecat="featured"
                     onClick={handleClick}
                 >
                     Featured
@@ -32,7 +32,7 @@ const ForumContainer = () => {
                     className={`${
                     activeCat === "popular" ? "border-b-4 border-pink-500" : ""
                     } cursor-pointer mr-12`}
-                    data-activeCat="popular"
+                    data-activecat="popular"
                     onClick={handleClick}
                 >
                     Popular
@@ -41,7 +41,7 @@ const ForumContainer = () => {
                     className={`${
                     activeCat === "recent" ? "border-b-4 border-pink-500" : ""
                     } cursor-pointer mr-12`}
-                    data-activeCat="recent"
+                    data-activecat="recent"
                     onClick={handleClick}
                 >
                     Recent
