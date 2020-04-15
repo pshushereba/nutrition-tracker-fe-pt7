@@ -189,3 +189,17 @@ export const GET_WEIGHT_LOGS = gql`
     }
   }
 `;
+
+export const GET_FORUM_TOPICS = gql`
+	{
+    posts {
+      body
+      id
+      user {
+        id
+      }
+      viewCount
+      title
+  }
+	}
+`;

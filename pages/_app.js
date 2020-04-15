@@ -1,4 +1,7 @@
 import "../styles/styles.css";
+import fetch from 'isomorphic-unfetch';
+
+fetch('https://labspt7-nutrition-tracker-be.herokuapp.com');
 
 function MyApp({ Component, pageProps}) {
 
@@ -7,4 +10,4 @@ function MyApp({ Component, pageProps}) {
   )
 }
 
-export default MyApp
+export default MyApp;

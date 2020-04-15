@@ -21,7 +21,7 @@ const Dashboard = ({ apollo }) => {
     client.writeData({
       data: {
         ...data,
-        lowerNav: "journal",
+        lowerNav: "forums",
         logType: "daily",
         mealType: "breakfast",
         activeCat: "featured"
@@ -64,4 +64,4 @@ const Dashboard = ({ apollo }) => {
   );
 };
 
-export default withApollo(Dashboard, { getDataFromTree });
+export default withApollo(Dashboard);

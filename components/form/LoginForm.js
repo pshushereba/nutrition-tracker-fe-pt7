@@ -1,7 +1,6 @@
 import Cookie from "js-cookie";
 import { useRouter } from "next/router";
 import { request } from "graphql-request";
-
 import FormInput from "./FormInput";
 import { LOG_IN } from "../../gql/mutations";
 import ThunderboltSVG from "../svg/ThunderboltSVG";
