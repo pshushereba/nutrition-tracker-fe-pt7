@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export const SUBSCRIBE_FORUM_THREADS = gql`
-	{
+	subscription {
 		post {
     mutation
     node {
