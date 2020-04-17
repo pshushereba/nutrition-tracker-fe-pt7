@@ -1,5 +1,4 @@
 import LogInSVG from "../components/svg/LogInSVG";
-import withApollo from "../lib/apollo";
 import Layout from "../components/Layout/index.js";
 import {
   CenteredContainer,
@@ -7,7 +6,7 @@ import {
 } from "../components/Layout/LayoutPrimitives";
 import LoginForm from "../components/form/LoginForm";
 
-const SignUp = () => {
+const Login = () => {
   return (
     <Layout>
       <div className="flex w-full h-full pt-20">
@@ -26,4 +25,4 @@ const SignUp = () => {
   );
 };
 
-export default withApollo(SignUp);
+export default Login;

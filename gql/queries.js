@@ -153,6 +153,12 @@ export const GET_NUTRITION = gql`
   }
 `;
 
+export const GET_FORUM_SELECTION_STATE = gql`
+  {
+    activeCat @client
+  }
+`;
+
 export const GET_LAST_WEIGHT_LOG = gql`
   {
     me {
@@ -182,4 +188,18 @@ export const GET_WEIGHT_LOGS = gql`
       }
     }
   }
+`;
+
+export const GET_FORUM_TOPICS = gql`
+	{
+    posts {
+      body
+      id
+      user {
+        id
+      }
+      viewCount
+      title
+  }
+	}
 `;

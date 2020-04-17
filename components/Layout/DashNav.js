@@ -53,6 +53,17 @@ export default function DashNav() {
       >
         Challenges
       </li>
+      <li
+        className={`${
+          activeNavControl === "forums" ? "border-b-4 border-pink-500" : ""
+        } cursor-pointer`}
+        value={"forums"}
+        onClick={() =>
+          client.writeData({ data: { ...data, lowerNav: "forums" } })
+        }
+      >
+        Forums
+      </li>
     </ul>
   );
 }
