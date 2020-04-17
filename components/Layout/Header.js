@@ -1,18 +1,64 @@
 import { useRouter } from "next/router";
+import { Spacer } from "./LayoutPrimitives";
+import DashNav from "./DashNav";
 
 const Header = () => {
   const router = useRouter();
+  const onHome = router.asPath === "/";
+  const onLogin = router.asPath === "/login";
+  const onSignup = router.asPath === "/signup";
+  const creatingProfile = router.asPath === "/createProfile";
+  const inOnboarding = onHome || onLogin || onSignup || creatingProfile;
 
   return (
-    <div className="flex w-full py-4 bg-mobileFoot">
-      <h1 className="flex-1 text-2xl font-medium pl-20">Nutrivurv</h1>
-      <span className="flex flex-1 justify-center">
-        <ul className="flex items-center">
-          <a className="px-5">Log Food +</a>
-          <a className="px-5">Settings</a>
-          <a className="px-5 cursor-pointer">Sign Out</a>
-        </ul>
-      </span>
+    <div className="flex w-full p-4 bg-gray-10">
+      <h1
+        className="w-1/3 text-3xl font-semibold pl-16 cursor-pointer"
+        onClick={() => router.push("/")}
+      >
+        Nutrivurv
+      </h1>
+      {!inOnboarding ? (
+        <>
+          <DashNav />
+          <span className="flex w-1/3 text-lg justify-end items-center">
+            <ul className="flex  pr-32">
+              <li
+                className="py-2 px-8 cursor-pointer"
+                onClick={() => router.push("/login")}
+              >
+                Settings
+              </li>
+              <li
+                className="py-2 px-8 cursor-pointer"
+                onClick={() => router.push("/signup")}
+              >
+                Sign Out
+              </li>
+            </ul>
+          </span>
+        </>
+      ) : (
+        <>
+          <Spacer />
+          <span className="flex w-1/3 text-lg justify-end items-center">
+            <ul className="flex  pr-32">
+              <li
+                className="py-2 px-8 cursor-pointer"
+                onClick={() => router.push("/login")}
+              >
+                Sign In
+              </li>
+              <li
+                className="py-2 px-8 cursor-pointer"
+                onClick={() => router.push("/signup")}
+              >
+                Sign Up
+              </li>
+            </ul>
+          </span>
+        </>
+      )}
     </div>
   );
 };

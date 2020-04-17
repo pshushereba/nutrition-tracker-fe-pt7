@@ -1,6 +1,4 @@
-import InlineSVG from 'svg-inline-react';
-
-const svgSource = `<svg width="608" height="453" viewBox="0 0 608 453" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="608" height="453" viewBox="0 0 608 453" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0)">
 <path d="M301.056 453C467.324 453 602.111 443.32 602.111 431.378C602.111 419.437 467.324 409.756 301.056 409.756C134.787 409.756 0 419.437 0 431.378C0 443.32 134.787 453 301.056 453Z" fill="#E6E6E6"/>
 <path d="M536.255 443.487C487.166 434.651 433.484 436.12 377.175 443.487C402.84 421.576 424.99 399.665 399.325 377.755C449.388 388.199 456.4 387.142 512.091 377.755C499.174 399.665 523.338 421.576 536.255 443.487Z" fill="#6C63FF"/>
@@ -37,8 +35,3 @@ const svgSource = `<svg width="608" height="453" viewBox="0 0 608 453" fill="non
 </clipPath>
 </defs>
 </svg>
-`
-
-const LogInSVG = () => <InlineSVG src={svgSource} />
-
-export default LogInSVG

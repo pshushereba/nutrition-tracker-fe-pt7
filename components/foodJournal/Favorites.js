@@ -1,91 +1,94 @@
-import { useState, useEffect } from "react";
-import { GET_FOOD_LOG } from '../../gql/queries';
-import { useLazyQuery, useQuery } from '@apollo/react-hooks';
+import { useEffect } from "react";
+import { GET_FOODJOURNAL_LOGS } from "../../gql/queries";
+import { useQuery } from "@apollo/react-hooks";
 
 import DashboardChart from "../dashboardChart/DashboardChart";
 
-export default function Favorites() {
+export default function FoodLog() {
   // We'll pull in the food data off the user, filter the items by the control selected, then pass that array to the chart component
-  const [activeControl, setActiveControl] = useState("breakfast");
-
-  const [foodData, setFoodData] = useState();
-
-  const { loading, error, data, refetch } = useQuery(GET_FOOD_LOG)
+  const { loading, error, data, refetch, client } = useQuery(
+    GET_FOODJOURNAL_LOGS
+  );
 
   useEffect(() => {
-    refetch()
-  }, [])
+    refetch();
+  }, []);
 
-  if (loading) return 'Loading...';
-  if (error) return `Error: ${error}`
+  if (loading) return "Loading...";
+  if (error) return `Error: ${error}`;
 
+  const { mealType, myDailyRecords } = data;
 
-  const handleClick = e => {
-    setActiveControl(e.target.name);
-    //const filteredData = userFoodData.filter(meal => meal === activeControl)
-    //setFoodData(filteredData)
+  const handleClick = (e) => {
+    const mealType = e.target.dataset.mealtype
+    client.writeData({ data: { ...data, mealType: mealType} })
   };
-  
-  // if (data)
- 
-const currentDate = new Date(Date.now());
 
-const currentRecord = (data) => {
-  let newArr = []
-  data.map((record) => {
+
+  const currentRecord = (data) => {
+    let newArr = [];
+    data.map((record) => {
       const favorite = JSON.parse(record.food_string).favorite;
-    if(favorite) {
-      newArr.push(record)
-    }
-  })
-  return newArr;
-}
+      if (favorite) {
+        newArr.push(record);
+      }
+    });
+    return newArr;
+  };
 
   return (
     <>
       <div className="flex text- font-medium py-2">
         <div
           className={`${
-            activeControl === "breakfast" ? "border-b-2 border-pink-500" : ""
+            mealType === "breakfast" ? "border-b-2 border-pink-500" : ""
           } cursor-pointer mr-12`}
-          onClick={() => setActiveControl("breakfast")}
+          data-mealtype="breakfast"
+          onClick={handleClick}
         >
           Breakfast
         </div>
         <div
           className={`${
-            activeControl === "lunch" ? "border-b-2 border-pink-500" : ""
+            mealType === "lunch" ? "border-b-2 border-pink-500" : ""
           } cursor-pointer mr-12`}
-          onClick={() => setActiveControl("lunch")}
+          data-mealtype="lunch"
+          onClick={handleClick}
         >
           Lunch
         </div>
         <div
           className={`${
-            activeControl === "dinner" ? "border-b-2 border-pink-500" : ""
+            mealType === "dinner" ? "border-b-2 border-pink-500" : ""
           } cursor-pointer mr-12`}
-          onClick={() => setActiveControl("dinner")}
+          data-mealtype="dinner"
+          onClick={handleClick}
         >
           Dinner
         </div>
         <div
           className={`${
-            activeControl === "snack" ? "border-b-2 border-pink-500" : ""
+            mealType === "snack" ? "border-b-2 border-pink-500" : ""
           } cursor-pointer mr-12`}
-          onClick={() => setActiveControl("snack")}
+          data-mealtype="snack"
+          onClick={handleClick}
         >
           Snack
         </div>
         <div
           className={`${
-            activeControl === "water" ? "border-b-2 border-pink-500" : ""
+            mealType === "water" ? "border-b-2 border-pink-500" : ""
           } cursor-pointer mr-12`}
-          onClick={() => setActiveControl("water")}
+          data-mealtype="water"
+          onClick={handleClick}
         >
           Water
         </div>
       </div>
-      <DashboardChart records={currentRecord(data.myDailyRecords)} activeControl={activeControl} />
+      <DashboardChart
+        records={currentRecord(myDailyRecords)}
+        mealType={mealType}
+      />
     </>
   );
 }

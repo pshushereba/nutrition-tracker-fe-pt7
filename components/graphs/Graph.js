@@ -2,12 +2,47 @@ import React from 'react'
 import { Line } from 'react-chartjs-2';
 
 const Graph = (props) => {
-    console.log(props.data)
+
+    const formatDate = (date) => {
+        let month = date.split("-")[1]
+        let day = date.split("-")[2]
+        if (month.split("")[0] === 0) {
+            month = month.split("")[1]
+        }
+
+        if (day.split("")[0] === 0) {
+            day = day.split("")[1]
+        }
+        return `${month}/${day}`
+    }
+    
+    const weightData = () => {
+        let weightArr = []
+        props.data.map((record) => {
+        weightArr.push(record.current_weight)
+    })
+    return weightArr;
+};
+
+    const weightLabels = () => { 
+        let weightArr = []
+        props.data.map((record) => {
+        weightArr.push(formatDate(record.date))
+    })
+    return weightArr;
+};
+
+    const weightObj = {
+        labels: weightLabels().reverse(),
+        weights: weightData().reverse()
+    }
+
+    
     const graphData = {
         datasets:
             [{
-                labels: ['label1', 'label2', 'label3', 'label4', 'label5', 'label6', 'label7', 'label8'],
-                data: [172, 170.2, 169.6, 169.4, 168.8, 168.4, 167.0, 166.8],
+                labels: weightObj.labels,
+                data: weightObj.weights,
                 label: 'Weight'
             }]
     }
@@ -35,7 +70,7 @@ const Graph = (props) => {
 
             xAxes: [{
                 type: 'category',
-                labels: ['2/5', '2/6', '2/7', '2/8', '2/9', '2/10', '2/11', '2/12', '2/13', '2/14', '2/15', '2/16']
+                labels: graphData.datasets[0].labels
             }]
         }
     }

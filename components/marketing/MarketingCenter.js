@@ -1,18 +1,18 @@
 import React from 'react'
 import JoyrideSVG from '../../components/svg/JoyrideSVG.js';
 import FoodSearchBox from '../../components/ingredients/FoodSearchBox.js';
+import Calculator from '../Calculator.js';
+import MarketingBoxSVG from '../../components/svg/MarketingBoxSVG.js';
 
 const MarketingCenter = () => {
     return (
-        <div>
-            <h1 className="text-4xl text-center">Search Food</h1>
+        <div className="flex-col">
             <div className="flex justify-center">
-                <FoodSearchBox />
+                <div className="m-32">
+                    <MarketingBoxSVG />
+                </div>
+                <Calculator />
             </div>
-            <div className="flex justify-center">
-                <JoyrideSVG />
-            </div>
-            
         </div>
     )
 }

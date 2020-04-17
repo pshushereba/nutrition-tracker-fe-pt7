@@ -5,7 +5,7 @@ export default function FormInput({ name, label = null, placeHolder = '', type =
   };
   
   return (
-    <div className="flex flex-col my-2">
+    <div className="flex flex-col my-4">
       <div className="-mb-3 z-0 pl-2">
         {label &&
           <label className="text-xs bg-white p-1">

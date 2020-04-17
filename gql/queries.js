@@ -40,16 +40,13 @@ export const ME = gql`
         protein
         calories
       }
-      dailyRecords {
+      weightLogs {
+        current_weight
         id
-        date
-        calories
-        fat
-        carbs
-        fiber
-        protein
-        food_string
-        meal_type
+      }
+      myWeightLogs(orderBy: createdAt_DESC, first: 1) {
+        id
+        current_weight
       }
     }
   }
@@ -58,12 +55,15 @@ export const ME = gql`
 export const USER_DASH_HEADER = gql`
   {
     me {
-      id
       name
       profile {
-        id
         weight
         gender
+      }
+      weightLogs {
+        date
+        current_weight
+        id
       }
     }
   }
@@ -73,6 +73,12 @@ export const GET_PROGRESS_DATA = gql`
   {
     myDailyRecords {
       date
+    }
+    me {
+      profile {
+        goal_weight
+        weight
+      }
     }
   }
 `;
@@ -89,6 +95,91 @@ export const GET_FOOD_LOG = gql`
       protein
       food_string
       meal_type
+    }
+  }
+`;
+
+export const GET_FOODJOURNAL_LOGS = gql`
+  query getFoodJournalLogs{
+    myDailyRecords {
+      id
+      date
+      calories
+      fat
+      carbs
+      fiber
+      protein
+      food_string
+      meal_type
+    }
+    mealType @client
+  }
+`;
+
+export const GET_DASHNAV_STATE = gql`
+  {
+    lowerNav @client
+  }
+`;
+
+export const GET_MEAL_TYPE = gql`
+  {
+    mealType @client
+  }
+`;
+
+export const GET_OPEN_LOG_STATE = gql`
+  {
+    logType @client
+    mealType @client
+  }
+`;
+
+export const GET_LOG_TYPE_STATE = gql`
+  {
+    logType @client
+  }
+`;
+
+export const GET_SEARCH_RESULTS = gql`
+  {
+    searchResults @client
+  }
+`;
+export const GET_NUTRITION = gql`
+  {
+    nutritionInfo @client
+    lowerNav @client
+  }
+`;
+
+export const GET_LAST_WEIGHT_LOG = gql`
+  {
+    me {
+      profile {
+        weight
+      }
+    }
+    myWeightLogs(orderBy: createdAt_DESC, first: 1) {
+      id
+      current_weight
+    }
+  }
+`;
+
+export const GET_WEIGHT_LOGS = gql`
+  {
+    myWeightLogs(orderBy: date_DESC) {
+      date
+      current_weight
+      id
+    }
+    me {
+      name
+      profile {
+        gender
+        goal_weight
+      }
     }
   }
 `;
