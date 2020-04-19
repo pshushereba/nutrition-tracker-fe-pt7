@@ -38,6 +38,8 @@
     "react-chartjs-2": "^2.9.0",
     "react-dom": "16.12.0",
     "react-ga": "^2.7.0",
+    "slate": "^0.57.1",
+    "slate-react": "^0.57.1",
     "subscriptions-transport-ws": "^0.9.16",
     "svg-inline-react": "^3.2.0",
     "swr": "^0.1.18",

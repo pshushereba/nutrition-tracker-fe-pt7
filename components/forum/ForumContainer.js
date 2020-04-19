@@ -3,6 +3,8 @@ import { useQuery } from '@apollo/react-hooks';
 import { GET_FORUM_SELECTION_STATE } from '../../gql/queries';
 import TopicList from './TopicList';
 import ThreadDetail from './ThreadDetail.js';
+import CreatePost from './CreatePost.js';
+import TextEditor from '../slate/TextEditor.js';
 
 const ForumContainer = () => {
     
@@ -22,7 +24,7 @@ const ForumContainer = () => {
             <button className="bg-cyan-300 text-white text-xs muli w-40 py-1 my-4 rounded">Create Post</button>
         </div>
             {/* <TopicList /> */}
-            <ThreadDetail />
+            <TextEditor />
         <div className="flex-1"></div>
         </div>
     )
