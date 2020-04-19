@@ -197,9 +197,13 @@ export const GET_FORUM_TOPICS = gql`
       id
       user {
         id
+        name
+        email
       }
       viewCount
       title
+      createdAt
+      updatedAt
   }
 	}
 `;
