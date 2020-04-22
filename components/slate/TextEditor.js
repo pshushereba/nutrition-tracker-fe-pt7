@@ -25,6 +25,7 @@ const TextEditor = () => {
                 return <DefaultElement {...props} />
         }
     }, [])
+    
 
     const renderLeaf = useCallback((props) => {
         return <Leaf {...props} />

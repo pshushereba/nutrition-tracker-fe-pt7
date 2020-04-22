@@ -1,9 +1,9 @@
 import {useState} from 'react';
-import FormInput from '../components/form/FormInput.js';
-import InfoSVG from './svg/InfoSVG.js';
+import FormInput from '../form/FormInput.js';
+import InfoSVG from '../svg/InfoSVG.js';
 import StandardCalc from './StandardCalc.js';
 import MetricCalc from './MetricCalc.js';
-import { VerticalRow } from '../components/Layout/LayoutPrimitives.js';
+import { VerticalRow } from '../Layout/LayoutPrimitives.js';
 
 
 const Calculator = () => {

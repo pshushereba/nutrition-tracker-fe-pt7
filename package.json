@@ -38,7 +38,9 @@
     "react-chartjs-2": "^2.9.0",
     "react-dom": "16.12.0",
     "react-ga": "^2.7.0",
+    "react-slate-editor": "^0.1.3",
     "slate": "^0.57.1",
+    "slate-html-serializer": "^0.8.11",
     "slate-react": "^0.57.1",
     "subscriptions-transport-ws": "^0.9.16",
     "svg-inline-react": "^3.2.0",
@@ -48,6 +50,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
+    "@types/slate": "^0.47.5",
+    "@types/slate-react": "^0.22.9",
     "babel-loader": "^7.1.5"
   }
 }

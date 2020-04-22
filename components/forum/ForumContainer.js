@@ -5,6 +5,7 @@ import TopicList from './TopicList';
 import ThreadDetail from './ThreadDetail.js';
 import CreatePost from './CreatePost.js';
 import TextEditor from '../slate/TextEditor.js';
+import CommentList from './CommentList.js';
 
 const ForumContainer = () => {
     
@@ -23,8 +24,7 @@ const ForumContainer = () => {
         <div className="flex justify-end border-b-2 border-gray-100">
             <button className="bg-cyan-300 text-white text-xs muli w-40 py-1 my-4 rounded">Create Post</button>
         </div>
-            {/* <TopicList /> */}
-            <TextEditor />
+            <TopicList />
         <div className="flex-1"></div>
         </div>
     )

@@ -2,13 +2,18 @@ import React from 'react'
 import EyeIconSVG from '../svg/EyeIconSVG.js';
 import CommentIconSVG from '../svg/CommentIconSVG.js';
 import LikeIconSVG from '../svg/LikeIconSVG.js';
+import { useRouter } from 'next/router';
 
 const TopicCard = (props) => {
+    const router = useRouter();
+    
     return (
         <div className="border-b-2 border-gray-50">
             <div className="flex">
                 <div className="w-1/2">
-                    <h1 className="muli text-2xl my-4">{props.data.title}</h1>
+                    <h1 
+                        className="muli text-2xl my-4"
+                        onClick={() => {router.push('/forum/[post]', `/forum/${props.data.id}`)}}>{props.data.title}</h1>
                     <p className="mb-4">{props.data.user.name}</p>
                 </div>
                 <div className="flex flex-1"></div>

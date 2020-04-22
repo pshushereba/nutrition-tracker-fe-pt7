@@ -22,8 +22,6 @@ const CreatePost = () => {
         })
     }
     
-    console.log(postData);
-
     return (
         <div>
             <CenteredContainer>

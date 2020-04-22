@@ -207,3 +207,22 @@ export const GET_FORUM_TOPICS = gql`
   }
 	}
 `;
+
+export const GET_POST_COMMENTS = gql`
+{
+  comments {
+    id
+    user_id
+    user {
+      id
+      name
+    }
+    updatedAt
+    likeCount
+    body
+		post {
+      id
+    }
+  }
+}
+`
