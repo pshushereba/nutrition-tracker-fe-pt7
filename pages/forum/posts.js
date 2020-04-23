@@ -4,7 +4,7 @@ import withApollo from '../../lib/apollo.js';
 import Layout from '../../components/Layout/index.js';
 import {CenteredContainer} from '../../components/Layout/LayoutPrimitives.js';
 
-const forum = () => {
+const posts = () => {
     return (
         <Layout>
             <CenteredContainer>
@@ -14,4 +14,4 @@ const forum = () => {
     )
 }
 
-export default withApollo(forum);
+export default withApollo(posts);

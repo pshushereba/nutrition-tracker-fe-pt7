@@ -226,3 +226,33 @@ export const GET_POST_COMMENTS = gql`
   }
 }
 `
+
+export const GET_POST_DETAILS = gql`
+query getPost($id: String!) {
+  post(
+    id: $id
+  ) {
+    id
+    body
+    title
+    user {
+      id
+      name
+    }
+    user_id
+    comments {
+      id
+      user {
+        id
+        name
+      }
+      body
+    }
+    viewCount
+    likeCount
+    me {
+      name
+    }
+  }
+}
+`

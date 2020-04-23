@@ -1,10 +1,10 @@
 import React from 'react'
+import { CenteredContainer } from '../../components/Layout/LayoutPrimitives.js';
 
 const CommentCard = (props) => {
-    console.log("In CommentCard", props)
     
     return (
-        <div className="w-2/3 mb-4">
+        <div className="mb-4 flex-col justify-center">
             <p className="text-sm mb-2">{props.data.user.name}</p>
             <p className="muli">{props.data.body}</p>
         </div>
