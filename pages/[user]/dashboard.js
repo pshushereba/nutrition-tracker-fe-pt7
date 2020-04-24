@@ -21,7 +21,7 @@ const Dashboard = ({ apollo }) => {
     client.writeData({
       data: {
         ...data,
-        lowerNav: "forums",
+        lowerNav: "journal",
         logType: "daily",
         mealType: "breakfast",
         activeCat: "featured"

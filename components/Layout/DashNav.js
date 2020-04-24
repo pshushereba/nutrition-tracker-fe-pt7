@@ -4,8 +4,8 @@ import { GET_DASHNAV_STATE } from "../../gql/queries";
 export default function DashNav() {
   const { data, client } = useQuery(GET_DASHNAV_STATE); //Gets active dashboard component from client cache
 
-  const { lowerNav } = client.cache.data.data;
-  const activeNavControl = data ? data.lowerNav : lowerNav;
+  const activeNavControl = data ? data.lowerNav : "journal";
+  // const activeNavControl = "journal"
 
   return (
     <ul className="w-1/3 flex justify-around text-lg font-medium py-2">
