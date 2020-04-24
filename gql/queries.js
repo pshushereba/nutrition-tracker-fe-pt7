@@ -197,9 +197,62 @@ export const GET_FORUM_TOPICS = gql`
       id
       user {
         id
+        name
+        email
       }
       viewCount
       title
+      createdAt
+      updatedAt
   }
 	}
 `;
+
+export const GET_POST_COMMENTS = gql`
+{
+  comments {
+    id
+    user_id
+    user {
+      id
+      name
+    }
+    updatedAt
+    likeCount
+    body
+		post {
+      id
+    }
+  }
+}
+`
+
+export const GET_POST_DETAILS = gql`
+query getPost($id: String!) {
+  post(
+    id: $id
+  ) {
+    id
+    body
+    title
+    user {
+      id
+      name
+    }
+    user_id
+    comments {
+      id
+      user {
+        id
+        name
+      }
+      body
+    }
+    viewCount
+    likeCount
+    me {
+      name
+    }
+  }
+}
+`

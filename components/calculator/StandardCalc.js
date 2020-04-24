@@ -1,5 +1,5 @@
 import React from "react";
-import FormInput from "../components/form/FormInput.js";
+import FormInput from "../form/FormInput.js";
 
 const StandardCalc = ({ bmiInfo, setBmiInfo }) => {
   const handleSubmit = (e) => {

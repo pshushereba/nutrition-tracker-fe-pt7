@@ -3,18 +3,11 @@ import { useQuery, useSubscription } from '@apollo/react-hooks';
 
 import { GET_FORUM_TOPICS } from '../../gql/queries.js';
 import { SUBSCRIBE_FORUM_THREADS } from '../../gql/subscriptions.js';
+import TopicCard from './TopicCard.js';
 
 const TopicList = () => {
     
     const { loading, data, error, subscribeToMore, refetch } = useQuery(GET_FORUM_TOPICS)
-
-    /*
-        Current problem: We are still not sure if the websocket is staying open, or if it is continuously closing and reconnecting. There is a problem with the subscription when the request is made to the server. The subscription works on the GQL playground, but not on the client side. We were not able to implement the useSubscription hook correctly. Using subscribeToMore seems like the better way to go, but we need to double check to make sure that it is set up correctly.
-
-        Possible fix: Have a separate endpoint for subscriptions. 
-    
-    
-    */
 
     useEffect(() => {
         subscribeToMore({
@@ -49,9 +42,9 @@ const TopicList = () => {
     
     console.log(data)
     return (
-        <div className="flex">
+        <div className="flex-row">
             {data.posts ? data.posts.map((post) => {
-                return <h2>{post.title}</h2>
+                return <TopicCard data={post} />
             }) : null}
         </div>
     )

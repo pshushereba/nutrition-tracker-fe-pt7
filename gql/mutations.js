@@ -162,3 +162,27 @@ export const UPDATE_WEIGHT_LOG = gql`
     }
   }
 `;
+
+export const ADD_POST = gql`
+mutation ADD_POST($title: String!, $body: String!) {
+  createPost(data: { title: $title, body: $body })
+  {
+    id
+    body
+    title
+  }
+}
+`
+
+export const ADD_COMMENT = gql`
+  mutation ADD_COMMENT($postId: String!, $body: String!) {
+    createComment(postId: $postId, data: { body: $body }) 
+    {
+      id
+      user_id
+      body
+      createdAt
+      likeCount
+    }
+  }
+`;
