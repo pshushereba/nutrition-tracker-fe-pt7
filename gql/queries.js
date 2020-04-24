@@ -250,9 +250,10 @@ query getPost($id: String!) {
     }
     viewCount
     likeCount
-    me {
-      name
-    }
+  }
+  me {
+    id
+    name
   }
 }
 `
