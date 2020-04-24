@@ -28,6 +28,8 @@
     "graphql": "^14.0.2",
     "graphql-request": "^1.8.2",
     "graphql-tag": "2.10.1",
+    "highcharts": "^8.0.4",
+    "highcharts-react-official": "^3.0.0",
     "isomorphic-unfetch": "^3.0.0",
     "isomorphic-ws": "^4.0.1",
     "js-cookie": "^2.2.1",
