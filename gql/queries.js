@@ -195,6 +195,11 @@ export const GET_FORUM_TOPICS = gql`
     posts {
       body
       id
+      comments {
+        id
+        user_id
+        body
+      }
       user {
         id
         name
@@ -250,9 +255,9 @@ query getPost($id: String!) {
     }
     viewCount
     likeCount
-    me {
+  }
+  me {
       name
     }
-  }
 }
 `

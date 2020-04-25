@@ -186,3 +186,12 @@ export const ADD_COMMENT = gql`
     }
   }
 `;
+
+export const UPDATE_VIEW_COUNT = gql`
+  mutation UPDATE_POST($id: String!, $viewCount: Int!) {
+    updatePost(id: $id, data: { viewCount: $viewCount })
+    {
+      viewCount
+    }
+  }
+`

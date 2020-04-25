@@ -4,10 +4,11 @@ import { useMutation } from '@apollo/react-hooks';
 import { ADD_COMMENT } from '../../gql/mutations.js';
 
 
-const AddComment = () => {
+const AddComment = (props) => {
     // Holding the user's comment in state.
     const [commentBody, setCommentBody] = useState("");
-    const testId = "ck96ctuso000g076787imi7z3"
+    const postId = props.data.post.id;
+    console.log("In AddComment", props);
     
     const [addPostComment] = useMutation(ADD_COMMENT);
 
@@ -16,17 +17,18 @@ const AddComment = () => {
     }
     
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
         addPostComment({variables: {
-            postId: testId,
+            postId: postId,
             body: commentBody
         }})
+        setCommentBody("")
     }
 
     return (
         <div>
             <CenteredContainer>
-                <p className="text-xs mb-2">Comment as Michael Jordan</p>
+                <p className="text-xs mb-2">Comment as {props.data.me.name}</p>
                 <form onSubmit={handleSubmit}>
                     <textarea 
                         rows="5" 

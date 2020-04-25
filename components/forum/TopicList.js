@@ -44,7 +44,7 @@ const TopicList = () => {
     return (
         <div className="flex-row">
             {data.posts ? data.posts.map((post) => {
-                return <TopicCard data={post} />
+                return <TopicCard key={post.id} data={post} />
             }) : null}
         </div>
     )

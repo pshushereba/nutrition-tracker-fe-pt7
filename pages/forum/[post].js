@@ -16,7 +16,6 @@ const post = () => {
     
     const router = useRouter();
     const id = router.query;
-    console.log(id.post);
 
     const { data, loading, error } = useQuery(GET_POST_DETAILS, { variables: {id: id.post} });
 
@@ -56,7 +55,7 @@ const post = () => {
                     <p className="w-3/4">{data.post.body}</p>
                     </div>
                     
-                <AddComment />
+                <AddComment data={data} />
                 <div className="flex-col">
                     {data.post.comments.map((comment) => {
                         return <CommentCard key={comment.id} data={comment} />
