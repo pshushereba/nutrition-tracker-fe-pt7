@@ -10,10 +10,9 @@ import { UPDATE_VIEW_COUNT } from '../../gql/mutations';
 const TopicCard = (props) => {
     const router = useRouter();
 
-    let previousViews = (props.data.viewCount ? 1 : props.data.viewCount);
+    let previousViews = ((props.data.viewCount === null) ? 1 : props.data.viewCount);
 
     const [updateViews] = useMutation(UPDATE_VIEW_COUNT);
-
 
     const handleChange = (e) => {
         e.preventDefault()
@@ -36,13 +35,19 @@ const TopicCard = (props) => {
                 <div className="flex flex-1"></div>
                 <div className="flex justify-end align-middle w-1/6">
                     <div className="my-4 mx-2 w-1/3">
-                        <EyeIconSVG /> {props.data.viewCount || 0}
+                        <div className="flex">
+                            <EyeIconSVG /> {props.data.viewCount || 0}
+                        </div>
                     </div>
                     <div className="my-4 mx-2 w-1/3">
-                        <CommentIconSVG /> {props.data.comment || 0}
+                        <div className="flex">
+                            <CommentIconSVG /> {props.data.comments.length ? props.data.comments.length : 0}
+                        </div>
                     </div>
                     <div className="my-4 mx-2 w-1/3">
-                        <LikeIconSVG /> 0
+                        <div className="flex">
+                            <LikeIconSVG /> 0
+                        </div>
                     </div>
                 </div>
             </div>

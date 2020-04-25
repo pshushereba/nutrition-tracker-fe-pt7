@@ -18,11 +18,15 @@ const AddComment = (props) => {
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        addPostComment({variables: {
-            postId: postId,
-            body: commentBody
-        }})
-        setCommentBody("")
+        if (!commentBody) {
+            alert("You didn't add a comment")
+        } else {
+            addPostComment({variables: {
+                postId: postId,
+                body: commentBody
+            }})
+            setCommentBody("")
+        }
     }
 
     return (

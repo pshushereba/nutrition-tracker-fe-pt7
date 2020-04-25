@@ -1,9 +1,12 @@
 import React, {useState} from 'react'
 import { useMutation } from '@apollo/react-hooks';
+import { useRouter } from 'next/router'
 import { ADD_POST } from '../../gql/mutations.js';
 import { CenteredContainer, Spacer } from '../../components/Layout/LayoutPrimitives.js';
 
 const CreatePost = () => {
+
+    const router = useRouter();
     
     const [postData, setPostData] = useState({});
     const [addPost] = useMutation(ADD_POST);
@@ -20,6 +23,7 @@ const CreatePost = () => {
                 body: postData.body
             }
         })
+        router.push('/forum/posts')
     }
     
     return (
