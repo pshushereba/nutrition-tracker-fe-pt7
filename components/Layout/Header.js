@@ -38,7 +38,7 @@ const Header = () => {
                 className="py-2 px-8 cursor-pointer"
                 onClick={() => {
                   removeCookies(cookies, ["auth0_token", "api_token"]);
-                  router.push("/");
+                  router.push("/api/logout");
                 }}
               >
                 Sign Out
@@ -62,7 +62,7 @@ const Header = () => {
                   className="py-2 px-8 cursor-pointer"
                   onClick={() => {
                     removeCookies(cookies, ["auth0_token", "api_token"]);
-                    router.push("/");
+                    router.push("/api/logout");
                   }}
                 >
                   Sign Out
