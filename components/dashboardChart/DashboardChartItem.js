@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import FullHeartSVG from "../svg/FullHeartSVG.js";
 import HeartOutlineSVG from "../svg/HeartOutlineSVG.js";
 import { CenteredContainer, Spacer } from "../Layout/LayoutPrimitives.js";

@@ -12,6 +12,7 @@ export default function FoodLog() {
 
   useEffect(() => {
     refetch();
+    return () => null
   }, []);
 
   if (loading) return "Loading...";

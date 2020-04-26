@@ -1,4 +1,3 @@
-import React from "react";
 import DashboardChartItem from "./DashboardChartItem.js";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { UPDATE_FOOD_STRING, DELETE_FOOD_LOG_RECORD } from "../../gql/mutations.js";
