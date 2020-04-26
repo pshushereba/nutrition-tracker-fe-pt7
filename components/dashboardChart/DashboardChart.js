@@ -70,7 +70,7 @@ const DashboardChart = ({ records, refetch }) => {
         </div>
       </div>
       <div className="border-t border-l">
-        {chunkedRecords[currChunk].map((cv) => {
+        {chunkedRecords.length !== 0 && chunkedRecords[currChunk].map((cv) => {
           return (
             <DashboardChartItem
               data={cv}
