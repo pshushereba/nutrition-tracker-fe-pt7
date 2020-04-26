@@ -195,6 +195,11 @@ export const GET_FORUM_TOPICS = gql`
     posts {
       body
       id
+      comments {
+        id
+        user_id
+        body
+      }
       user {
         id
         name
@@ -205,6 +210,10 @@ export const GET_FORUM_TOPICS = gql`
       createdAt
       updatedAt
   }
+    me {
+      id
+      name
+    }
 	}
 `;
 

@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import { CenteredContainer, Spacer } from '../../components/Layout/LayoutPrimitives.js';
 import { useMutation } from '@apollo/react-hooks';
 import { ADD_COMMENT } from '../../gql/mutations.js';
+import { useRouter } from 'next/router';
 
 
-const AddComment = () => {
+const AddComment = (props) => {
     // Holding the user's comment in state.
     const [commentBody, setCommentBody] = useState("");
-    const testId = "ck96ctuso000g076787imi7z3"
+    const postId = props.data.post.id;
+    console.log("In AddComment", props.data.post.id);
+
+    const router = useRouter();
     
     const [addPostComment] = useMutation(ADD_COMMENT);
 
@@ -16,17 +20,22 @@ const AddComment = () => {
     }
     
     const handleSubmit = (e) => {
-        e.preventDefault();
-        addPostComment({variables: {
-            postId: testId,
-            body: commentBody
-        }})
+        e.preventDefault()
+        if (!commentBody) {
+            alert("You didn't add a comment")
+        } else {
+            addPostComment({variables: {
+                postId: postId,
+                body: commentBody
+            }})
+        }
+        router.reload()
     }
 
     return (
         <div>
             <CenteredContainer>
-                <p className="text-xs mb-2">Comment as Michael Jordan</p>
+                <p className="text-xs mb-2">Comment as {props.data.me.name}</p>
                 <form onSubmit={handleSubmit}>
                     <textarea 
                         rows="5" 

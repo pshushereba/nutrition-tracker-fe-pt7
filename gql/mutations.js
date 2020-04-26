@@ -193,6 +193,24 @@ export const DELETE_FOOD_LOG_RECORD = gql`
   }
 `;
 
+export const UPDATE_VIEW_COUNT = gql`
+  mutation UPDATE_POST($id: String!, $viewCount: Int!) {
+    updatePost(id: $id, data: { viewCount: $viewCount }) {
+      viewCount
+    }
+  }
+`;
+
+export const UPDATE_POST = gql`
+  mutation UPDATE_POST($id: String!, $title: String, $body: String) {
+    updatePost(id: $id, data: { title: $title, body: $body }) {
+      id
+      title
+      body
+    }
+  }
+`;
+
 export const UPDATE_FOOD_LOG_RECORD = gql`
   mutation UPDATE_FOOD_LOG_RECORD(
     $id: String!
@@ -221,6 +239,32 @@ export const UPDATE_FOOD_LOG_RECORD = gql`
       protein
       food_string
       meal_type
+    }
+  }
+`;
+
+export const UPDATE_COMMENT = gql`
+  mutation UPDATE_COMMENT($id: String!, $body: String) {
+    updateComment(id: $id, data: { body: $body }) {
+      id
+      body
+      likeCount
+    }
+  }
+`;
+
+export const DELETE_POST = gql`
+  mutation DELETE_POST($id: String!) {
+    deletePost(id: $id) {
+      id
+    }
+  }
+`;
+
+export const DELETE_COMMENT = gql`
+  mutation DELETE_COMMENT($id: String!) {
+    deleteComment(id: $id) {
+      id
     }
   }
 `;
