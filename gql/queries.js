@@ -210,6 +210,10 @@ export const GET_FORUM_TOPICS = gql`
       createdAt
       updatedAt
   }
+    me {
+      id
+      name
+    }
 	}
 `;
 
