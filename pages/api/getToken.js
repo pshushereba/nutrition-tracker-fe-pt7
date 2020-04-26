@@ -1,5 +1,4 @@
 import auth0 from "../../lib/Auth0/auth0";
-import fetch from "isomorphic-unfetch";
 
 export default async function session(req, res) {
 

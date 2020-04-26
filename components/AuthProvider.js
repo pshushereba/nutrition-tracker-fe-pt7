@@ -28,13 +28,13 @@ function AuthProvider({ children }) {
     // Check that a new route is OK
     const handleRouteChange = url => {
       if (url !== '/' && url !== '/forum/posts' && !user) {
-        window.location.href = '/'
+        window.location.href = '/api/login'
       }
     }
 
     // Check that initial route is OK
     if (pathname !== '/' && user === null) {
-      window.location.href = '/'
+      window.location.href = '/api/login'
     }
 
     // Monitor routes
@@ -52,3 +52,4 @@ function AuthProvider({ children }) {
 const useAuth = () => useContext(AuthContext)
 
 export { AuthProvider, useAuth }
+

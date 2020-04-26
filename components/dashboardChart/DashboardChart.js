@@ -1,13 +1,19 @@
 import React from "react";
 import DashboardChartItem from "./DashboardChartItem.js";
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import { UPDATE_FOOD_STRING } from "../../gql/mutations.js";
+import { UPDATE_FOOD_STRING, DELETE_FOOD_LOG_RECORD } from "../../gql/mutations.js";
 import { Spacer } from "../Layout/LayoutPrimitives.js";
 import { GET_OPEN_LOG_STATE } from "../../gql/queries.js";
 
 const DashboardChart = ({ records }) => {
   const [updateFoodString] = useMutation(UPDATE_FOOD_STRING);
-  const { loading, error, data: { mealType, logType} } = useQuery(GET_OPEN_LOG_STATE)
+  const { loading, error, data: { mealType, logType}, refetch } = useQuery(GET_OPEN_LOG_STATE)
+  const [deleteItem] = useMutation(DELETE_FOOD_LOG_RECORD)
+
+  async function deleteRecord(id) {
+    await deleteItem({ variables: { id: id }})
+    refetch()
+  }
 
   if(loading) return "Loading ..."
   if(error) return `${error}`
@@ -65,6 +71,8 @@ const DashboardChart = ({ records }) => {
               data={cv}
               key={cv.id}
               toggleFav={toggleFav}
+              deleteRecord={deleteRecord}
+              refetch={refetch}
             />
           );
         })}
