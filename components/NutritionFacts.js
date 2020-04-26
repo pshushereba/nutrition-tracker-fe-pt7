@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ADD_FOOD } from "../gql/mutations";
 import { useMutation } from "@apollo/react-hooks";
-import { GET_FOOD_LOG } from "../gql/queries";
+import { adjustIntValuesonAnObject } from "../lib/utils";
 
 export default function NutritionFacts({
   nutrition: { info, label, meal_type },
@@ -119,15 +119,8 @@ export default function NutritionFacts({
   const handleSubmit = (e) => {
     //  Adjusts values on macros according to the quantity set by the user and returns a new object
     e.preventDefault();
-    const adjustQty = (obj, multiplier) => {
-      return Object.keys(obj).map((key) => {
-        typeof obj[key] === "number"
-          ? (obj[key] = obj[key] * multiplier)
-          : (obj[key] = obj[key]);
-      });
-    };
     setQty(enteredQty);
-    adjustQty(foodLogData.recordData, enteredQty);
+    adjustIntValuesonAnObject(foodLogData.recordData, qty, enteredQty);
   };
 
   return (

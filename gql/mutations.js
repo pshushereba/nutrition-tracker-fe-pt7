@@ -164,20 +164,18 @@ export const UPDATE_WEIGHT_LOG = gql`
 `;
 
 export const ADD_POST = gql`
-mutation ADD_POST($title: String!, $body: String!) {
-  createPost(data: { title: $title, body: $body })
-  {
-    id
-    body
-    title
+  mutation ADD_POST($title: String!, $body: String!) {
+    createPost(data: { title: $title, body: $body }) {
+      id
+      body
+      title
+    }
   }
-}
-`
+`;
 
 export const ADD_COMMENT = gql`
   mutation ADD_COMMENT($postId: String!, $body: String!) {
-    createComment(postId: $postId, data: { body: $body }) 
-    {
+    createComment(postId: $postId, data: { body: $body }) {
       id
       user_id
       body
@@ -188,9 +186,41 @@ export const ADD_COMMENT = gql`
 `;
 
 export const DELETE_FOOD_LOG_RECORD = gql`
-mutation DELETE_FOOD_LOG_RECORD($id: String!) {
-  deleteDailyRecord(id: $id) {
-    id
+  mutation DELETE_FOOD_LOG_RECORD($id: String!) {
+    deleteDailyRecord(id: $id) {
+      id
+    }
   }
-}  
-`
+`;
+
+export const UPDATE_FOOD_LOG_RECORD = gql`
+  mutation UPDATE_FOOD_LOG_RECORD(
+    $id: String!
+    $calories: Int
+    $fat: Int
+    $carbs: Int
+    $protein: Int
+    $food_string: String
+  ) {
+    updateDailyRecord(
+      id: $id
+      data: {
+        calories: $calories
+        fat: $fat
+        carbs: $carbs
+        protein: $protein
+        food_string: $food_string
+      }
+    ) {
+      id
+      date
+      calories
+      fat
+      carbs
+      fiber
+      protein
+      food_string
+      meal_type
+    }
+  }
+`;

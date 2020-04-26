@@ -2,9 +2,16 @@ import React, { useState } from "react";
 import FullHeartSVG from "../svg/FullHeartSVG.js";
 import HeartOutlineSVG from "../svg/HeartOutlineSVG.js";
 import { CenteredContainer, Spacer } from "../Layout/LayoutPrimitives.js";
+import UpdateServingQtyInput from "./UpdateServingQtyInput.js";
 
-const DashboardChartItem = ({ data, toggleFav, deleteRecord }) => {
+const DashboardChartItem = ({
+  data,
+  toggleFav,
+  deleteRecord,
+  updateRecord,
+}) => {
   const [item, setItem] = useState(data);
+  const [isEditing, setIsEditing] = useState(false);
 
   const { calories, fat, protein, carbs, food_string, id } = item;
 
@@ -25,9 +32,13 @@ const DashboardChartItem = ({ data, toggleFav, deleteRecord }) => {
             </i>
           </CenteredContainer>
         </div>
-        <div className="flex w-11/12 pl-3 items-center">{`${
-          loggedQty ? loggedQty : quantity
-        } ${measure} ${food}`}</div>
+        {isEditing ? (
+          <UpdateServingQtyInput item={item} isEditing={isEditing} setIsEditing={setIsEditing}/>
+        ) : (
+          <div className="flex w-11/12 pl-3 items-center">
+            {`${loggedQty ? loggedQty : quantity} ${measure} ${food}`}
+          </div>
+        )}
       </div>
       <div className="flex w-7/12 justify-center items-center">
         <div className="w-1/6 text-sm text-center">{calories}</div>
@@ -39,7 +50,10 @@ const DashboardChartItem = ({ data, toggleFav, deleteRecord }) => {
         <Spacer />
         <div className="flex w-1/3 pr-2 py-2">
           <div className="w-1/3"></div>
-          <div className="flex flex-col justify-end items-center w-1/3 text-xs text-right cursor-pointer">
+          <div
+            className="flex flex-col justify-end items-center w-1/3 text-xs text-right cursor-pointer"
+            onClick={() => setIsEditing(!isEditing)}
+          >
             <i>
               <svg
                 width="12"
@@ -56,9 +70,9 @@ const DashboardChartItem = ({ data, toggleFav, deleteRecord }) => {
             </i>
             <div>edit</div>
           </div>
-          <div 
-          className="flex flex-col justify-end items-center w-1/3 text-xs text-right cursor-pointer"
-          onClick={() => deleteRecord(id)}
+          <div
+            className="flex flex-col justify-end items-center w-1/3 text-xs text-right cursor-pointer"
+            onClick={() => deleteRecord(id)}
           >
             <i>
               <svg
@@ -76,9 +90,7 @@ const DashboardChartItem = ({ data, toggleFav, deleteRecord }) => {
                 />
               </svg>
             </i>
-            <div>
-              delete
-            </div>
+            <div>delete</div>
           </div>
         </div>
       </div>

@@ -84,7 +84,7 @@ export const GET_PROGRESS_DATA = gql`
 `;
 
 export const GET_FOOD_LOG = gql`
-  {
+  query{
     myDailyRecords {
       id
       date

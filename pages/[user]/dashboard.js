@@ -13,8 +13,7 @@ import ForumContainer from "../../components/forum/ForumContainer";
 import DonutGraph from "../../components/graphs/DonutGraph";
 
 
-const Dashboard = ({ user }) => {
-  console.log(user)
+const Dashboard = () => {
   //Gets active dashboard component from client cache
   const { data, client } = useQuery(GET_DASHNAV_STATE);
 

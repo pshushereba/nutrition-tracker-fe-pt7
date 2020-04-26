@@ -8,7 +8,6 @@ export default function FoodSearchBox() {
   const { data, client } = useQuery(GET_SEARCH_RESULTS); //  Pull in the client so result data can be written to the cache
 
   const handleChange = (e) => {
-    console.log("first", item)
     setItem(e.target.value);
   };
   

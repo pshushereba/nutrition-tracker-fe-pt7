@@ -10,6 +10,7 @@ const DashboardChart = ({ records, refetch }) => {
   const { loading, error, data: { mealType, logType} } = useQuery(GET_OPEN_LOG_STATE)
   const [deleteItem] = useMutation(DELETE_FOOD_LOG_RECORD)
 
+
   async function deleteRecord(id) {
     await deleteItem({ variables: { id: id }})
     console.log("in deleteRecord")
