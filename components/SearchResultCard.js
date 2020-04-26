@@ -30,6 +30,8 @@ export default function SearchResultsCard({ item }) {
   useEffect(() => {
     //  When a the meal_type gets set, hit edamam and render the Nurtrition Label
     foodObj && foodObj.meal_type && getInfo();
+    //Clean up func for componentWillUnmount
+    return () => null
   }, [foodObj]);
 
   return (
