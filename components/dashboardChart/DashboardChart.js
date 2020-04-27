@@ -84,7 +84,7 @@ const DashboardChart = ({ records, refetch }) => {
       </div>
       <Spacer />
       {
-        <span className="flex mt-40">
+        <span className={`flex mt-40 ${ chunkedRecords.length <= 1 ? "hidden" : ""}`}>
           <Spacer />
           <button
             className="px-2 py-1 border w-1/6 disabled:text-gray-100 disabled:cursor-not-allowed"
