@@ -33,7 +33,7 @@ const DashboardChartItem = ({
           </CenteredContainer>
         </div>
         {isEditing ? (
-          <UpdateServingQtyInput item={item} isEditing={isEditing} setIsEditing={setIsEditing}/>
+          <UpdateServingQtyInput item={item} isEditing={isEditing} setIsEditing={setIsEditing} loggedQty={loggedQty}/>
         ) : (
           <div className="flex w-11/12 pl-3 items-center">
             {`${loggedQty ? loggedQty : quantity} ${measure} ${food}`}

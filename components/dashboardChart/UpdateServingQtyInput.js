@@ -7,22 +7,18 @@ export default function UpdateServingQtyInput({
   item,
   isEditing,
   setIsEditing,
+  loggedQty: currQty
 }) {
-  const [adjustedItem, setAdjustedItem] = useState(item);
-  const { calories, fat, protein, carbs, food_string, id } = adjustedItem;
-  const { loggedQty } = JSON.parse(food_string);
-  const [qty, setQty] = useState(loggedQty);
-  const foodString = JSON.parse(food_string);
+  const [qty, setQty] = useState(currQty);
   const [updateRecord] = useMutation(UPDATE_FOOD_LOG_RECORD);
-
+  
   const update = (e) => {
-    console.log(adjustedItem);
     e.preventDefault();
     // Pass the obj, currVal, and qty
-    const adjItem = adjustIntValuesonAnObject(adjustedItem, loggedQty, qty);
+    const adjItem = adjustIntValuesonAnObject(item, currQty, qty);
+    const { calories, fat, protein, carbs, food_string, id } = adjItem;
+    const foodString = JSON.parse(food_string);
 
-    setAdjustedItem(adjItem);
-    console.log(adjustedItem);
     updateRecord({
       variables: {
         id: id,
