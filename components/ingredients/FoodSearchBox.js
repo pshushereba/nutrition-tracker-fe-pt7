@@ -20,6 +20,7 @@ export default function FoodSearchBox() {
     const list = await foodDbSearch(query);
     // Change the needed data to a string
     const searchResults = JSON.stringify(list.hints);
+    console.log(list)
     // Reset the input
     setItem('');
     // Write the searchResults to the cache, change the dash component to search results

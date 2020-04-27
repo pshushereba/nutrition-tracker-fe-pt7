@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import { CenteredContainer, Spacer } from '../../components/Layout/LayoutPrimitives.js';
 import { useMutation } from '@apollo/react-hooks';
 import { ADD_COMMENT } from '../../gql/mutations.js';
+import { useRouter } from 'next/router';
 
 
 const AddComment = (props) => {
     // Holding the user's comment in state.
     const [commentBody, setCommentBody] = useState("");
     const postId = props.data.post.id;
-    console.log("In AddComment", props);
+    console.log("In AddComment", props.data.post.id);
+
+    const router = useRouter();
     
     const [addPostComment] = useMutation(ADD_COMMENT);
 
@@ -25,8 +28,8 @@ const AddComment = (props) => {
                 postId: postId,
                 body: commentBody
             }})
-            setCommentBody("")
         }
+        router.reload()
     }
 
     return (

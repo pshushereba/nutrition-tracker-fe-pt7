@@ -10,7 +10,7 @@ import CommentCard from '../../components/forum/CommentCard.js';
 import EyeIconSVG from '../../components/svg/EyeIconSVG.js';
 import CommentIconSVG from '../../components/svg/CommentIconSVG.js';
 import LikeIconSVG from '../../components/svg/LikeIconSVG.js';
-import AddComment from '../../components/forum/AddComment.js';
+import Comment from '../../components/forum/Comment.js';
 
 const post = () => {
     
@@ -32,7 +32,7 @@ const post = () => {
     return (
         <div>
             <Layout>
-                <CenteredContainer extraClasses="mx-48">
+                {/* <CenteredContainer extraClasses="mx-48"> */}
                     <Link href="/forum/posts" replace>
                         <button className="flex justify-start my-4">Back</button>
                     </Link>
@@ -40,7 +40,9 @@ const post = () => {
                     
                     <p className="my-4">Posted by {data.post.user.name} 4 hours ago</p>
                     
-                    <div className="flex justify-end">
+                    
+                   <CenteredContainer>
+                   <div className="flex justify-end w-1/2">
                         <div className="mx-2">
                             <div className="flex mx-1">
                                 <EyeIconSVG /> {data.post.viewCount || 0}
@@ -57,14 +59,19 @@ const post = () => {
                             </div>
                         </div>
                     </div>
+                   </CenteredContainer>
+                    
+                    
+                    
                     <p>{data.post.body}</p>
 
-                    <AddComment data={data} />
-
-                    {data.post.comments.map((comment) => {
-                        return <CommentCard key={comment.id} data={comment} />
-                    })}
-                </CenteredContainer>
+                    <Comment data={data} />
+                    <div>
+                        {data.post.comments.map((comment) => {
+                            return <CommentCard key={comment.id} data={comment} />
+                        })}
+                    </div>
+                {/* </CenteredContainer> */}
             </Layout>
         </div>
     )

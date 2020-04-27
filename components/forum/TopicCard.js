@@ -62,7 +62,7 @@ const TopicCard = (props) => {
                     <div 
                         className="my-4 mx-2 w-1/4"
                         onClick={toggleMenu}>
-                        { showMenu ? <Menu showMenu={showMenu} toggleMenu={toggleMenu} /> : <MoreIconSVG />}
+                        { showMenu ? <Menu data={props.data} showMenu={showMenu} toggleMenu={toggleMenu} /> : <MoreIconSVG />}
                     </div>
                 </div>
             </div>
