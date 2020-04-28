@@ -26,10 +26,13 @@ module.exports = {
         "btn-pink": "#FE42B3",
         "active-blue": "#8D4CFF",
         "item-hover": "#FFA5DB",
+        "cyan-300": "#00426C",
+        "red-100": "#B10505",
         "pink-200": "#FFEDF7",
         "pink-300": "#FFA5DB",
         "pink-400": "#FE42B3",
         "pink-500": "#FF19A3",
+        "orange-100": "#D89F0E",
         "teal-100": "#ACF3F8",
         "teal-200": "#82F7FF",
         "teal-300": "#24EEFB",
@@ -38,22 +41,28 @@ module.exports = {
         "green-200": "#B5CD57",
         "green-300": "#A5CE03",
         "green-400": "#CCFF00",
+        "green-450": "#9ABA19",
+        "green-500": "#4D8037",
         "purple-100": "#DAC5FF",
         "purple-200": "#D7B8FF",
         "purple-300": "#BF9BFF",
         "purple-400": "#A674FF",
         "purple-500": "#8D4CFF",
         "gray-10": "#F9F9F9",
+        "gray-50": "#EAEAEA",
         "gray-100": "#B7B7B7",
         "gray-200": "#797979",
         "gray-300": "#5A5A5A",
         "gray-400": "#363537",
+        "blue-400": "#00426C",
         "mr-96": "24rem"
       }
     }
   },
   variants: {
-    backgroundColor: ["responsive", "hover", "focus", "active"]
+    backgroundColor: ["responsive", "hover", "focus", "active"],
+    textColor: ["responsive", "hover", "focus", "active", "disabled"],
+    cursor: ["disabled", "hover"]
   },
   plugins: [require("@tailwindcss/custom-forms")]
 };

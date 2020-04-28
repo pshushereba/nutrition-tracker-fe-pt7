@@ -162,3 +162,109 @@ export const UPDATE_WEIGHT_LOG = gql`
     }
   }
 `;
+
+export const ADD_POST = gql`
+  mutation ADD_POST($title: String!, $body: String!) {
+    createPost(data: { title: $title, body: $body }) {
+      id
+      body
+      title
+    }
+  }
+`;
+
+export const ADD_COMMENT = gql`
+  mutation ADD_COMMENT($postId: String!, $body: String!) {
+    createComment(postId: $postId, data: { body: $body }) {
+      id
+      user_id
+      body
+      createdAt
+      likeCount
+    }
+  }
+`;
+
+export const DELETE_FOOD_LOG_RECORD = gql`
+  mutation DELETE_FOOD_LOG_RECORD($id: String!) {
+    deleteDailyRecord(id: $id) {
+      id
+    }
+  }
+`;
+
+export const UPDATE_VIEW_COUNT = gql`
+  mutation UPDATE_POST($id: String!, $viewCount: Int!) {
+    updatePost(id: $id, data: { viewCount: $viewCount }) {
+      viewCount
+    }
+  }
+`;
+
+export const UPDATE_POST = gql`
+  mutation UPDATE_POST($id: String!, $title: String, $body: String) {
+    updatePost(id: $id, data: { title: $title, body: $body }) {
+      id
+      title
+      body
+    }
+  }
+`;
+
+export const UPDATE_FOOD_LOG_RECORD = gql`
+  mutation UPDATE_FOOD_LOG_RECORD(
+    $id: String!
+    $calories: Int
+    $fat: Int
+    $carbs: Int
+    $protein: Int
+    $food_string: String
+  ) {
+    updateDailyRecord(
+      id: $id
+      data: {
+        calories: $calories
+        fat: $fat
+        carbs: $carbs
+        protein: $protein
+        food_string: $food_string
+      }
+    ) {
+      id
+      date
+      calories
+      fat
+      carbs
+      fiber
+      protein
+      food_string
+      meal_type
+    }
+  }
+`;
+
+export const UPDATE_COMMENT = gql`
+  mutation UPDATE_COMMENT($id: String!, $body: String) {
+    updateComment(id: $id, data: { body: $body }) {
+      id
+      body
+      likeCount
+    }
+  }
+`;
+
+export const DELETE_POST = gql`
+  mutation DELETE_POST($id: String!) {
+    deletePost(id: $id) {
+      id
+    }
+  }
+`;
+
+export const DELETE_COMMENT = gql`
+  mutation DELETE_COMMENT($id: String!) {
+    deleteComment(id: $id) {
+      id
+    }
+  }
+`;

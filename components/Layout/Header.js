@@ -1,6 +1,10 @@
 import { useRouter } from "next/router";
+import Cookie from "next-cookies";
+import cookies from "js-cookie";
 import { Spacer } from "./LayoutPrimitives";
 import DashNav from "./DashNav";
+import { removeCookies } from "../../lib/utils";
+import { useState, useEffect } from "react";
 
 const Header = () => {
   const router = useRouter();
@@ -9,7 +13,8 @@ const Header = () => {
   const onSignup = router.asPath === "/signup";
   const creatingProfile = router.asPath === "/createProfile";
   const inOnboarding = onHome || onLogin || onSignup || creatingProfile;
-
+  const token = Cookie("*").api_token !== undefined;
+  
   return (
     <div className="flex w-full p-4 bg-gray-10">
       <h1
@@ -25,13 +30,16 @@ const Header = () => {
             <ul className="flex  pr-32">
               <li
                 className="py-2 px-8 cursor-pointer"
-                onClick={() => router.push("/login")}
+                onClick={() => router.push("/user/settings")}
               >
                 Settings
               </li>
               <li
                 className="py-2 px-8 cursor-pointer"
-                onClick={() => router.push("/signup")}
+                onClick={() => {
+                  removeCookies(cookies, ["auth0_token", "api_token"]);
+                  router.push("/api/logout");
+                }}
               >
                 Sign Out
               </li>
@@ -45,16 +53,28 @@ const Header = () => {
             <ul className="flex  pr-32">
               <li
                 className="py-2 px-8 cursor-pointer"
-                onClick={() => router.push("/login")}
+                onClick={() => router.push("/api/login")}
               >
                 Sign In
               </li>
-              <li
-                className="py-2 px-8 cursor-pointer"
-                onClick={() => router.push("/signup")}
-              >
-                Sign Up
-              </li>
+              {token ? (
+                <li
+                  className="py-2 px-8 cursor-pointer"
+                  onClick={() => {
+                    removeCookies(cookies, ["auth0_token", "api_token"]);
+                    router.push("/api/logout");
+                  }}
+                >
+                  Sign Out
+                </li>
+              ) : (
+                <li
+                  className="py-2 px-8 cursor-pointer"
+                  onClick={() => router.push("/api/login")}
+                >
+                  Sign Up
+                </li>
+              )}
             </ul>
           </span>
         </>

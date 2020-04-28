@@ -1,12 +1,12 @@
 import { useQuery } from "@apollo/react-hooks";
 import { GET_DASHNAV_STATE } from "../../gql/queries";
+import { useRouter } from "next/router"
 
 export default function DashNav() {
   const { data, client } = useQuery(GET_DASHNAV_STATE); //Gets active dashboard component from client cache
 
-  const { lowerNav } = client.cache.data.data;
-  const activeNavControl = data ? data.lowerNav : lowerNav;
-
+  const activeNavControl = data ? data.lowerNav : "journal";
+  const router = useRouter()
   return (
     <ul className="w-1/3 flex justify-around text-lg font-medium py-2">
       <li
@@ -58,9 +58,10 @@ export default function DashNav() {
           activeNavControl === "forums" ? "border-b-4 border-pink-500" : ""
         } cursor-pointer`}
         value={"forums"}
-        onClick={() =>
-          client.writeData({ data: { ...data, lowerNav: "forums" } })
-        }
+        onClick={() => {
+          client.writeData({ data: { ...data, lowerNav: "forums" } });
+          router.push("/forum/posts")
+        }}
       >
         Forums
       </li>

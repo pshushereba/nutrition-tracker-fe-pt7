@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 export const GET_USER = gql`
-  {
+  query getUser{
     user {
       id
       name
@@ -11,7 +11,7 @@ export const GET_USER = gql`
 `;
 
 export const GET_ALL_USERS = gql`
-  {
+  query getAllUsers{
     users {
       id
       name
@@ -21,7 +21,7 @@ export const GET_ALL_USERS = gql`
 `;
 
 export const ME = gql`
-  {
+  query me{
     me {
       id
       name
@@ -53,7 +53,7 @@ export const ME = gql`
 `;
 
 export const USER_DASH_HEADER = gql`
-  {
+  query userDashHeader{
     me {
       name
       profile {
@@ -70,7 +70,7 @@ export const USER_DASH_HEADER = gql`
 `;
 
 export const GET_PROGRESS_DATA = gql`
-  {
+  query getProgressData{
     myDailyRecords {
       date
     }
@@ -84,7 +84,7 @@ export const GET_PROGRESS_DATA = gql`
 `;
 
 export const GET_FOOD_LOG = gql`
-  {
+  query getFoodLog{
     myDailyRecords {
       id
       date
@@ -160,7 +160,7 @@ export const GET_FORUM_SELECTION_STATE = gql`
 `;
 
 export const GET_LAST_WEIGHT_LOG = gql`
-  {
+  query getLastWeightLog{
     me {
       profile {
         weight
@@ -174,7 +174,7 @@ export const GET_LAST_WEIGHT_LOG = gql`
 `;
 
 export const GET_WEIGHT_LOGS = gql`
-  {
+  query getWeightLogs{
     myWeightLogs(orderBy: date_DESC) {
       date
       current_weight
@@ -191,15 +191,78 @@ export const GET_WEIGHT_LOGS = gql`
 `;
 
 export const GET_FORUM_TOPICS = gql`
-	{
+	query getForumTopics{
     posts {
       body
       id
+      comments {
+        id
+        user_id
+        body
+      }
       user {
         id
+        name
+        email
       }
       viewCount
       title
+      createdAt
+      updatedAt
   }
+    me {
+      id
+      name
+    }
 	}
 `;
+
+export const GET_POST_COMMENTS = gql`
+query getPostComments{
+  comments {
+    id
+    user_id
+    user {
+      id
+      name
+    }
+    updatedAt
+    likeCount
+    body
+		post {
+      id
+    }
+  }
+}
+`
+
+export const GET_POST_DETAILS = gql`
+query getPost($id: String!) {
+  post(
+    id: $id
+  ) {
+    id
+    body
+    title
+    user {
+      id
+      name
+    }
+    user_id
+    comments {
+      id
+      user {
+        id
+        name
+      }
+      body
+    }
+    viewCount
+    likeCount
+  }
+  me {
+    id
+    name
+  }
+}
+`

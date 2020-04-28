@@ -1,5 +1,4 @@
 import { useQuery } from "@apollo/react-hooks";
-import { getDataFromTree } from "@apollo/react-ssr";
 
 import withApollo from "../../lib/apollo";
 import { GET_DASHNAV_STATE } from "../../gql/queries";
@@ -9,11 +8,12 @@ import DailyVibe from "../../components/DailyVibe";
 import DesktopFoodJournal from "../../components/foodJournal/DesktopFoodJounal";
 import FoodSearchResults from "../../components/FoodSearchResults";
 import Progress from "../../components/Progress/Progress.js";
-import { Spacer } from "../../components/Layout/LayoutPrimitives";
 import { useEffect } from "react";
 import ForumContainer from "../../components/forum/ForumContainer";
+import DonutGraph from "../../components/graphs/DonutGraph";
 
-const Dashboard = ({ apollo }) => {
+
+const Dashboard = () => {
   //Gets active dashboard component from client cache
   const { data, client } = useQuery(GET_DASHNAV_STATE);
 
@@ -21,7 +21,7 @@ const Dashboard = ({ apollo }) => {
     client.writeData({
       data: {
         ...data,
-        lowerNav: "forums",
+        lowerNav: "journal",
         logType: "daily",
         mealType: "breakfast",
         activeCat: "featured"
@@ -37,7 +37,7 @@ const Dashboard = ({ apollo }) => {
       <Layout>
         <div className="flex my-10">
           <DailyVibe />
-          <Spacer />
+          <DonutGraph />
           <div className="w-3/12 mt-2 mr-40">
             <FoodSearchBox />
           </div>
@@ -65,3 +65,4 @@ const Dashboard = ({ apollo }) => {
 };
 
 export default withApollo(Dashboard);
+
