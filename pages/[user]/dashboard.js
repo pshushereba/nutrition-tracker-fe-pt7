@@ -47,10 +47,6 @@ const Dashboard = () => {
             <DesktopFoodJournal />
           ) : lowerNav === "progress" ? (
             <Progress />
-          ) : lowerNav === "badges" ? (
-            "Badges"
-          ) : lowerNav === "challenges" ? (
-            "Challenges"
           ) : lowerNav === "searchResults" ? (
             <FoodSearchResults />
           ) : lowerNav === "forums" ? (

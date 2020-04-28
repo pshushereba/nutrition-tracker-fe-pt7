@@ -33,28 +33,6 @@ export default function DashNav() {
       </li>
       <li
         className={`${
-          activeNavControl === "badges" ? "border-b-4 border-pink-500" : ""
-        } cursor-pointer`}
-        value={"badges"}
-        onClick={() =>
-          client.writeData({ data: { ...data, lowerNav: "badges" } })
-        }
-      >
-        Badges
-      </li>
-      <li
-        className={`${
-          activeNavControl === "challenges" ? "border-b-4 border-pink-500" : ""
-        } cursor-pointer`}
-        value={"challenges"}
-        onClick={() =>
-          client.writeData({ data: { ...data, lowerNav: "challenges" } })
-        }
-      >
-        Challenges
-      </li>
-      <li
-        className={`${
           activeNavControl === "forums" ? "border-b-4 border-pink-500" : ""
         } cursor-pointer`}
         value={"forums"}
