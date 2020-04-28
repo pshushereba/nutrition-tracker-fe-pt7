@@ -7,30 +7,7 @@ import TopicCard from './TopicCard.js';
 
 const TopicList = () => {
     
-    const { loading, data, error, subscribeToMore, refetch } = useQuery(GET_FORUM_TOPICS)
-
-    useEffect(() => {
-        subscribeToMore({
-            document: SUBSCRIBE_FORUM_THREADS,
-            updateQuery: (prev, { subscriptionData }) => {
-                console.log(prev)
-                if (!subscriptionData.data) return prev;
-                // if (subscriptionData.data.mutation === "DELETED" || subscriptionData.data.mutation === "UPDATED") {
-                //     refetch()
-                // }
-                refetch()
-
-            //     const newThread = subscriptionData.data.post;
-            //     console.log(newThread)
-            //     return Object.assign({}, prev, {
-            //         entry: {
-            //             posts: [newThread, ...prev.entry.post]
-            //         }
-            //     });
-            }
-        })
-        
-    }, [data])
+    const { loading, data, error } = useQuery(GET_FORUM_TOPICS)
 
     if (loading) {
         return "loading"

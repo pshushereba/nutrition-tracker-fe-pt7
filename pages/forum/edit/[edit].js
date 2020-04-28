@@ -12,40 +12,9 @@ const edit = (props) => {
     const id = router.query.edit;
 
     const { data, loading, error } = useQuery(GET_POST_DETAILS, { variables: {id: id} });
+    const [updatePost] = useMutation(UPDATE_POST);
    
     const [updatedPost, setUpdatedPost] = useState({title: data.post.title, body: data.post.body});
-
-    /*
-    function updateWeight() {
-    updateWeightLog({
-      variables: {
-        id: lastWeightLogId,
-        current_weight: weight,
-      },
-      optimisticResponse: {
-        __typename: "Mutation",
-        updateWeightLog: {
-          id: lastWeightLogId,
-          __typename: "WeightLog",
-          current_weight: weight,
-        },
-      },
-    });
-    
-    optimisticResponse: {
-        __typename: "Mutation",
-        updateDailyRecord: {
-          id: id,
-          __typename: "DailyRecord",
-          calories: calories,
-          fat: fat,
-          protein: protein,
-          carbs: carbs,
-          food_string: JSON.stringify({ ...foodString, loggedQty: qty }),
-        },
-      },
-
-    */
 
 
     if (loading) {
@@ -56,15 +25,29 @@ const edit = (props) => {
         return `There was an error getting the post, ${error}`
     }
 
-    console.log(updatedPost);
-
     const handleChange = (event) => {
         setUpdatedPost({...updatedPost, [event.target.name]: event.target.value})
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        
+        updatePost({
+            variables: {
+                id: id,
+                title: updatedPost.title,
+                body: updatedPost.body
+            },
+            optimisticResponse: {
+                __typename: "Mutation",
+                updatePost: {
+                  id: id,
+                	title: updatedPost.title,
+                	body: updatedPost.body,
+                  __typename: "Post"
+                },
+              }
+				})
+				router.push('/forum/posts')
     }
 
 

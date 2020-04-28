@@ -13,7 +13,6 @@ const TopicCard = (props) => {
     const router = useRouter();
     const [showMenu, setShowMenu] = useState(false);
 
-    console.log(props)
     let previousViews = ((props.data.viewCount === null) ? 1 : props.data.viewCount);
 
     const [updateViews] = useMutation(UPDATE_VIEW_COUNT);
@@ -21,8 +20,6 @@ const TopicCard = (props) => {
     const toggleMenu = () => {
         setShowMenu(!showMenu)
     }
-
-    console.log(showMenu)
 
     const handleChange = (e) => {
         e.preventDefault()
