@@ -2,13 +2,12 @@ import { useQuery } from "@apollo/react-hooks";
 
 import withApollo from "../../lib/apollo";
 import { GET_DASHNAV_STATE } from "../../gql/queries";
-import Layout from "../../components/Layout/index";
+import Layout from "../../components/Layout/index"
 import FoodSearchBox from "../../components/ingredients/FoodSearchBox";
 import DailyVibe from "../../components/DailyVibe";
 import DesktopFoodJournal from "../../components/foodJournal/DesktopFoodJounal";
 import FoodSearchResults from "../../components/FoodSearchResults";
 import Progress from "../../components/Progress/Progress.js";
-import { useEffect } from "react";
 import ForumContainer from "../../components/forum/ForumContainer";
 import DonutGraph from "../../components/graphs/DonutGraph";
 
@@ -17,20 +16,7 @@ const Dashboard = () => {
   //Gets active dashboard component from client cache
   const { data } = useQuery(GET_DASHNAV_STATE);
 
-  // useEffect(() => {
-  //   client.writeData({
-  //     data: {
-  //       ...data,
-  //       lowerNav: "journal",
-  //       logType: "daily",
-  //       mealType: "breakfast",
-  //       activeCat: "featured"
-  //     },
-  //   });
-  //   return () => null;
-  // }, []);
-
-  const lowerNav = data ? data.lowerNav : "[user]"; // gets the label for the component to render
+  const lowerNav = data ? data.lowerNav : "journal"; // gets the label for the component to render
 
   return (
     <div>
@@ -43,7 +29,7 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="ml-20 mr-40">
-          {lowerNav === "[user]" ? (
+          {lowerNav === "journal" ? (
             <DesktopFoodJournal />
           ) : lowerNav === "progress" ? (
             <Progress />
@@ -61,4 +47,3 @@ const Dashboard = () => {
 };
 
 export default withApollo(Dashboard);
-

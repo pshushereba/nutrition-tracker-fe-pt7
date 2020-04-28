@@ -44,11 +44,8 @@ export const ME = gql`
         current_weight
         id
       }
-      myWeightLogs(orderBy: createdAt_DESC, first: 1) {
-        id
-        current_weight
-      }
     }
+    lowerNav @client
   }
 `;
 
@@ -118,6 +115,9 @@ export const GET_FOODJOURNAL_LOGS = gql`
 
 export const GET_DASHNAV_STATE = gql`
   {
+    me {
+      name
+    }
     lowerNav @client
   }
 `;
