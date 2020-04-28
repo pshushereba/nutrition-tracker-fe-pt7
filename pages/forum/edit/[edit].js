@@ -13,7 +13,39 @@ const edit = (props) => {
 
     const { data, loading, error } = useQuery(GET_POST_DETAILS, { variables: {id: id} });
    
-    const [updatedPost, setUpdatedPost] = useState({title: "", body: ""});
+    const [updatedPost, setUpdatedPost] = useState({title: data.post.title, body: data.post.body});
+
+    /*
+    function updateWeight() {
+    updateWeightLog({
+      variables: {
+        id: lastWeightLogId,
+        current_weight: weight,
+      },
+      optimisticResponse: {
+        __typename: "Mutation",
+        updateWeightLog: {
+          id: lastWeightLogId,
+          __typename: "WeightLog",
+          current_weight: weight,
+        },
+      },
+    });
+    
+    optimisticResponse: {
+        __typename: "Mutation",
+        updateDailyRecord: {
+          id: id,
+          __typename: "DailyRecord",
+          calories: calories,
+          fat: fat,
+          protein: protein,
+          carbs: carbs,
+          food_string: JSON.stringify({ ...foodString, loggedQty: qty }),
+        },
+      },
+
+    */
 
 
     if (loading) {
@@ -48,7 +80,7 @@ const edit = (props) => {
                             type="text"
                             className="my-4 p-2 border rounded-sm border-gray-100"
                             name="title"
-                            value={data.post.title}
+                            value={updatedPost.title}
                             onChange={handleChange}></input>
                         <textarea 
                             rows="15" 
@@ -57,7 +89,7 @@ const edit = (props) => {
                             type="text"
                             className="w-full resize-none p-2 border rounded-sm border-gray-100"
                             name="body"
-                            value={data.post.body}
+                            value={updatedPost.body}
                             onChange={handleChange}></textarea>
                     </div>
                     <button 

@@ -43,7 +43,7 @@ const TopicCard = (props) => {
                     <p className="mb-4">{props.data.user.name}</p>
                 </div>
                 <div className="flex flex-1"></div>
-                <div className="flex justify-end align-middle w-1/6">
+                <div className="flex align-middle">
                     <div className="my-4 mx-2 w-1/4">
                         <div className="flex">
                             <EyeIconSVG /> {props.data.viewCount || 0}

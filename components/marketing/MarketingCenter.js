@@ -1,7 +1,7 @@
 import React from 'react'
 import JoyrideSVG from '../../components/svg/JoyrideSVG.js';
 import FoodSearchBox from '../../components/ingredients/FoodSearchBox.js';
-import Calculator from '../Calculator.js';
+import Calculator from '../../components/calculator/Calculator.js';
 import MarketingBoxSVG from '../../components/svg/MarketingBoxSVG.js';
 
 const MarketingCenter = () => {

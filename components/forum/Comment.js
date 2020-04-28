@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CenteredContainer, Spacer } from '../../components/Layout/LayoutPrimitives.js';
 import { useMutation } from '@apollo/react-hooks';
 import { ADD_COMMENT } from '../../gql/mutations.js';
+import { GET_POST_DETAILS, GET_POST_COMMENTS } from '../../gql/queries.js';
 import { useRouter } from 'next/router';
 
 
@@ -9,9 +10,6 @@ const AddComment = (props) => {
     // Holding the user's comment in state.
     const [commentBody, setCommentBody] = useState("");
     const postId = props.data.post.id;
-    console.log("In AddComment", props.data.post.id);
-
-    const router = useRouter();
     
     const [addPostComment] = useMutation(ADD_COMMENT);
 
@@ -24,30 +22,32 @@ const AddComment = (props) => {
         if (!commentBody) {
             alert("You didn't add a comment")
         } else {
-            addPostComment({variables: {
+            addPostComment({
+                variables: {
                 postId: postId,
                 body: commentBody
-            }})
+                }
+            })
+            setCommentBody("")
+            props.refetch()
         }
-        router.reload()
     }
 
     return (
-        <div>
-            <CenteredContainer>
+            <div className="w-full my-8">
                 <p className="text-xs mb-2">Comment as {props.data.me.name}</p>
                 <form onSubmit={handleSubmit}>
                     <textarea 
                         rows="5" 
                         cols="75" 
+                        value={commentBody}
                         className="w-full bg-gray-10 resize-none"
                         onChange={handleChange}></textarea>
                     <button 
                         type="submit"
                         className="bg-cyan-300 text-white text-xs muli w-40 py-1 my-4 rounded float-right">Comment</button>
                 </form>
-            </CenteredContainer>
-        </div>
+            </div>
     )
 }
 

@@ -17,7 +17,7 @@ const post = () => {
     const router = useRouter();
     const id = router.query;
 
-    const { data, loading, error } = useQuery(GET_POST_DETAILS, { variables: {id: id.post} });
+    const { data, loading, error, refetch } = useQuery(GET_POST_DETAILS, { variables: {id: id.post} });
 
     if (loading) {
         return "Loading..."
@@ -30,50 +30,53 @@ const post = () => {
     console.log(data);
     
     return (
-        <div>
+        <>
             <Layout>
-                {/* <CenteredContainer extraClasses="mx-48"> */}
+                <div className=" px-64">
                     <Link href="/forum/posts" replace>
                         <button className="flex justify-start my-4">Back</button>
                     </Link>
                     <h1 className="muli text-2xl">{data.post.title}</h1>
                     
-                    <p className="my-4">Posted by {data.post.user.name} 4 hours ago</p>
                     
                     
-                   <CenteredContainer>
-                   <div className="flex justify-end w-1/2">
-                        <div className="mx-2">
-                            <div className="flex mx-1">
-                                <EyeIconSVG /> {data.post.viewCount || 0}
+                    <div className="flex justify-between my-4">
+                        <p>Posted by {data.post.user.name} 4 hours ago</p>
+                        <div className="flex justify-end w-1/2">
+                            <div className="mx-2">
+                                <div className="flex mx-1">
+                                    <EyeIconSVG /> {data.post.viewCount || 0}
+                                </div>
                             </div>
-                        </div>
-                        <div className="mx-2">
-                            <div className="flex mx-1">
-                                <CommentIconSVG /> {data.post.comments.length}
+                            <div className="mx-2">
+                                <div className="flex mx-1">
+                                    <CommentIconSVG /> {data.post.comments.length}
+                                </div>
                             </div>
-                        </div>
-                        <div className="mx-2">
-                            <div className="flex mx-1">
-                                <LikeIconSVG /> {data.post.likeCount || 0}
+                            <div className="mx-2">
+                                <div className="flex mx-1">
+                                    <LikeIconSVG /> {data.post.likeCount || 0}
+                                </div>
                             </div>
                         </div>
                     </div>
-                   </CenteredContainer>
+                    
+                   
                     
                     
                     
                     <p>{data.post.body}</p>
 
-                    <Comment data={data} />
+                    <Comment data={data} refetch={refetch} />
+
                     <div>
                         {data.post.comments.map((comment) => {
                             return <CommentCard key={comment.id} data={comment} />
                         })}
                     </div>
-                {/* </CenteredContainer> */}
+                </div>
             </Layout>
-        </div>
+        </>
     )
 }
 

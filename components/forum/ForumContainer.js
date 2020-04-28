@@ -17,15 +17,15 @@ const ForumContainer = () => {
       };
     
     return (
-        <div>
-            <div className="flex-1 flex"></div>
+        <div className="w-3/4 mx-auto">
+            
             <div className="flex justify-end border-b-2 border-gray-100">
                 <button 
                     className="bg-cyan-300 text-white text-xs muli w-40 py-1 my-4 rounded"
                     onClick={() => { router.push('/forum/create')}}>Create Post</button>
             </div>
                 <TopicList />
-            <div className="flex-1"></div>
+            
         </div>
     )
 }
