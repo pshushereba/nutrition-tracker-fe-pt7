@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-import { getNutritionInfo } from "../lib/edamam";
-import FormDropdown from "./form/FormDropdown";
-import MealDropdown from "./form/MealDropDown";
+import { getNutritionInfo } from "../../lib/edamam";
+import FormDropdown from "../form/FormDropdown";
+import MealDropdown from "../form/MealDropDown";
 import { useQuery } from "@apollo/react-hooks";
-import { GET_NUTRITION } from "../gql/queries";
+import { GET_NUTRITION } from "../../gql/queries";
 
 export default function SearchResultsCard({ item }) {
   const [foodObj, setFoodObj] = useState();

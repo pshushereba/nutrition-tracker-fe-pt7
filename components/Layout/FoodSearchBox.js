@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { foodDbSearch } from "../../lib/edamam.js";
 import { useQuery } from "@apollo/react-hooks";
+
+import { foodDbSearch } from "../../lib/edamam.js";
 import { GET_SEARCH_RESULTS } from "../../gql/queries.js";
 
 export default function FoodSearchBox() {
@@ -10,23 +11,23 @@ export default function FoodSearchBox() {
   const handleChange = (e) => {
     setItem(e.target.value);
   };
-  
+
   const query = item.replace(" ", "%20"); // Format the entered food item for the API call
-  
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     //  Hit the foodDB API
     const list = await foodDbSearch(query);
     // Change the needed data to a string
     const searchResults = JSON.stringify(list.hints);
-    console.log(list)
     // Reset the input
-    setItem('');
+    setItem("");
     // Write the searchResults to the cache, change the dash component to search results
     client.writeData({
       data: {
         ...data,
-        lowerNav: "searchResults",
+        journalComponent: "searchResults",
         searchResults: searchResults,
       },
     });

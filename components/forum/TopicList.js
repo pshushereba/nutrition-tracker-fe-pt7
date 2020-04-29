@@ -21,7 +21,6 @@ const TopicList = () => {
         return `Error ${error}`
     }
     
-    console.log(data)
     return (
         <div className="flex-row z-0">
             {data.posts ? data.posts.map((post) => {
