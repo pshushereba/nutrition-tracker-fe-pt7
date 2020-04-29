@@ -7,14 +7,15 @@ export default function DashNav() {
   // const { data, client } = useQuery(GET_DASHNAV_STATE); //Gets active dashboard component from client cache
   const { data, client} = useQuery(ME)
   const router = useRouter();
-console.log(router.pathname.split('/')[1])
+
   const currPage = router.pathname.split('/')[1]
-  // const initialNavValue = currPage
+  
   useEffect(() => {
     client.writeData({
       data: {
         ...data,
         lowerNav: currPage,
+        journalComponent: "log",
         logType: "daily",
         mealType: "breakfast",
         activeCat: "featured"
@@ -38,6 +39,7 @@ data && console.log(data)
         } cursor-pointer`}
         value={"journal"}
         onClick={() => {
+
           client.writeData({ data: { ...data, lowerNav: "journal", id: me.id } })
           router.push("/journal/[user]", `/journal/${user}`);
         }}

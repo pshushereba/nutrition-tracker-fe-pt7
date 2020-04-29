@@ -119,6 +119,7 @@ export const GET_DASHNAV_STATE = gql`
       name
     }
     lowerNav @client
+    journalComponent @client
   }
 `;
 

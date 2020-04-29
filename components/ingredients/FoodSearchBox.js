@@ -26,7 +26,7 @@ export default function FoodSearchBox() {
     client.writeData({
       data: {
         ...data,
-        lowerNav: "searchResults",
+        journalComponent: "searchResults",
         searchResults: searchResults,
       },
     });

@@ -12,11 +12,11 @@ import ForumContainer from "../../components/forum/ForumContainer";
 import DonutGraph from "../../components/graphs/DonutGraph";
 
 
-const Dashboard = () => {
+const FoodJournal = () => {
   //Gets active dashboard component from client cache
   const { data } = useQuery(GET_DASHNAV_STATE);
 
-  const lowerNav = data ? data.lowerNav : "journal"; // gets the label for the component to render
+  const journalComponent = data ? data.journalComponent : "log"; // gets the label for the component to render
 
   return (
     <div>
@@ -29,14 +29,10 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="ml-20 mr-40">
-          {lowerNav === "journal" ? (
+          {journalComponent === "log" ? (
             <DesktopFoodJournal />
-          ) : lowerNav === "progress" ? (
-            <Progress />
-          ) : lowerNav === "searchResults" ? (
+          ) : journalComponent === "searchResults" ? (
             <FoodSearchResults />
-          ) : lowerNav === "forums" ? (
-            <ForumContainer />
           ) : (
             "Error"
           )}
@@ -46,4 +42,4 @@ const Dashboard = () => {
   );
 };
 
-export default withApollo(Dashboard);
+export default withApollo(FoodJournal);
