@@ -1,5 +1,7 @@
 import InlineSVG from 'svg-inline-react';
 
+// Two women jumping holding a swirling circle; we think for progress
+
 const svgSource = `<svg width="564" height="472" viewBox="0 0 564 472" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0)">
 <path d="M279.269 472.001C433.504 472.001 558.537 461.914 558.537 449.471C558.537 437.029 433.504 426.942 279.269 426.942C125.033 426.942 0 437.029 0 449.471C0 461.914 125.033 472.001 279.269 472.001Z" fill="#E9E9E9"/>
@@ -36,9 +38,8 @@ const svgSource = `<svg width="564" height="472" viewBox="0 0 564 472" fill="non
 <path d="M0 0H564V472H0V0Z" fill="white"/>
 </clipPath>
 </defs>
-</svg>
-`
+</svg>`
 
-const LogInSVG = () => <InlineSVG src={svgSource} />
+const Jump4JoySVG = () => <InlineSVG src={svgSource} />
 
-export default LogInSVG
+export default Jump4JoySVG

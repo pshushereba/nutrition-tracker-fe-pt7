@@ -43,6 +43,7 @@ const svgSource = `<svg width="446" height="373" viewBox="0 0 446 373" fill="non
 </svg>`
 
 
+
 const PhoneManBigSVG = () => <InlineSVG src={svgSource} />;
 
 export default PhoneManBigSVG;
