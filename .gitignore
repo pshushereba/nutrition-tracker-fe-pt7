@@ -22,6 +22,7 @@
 yarn.lock
 package.json.lock
 scratchPaper.json
+scratchPaper.js
 
 # debug
 npm-debug.log*
