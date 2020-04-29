@@ -18,7 +18,7 @@ export default function DietPreference({ setProfileStep, user, setUser }) {
       <form
         className="flex flex-col w-full px-12"
         onChange={(e) =>
-          setUser({ ...user, [e.target.id.toLowerCase()]: true })
+          setUser({ ...user, diet: e.target.id.toLowerCase()})
         }
       >
         <FormRadio radioFor="Keto" inputName={formName} icon="Icon" />

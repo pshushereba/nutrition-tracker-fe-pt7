@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/react-hooks";
 import FoodLog from "./FoodLog";
 import PreviousLog from "./PreviousLog";
 import Favorites from "./Favorites.js";
-import WaterGirlSVG from "../svg/WayerGirlSVG";
+import WomanBubblesSVG from "../svg/WomanBubblesSVG";
 import { CenteredContainer } from "../Layout/LayoutPrimitives";
 import { GET_LOG_TYPE_STATE } from "../../gql/queries";
 
@@ -61,7 +61,7 @@ export default function DesktopFoodJournal() {
       </div>
       <div className="flex-1"></div>
       <CenteredContainer extraClasses={`pt-20`}>
-        <WaterGirlSVG />
+        <WomanBubblesSVG />
       </CenteredContainer>
     </div>
   );

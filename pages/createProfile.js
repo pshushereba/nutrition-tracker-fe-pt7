@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useQuery } from "@apollo/react-hooks";
 
 import AgeGenderHeight from "../components/form/AgeGenderHeight";
 import DietPreference from "../components/form/DietPreference";
@@ -12,10 +13,15 @@ import {
   Spacer,
   CenteredContainer,
 } from "../components/Layout/LayoutPrimitives";
+import { GET_DASHNAV_STATE } from "../gql/queries";
 
 const CreateProfile = () => {
   const [user, setUser] = useState({});
   const [profileStep, setProfileStep] = useState("ageGenderHeight");
+
+  // useEffect(() => {
+  //  console.log(data)
+  // },[data])
 
   return (
     <Layout>
