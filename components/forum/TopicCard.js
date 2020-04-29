@@ -11,6 +11,8 @@ import Menu from "./Menu.js";
 const TopicCard = (props) => {
   const router = useRouter();
   const [showMenu, setShowMenu] = useState(false);
+  const isOwnPost = props.data.user.id === props.user.id;
+
 
   let previousViews = props.data.viewCount === null ? 1 : props.data.viewCount;
 
@@ -58,13 +60,14 @@ const TopicCard = (props) => {
               <LikeIconSVG /> 0
             </div>
           </div>
-          <div className="my-4 mx-2 w-1/4" onClick={toggleMenu}>
+          <div className="my-4 mx-2 w-1/4" onClick={isOwnPost && toggleMenu}>
             {showMenu ? (
               <Menu
                 data={props.data}
                 showMenu={showMenu}
                 toggleMenu={toggleMenu}
                 refetch={props.refetch}
+                isOwnPost={isOwnPost}
               />
             ) : (
               <MoreIconSVG />
