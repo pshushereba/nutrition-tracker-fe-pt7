@@ -181,8 +181,10 @@ export const GET_WEIGHT_LOGS = gql`
       id
     }
     me {
+      id
       name
       profile {
+        id
         gender
         goal_weight
       }
