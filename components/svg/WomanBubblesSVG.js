@@ -1,4 +1,8 @@
-<svg width="386" height="364" viewBox="0 0 386 364" fill="none" xmlns="http://www.w3.org/2000/svg">
+import InlineSVG from 'svg-inline-react';
+
+// Woman surruonded by bubbles holding a bottle of blue liquid
+
+const svgSource = `<svg width="386" height="364" viewBox="0 0 386 364" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0)">
 <path d="M189.38 364C252.883 364 304.363 356.013 304.363 346.16C304.363 336.307 252.883 328.32 189.38 328.32C125.877 328.32 74.3981 336.307 74.3981 346.16C74.3981 356.013 125.877 364 189.38 364Z" fill="#F9F9F9"/>
 <path d="M186.336 75.5806C186.336 75.5806 189.143 88.526 179.6 93.5916C179.6 93.5916 181.846 122.297 196.441 122.859C211.036 123.422 211.036 107.663 211.036 107.663L208.79 99.22C208.79 99.22 198.125 93.0287 204.861 81.209L186.336 75.5806Z" fill="#755950"/>
@@ -58,4 +62,9 @@
 <path d="M0 0H386V364H0V0Z" fill="white"/>
 </clipPath>
 </defs>
-</svg>
+</svg>`
+
+
+const WomanBubblesSVG = () => <InlineSVG src={svgSource} />
+
+export default WomanBubblesSVG
