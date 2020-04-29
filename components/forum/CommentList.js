@@ -17,7 +17,7 @@ const CommentList = () => {
         return `Error: ${error}`
     }
 
-    console.log(data)
+    console.log("In CommentList", data)
     
     return (
         <div className="flex-row">

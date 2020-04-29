@@ -7,13 +7,13 @@ import { useRouter } from 'next/router';
 import { useMutation } from '@apollo/react-hooks';
 import { UPDATE_VIEW_COUNT } from '../../gql/mutations';
 import Menu from './Menu.js';
+import Modal from '../Modal.js';
 
 
 const TopicCard = (props) => {
     const router = useRouter();
     const [showMenu, setShowMenu] = useState(false);
-
-    console.log(props)
+    
     let previousViews = ((props.data.viewCount === null) ? 1 : props.data.viewCount);
 
     const [updateViews] = useMutation(UPDATE_VIEW_COUNT);
@@ -22,7 +22,9 @@ const TopicCard = (props) => {
         setShowMenu(!showMenu)
     }
 
-    console.log(showMenu)
+    const toggleModal = () => {
+        setShowModal(!showModal);
+    }
 
     const handleChange = (e) => {
         e.preventDefault()
@@ -43,7 +45,7 @@ const TopicCard = (props) => {
                     <p className="mb-4">{props.data.user.name}</p>
                 </div>
                 <div className="flex flex-1"></div>
-                <div className="flex justify-end align-middle w-1/6">
+                <div className="flex align-middle">
                     <div className="my-4 mx-2 w-1/4">
                         <div className="flex">
                             <EyeIconSVG /> {props.data.viewCount || 0}
@@ -62,7 +64,12 @@ const TopicCard = (props) => {
                     <div 
                         className="my-4 mx-2 w-1/4"
                         onClick={toggleMenu}>
-                        { showMenu ? <Menu data={props.data} showMenu={showMenu} toggleMenu={toggleMenu} /> : <MoreIconSVG />}
+                        { showMenu ? <Menu 
+                                        data={props.data} 
+                                        showMenu={showMenu} 
+                                        toggleMenu={toggleMenu}
+                                        toggleModal={toggleModal}
+                                        refetch={props.refetch} /> : <MoreIconSVG />}
                     </div>
                 </div>
             </div>

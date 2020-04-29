@@ -12,8 +12,9 @@ const edit = (props) => {
     const id = router.query.edit;
 
     const { data, loading, error } = useQuery(GET_POST_DETAILS, { variables: {id: id} });
+    const [updatePost] = useMutation(UPDATE_POST);
    
-    const [updatedPost, setUpdatedPost] = useState({title: "", body: ""});
+    const [updatedPost, setUpdatedPost] = useState({title: data.post.title, body: data.post.body});
 
 
     if (loading) {
@@ -24,15 +25,29 @@ const edit = (props) => {
         return `There was an error getting the post, ${error}`
     }
 
-    console.log(updatedPost);
-
     const handleChange = (event) => {
         setUpdatedPost({...updatedPost, [event.target.name]: event.target.value})
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        
+        updatePost({
+            variables: {
+                id: id,
+                title: updatedPost.title,
+                body: updatedPost.body
+            },
+            optimisticResponse: {
+                __typename: "Mutation",
+                updatePost: {
+                  id: id,
+                	title: updatedPost.title,
+                	body: updatedPost.body,
+                  __typename: "Post"
+                },
+              }
+				})
+				router.push('/forum/posts')
     }
 
 
@@ -48,7 +63,7 @@ const edit = (props) => {
                             type="text"
                             className="my-4 p-2 border rounded-sm border-gray-100"
                             name="title"
-                            value={data.post.title}
+                            value={updatedPost.title}
                             onChange={handleChange}></input>
                         <textarea 
                             rows="15" 
@@ -57,7 +72,7 @@ const edit = (props) => {
                             type="text"
                             className="w-full resize-none p-2 border rounded-sm border-gray-100"
                             name="body"
-                            value={data.post.body}
+                            value={updatedPost.body}
                             onChange={handleChange}></textarea>
                     </div>
                     <button 

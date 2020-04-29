@@ -233,6 +233,9 @@ query getPostComments{
       id
     }
   }
+  me {
+    id
+  }
 }
 `
 
