@@ -1,20 +1,18 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
 import { GET_FORUM_SELECTION_STATE } from '../../gql/queries';
 import TopicList from './TopicList';
+import Modal from '../Modal.js';
 
 const ForumContainer = () => {
     
     const router = useRouter();
-    const {data, client} = useQuery(GET_FORUM_SELECTION_STATE);
-    const activeCat = data ? data.activeCat : "featured"
+    const [showModal, setShowModal] = useState(true);
 
-    const handleClick = (e) => {
-        const activeCat = e.target.dataset.activecat;
-        console.log(activeCat)
-        client.writeData({ data: { ...data, activeCat: activeCat } });
-      };
+      const toggleModal = () => {
+        setShowModal(!showModal);
+    }
     
     return (
         <div className="w-3/4 mx-auto">
@@ -25,7 +23,7 @@ const ForumContainer = () => {
                     onClick={() => { router.push('/forum/create')}}>Create Post</button>
             </div>
                 <TopicList />
-            
+                <Modal showModal={showModal} />
         </div>
     )
 }

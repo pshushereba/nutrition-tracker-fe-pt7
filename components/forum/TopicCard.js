@@ -7,18 +7,23 @@ import { useRouter } from 'next/router';
 import { useMutation } from '@apollo/react-hooks';
 import { UPDATE_VIEW_COUNT } from '../../gql/mutations';
 import Menu from './Menu.js';
+import Modal from '../Modal.js';
 
 
 const TopicCard = (props) => {
     const router = useRouter();
     const [showMenu, setShowMenu] = useState(false);
-
+    
     let previousViews = ((props.data.viewCount === null) ? 1 : props.data.viewCount);
 
     const [updateViews] = useMutation(UPDATE_VIEW_COUNT);
 
     const toggleMenu = () => {
         setShowMenu(!showMenu)
+    }
+
+    const toggleModal = () => {
+        setShowModal(!showModal);
     }
 
     const handleChange = (e) => {
@@ -59,7 +64,12 @@ const TopicCard = (props) => {
                     <div 
                         className="my-4 mx-2 w-1/4"
                         onClick={toggleMenu}>
-                        { showMenu ? <Menu data={props.data} showMenu={showMenu} toggleMenu={toggleMenu} /> : <MoreIconSVG />}
+                        { showMenu ? <Menu 
+                                        data={props.data} 
+                                        showMenu={showMenu} 
+                                        toggleMenu={toggleMenu}
+                                        toggleModal={toggleModal}
+                                        refetch={props.refetch} /> : <MoreIconSVG />}
                     </div>
                 </div>
             </div>

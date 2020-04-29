@@ -7,7 +7,11 @@ import TopicCard from './TopicCard.js';
 
 const TopicList = () => {
     
-    const { loading, data, error } = useQuery(GET_FORUM_TOPICS)
+    const { loading, data, error, refetch } = useQuery(GET_FORUM_TOPICS)
+
+    useEffect(() => {
+        refetch()
+    }, [])
 
     if (loading) {
         return "loading"
@@ -19,9 +23,9 @@ const TopicList = () => {
     
     console.log(data)
     return (
-        <div className="flex-row">
+        <div className="flex-row z-0">
             {data.posts ? data.posts.map((post) => {
-                return <TopicCard key={post.id} data={post} user={data.me} />
+                return <TopicCard key={post.id} data={post} user={data.me} refetch={refetch} />
             }) : null}
         </div>
     )
