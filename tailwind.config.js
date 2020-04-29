@@ -2,22 +2,22 @@ const plugin = require("tailwindcss/plugin");
 
 module.exports = {
   theme: {
-    backgroundColor: theme => ({
+    backgroundColor: (theme) => ({
       ...theme("colors"),
       plusPink: "#FF19A3",
       headFoot: "#363537",
       mobileFoot: "#F9F9F9",
-      chartPurple: "#DAC5FF"
+      chartPurple: "#DAC5FF",
     }),
-    inset: theme => ({
+    inset: (theme) => ({
       "halfCircle-X": "21px",
       "halfCircle-Y": "8px",
       "halfCircle|X": "22px",
-      "halfCircle|Y": "4px"
+      "halfCircle|Y": "4px",
     }),
-    textColor: theme => ({
+    textColor: (theme) => ({
       ...theme("colors"),
-      footerText: "#5A5A5A"
+      footerText: "#5A5A5A",
     }),
     extend: {
       colors: {
@@ -55,14 +55,14 @@ module.exports = {
         "gray-300": "#5A5A5A",
         "gray-400": "#363537",
         "blue-400": "#00426C",
-        "mr-96": "24rem"
-      }
-    }
+        "mr-96": "24rem",
+      },
+    },
   },
   variants: {
     backgroundColor: ["responsive", "hover", "focus", "active"],
     textColor: ["responsive", "hover", "focus", "active", "disabled"],
-    cursor: ["disabled", "hover"]
+    cursor: ["disabled", "hover"],
   },
-  plugins: [require("@tailwindcss/custom-forms")]
+  plugins: [require("@tailwindcss/custom-forms")],
 };
