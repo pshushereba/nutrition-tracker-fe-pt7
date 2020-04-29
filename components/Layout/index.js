@@ -19,15 +19,16 @@ export default ({ children }) => {
       <Header />
       <div className={`flex flex-col flex-1`}>
         <div className={`${onHomePage ? "hidden" : ""} flex my-10`}>
-          <DailyVibe />
-          <DonutGraph />
-          {!inJournal ? (
+          <div className="flex flex-col">
+            <DailyVibe />
             <Spacer />
-          ) : (
-            <div className="w-3/12 mt-2 mr-40">
-              <FoodSearchBox />
-            </div>
-          )}
+          </div>
+          <Spacer />
+          <DonutGraph />
+          <Spacer />
+          <div className="w-3/12 mt-2 mr-40">
+            {!inJournal ? <Spacer /> : <FoodSearchBox />}
+          </div>
         </div>
         {children}
       </div>

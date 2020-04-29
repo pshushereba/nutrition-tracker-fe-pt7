@@ -76,12 +76,12 @@ const Graph = (props) => {
   };
 
   return (
-    <div>
+    <div className=" h-96">
       <Line data={graphData} options={graphOptions} width={400} />
   <style jsx>{`
     canvas.chartjs-render-monitor {
       width: 100% !important;
-      height: 75vh !important;
+      height: 65vh !important;
     }
   `}</style>
     </div>
