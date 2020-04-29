@@ -67,7 +67,7 @@ const post = () => {
 
 							<div>
 									{data.post.comments.map((comment) => {
-											return <CommentCard key={comment.id} data={comment} />
+											return <CommentCard key={comment.id} data={comment} me={data.me} />
 									})}
 							</div>
 						</div>
