@@ -12,6 +12,7 @@ export default function FoodLog() {
 
   useEffect(() => {
     refetch();
+    return () => null
   }, []);
 
   if (loading) return "Loading...";
@@ -87,7 +88,7 @@ export default function FoodLog() {
       </div>
       <DashboardChart
         records={currentRecord(myDailyRecords)}
-        mealType={mealType}
+        refetch={refetch}
       />
     </>
   );

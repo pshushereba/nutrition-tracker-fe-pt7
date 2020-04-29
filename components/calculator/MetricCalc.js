@@ -1,5 +1,5 @@
 import React from "react";
-import FormInput from "../components/form/FormInput.js";
+import FormInput from "../form/FormInput.js";
 
 const MetricCalc = ({ bmiInfo, setBmiInfo }) => {
   const handleSubmit = (e) => {

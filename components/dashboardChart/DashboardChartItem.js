@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import FullHeartSVG from "../svg/FullHeartSVG.js";
 import HeartOutlineSVG from "../svg/HeartOutlineSVG.js";
 import { CenteredContainer, Spacer } from "../Layout/LayoutPrimitives.js";
+import UpdateServingQtyInput from "./UpdateServingQtyInput.js";
 
-const DashboardChartItem = ({ data, toggleFav }) => {
+const DashboardChartItem = ({
+  data,
+  toggleFav,
+  deleteRecord,
+  updateRecord,
+}) => {
   const [item, setItem] = useState(data);
+  const [isEditing, setIsEditing] = useState(false);
 
-  const { calories, fat, protein, carbs, food_string } = item;
+  const { calories, fat, protein, carbs, food_string, id } = item;
 
   const { quantity, measure, food, favorite, loggedQty } = JSON.parse(
     food_string
@@ -25,9 +32,13 @@ const DashboardChartItem = ({ data, toggleFav }) => {
             </i>
           </CenteredContainer>
         </div>
-        <div className="flex w-11/12 pl-3 items-center">{`${
-          loggedQty ? loggedQty : quantity
-        } ${measure} ${food}`}</div>
+        {isEditing ? (
+          <UpdateServingQtyInput item={item} isEditing={isEditing} setIsEditing={setIsEditing} loggedQty={loggedQty}/>
+        ) : (
+          <div className="flex w-11/12 pl-3 items-center">
+            {`${loggedQty ? loggedQty : quantity} ${measure} ${food}`}
+          </div>
+        )}
       </div>
       <div className="flex w-7/12 justify-center items-center">
         <div className="w-1/6 text-sm text-center">{calories}</div>
@@ -39,7 +50,10 @@ const DashboardChartItem = ({ data, toggleFav }) => {
         <Spacer />
         <div className="flex w-1/3 pr-2 py-2">
           <div className="w-1/3"></div>
-          <div className="flex flex-col justify-end items-center w-1/3 text-xs text-right cursor-pointer">
+          <div
+            className="flex flex-col justify-end items-center w-1/3 text-xs text-right cursor-pointer"
+            onClick={() => setIsEditing(!isEditing)}
+          >
             <i>
               <svg
                 width="12"
@@ -56,7 +70,10 @@ const DashboardChartItem = ({ data, toggleFav }) => {
             </i>
             <div>edit</div>
           </div>
-          <div className="flex flex-col justify-end items-center w-1/3 text-xs text-right cursor-pointer">
+          <div
+            className="flex flex-col justify-end items-center w-1/3 text-xs text-right cursor-pointer"
+            onClick={() => deleteRecord(id)}
+          >
             <i>
               <svg
                 width="18"
@@ -66,16 +83,14 @@ const DashboardChartItem = ({ data, toggleFav }) => {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M12.1353 6.68843V6.09C12.1353 5.76142 12.4674 5.49357 12.8751 5.49357H17.0263C17.435 5.49357 17.7671 5.76142 17.7671 6.09V6.68843H12.1353ZM21.1269 8.181C21.0404 10.4363 20.5045 24.2548 20.4368 24.8771C20.3971 25.2495 20.2599 25.4327 20.1863 25.5064H9.71511C9.64054 25.4327 9.50431 25.2495 9.46454 24.8771C9.39792 24.2548 8.79835 10.4463 8.70091 8.181H21.1269ZM19.2526 6.68843V6.09C19.2526 4.93697 18.3209 4 17.1745 4H12.7269C11.5805 4 10.6488 4.93697 10.6488 6.09V6.68843H6.2002V8.181H7.2144L7.98599 25.4198C7.99892 25.4835 8.33002 27 9.6117 27H20.2877C21.5704 27 21.9015 25.4835 21.9214 25.371L22.6502 8.181H23.7002V6.68843H19.2526ZM18.9501 9.37706H17.4635L17.0002 24.3118H18.4867L18.9501 9.37706ZM14.2067 24.312H15.6932V9.37725H14.2067V24.312ZM12.9001 24.3118L12.4367 9.37706H10.9502L11.4126 24.3118H12.9001Z"
                   fill="#363537"
                 />
               </svg>
             </i>
-            <div>
-              delete
-            </div>
+            <div>delete</div>
           </div>
         </div>
       </div>
