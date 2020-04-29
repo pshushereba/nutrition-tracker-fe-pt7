@@ -11,7 +11,7 @@ const svgSource = `<svg
     fill-rule="evenodd"
     clip-rule="evenodd"
     d="M10.63 19.64C30.6745 6.33413 17.466 -4.43868 10.63 2.85809C3.79405 -4.43868 -9.41447 6.33413 10.63 19.64Z"
-    fill="#FFA5DB"
+    fill="#B10505"
   />
 </svg>`
 

@@ -31,13 +31,13 @@ const Home = () => {
               Connect with friends, earn badges and crush your goals
             </p>
             <button
-              className="bg-pink-400 rounded text-white py-3 w-full hover:bg-pink-500 mb-8"
+              className="bg-blue-400 rounded text-white py-3 w-full hover:bg-pink-500 mb-8"
               onClick={() => router.push("/api/login")}
             >
               Sign Up
             </button>
             <button
-              className="border border-pink-400 rounded text-pink-400 py-3 w-full"
+              className="border border-blue-400 rounded text-blue-400 py-3 w-full"
               onClick={() => router.push("/api/login")}
             >
               Sign In

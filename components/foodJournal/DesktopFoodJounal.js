@@ -23,7 +23,7 @@ export default function DesktopFoodJournal() {
         <div className="flex text-lg font-medium py-2 mb-8">
           <div
             className={`${
-              logType === "daily" ? "border-b-4 border-pink-500" : ""
+              logType === "daily" ? "border-b-4 border-blue-400" : ""
             } cursor-pointer mr-12`}
             data-logtype="daily"
             onClick={handleClick}
@@ -32,7 +32,7 @@ export default function DesktopFoodJournal() {
           </div>
           <div
             className={`${
-              logType === "favorites" ? "border-b-4 border-pink-500" : ""
+              logType === "favorites" ? "border-b-4 border-blue-400" : ""
             } cursor-pointer mr-12`}
             data-logtype="favorites"
             onClick={handleClick}
@@ -41,7 +41,7 @@ export default function DesktopFoodJournal() {
           </div>
           <div
             className={`${
-              logType === "previous" ? "border-b-4 border-pink-500" : ""
+              logType === "previous" ? "border-b-4 border-blue-400" : ""
             } cursor-pointer mr-12`}
             data-logtype="previous"
             onClick={handleClick}

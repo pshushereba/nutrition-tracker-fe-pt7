@@ -25,7 +25,7 @@ module.exports = {
         "dark-gray": "#5A5A5A",
         "btn-pink": "#FE42B3",
         "active-blue": "#8D4CFF",
-        "item-hover": "#FFA5DB",
+        "item-hover": "#1F7Da2",
         "cyan-300": "#00426C",
         "red-100": "#B10505",
         "pink-200": "#FFEDF7",

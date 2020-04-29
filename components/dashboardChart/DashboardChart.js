@@ -69,7 +69,7 @@ const DashboardChart = ({ records, refetch }) => {
           <Spacer />
         </div>
       </div>
-      <div className="border-t border-l">
+      <div >
         {chunkedRecords.length !== 0 &&
           chunkedRecords[currChunk].map((cv) => {
             return (

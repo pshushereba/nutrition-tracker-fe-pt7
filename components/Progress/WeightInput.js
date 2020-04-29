@@ -73,7 +73,7 @@ export default function WeightInput() {
         onChange={handleChange}
       ></input>
       <button
-        className="border rounded bg-purple-300 text-white px-6 py-2"
+        className="border rounded bg-blue-400 text-white px-6 py-2"
         onClick={handleSubmit}
       >
         Log Weight

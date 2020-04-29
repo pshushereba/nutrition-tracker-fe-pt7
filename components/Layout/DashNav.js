@@ -34,7 +34,7 @@ export default function DashNav() {
     <ul className="w-1/3 flex justify-around text-lg font-medium py-2">
       <li
         className={`${
-          activeNavControl === "journal" ? "border-b-4 border-pink-500" : ""
+          activeNavControl === "journal" ? "border-b-4 border-blue-400" : ""
         } cursor-pointer`}
         value={"journal"}
         onClick={() => {
@@ -48,7 +48,7 @@ export default function DashNav() {
       </li>
       <li
         className={`${
-          activeNavControl === "progress" ? "border-b-4 border-pink-500" : ""
+          activeNavControl === "progress" ? "border-b-4 border-blue-400" : ""
         } cursor-pointer`}
         value={"progress"}
         onClick={() => {
@@ -62,7 +62,7 @@ export default function DashNav() {
       </li>
       <li
         className={`${
-          activeNavControl === "forum" ? "border-b-4 border-pink-500" : ""
+          activeNavControl === "forum" ? "border-b-4 border-blue-400" : ""
         } cursor-pointer`}
         value={"forums"}
         onClick={() => {
