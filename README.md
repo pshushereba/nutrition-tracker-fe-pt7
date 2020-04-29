@@ -70,7 +70,7 @@ Nutrivurv is an application that helps users take control of a healthier lifesty
 - Customizable
 - Widely used alternative to traditional REST architecture
 
-#### ![Prisma](https://camo.githubusercontent.com/c7f49c483a3c5a145ff55c7331520a65e12abff2/68747470733a2f2f692e696d6775722e636f6d2f774434725674342e706e67)
+#### <img src="https://camo.githubusercontent.com/c7f49c483a3c5a145ff55c7331520a65e12abff2/68747470733a2f2f692e696d6775722e636f6d2f774434725674342e706e67" alt="Prisma" width="144" height="144")
 
 - Simplified schema and query builder
 - Well documented
