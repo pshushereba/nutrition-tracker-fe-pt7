@@ -64,13 +64,17 @@ Nutrivurv is an application that helps users take control of a healthier lifesty
 
 #### [Back end](https://github.com/Lambda-School-Labs/nutrition-tracker-be-pt7) built using:
 
-#### GraphQL
+#### ![GraphQL](https://graphql.org/img/logo.svg)
 
--    point one
--    point two
--    point three
+- Efficient
+- Customizable
+- Widely used alternative to traditional REST architecture
 
-🚫 List the rest of the back end end features and libraries in the same format as the framework above
+#### ![Prisma](https://camo.githubusercontent.com/c7f49c483a3c5a145ff55c7331520a65e12abff2/68747470733a2f2f692e696d6775722e636f6d2f774434725674342e706e67)
+
+- Simplified schema and query builder
+- Well documented
+- Widely used alternative to ORM service
 
 # APIs
 
