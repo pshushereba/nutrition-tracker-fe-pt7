@@ -55,7 +55,7 @@ Nutrivurv is an application that helps users take control of a healthier lifesty
 
 - Simplified integration of GraphQL with React
 - Well documented
-- [need one more neat thing]
+- Widely used solution
 
 #### Tailwind.css
 
@@ -112,7 +112,10 @@ All images and icons [Copyright 2020 Katerina Limpitsouni](https://undraw.co/lic
 
 # 4️⃣ Installation Instructions
 
-🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
+ 0 Fork and Clone this Repository
+ 1 CD to your local copy of the repo
+ 2 In terminal type EITHER `npm install` or `yarn install`
+ 3 Reference "Other Scripts" below for instructions for your desired environment
 
 ## Other Scripts
 
@@ -121,11 +124,6 @@ All images and icons [Copyright 2020 Katerina Limpitsouni](https://undraw.co/lic
     start: `next start -p $PORT` : starts the production server after a build is created
     test: `jest --watch` : runs tests in _tests_ directory
     heroku-postbuild: `npm run build` : runs Heroku postbuild scripts
-
-    * typecheck - runs the TypeScript compiler
-    * build - creates a build of the application
-    * start - starts the production server after a build is created
-    * test -  \* eject - copy the configuration files and dependencies into the project so you have full control over them
 
 # Contributing
 
