@@ -33,7 +33,7 @@ export default function Macros({ user, setUser }) {
   const [createWieghtLog] = useMutation(CREATE_WEIGHT_LOG)
 
   const handleSubmit = async () => {
-    const { loading, data, error } = await createProfile({
+    const { loading, data: profileData, error } = await createProfile({
       variables: variables,
     });
 
@@ -41,7 +41,7 @@ export default function Macros({ user, setUser }) {
       alert(`${error}`)
     }
 
-    if (!loading && data) {
+    if (!loading && profileData) {
       const { loading, data } = await createWieghtLog({
         variables: {
           date: currentDate,

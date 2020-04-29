@@ -7,21 +7,16 @@ import Macros from "../components/form/Macros";
 import WeightGoalWeight from "../components/form/WeightGoalWeight";
 import ActivityLevel from "../components/form/ActivityLevel";
 import LogInSVG from "../components/svg/LogInSVG";
-import withApollo from "../lib/apollo";
+import withApollo from '../lib/apollo'
 import Layout from "../components/Layout/index";
 import {
   Spacer,
   CenteredContainer,
 } from "../components/Layout/LayoutPrimitives";
-import { GET_DASHNAV_STATE } from "../gql/queries";
 
 const CreateProfile = () => {
   const [user, setUser] = useState({});
   const [profileStep, setProfileStep] = useState("ageGenderHeight");
-
-  // useEffect(() => {
-  //  console.log(data)
-  // },[data])
 
   return (
     <Layout>
