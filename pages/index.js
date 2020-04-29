@@ -31,7 +31,7 @@ const Home = () => {
               Connect with friends, earn badges and crush your goals
             </p>
             <button
-              className="bg-blue-400 rounded text-white py-3 w-full hover:bg-pink-500 mb-8"
+              className="bg-blue-400 rounded text-white py-3 w-full hover:item-hover mb-8"
               onClick={() => router.push("/api/login")}
             >
               Sign Up
