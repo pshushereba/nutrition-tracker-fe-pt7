@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p $PORT",
+    "test": "jest --watch",
     "heroku-postbuild": "npm run build"
   },
   "engines": {
@@ -42,6 +43,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
-    "babel-loader": "^7.1.5"
+    "babel-loader": "^7.1.5",
+    "jest": "^25.4.0"
   }
 }
