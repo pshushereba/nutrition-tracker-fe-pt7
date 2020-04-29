@@ -1,10 +1,5 @@
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline, feel free to add your own flare to it.
 
-🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
-
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
-
-# Nutrition Tracker
+# Nutrivurv
 
 You can find the deployed project at [Nutrivurv](https://www.nutrivurv.com/).
 
@@ -12,7 +7,7 @@ You can find the deployed project at [Nutrivurv](https://www.nutrivurv.com/).
 
 🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
 
-|                                       [Student 1](https://github.com/DoubleBridges)                                        |                                       [Student 2](https://github.com/pshushereba)                                        |                                       [Student 3](https://github.com/DomBruno)                                        |                                       [Student 4](https://github.com/benjamin-t-wilson)                                        |                                       [Student 5](https://github.com/)                                        |
+|                                       [Dave Kane](https://github.com/DoubleBridges)                                        |                                       [Patrick Shushereba](https://github.com/pshushereba)                                        |                                       [Dominick Bruno](https://github.com/DomBruno)                                        |                                       [Benjamin T. Wilson](https://github.com/benjamin-t-wilson)                                        |                                       [Student 5](https://github.com/)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
 |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |
 |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)             |
@@ -24,12 +19,7 @@ You can find the deployed project at [Nutrivurv](https://www.nutrivurv.com/).
 🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
-![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
-![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](netlify link goes in these parenthesis)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-
-🚫 more info on using badges [here](https://github.com/badges/shields)
 
 ## Project Overview
 
@@ -39,36 +29,41 @@ You can find the deployed project at [Nutrivurv](https://www.nutrivurv.com/).
 
 [UX Design files](https://www.figma.com/file/yqpTM7IYO90dVNPBsxaQrG/NutriJournal%2C-Ashes-%26-Tricia?node-id=122%3A2)
 
-
 Learning how to eat healthy and making a lifestyle change is overwhelming and difficult. There is a lack of education and many new habits that need to be developed which deter people from meeting their health goals. Reading food labels to track calories and other nutritional factors is tedious and time-consuming.  
 
-Nutrition Tracker is an application that helps users take control of a healthier lifestyle. The application makes it easy to track critical health information, whether that is macros, calories, or any other food data that you use in working towards a heathier life.
-
+Nutrivurv is an application that helps users take control of a healthier lifestyle. The application makes it easy to track critical health information; whether that is macros, calories, or any other food data that you use in working towards a healthier life.
 
 ### 4️⃣ Key Features
 
--    feature one
--    feature two
--    feature three
--    feature four
+- Utilizes world renowned Edamam Food databases
+- Daiy Journal Logs food and generates complete nutritional data for each item
+- Dynamic donut graph charts progress towards multiple goals at once
+- Community forum leverages the power of GraphQL subscriptions to render seamless user interaction
 -    feature five
 
 ## 1️⃣ Tech Stack
 
 ### Front end built using:
 
-#### _NextJS_
+#### ![_NextJS_](https://blog.haochuan.io/content/images/size/w600/2018/07/nextJs.jpg)
 
-🚫 Why did you choose this framework?
+- Server Side Rendering
+- Dynamic Routing
+- React-based
 
--    Server Side Rendering
--    Dynamic Routing
--    point three
--    point four
+#### Apollo Server
 
-🚫List the rest of the front end features and libraries in the same format as the framework above.
+- Simplified integration of GraphQL with React
+- Well documented
+- [need one more neat thing]
 
-#### Front end deployed to `🚫insert service here`
+#### Tailwind.css
+
+- Reduce time spent styling
+- Simple yet robust
+- [another neat thing here]
+
+#### Front end deployed to Heroku.
 
 #### [Back end](https://github.com/Lambda-School-Labs/nutrition-tracker-be-pt7) built using:
 
@@ -82,35 +77,13 @@ Nutrition Tracker is an application that helps users take control of a healthier
 
 # APIs
 
-## 2️⃣ Authentication API here
+## Auth0
 
-🚫Replace text below with a description of the API
-
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
-
-## 2️⃣ Payment API here
-
-🚫Replace text below with a description of the API
-
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
+Auth0 is one of the most widely respected identity providers currently operating, despite some recent shifts towards Okta.  Auth0 is much better supported by Next.js which is otherwise incompatible with Okta due to technical conflicts caused by the way Next.js handles routes.
 
 ## Edamam Food Database API
 
-🚫Replace text below with a description of the API
-
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
+At it's core, Nutrivurv is based around the globally recognized, industry-leading Edamam Food Database collection.  Data from two of these comprehensive databases is then used to generate a wide variety of custom user-requested calculations.
 
 # 3️⃣ Environment Variables
 
@@ -131,12 +104,7 @@ In order for the app to function correctly, the user must set up their own envir
 
 # 5️⃣ Content Licenses
 
-🚫For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
-
-| Image Filename | Source / Creator | License                                                                      |
-| -------------- | ---------------- | ---------------------------------------------------------------------------- |
-| doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
-| rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
+All images and icons [Copyright 2020 Katerina Limpitsouni](https://undraw.co/license), used with permission.
 
 # 4️⃣ Testing
 
