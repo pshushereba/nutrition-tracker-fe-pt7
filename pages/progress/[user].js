@@ -22,13 +22,6 @@ const Progress = () => {
 
   return (
     <Layout>
-      <div className="flex my-10">
-        <DailyVibe />
-        <DonutGraph />
-        <div className="w-3/12 mt-2 mr-40">
-          <FoodSearchBox />
-        </div>
-      </div>
       <section className="flex items-center justify-center">
         <div className="w-1/3">
           <ProgressGraph data={data} />

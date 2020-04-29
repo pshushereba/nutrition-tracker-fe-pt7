@@ -21,13 +21,6 @@ const FoodJournal = () => {
   return (
     <div>
       <Layout>
-        <div className="flex my-10">
-          <DailyVibe />
-          <DonutGraph />
-          <div className="w-3/12 mt-2 mr-40">
-            <FoodSearchBox />
-          </div>
-        </div>
         <div className="ml-20 mr-40">
           {journalComponent === "log" ? (
             <DesktopFoodJournal />

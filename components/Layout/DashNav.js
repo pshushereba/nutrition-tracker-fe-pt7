@@ -28,7 +28,6 @@ export default function DashNav() {
 
   const { me, lowerNav } = data 
 
-data && console.log(data)
   const activeNavControl = lowerNav ? lowerNav : "journal";
   const user = me ? me.name : "user";
   return (
