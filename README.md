@@ -60,8 +60,8 @@ Nutrivurv is an application that helps users take control of a healthier lifesty
 #### Tailwind.css
 
 - Reduce time spent styling
-- Simple yet robust
-- [another neat thing here]
+- Lightweight yet robust
+- Simple to implement
 
 #### Front end deployed to Heroku.
 
@@ -116,12 +116,16 @@ All images and icons [Copyright 2020 Katerina Limpitsouni](https://undraw.co/lic
 
 ## Other Scripts
 
-🚫replace these examples with your own
+    dev: `next dev` : starts the development environment
+    build: `next build` : creates a build of the application
+    start: `next start -p $PORT` : starts the production server after a build is created
+    test: `jest --watch` : runs tests in _tests_ directory
+    heroku-postbuild: `npm run build` : runs Heroku postbuild scripts
 
     * typecheck - runs the TypeScript compiler
     * build - creates a build of the application
     * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
+    * test -  \* eject - copy the configuration files and dependencies into the project so you have full control over them
 
 # Contributing
 
