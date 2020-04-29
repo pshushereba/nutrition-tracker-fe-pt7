@@ -15,7 +15,7 @@ const Progress = () => {
 
   return (
     <Layout>
-      <section className="flex items-center justify-center">
+      <section className="flex items-center justify-center ml-20 mr-40">
         <div className="w-1/3">
           <ProgressGraph data={data} />
         </div>
