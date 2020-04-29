@@ -7,9 +7,7 @@ import {CenteredContainer} from '../../components/Layout/LayoutPrimitives.js';
 const posts = () => {
     return (
         <Layout>
-            <CenteredContainer>
-                <ForumContainer />
-            </CenteredContainer>
+            <ForumContainer />
         </Layout>
     )
 }
