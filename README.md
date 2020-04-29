@@ -51,7 +51,7 @@ Nutrivurv is an application that helps users take control of a healthier lifesty
 - Dynamic Routing
 - React-based
 
-#### Apollo Server
+#### ![Apollo Server](https://www.pikpng.com/pngl/m/44-449120_authenticate-meteor-accounts-with-the-apollo-graphql-apollo.png)
 
 - Simplified integration of GraphQL with React
 - Well documented
