@@ -1,15 +1,11 @@
 import { useState } from "react";
+
 import FullHeartSVG from "../svg/FullHeartSVG.js";
 import HeartOutlineSVG from "../svg/HeartOutlineSVG.js";
 import { CenteredContainer, Spacer } from "../Layout/LayoutPrimitives.js";
 import UpdateServingQtyInput from "./UpdateServingQtyInput.js";
 
-const DashboardChartItem = ({
-  data,
-  toggleFav,
-  deleteRecord,
-  updateRecord,
-}) => {
+const DashboardChartItem = ({ data, toggleFav, deleteRecord }) => {
   const [item, setItem] = useState(data);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -33,7 +29,12 @@ const DashboardChartItem = ({
           </CenteredContainer>
         </div>
         {isEditing ? (
-          <UpdateServingQtyInput item={item} isEditing={isEditing} setIsEditing={setIsEditing} loggedQty={loggedQty}/>
+          <UpdateServingQtyInput
+            item={item}
+            isEditing={isEditing}
+            setIsEditing={setIsEditing}
+            loggedQty={loggedQty}
+          />
         ) : (
           <div className="flex w-11/12 pl-3 items-center">
             {`${loggedQty ? loggedQty : quantity} ${measure} ${food}`}

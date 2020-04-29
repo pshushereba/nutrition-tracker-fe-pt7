@@ -1,4 +1,3 @@
-import { useState } from "react";
 import DashboardChartItem from "./DashboardChartItem.js";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 
@@ -70,21 +69,24 @@ const DashboardChart = ({ records, refetch }) => {
         </div>
       </div>
       <div className="border-t border-l">
-        {chunkedRecords.length !== 0 && chunkedRecords[currChunk].map((cv) => {
-          return (
-            <DashboardChartItem
-              data={cv}
-              key={cv.id}
-              toggleFav={toggleFav}
-              deleteRecord={deleteRecord}
-              refetch={refetch}
-            />
-          );
-        })}
+        {chunkedRecords.length !== 0 &&
+          chunkedRecords[currChunk].map((cv) => {
+            return (
+              <DashboardChartItem
+                data={cv}
+                key={cv.id}
+                toggleFav={toggleFav}
+                deleteRecord={deleteRecord}
+                refetch={refetch}
+              />
+            );
+          })}
       </div>
       <Spacer />
       {
-        <span className={`flex mt-40 ${ chunkedRecords.length <= 1 ? "hidden" : ""}`}>
+        <span
+          className={`flex mt-40 ${chunkedRecords.length <= 1 ? "hidden" : ""}`}
+        >
           <Spacer />
           <button
             className="px-2 py-1 border w-1/6 disabled:text-gray-100 disabled:cursor-not-allowed"

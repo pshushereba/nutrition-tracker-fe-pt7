@@ -1,10 +1,11 @@
+import { useEffect } from "react";
 import Highcharts from "highcharts/highcharts.js";
 import highchartsMore from "highcharts/highcharts-more.js";
 import solidGauge from "highcharts/modules/solid-gauge.js";
 import HighchartsReact from "highcharts-react-official";
 import HighchartsExporting from "highcharts/modules/exporting";
+
 import { CenteredContainer } from "../Layout/LayoutPrimitives";
-import { useEffect } from "react";
 
 const inBrowser = typeof Highcharts === "object";
 // console.log("donut", inBrowser);

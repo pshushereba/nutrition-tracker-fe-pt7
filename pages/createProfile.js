@@ -23,35 +23,36 @@ const CreateProfile = () => {
         <Spacer />
         <div className="w-3/12">
           <div className="flex flex-col w-full">
-            {profileStep === "ageGenderHeight" ? (
-              <AgeGenderHeight
-                user={user}
-                setUser={setUser}
-                setProfileStep={setProfileStep}
-              />
-            ) : profileStep === "weightGoalWeight" ? (
-              <WeightGoalWeight
-                user={user}
-                setUser={setUser}
-                setProfileStep={setProfileStep}
-              />
-            ) : profileStep === "activityLevel" ? (
-              <ActivityLevel
-                user={user}
-                setUser={setUser}
-                setProfileStep={setProfileStep}
-              />
-            ) : profileStep === "dietPreferences" ? (
-              <DietPreference
-                user={user}
-                setUser={setUser}
-                setProfileStep={setProfileStep}
-              />
-            ) : profileStep === "macros" ? (
-              <Macros user={user} setUser={setUser} />
-            ) : (
-              "Error"
-            ) //TODO: Proper error handling or default. Will using AgeGender or HeightWeight as default lead to bugs?
+            {
+              profileStep === "ageGenderHeight" ? (
+                <AgeGenderHeight
+                  user={user}
+                  setUser={setUser}
+                  setProfileStep={setProfileStep}
+                />
+              ) : profileStep === "weightGoalWeight" ? (
+                <WeightGoalWeight
+                  user={user}
+                  setUser={setUser}
+                  setProfileStep={setProfileStep}
+                />
+              ) : profileStep === "activityLevel" ? (
+                <ActivityLevel
+                  user={user}
+                  setUser={setUser}
+                  setProfileStep={setProfileStep}
+                />
+              ) : profileStep === "dietPreferences" ? (
+                <DietPreference
+                  user={user}
+                  setUser={setUser}
+                  setProfileStep={setProfileStep}
+                />
+              ) : profileStep === "macros" ? (
+                <Macros user={user} setUser={setUser} />
+              ) : (
+                "Error"
+              ) //TODO: Proper error handling or default. Will using AgeGender or HeightWeight as default lead to bugs?
             }
           </div>
         </div>

@@ -1,8 +1,7 @@
 import { useMutation } from "@apollo/react-hooks";
 import { useRouter } from "next/router";
-import { CREATE_PROFILE } from "../../gql/mutations";
 
-import FormRadio from "./FormRadio";
+import { CREATE_PROFILE } from "../../gql/mutations";
 
 export default function Macros({ user, setUser }) {
   const router = useRouter();

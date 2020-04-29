@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import { getNutritionInfo } from "../../lib/edamam";
 import FormDropdown from "../form/FormDropdown";
@@ -31,7 +31,7 @@ export default function SearchResultsCard({ item }) {
     //  When a the meal_type gets set, hit edamam and render the Nurtrition Label
     foodObj && foodObj.meal_type && getInfo();
     //Clean up func for componentWillUnmount
-    return () => null
+    return () => null;
   }, [foodObj]);
 
   return (

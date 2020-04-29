@@ -1,15 +1,15 @@
 import { useQuery } from "@apollo/react-hooks";
-import { GET_DASHNAV_STATE, ME } from "../../gql/queries";
+import { ME } from "../../gql/queries";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 export default function DashNav() {
-  // const { data, client } = useQuery(GET_DASHNAV_STATE); //Gets active dashboard component from client cache
-  const { data, client} = useQuery(ME)
+  //Gets active dashboard component from client cache
+  const { data, client } = useQuery(ME);
   const router = useRouter();
 
-  const currPage = router.pathname.split('/')[1]
-  
+  const currPage = router.pathname.split("/")[1];
+
   useEffect(() => {
     client.writeData({
       data: {
@@ -18,15 +18,15 @@ export default function DashNav() {
         journalComponent: "log",
         logType: "daily",
         mealType: "breakfast",
-        activeCat: "featured"
+        activeCat: "featured",
       },
     });
     return () => null;
   }, []);
 
-  if (!data) return <div className="w-1/3"></div>
+  if (!data) return <div className="w-1/3"></div>;
 
-  const { me, lowerNav } = data 
+  const { me, lowerNav } = data;
 
   const activeNavControl = lowerNav ? lowerNav : "journal";
   const user = me ? me.name : "user";
@@ -38,8 +38,9 @@ export default function DashNav() {
         } cursor-pointer`}
         value={"journal"}
         onClick={() => {
-
-          client.writeData({ data: { ...data, lowerNav: "journal", id: me.id } })
+          client.writeData({
+            data: { ...data, lowerNav: "journal", id: me.id },
+          });
           router.push("/journal/[user]", `/journal/${user}`);
         }}
       >
@@ -51,7 +52,9 @@ export default function DashNav() {
         } cursor-pointer`}
         value={"progress"}
         onClick={() => {
-          client.writeData({ data: { ...data, lowerNav: "progress", id: me.id } });
+          client.writeData({
+            data: { ...data, lowerNav: "progress", id: me.id },
+          });
           router.push("/progress/[user]", `/progress/${user}`);
         }}
       >

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import Cookie from "js-cookie";
 import { useRouter } from "next/router";
@@ -6,7 +7,6 @@ import FormInput from "./FormInput";
 import { ADD_USER } from "../../gql/mutations";
 import ThunderboltSVG from "../svg/ThunderboltSVG";
 import { Spacer } from "../Layout/LayoutPrimitives";
-import { useState } from "react";
 
 export default function () {
   const [user, setUser] = useState({});

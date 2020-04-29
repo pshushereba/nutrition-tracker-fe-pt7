@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useQuery } from "@apollo/react-hooks";
+
 import FoodLog from "./FoodLog";
 import PreviousLog from "./PreviousLog";
 import Favorites from "./Favorites.js";
 import WaterGirlSVG from "../svg/WayerGirlSVG";
 import { CenteredContainer } from "../Layout/LayoutPrimitives";
-import { useQuery } from "@apollo/react-hooks";
 import { GET_LOG_TYPE_STATE } from "../../gql/queries";
 
 export default function DesktopFoodJournal() {

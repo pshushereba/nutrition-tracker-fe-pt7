@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { GET_FOODJOURNAL_LOGS } from "../../gql/queries";
 import { useQuery } from "@apollo/react-hooks";
 
+import { GET_FOODJOURNAL_LOGS } from "../../gql/queries";
 import DashboardChart from "../dashboardChart/DashboardChart";
 
 export default function FoodLog() {
@@ -20,21 +20,21 @@ export default function FoodLog() {
   if (error) return `Error: ${error}`;
 
   const handleClick = (e) => {
-    const mealType = e.target.dataset.mealtype
-    client.writeData({ data: { ...data, mealType: mealType} })
+    const mealType = e.target.dataset.mealtype;
+    client.writeData({ data: { ...data, mealType: mealType } });
   };
 
   const currentDate = new Date(Date.now());
 
-const currentRecord = (data) => {
-  let newArr = []
-  data.map((record) => {
-    if(record.date !== currentDate.toLocaleDateString().toString()) {
-      newArr.push(record)
-    }
-  })
-  return newArr;
-}
+  const currentRecord = (data) => {
+    let newArr = [];
+    data.map((record) => {
+      if (record.date !== currentDate.toLocaleDateString().toString()) {
+        newArr.push(record);
+      }
+    });
+    return newArr;
+  };
 
   return (
     <>

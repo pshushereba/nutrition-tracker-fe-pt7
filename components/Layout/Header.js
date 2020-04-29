@@ -4,7 +4,6 @@ import cookies from "js-cookie";
 import { Spacer } from "./LayoutPrimitives";
 import DashNav from "./DashNav";
 import { removeCookies } from "../../lib/utils";
-import { useState, useEffect } from "react";
 
 const Header = () => {
   const router = useRouter();
@@ -14,7 +13,7 @@ const Header = () => {
   const creatingProfile = router.asPath === "/createProfile";
   const inOnboarding = onHome || onLogin || onSignup || creatingProfile;
   const token = Cookie("*").api_token !== undefined;
-  
+
   return (
     <div className="flex w-full p-4 bg-gray-10">
       <h1

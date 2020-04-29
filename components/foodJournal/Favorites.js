@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { GET_FOODJOURNAL_LOGS } from "../../gql/queries";
 import { useQuery } from "@apollo/react-hooks";
 
+import { GET_FOODJOURNAL_LOGS } from "../../gql/queries";
 import DashboardChart from "../dashboardChart/DashboardChart";
 
 export default function FoodLog() {
@@ -20,10 +20,9 @@ export default function FoodLog() {
   const { mealType, myDailyRecords } = data;
 
   const handleClick = (e) => {
-    const mealType = e.target.dataset.mealtype
-    client.writeData({ data: { ...data, mealType: mealType} })
+    const mealType = e.target.dataset.mealtype;
+    client.writeData({ data: { ...data, mealType: mealType } });
   };
-
 
   const currentRecord = (data) => {
     let newArr = [];
