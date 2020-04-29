@@ -78,6 +78,12 @@ const Graph = (props) => {
   return (
     <div>
       <Line data={graphData} options={graphOptions} width={400} />
+  <style jsx>{`
+    canvas.chartjs-render-monitor {
+      width: 100% !important;
+      height: 75vh !important;
+    }
+  `}</style>
     </div>
   );
 };
