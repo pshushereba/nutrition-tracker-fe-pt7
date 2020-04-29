@@ -5,14 +5,14 @@ import LikeIconSVG from "../svg/LikeIconSVG.js";
 import MoreIconSVG from "../svg/MoreIconSVG.js";
 import { useRouter } from "next/router";
 import { useMutation } from "@apollo/react-hooks";
-import { UPDATE_VIEW_COUNT } from "../../gql/mutations";
+import { UPDATE_VIEW_COUNT, UPDATE_LIKE_COUNT } from "../../gql/mutations";
 import Menu from "./Menu.js";
 
 const TopicCard = (props) => {
   const router = useRouter();
+  const [addLike] = useMutation(UPDATE_LIKE_COUNT)
   const [showMenu, setShowMenu] = useState(false);
   const isOwnPost = props.data.user.id === props.user.id;
-
 
   let previousViews = props.data.viewCount === null ? 1 : props.data.viewCount;
 
@@ -21,6 +21,26 @@ const TopicCard = (props) => {
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
+
+  const incLikes = async () => {
+    const count = props.data.likeCount ? props.data.likeCount : 0
+    const newCount = count + 1
+    const { data } = await addLike({
+        variables: {
+            id: props.data.id,
+            likeCount: newCount
+        },
+        optimisticResponse: {
+            __typename: "Mutation",
+            updatePost: {
+              id: props.data.id,
+              __typename: "Post",
+              likeCount: newCount,
+            },
+          },
+    })
+
+  }
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -56,11 +76,15 @@ const TopicCard = (props) => {
             </div>
           </div>
           <div className="my-4 mx-2 w-1/4">
-            <div className="flex">
-              <LikeIconSVG /> 0
+            <div 
+                className="flex cursor-pointer"
+                onClick={incLikes}
+                >
+              <LikeIconSVG />
+              {props.data.likeCount ? props.data.likeCount : 0}
             </div>
           </div>
-          <div className="my-4 mx-2 w-1/4" onClick={isOwnPost && toggleMenu}>
+          <div className={`my-4 mx-2 w-1/4 ${isOwnPost ? "cursor-pointer" : ""}`} onClick={isOwnPost && toggleMenu}>
             {showMenu ? (
               <Menu
                 data={props.data}

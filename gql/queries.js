@@ -228,6 +228,7 @@ export const GET_FORUM_TOPICS = gql`
       title
       createdAt
       updatedAt
+      likeCount
   }
     me {
       id
