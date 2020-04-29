@@ -1,6 +1,6 @@
 import React from 'react'
-import HomelessGirlSVG from '../../components/svg/HomelessGirlSVG.js';
-import { CenteredContainer, VerticalRow } from '../Layout/LayoutPrimitives.js';
+import HomelessGirlSVG from '../../components/svg/HomelessGirlSVG';
+import { CenteredContainer, VerticalRow } from '../Layout/LayoutPrimitives';
 
 const MarketingTop = () => {
     return (
