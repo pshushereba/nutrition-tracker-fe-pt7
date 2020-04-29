@@ -32,13 +32,13 @@ const Home = () => {
             </p>
             <button
               className="bg-pink-400 rounded text-white py-3 w-full hover:bg-pink-500 mb-8"
-              onClick={() => router.push("/signup")}
+              onClick={() => router.push("/api/login")}
             >
               Sign Up
             </button>
             <button
               className="border border-pink-400 rounded text-pink-400 py-3 w-full"
-              onClick={() => router.push("/login")}
+              onClick={() => router.push("/api/login")}
             >
               Sign In
             </button>
