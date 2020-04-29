@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ProgressWeightLogItem from "./ProgressWeightLogItem.js";
-import WeightInput from "../WeightInput.js";
+import WeightInput from "./WeightInput.js";
 
 const ProgressWeightLog = (props) => {
   var sorted = {};

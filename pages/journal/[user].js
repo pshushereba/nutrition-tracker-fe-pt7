@@ -3,13 +3,9 @@ import { useQuery } from "@apollo/react-hooks";
 import withApollo from "../../lib/apollo";
 import { GET_DASHNAV_STATE } from "../../gql/queries";
 import Layout from "../../components/Layout/index"
-import FoodSearchBox from "../../components/ingredients/FoodSearchBox";
-import DailyVibe from "../../components/DailyVibe";
 import DesktopFoodJournal from "../../components/foodJournal/DesktopFoodJounal";
-import FoodSearchResults from "../../components/FoodSearchResults";
-import Progress from "../../components/Progress/Progress.js";
-import ForumContainer from "../../components/forum/ForumContainer";
-import DonutGraph from "../../components/graphs/DonutGraph";
+import FoodSearchResults from "../../components/foodJournal/FoodSearchResults";
+
 
 
 const FoodJournal = () => {

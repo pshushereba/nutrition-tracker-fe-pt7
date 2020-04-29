@@ -1,10 +1,10 @@
 import { useQuery } from "@apollo/react-hooks";
 
 import NutritionFacts from "./NutritionFacts";
-import PhoneManBigSVG from "./svg/PhoneManBigSVG";
+import PhoneManBigSVG from "../svg/PhoneManBigSVG";
 import FoodSearchList from "./FoodSearchList";
-import { GET_NUTRITION } from "../gql/queries";
-import { Spacer } from "./Layout/LayoutPrimitives";
+import { GET_NUTRITION } from "../../gql/queries";
+import { Spacer } from "../Layout/LayoutPrimitives";
 
 export default function FoodSearchResults() {
   const { data } = useQuery(GET_NUTRITION);

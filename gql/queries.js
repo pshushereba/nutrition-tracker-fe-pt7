@@ -52,8 +52,10 @@ export const ME = gql`
 export const USER_DASH_HEADER = gql`
   query userDashHeader{
     me {
+      id
       name
       profile {
+        id
         weight
         gender
       }
@@ -69,10 +71,13 @@ export const USER_DASH_HEADER = gql`
 export const GET_PROGRESS_DATA = gql`
   query getProgressData{
     myDailyRecords {
+      id
       date
     }
     me {
+      id
       profile {
+        id
         goal_weight
         weight
       }
@@ -116,6 +121,7 @@ export const GET_FOODJOURNAL_LOGS = gql`
 export const GET_DASHNAV_STATE = gql`
   {
     me {
+      id
       name
     }
     lowerNav @client
@@ -143,7 +149,11 @@ export const GET_LOG_TYPE_STATE = gql`
 `;
 
 export const GET_SEARCH_RESULTS = gql`
-  {
+  query GetSearchResults{
+    me {
+      id
+      name
+    }
     searchResults @client
   }
 `;
@@ -163,7 +173,9 @@ export const GET_FORUM_SELECTION_STATE = gql`
 export const GET_LAST_WEIGHT_LOG = gql`
   query getLastWeightLog{
     me {
+      id
       profile {
+        id
         weight
       }
     }

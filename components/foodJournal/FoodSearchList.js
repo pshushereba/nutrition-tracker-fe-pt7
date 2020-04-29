@@ -1,6 +1,6 @@
 import SearchResultsCard from "./SearchResultCard";
 import { useQuery } from "@apollo/react-hooks";
-import { GET_SEARCH_RESULTS } from "../gql/queries";
+import { GET_SEARCH_RESULTS } from "../../gql/queries";
 
 export default function FoodSearchList({ setNutrInfo }) {
   const { data } = useQuery(GET_SEARCH_RESULTS);

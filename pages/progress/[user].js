@@ -6,9 +6,6 @@ import { GET_WEIGHT_LOGS } from "../../gql/queries";
 import { useQuery } from "@apollo/react-hooks";
 import withApollo from "../../lib/apollo.js";
 import Layout from "../../components/Layout";
-import DailyVibe from "../../components/DailyVibe";
-import DonutGraph from "../../components/graphs/DonutGraph";
-import FoodSearchBox from "../../components/ingredients/FoodSearchBox";
 
 const Progress = () => {
   const { loading, error, data, refetch } = useQuery(GET_WEIGHT_LOGS);

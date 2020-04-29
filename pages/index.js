@@ -2,9 +2,20 @@ import Layout from "../components/Layout/index";
 import SplashSVG from "../components/svg/SplahSVG";
 import { CenteredContainer } from "../components/Layout/LayoutPrimitives";
 import { useRouter } from "next/router";
+import { useApolloClient } from "@apollo/react-hooks"
+
+import withApollo from "../lib/apollo"
+import { useEffect } from "react";
 
 const Home = () => {
   const router = useRouter();
+  const client = useApolloClient()
+
+  useEffect(() => {
+    client.writeData({ data: {
+      lowerNav: "homePage"
+    }})
+  }, [])
 
   return (
     <Layout>
@@ -39,4 +50,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default withApollo(Home);

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { ADD_FOOD } from "../gql/mutations";
+import { ADD_FOOD } from "../../gql/mutations";
 import { useMutation } from "@apollo/react-hooks";
-import { adjustIntValuesonAnObject } from "../lib/utils";
+import { adjustIntValuesonAnObject } from "../../lib/utils";
 
 export default function NutritionFacts({
   nutrition: { info, label, meal_type },
