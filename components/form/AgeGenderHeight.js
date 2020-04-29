@@ -22,21 +22,21 @@ export default function AgeGender({ user, setUser, setProfileStep }) {
       >
         <h3 className="font-medium text-3xl mt-4">How old are you?</h3>
         <input
-          className="border border-gray-400 px-2 py-4 mt-1 focus:border-pink-400 text-2xl"
+          className="border border-gray-400 px-2 py-4 mt-1 focus:border-blue-400 text-2xl"
           name="age"
           placeholder="Age"
           value={user.age}
         />
         <h3 className="font-medium text-3xl mt-8">How tall are you?</h3>
         <input
-          className="border border-gray-400 px-2 py-4 mt-1 focus:border-pink-400 text-2xl"
+          className="border border-gray-400 px-2 py-4 mt-1 focus:border-blue-400 text-2xl"
           name="height"
           placeholder="Height"
           value={user.height}
         />
         <h3 className="font-medium text-3xl mt-8">How Do You Identify?</h3>
         <select
-          className="border border-gray-400 px-2 py-4 mt-1 mb-20 focus:border-pink-400 text-2xl"
+          className="border border-gray-400 px-2 py-4 mt-1 mb-20 focus:border-blue-400 text-2xl"
           name="gender"
           required=""
         >
@@ -49,7 +49,7 @@ export default function AgeGender({ user, setUser, setProfileStep }) {
         </select>
       </form>
       <button
-        className="w-full py-2 text-white text-2xl bg-pink-400 rounded hover:bg-pink-500 self-center"
+        className="w-full py-2 text-white text-2xl bg-blue-400 rounded hover:bg-item-hover self-center"
         onClick={handleSubmit}
       >
         Continue

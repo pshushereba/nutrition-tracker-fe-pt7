@@ -97,7 +97,7 @@ export default function () {
         />
       </form>
       <button
-        className="w-full mt-8 py-2 text-white bg-pink-400 rounded hover:bg-pink-500"
+        className="w-full mt-8 py-2 text-white bg-blue-400rounded hover:bg-item-hover"
         onClick={handleSubmit}
       >
         Let's Go!

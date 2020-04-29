@@ -32,7 +32,7 @@ export default function HeightWeight({
         />
       </form>
       <button
-        className="w-full mt-4 py-2 text-white bg-pink-500 rounded hover:bg-pink-600"
+        className="w-full mt-4 py-2 text-white bg-blue-500 rounded hover:bg-item-hover"
         onClick={handleSubmit}
       >
         Continue

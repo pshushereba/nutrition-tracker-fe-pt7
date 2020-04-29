@@ -80,7 +80,7 @@ export default function () {
         />
       </form>
       <button
-        className="w-full mt-8 py-2 text-white bg-pink-500 rounded hover:bg-pink-600"
+        className="w-full mt-8 py-2 text-white bg-blue-400 rounded hover:bg-item-hover"
         onClick={handleSubmit}
       >
         Let's Go!
