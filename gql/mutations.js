@@ -268,3 +268,12 @@ export const DELETE_COMMENT = gql`
     }
   }
 `;
+
+export const UPDATE_LIKE_COUNT = gql`
+  mutation UpdateLikeCount($id: String!, $likeCount: Int) {
+    updatePost(id: $id, data: { likeCount: $likeCount }) {
+      id
+      likeCount
+    }
+  }
+`;

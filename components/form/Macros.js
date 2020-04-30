@@ -1,41 +1,61 @@
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation, } from "@apollo/react-hooks";
 import { useRouter } from "next/router";
-import { CREATE_PROFILE } from "../../gql/mutations";
 
-import FormRadio from "./FormRadio";
+import { CREATE_PROFILE, CREATE_WEIGHT_LOG } from "../../gql/mutations";
+import { formatDate } from "../../lib/utils";
 
 export default function Macros({ user, setUser }) {
+
   const router = useRouter();
+  const date = new Date(Date.now());
+  const currentDate = formatDate(date).split("-").reverse().join("-");
 
   const variables = {
-    age: parseInt(user.age),
-    height: parseInt(user.height),
+    age: parseInt(user.age) || 0,
+    height: parseInt(user.height) || 0,
     gender:
       user.gender === "true" ? true : user.gender === "false" ? false : null,
-    weight: user.weight,
-    goal_weight: user.goalWeight,
-    activity_level: user.activityLevel,
+    weight: user.weight || 0,
+    goal_weight: user.goalWeight || 0,
+    activity_level: user.activityLevel || 0,
     fat: user.fat || 0,
     carbs: user.carbs || 0,
     protein: user.protein || 0,
+    calories: user.calories || 0,
+    diet: user.diet || ""
   };
 
   function handleChange(e) {
     setUser({ ...user, [e.target.name]: parseInt(e.target.value) });
   }
 
-  const [createProfile, {}] = useMutation(CREATE_PROFILE);
+  const [createProfile] = useMutation(CREATE_PROFILE);
+  const [createWieghtLog] = useMutation(CREATE_WEIGHT_LOG)
 
   const handleSubmit = async () => {
-    const { loading, data, error } = await createProfile({
+    const { loading, data: profileData, error } = await createProfile({
       variables: variables,
     });
 
-    if (error) {
+    if (error){
+      alert(`${error}`)
     }
 
-    if (data) {
-      router.push("/[user]/dashboard", `/user/dashboard`);
+    if (!loading && profileData) {
+      const { loading, data } = await createWieghtLog({
+        variables: {
+          date: currentDate,
+          current_weight: user.weight
+        },
+      })
+
+      if (error){
+        alert(`${error}`)
+      }
+
+      if (!loading && data) {
+        router.push("/journal/[user]", `/journal/user`);
+      }
     }
   };
 
@@ -86,7 +106,7 @@ export default function Macros({ user, setUser }) {
         </div>
       </form>
       <button
-        className="w-full py-2 text-white text-2xl bg-pink-400 rounded hover:bg-pink-500 self-center"
+        className="w-full py-2 text-white text-2xl bg-blue-400 rounded hover:bg-item-hover self-center"
         onClick={handleSubmit}
       >
         Continue

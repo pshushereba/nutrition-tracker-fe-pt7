@@ -1,11 +1,12 @@
+import { useState } from "react";
 import Cookie from "js-cookie";
 import { useRouter } from "next/router";
 import { request } from "graphql-request";
+
 import FormInput from "./FormInput";
 import { LOG_IN } from "../../gql/mutations";
 import ThunderboltSVG from "../svg/ThunderboltSVG";
 import { Spacer } from "../Layout/LayoutPrimitives";
-import { useState } from "react";
 
 export default function () {
   const [user, setUser] = useState("");
@@ -17,21 +18,25 @@ export default function () {
   };
 
   const API = "https://labspt7-nutrition-tracker-be.herokuapp.com";
-  
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const existingToken = Cookie.get("token");
-    
+
     if (existingToken) {
       Cookie.remove("token");
     }
-    
-    const { login: { token, user: { name }} } = await request(API, LOG_IN, variables)
+
+    const {
+      login: {
+        token,
+        user: { name },
+      },
+    } = await request(API, LOG_IN, variables);
 
     Cookie.set("token", token);
-    Cookie.set("Authorization", `Bearer ${token}`)
+    Cookie.set("Authorization", `Bearer ${token}`);
     const nameWithoutWhitespace = (name) => name.trim().split(" ").join("");
     Router.push(
       "/[user]/dashboard",
@@ -75,7 +80,7 @@ export default function () {
         />
       </form>
       <button
-        className="w-full mt-8 py-2 text-white bg-pink-500 rounded hover:bg-pink-600"
+        className="w-full mt-8 py-2 text-white bg-blue-400 rounded hover:bg-item-hover"
         onClick={handleSubmit}
       >
         Let's Go!

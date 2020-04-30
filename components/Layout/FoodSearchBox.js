@@ -14,7 +14,6 @@ export default function FoodSearchBox() {
 
   const query = item.replace(" ", "%20"); // Format the entered food item for the API call
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     //  Hit the foodDB API
@@ -36,7 +35,7 @@ export default function FoodSearchBox() {
   return (
     <form onSubmit={handleSubmit}>
       <input
-        className="w-full border border-purple-400 rounded focus:border-purple-200 px-4 py-2"
+        className="w-full border border-gray-200 rounded focus:border-purple-200 px-4 py-2"
         type="text"
         placeholder="Search Food Item"
         name="food"

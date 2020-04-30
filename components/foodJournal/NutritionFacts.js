@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { ADD_FOOD } from "../../gql/mutations";
 import { useMutation } from "@apollo/react-hooks";
+
+import { ADD_FOOD } from "../../gql/mutations";
 import { adjustIntValuesonAnObject } from "../../lib/utils";
 
 export default function NutritionFacts({
   nutrition: { info, label, meal_type },
 }) {
-
   const [qty, setQty] = useState(1); //  Qty value used to get final values
   const [enteredQty, setEnteredQty] = useState(1); //  No of servings entered into the nutrition display, default value of 1
 
@@ -74,7 +74,10 @@ export default function NutritionFacts({
       : "N/A";
 
     return (
-      <div className={`flex ${ nutrientQuantity === 0 ? "hidden" : ""}`} key={label}>
+      <div
+        className={`flex ${nutrientQuantity === 0 ? "hidden" : ""}`}
+        key={label}
+      >
         <p className="">{label}</p>
         <p className="flex-1"></p>
         <p className="mx-3">{`${nutrientQuantity} ${nutrientUnit}`}</p>
@@ -88,7 +91,7 @@ export default function NutritionFacts({
   const [addFood, { client }] = useMutation(
     /* Returns CB needed to make mutation call, updates cache with returned values,  
         gives us access to the client to change the dashboard back to the food journal */
-    ADD_FOOD,
+    ADD_FOOD
   );
 
   const logFood = async () => {
@@ -107,7 +110,7 @@ export default function NutritionFacts({
           lowerNav: "journal",
           mealType: meal_type,
           logType: "daily",
-          journalComponent: "log"
+          journalComponent: "log",
         },
       });
     }

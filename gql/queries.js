@@ -119,10 +119,13 @@ export const GET_FOODJOURNAL_LOGS = gql`
 `;
 
 export const GET_DASHNAV_STATE = gql`
-  {
+  query GetDashNavState{
     me {
       id
       name
+      profile {
+        id
+      }
     }
     lowerNav @client
     journalComponent @client
@@ -198,6 +201,7 @@ export const GET_WEIGHT_LOGS = gql`
       name
       profile {
         id
+        weight
         gender
         goal_weight
       }
@@ -224,6 +228,7 @@ export const GET_FORUM_TOPICS = gql`
       title
       createdAt
       updatedAt
+      likeCount
   }
     me {
       id

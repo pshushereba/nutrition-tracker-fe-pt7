@@ -17,7 +17,7 @@ body {
 
 canvas.chartjs-render-monitor {
   width: 100% !important;
-  height: 75vh !important;
+  height: 100% !important;
 }
 
 #container {

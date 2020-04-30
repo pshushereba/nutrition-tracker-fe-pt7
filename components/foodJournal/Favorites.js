@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { GET_FOODJOURNAL_LOGS } from "../../gql/queries";
 import { useQuery } from "@apollo/react-hooks";
 
+import { GET_FOODJOURNAL_LOGS } from "../../gql/queries";
 import DashboardChart from "../dashboardChart/DashboardChart";
 
 export default function FoodLog() {
@@ -20,10 +20,9 @@ export default function FoodLog() {
   const { mealType, myDailyRecords } = data;
 
   const handleClick = (e) => {
-    const mealType = e.target.dataset.mealtype
-    client.writeData({ data: { ...data, mealType: mealType} })
+    const mealType = e.target.dataset.mealtype;
+    client.writeData({ data: { ...data, mealType: mealType } });
   };
-
 
   const currentRecord = (data) => {
     let newArr = [];
@@ -41,7 +40,7 @@ export default function FoodLog() {
       <div className="flex text- font-medium py-2">
         <div
           className={`${
-            mealType === "breakfast" ? "border-b-2 border-pink-500" : ""
+            mealType === "breakfast" ? "border-b-2 border-blue-400" : ""
           } cursor-pointer mr-12`}
           data-mealtype="breakfast"
           onClick={handleClick}
@@ -50,7 +49,7 @@ export default function FoodLog() {
         </div>
         <div
           className={`${
-            mealType === "lunch" ? "border-b-2 border-pink-500" : ""
+            mealType === "lunch" ? "border-b-2 border-blue-400" : ""
           } cursor-pointer mr-12`}
           data-mealtype="lunch"
           onClick={handleClick}
@@ -59,7 +58,7 @@ export default function FoodLog() {
         </div>
         <div
           className={`${
-            mealType === "dinner" ? "border-b-2 border-pink-500" : ""
+            mealType === "dinner" ? "border-b-2 border-blue-400" : ""
           } cursor-pointer mr-12`}
           data-mealtype="dinner"
           onClick={handleClick}
@@ -68,7 +67,7 @@ export default function FoodLog() {
         </div>
         <div
           className={`${
-            mealType === "snack" ? "border-b-2 border-pink-500" : ""
+            mealType === "snack" ? "border-b-2 border-blue-400" : ""
           } cursor-pointer mr-12`}
           data-mealtype="snack"
           onClick={handleClick}
@@ -77,7 +76,7 @@ export default function FoodLog() {
         </div>
         <div
           className={`${
-            mealType === "water" ? "border-b-2 border-pink-500" : ""
+            mealType === "water" ? "border-b-2 border-blue-400" : ""
           } cursor-pointer mr-12`}
           data-mealtype="water"
           onClick={handleClick}

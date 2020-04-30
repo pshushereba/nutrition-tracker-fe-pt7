@@ -1,21 +1,23 @@
+import { useEffect } from "react";
+import { useApolloClient } from "@apollo/react-hooks";
+
 import Layout from "../components/Layout/index";
 import SplashSVG from "../components/svg/SplahSVG";
 import { CenteredContainer } from "../components/Layout/LayoutPrimitives";
 import { useRouter } from "next/router";
-import { useApolloClient } from "@apollo/react-hooks"
-
-import withApollo from "../lib/apollo"
-import { useEffect } from "react";
+import withApollo from "../lib/apollo";
 
 const Home = () => {
   const router = useRouter();
-  const client = useApolloClient()
+  const client = useApolloClient();
 
   useEffect(() => {
-    client.writeData({ data: {
-      lowerNav: "homePage"
-    }})
-  }, [])
+    client.writeData({
+      data: {
+        lowerNav: "homePage",
+      },
+    });
+  }, []);
 
   return (
     <Layout>
@@ -29,14 +31,14 @@ const Home = () => {
               Connect with friends, earn badges and crush your goals
             </p>
             <button
-              className="bg-pink-400 rounded text-white py-3 w-full hover:bg-pink-500 mb-8"
-              onClick={() => router.push("/signup")}
+              className="bg-blue-400 rounded text-white py-3 w-full hover:bg-pink-500 mb-8"
+              onClick={() => router.push("/api/login")}
             >
               Sign Up
             </button>
             <button
-              className="border border-pink-400 rounded text-pink-400 py-3 w-full"
-              onClick={() => router.push("/login")}
+              className="border border-blue-400 rounded text-blue-400 py-3 w-full"
+              onClick={() => router.push("/api/login")}
             >
               Sign In
             </button>
