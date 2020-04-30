@@ -91,7 +91,7 @@ const edit = (props) => {
               type="submit"
               className="float-right muli text-xs rounded w-24 py-1 mx-2 my-4 bg-cyan-300 text-white"
             >
-              Create
+              Update
             </button>
             <button className="float-right muli text-xs rounded w-24 py-1 mx-2 my-4 text-cyan-300 border border-cyan-300">
               Cancel

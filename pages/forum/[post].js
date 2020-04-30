@@ -39,7 +39,7 @@ const post = () => {
           <h1 className="muli text-2xl">{data.post.title}</h1>
 
           <div className="flex justify-between my-4">
-            <p>Posted by {data.post.user.name} 4 hours ago</p>
+            <p>Posted by {data.post.user.name}</p>
             <div className="flex justify-end w-1/2">
               <div className="mx-2">
                 <div className="flex mx-1">
