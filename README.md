@@ -42,19 +42,19 @@ Nutrivurv is an application that helps users take control of a healthier lifesty
 
 ### Front end built using:
 
-#### ![_NextJS_](https://camo.githubusercontent.com/1f8dec51cb01842d7bb7a7cd50ade17c75c5e3bd/68747470733a2f2f6173736574732e7a6569742e636f2f696d6167652f75706c6f61642f76313533383336313039312f7265706f7369746f726965732f6e6578742d6a732f6e6578742d6a732e706e67)
+#### NextJS
 
 - Server Side Rendering
 - Dynamic Routing
 - React-based
 
-#### ![Apollo Server](https://user-images.githubusercontent.com/841294/53402609-b97a2180-39ba-11e9-8100-812bab86357c.png)
+#### Apollo Server
 
 - Simplified integration of GraphQL with React
 - Well documented
 - Widely used solution
 
-#### ![Tailwind.css](https://camo.githubusercontent.com/97517e40f9727cc4637bea2d0e1b813d4639f8b2/68747470733a2f2f7461696c77696e646373732e636f6d2f696d672f7461696c77696e642e737667)
+#### Tailwind.css
 
 - Reduce time spent styling
 - Lightweight yet robust
@@ -64,14 +64,12 @@ Nutrivurv is an application that helps users take control of a healthier lifesty
 
 #### [Back end](https://github.com/Lambda-School-Labs/nutrition-tracker-be-pt7) built using:
 
-#### ![GraphQL](https://graphql.org/img/logo.svg)
-
+#### GraphQL
 - Efficient
 - Customizable
 - Widely used alternative to traditional REST architecture
 
-#### ![Prisma](https://camo.githubusercontent.com/c7f49c483a3c5a145ff55c7331520a65e12abff2/68747470733a2f2f692e696d6775722e636f6d2f774434725674342e706e67)
-
+#### Prisma
 - Simplified schema and query builder
 - Well documented
 - Widely used alternative to ORM service

@@ -6,7 +6,7 @@ const MetricCalc = ({ bmiInfo, setBmiInfo }) => {
     bmiCalc(bmiInfo);
   };
 
-  const bmiCalc = (bmiInfo) => {
+const bmiCalc = (bmiInfo) => {
     const userBMI = Math.ceil(
       Number(bmiInfo.kilograms) / Math.pow(Number(bmiInfo.centimeters) / 100, 2)
     );
@@ -52,4 +52,4 @@ const MetricCalc = ({ bmiInfo, setBmiInfo }) => {
   );
 };
 
-export default MetricCalc;
+export { MetricCalc, bmiCalc };
