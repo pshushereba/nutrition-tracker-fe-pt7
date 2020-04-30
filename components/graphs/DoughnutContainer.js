@@ -25,7 +25,7 @@ const DonutContainer = () => {
       <div className="flex flex-col -mr-16">
         <Spacer />
         <div className="flex items-baseline">
-          <div className="text-3xl">{data && data.me.weightLogs[0].current_weight}</div>
+          <div className="text-3xl">{data && data.me.profile.weight}</div>
           <div>lbs</div>
         </div>
         <div>Weight</div>
