@@ -1,17 +1,18 @@
 import { useState } from "react";
-import { adjustIntValuesonAnObject } from "../../lib/utils";
 import { useMutation } from "@apollo/react-hooks";
+
+import { adjustIntValuesonAnObject } from "../../lib/utils";
 import { UPDATE_FOOD_LOG_RECORD } from "../../gql/mutations";
 
 export default function UpdateServingQtyInput({
   item,
   isEditing,
   setIsEditing,
-  loggedQty: currQty
+  loggedQty: currQty,
 }) {
   const [qty, setQty] = useState(currQty);
   const [updateRecord] = useMutation(UPDATE_FOOD_LOG_RECORD);
-  
+
   const update = (e) => {
     e.preventDefault();
     // Pass the obj, currVal, and qty

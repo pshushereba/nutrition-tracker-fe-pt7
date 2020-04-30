@@ -1,6 +1,7 @@
-import SearchResultsCard from "./SearchResultCard";
 import { useQuery } from "@apollo/react-hooks";
-import { GET_SEARCH_RESULTS } from "../gql/queries";
+
+import SearchResultsCard from "./SearchResultCard";
+import { GET_SEARCH_RESULTS } from "../../gql/queries";
 
 export default function FoodSearchList({ setNutrInfo }) {
   const { data } = useQuery(GET_SEARCH_RESULTS);
@@ -17,16 +18,18 @@ export default function FoodSearchList({ setNutrInfo }) {
           <p className="w-1/6 text-center">Carb %</p>
           <p className="w-1/6 text-center">Meal Type</p>
         </div>
-      ) : "No Results Found"}
-        {results.map((item) => {
-          return (
-            <SearchResultsCard
-              key={item.food.foodId}
-              item={item}
-              setNutrInfo={setNutrInfo}
-            />
-          );
-        })}
+      ) : (
+        "No Results Found"
+      )}
+      {results.map((item) => {
+        return (
+          <SearchResultsCard
+            key={item.food.foodId}
+            item={item}
+            setNutrInfo={setNutrInfo}
+          />
+        );
+      })}
     </div>
   );
 }

@@ -1,15 +1,11 @@
 import { useState } from "react";
+
 import FullHeartSVG from "../svg/FullHeartSVG.js";
 import HeartOutlineSVG from "../svg/HeartOutlineSVG.js";
 import { CenteredContainer, Spacer } from "../Layout/LayoutPrimitives.js";
 import UpdateServingQtyInput from "./UpdateServingQtyInput.js";
 
-const DashboardChartItem = ({
-  data,
-  toggleFav,
-  deleteRecord,
-  updateRecord,
-}) => {
+const DashboardChartItem = ({ data, toggleFav, deleteRecord }) => {
   const [item, setItem] = useState(data);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -20,10 +16,10 @@ const DashboardChartItem = ({
   );
 
   return (
-    <div className="w-full flex border-b border-r">
+    <div className="w-full flex">
       <div className="flex w-5/12 items-center">
-        <div className="w-1/12 border-r border-purple-100">
-          <CenteredContainer>
+        <div className="w-1/12">
+          <CenteredContainer >
             <i
               className="cursor-pointer"
               onClick={() => setItem(toggleFav(item))}
@@ -33,7 +29,12 @@ const DashboardChartItem = ({
           </CenteredContainer>
         </div>
         {isEditing ? (
-          <UpdateServingQtyInput item={item} isEditing={isEditing} setIsEditing={setIsEditing} loggedQty={loggedQty}/>
+          <UpdateServingQtyInput
+            item={item}
+            isEditing={isEditing}
+            setIsEditing={setIsEditing}
+            loggedQty={loggedQty}
+          />
         ) : (
           <div className="flex w-11/12 pl-3 items-center">
             {`${loggedQty ? loggedQty : quantity} ${measure} ${food}`}
@@ -42,11 +43,11 @@ const DashboardChartItem = ({
       </div>
       <div className="flex w-7/12 justify-center items-center">
         <div className="w-1/6 text-sm text-center">{calories}</div>
-        <div className="w-1/6 text-sm text-center text-purple-400">{fat}g</div>
-        <div className="w-1/6 text-sm text-center text-pink-400">
+        <div className="w-1/6 text-sm text-center">{fat}g</div>
+        <div className="w-1/6 text-sm text-center">
           {protein}g
         </div>
-        <div className="w-1/6 text-sm text-center text-teal-400">{carbs}g</div>
+        <div className="w-1/6 text-sm text-center">{carbs}g</div>
         <Spacer />
         <div className="flex w-1/3 pr-2 py-2">
           <div className="w-1/3"></div>

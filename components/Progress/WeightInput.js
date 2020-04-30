@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import { UPDATE_WEIGHT_LOG, CREATE_WEIGHT_LOG } from "../gql/mutations";
-import { GET_WEIGHT_LOGS } from "../gql/queries";
-import { formatDate } from "../lib/utils";
+
+import { UPDATE_WEIGHT_LOG, CREATE_WEIGHT_LOG } from "../../gql/mutations";
+import { GET_WEIGHT_LOGS } from "../../gql/queries";
+import { formatDate } from "../../lib/utils";
 
 export default function WeightInput() {
   const [weight, setWeight] = useState();
@@ -72,7 +73,7 @@ export default function WeightInput() {
         onChange={handleChange}
       ></input>
       <button
-        className="border rounded bg-purple-300 text-white px-6 py-2"
+        className="border rounded bg-blue-400 text-white px-6 py-2"
         onClick={handleSubmit}
       >
         Log Weight

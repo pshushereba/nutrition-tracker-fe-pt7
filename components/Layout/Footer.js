@@ -1,6 +1,6 @@
 // this component will work for desktop and mobile
-import HomeIcon from "./svg/HomeSVG.js";
-import TrophyIcon from "./svg/TrophySVG.js";
+import HomeIcon from "../svg/HomeSVG";
+import TrophyIcon from "../svg/TrophySVG.js";
 
 const Footer = () => {
   return (

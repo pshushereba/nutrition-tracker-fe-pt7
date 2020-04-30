@@ -4,7 +4,12 @@ export default function MealDropdown({ setValue, obj }) {
   };
 
   return (
-    <select className="flex-1 bg-white my-1 py-2" name="meal" required="" onChange={handleChange}>
+    <select
+      className="flex-1 bg-white my-1 py-2"
+      name="meal"
+      required=""
+      onChange={handleChange}
+    >
       <option className="text-gray-100" disabled="" defaultValue>
         Meal Type
       </option>

@@ -5,9 +5,9 @@ export default async function session(req, res) {
   try {
     const data = await auth0.getSession(req);
     
-    const userObj = Object.values(data)[0];
-    const token = Object.values(userObj)[2];
-    const authObj = { accessToken: data.accessToken, token: token };
+    const userObj = await Object.values(data)[0];
+    const token = await Object.values(userObj)[2];
+    const authObj = await { accessToken: data.accessToken, token: token };
 
     res.send(authObj);
     res.status(200).end(authObj);

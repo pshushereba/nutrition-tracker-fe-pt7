@@ -1,4 +1,3 @@
-import React from "react";
 import { initGA, logPageView } from "./utils/analytics.js";
 export default class Layout extends React.Component {
   componentDidMount() {

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ProgressWeightLogItem from "./ProgressWeightLogItem.js";
-import WeightInput from "../WeightInput.js";
+import WeightInput from "./WeightInput.js";
 
 const ProgressWeightLog = (props) => {
   var sorted = {};
@@ -70,7 +70,13 @@ const ProgressWeightLog = (props) => {
       <h2 className="text-base muli font-normal">Your logs:</h2>
       {Object.keys(sortedLogs).length > 0
         ? Object.keys(sortedLogs).map((cv) => {
-            return <ProgressWeightLogItem key={`${cv}`} data={sortedLogs[cv]} month={cv} />;
+            return (
+              <ProgressWeightLogItem
+                key={`${cv}`}
+                data={sortedLogs[cv]}
+                month={cv}
+              />
+            );
           })
         : ""}
       <WeightInput />

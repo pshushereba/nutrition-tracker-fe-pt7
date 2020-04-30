@@ -1,5 +1,4 @@
 import Layout from "../components/Layout/index.js";
-import MarketingSVG from "../components/svg/MarketingSVG.js";
 import MarketingTop from "../components/marketing/MarketingTop.js";
 import MarketingCenter from "../components/marketing/MarketingCenter.js";
 import withApollo from "../lib/apollo";

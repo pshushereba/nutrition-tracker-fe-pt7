@@ -1,4 +1,3 @@
-import React from "react";
 import FormInput from "../form/FormInput.js";
 
 const StandardCalc = ({ bmiInfo, setBmiInfo }) => {

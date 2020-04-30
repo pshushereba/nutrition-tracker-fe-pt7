@@ -25,7 +25,7 @@ export default function ActivityLevel({ setProfileStep, user, setUser }) {
         <FormRadio radioFor="None" inputName={""} />
       </form>
       <button
-        className="w-full py-2 text-white text-2xl bg-pink-400 rounded hover:bg-pink-500 self-center"
+        className="w-full py-2 text-white text-2xl bg-blue-400 rounded hover:bg-item-hover self-center"
         onClick={handleSubmit}
       >
         Continue

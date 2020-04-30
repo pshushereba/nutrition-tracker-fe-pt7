@@ -1,9 +1,8 @@
-import React, {useEffect} from "react";
+import { useQuery } from "@apollo/react-hooks";
 import ProgressCenter from "./ProgressCenter.js";
 import ProgressWeightLog from "./ProgressWeightLog.js";
 import ProgressGraph from './ProgressGraph.js';
 import { GET_WEIGHT_LOGS } from '../../gql/queries.js'
-import { useQuery } from "@apollo/react-hooks";
 
 
 const Progress = () => {
@@ -12,10 +11,6 @@ const Progress = () => {
 
   if (loading) return 'Loading...';
   if (error) return `Error: ${error}`
-
-  // useEffect(() => {
-  //   refetch()
-  // }, [data])
 
   return (
     <section className="flex items-center justify-center">
