@@ -28,7 +28,7 @@ export default function FoodLog() {
 
   const currentDate = new Date(Date.now());
 
-  const currentRecord = (data) => {
+  const currentRecords = (data) => {
     let newArr = [];
     data.map((record) => {
       if (record.date === currentDate.toLocaleDateString().toString()) {
@@ -88,7 +88,7 @@ export default function FoodLog() {
         </div>
       </div>
       <DashboardChart
-        records={currentRecord(myDailyRecords)}
+        records={currentRecords(myDailyRecords)}
         refetch={refetch}
       />
     </>

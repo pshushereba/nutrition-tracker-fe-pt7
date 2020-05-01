@@ -29,9 +29,16 @@ export default function FoodLog() {
   const currentRecord = (data) => {
     let newArr = [];
     data.map((record) => {
-      if (record.date !== currentDate.toLocaleDateString().toString()) {
-        newArr.push(record);
-      }
+      const loggedToday =
+        record.date !== currentDate.toLocaleDateString().toString();
+      const edamamId = JSON.parse(record.food_string).food;
+      const alreadyInRecords = newArr
+        .map((item) => {
+          const itemEdamamId = JSON.parse(item.food_string).food;
+          return edamamId === itemEdamamId;
+        })
+        .includes(true);
+      loggedToday && !alreadyInRecords && newArr.push(record);
     });
     return newArr;
   };
@@ -88,6 +95,7 @@ export default function FoodLog() {
       <DashboardChart
         records={currentRecord(myDailyRecords)}
         mealType={mealType}
+        refetch={refetch}
       />
     </>
   );

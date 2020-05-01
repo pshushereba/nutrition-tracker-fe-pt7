@@ -5,7 +5,6 @@ import DonutGraph from "./DonutGraph";
 
 const DonutContainer = () => {
   const { data } = useQuery(ME);
-
   const chartData = {
     datasets: [
       {
@@ -15,6 +14,7 @@ const DonutContainer = () => {
       },
     ],
   };
+  if (!data) return "Loading...";
 
   return (
     <div className="w-1/5 flex justify-around mt-16 -mr-12">
