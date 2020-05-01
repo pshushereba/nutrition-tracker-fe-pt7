@@ -7,7 +7,7 @@ import DonutGraph from "./DonutGraph";
 // const { data } = useMutation()
 const DonutContainer = () => {
   const { data } = useQuery(ME);
-
+  data & console.log(data);
   const chartData = {
     datasets: [
       {
@@ -17,13 +17,14 @@ const DonutContainer = () => {
       },
     ],
   };
+  if (!data) return "Loading...";
 
   return (
     <div className="w-1/5 flex justify-around mt-16">
       <div className="flex flex-col -mr-16">
         <Spacer />
         <div className="flex items-baseline">
-          <div className="text-3xl">183</div>
+          <div className="text-3xl">{data.me.profile.weight}</div>
           <div>lbs</div>
         </div>
         <div>Weight</div>
