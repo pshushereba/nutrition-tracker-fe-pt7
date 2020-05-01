@@ -24,9 +24,9 @@ export default ({ children }) => {
   const inJournal = data ? data.lowerNav === "journal" : false;
 
   return (
-    <div className="flex flex-col h-screen pl-16 pr-32">
+    <div className="flex flex-col h-screen">
       <Header />
-      <div className={`flex flex-col flex-1`}>
+      <div className="flex flex-col flex-1 pl-16 pr-32">
         <div
           className={`${
             inOnboarding ? "hidden" : ""

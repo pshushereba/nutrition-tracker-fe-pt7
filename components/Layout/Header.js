@@ -13,7 +13,7 @@ const Header = () => {
 
   return (
     <div className="flex w-full bg-gray-10 justify-between">
-      <div className="w-1/3 flex">
+      <div className="w-1/3 flex pl-16">
         <div className="w-20 h-14 pr-2">
           <svg
             className="w-full h-full"
@@ -147,7 +147,7 @@ const Header = () => {
       {!inOnboarding ? (
         <>
           <DashNav />
-          <span className="flex w-1/3 text-lg justify-end items-center">
+          <span className="flex w-1/3 text-lg justify-end items-center pr-32">
             <ul className="flex">
               <li
                 className="py-2 px-8 cursor-pointer"
@@ -169,7 +169,7 @@ const Header = () => {
         </>
       ) : (
         <>
-          <span className="flex w-1/3 text-lg justify-end items-center">
+          <span className="flex w-1/3 text-lg justify-end items-center pr-32">
             <ul className="flex">
               <li
                 className="py-2 px-8 cursor-pointer"

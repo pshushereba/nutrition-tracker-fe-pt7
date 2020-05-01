@@ -22,7 +22,7 @@ const FoodJournal = () => {
   return (
     <div>
       <Layout>
-        <div className="ml-20 mr-40">
+        <div>
           {journalComponent === "log" ? (
             <DesktopFoodJournal />
           ) : journalComponent === "searchResults" ? (
