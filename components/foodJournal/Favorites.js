@@ -28,9 +28,14 @@ export default function FoodLog() {
     let newArr = [];
     data.map((record) => {
       const favorite = JSON.parse(record.food_string).favorite;
-      if (favorite) {
-        newArr.push(record);
-      }
+      const edamamId = JSON.parse(record.food_string).food;
+      const alreadyInRecords = newArr
+        .map((item) => {
+          const itemEdamamId = JSON.parse(item.food_string).food;
+          return edamamId === itemEdamamId;
+        })
+        .includes(true);
+      favorite && !alreadyInRecords && newArr.push(record);
     });
     return newArr;
   };

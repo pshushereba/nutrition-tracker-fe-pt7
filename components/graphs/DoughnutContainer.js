@@ -8,8 +8,6 @@ import DonutGraph from "./DonutGraph";
 const DonutContainer = () => {
   const { data } = useQuery(ME);
 
-  data && console.log(data)
-
   const chartData = {
     datasets: [
       {

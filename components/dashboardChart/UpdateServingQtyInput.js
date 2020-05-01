@@ -60,9 +60,7 @@ export default function UpdateServingQtyInput({
         onChange={(e) => setQty(parseInt(e.target.value))}
         autoFocus={true}
       />
-      <button classname="pl-8" type="submit">
-        Update
-      </button>
+      <button type="submit">Update</button>
     </form>
   );
 }
