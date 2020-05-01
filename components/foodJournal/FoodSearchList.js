@@ -2,14 +2,19 @@ import { useQuery } from "@apollo/react-hooks";
 
 import SearchResultsCard from "./SearchResultCard";
 import { GET_SEARCH_RESULTS } from "../../gql/queries";
+import { useState } from "react";
+import { chunkArr } from "../../lib/utils";
+import { Spacer } from "../Layout/LayoutPrimitives";
 
 export default function FoodSearchList({ setNutrInfo }) {
+  const [currChunk, setCurrChunk] = useState(0);
   const { data } = useQuery(GET_SEARCH_RESULTS);
   const results = JSON.parse(data.searchResults);
+  const chunkedResults = chunkArr(results, 8);
 
   const cardList = () => {
     let keyOrder = 0;
-    return results.map((item) => {
+    return chunkedResults[currChunk].map((item) => {
       keyOrder++;
       return (
         <SearchResultsCard
@@ -36,6 +41,29 @@ export default function FoodSearchList({ setNutrInfo }) {
         "No Results Found"
       )}
       {cardList()}
+      {/* <Spacer /> */}
+      {
+        <span
+          className={`flex mt-8 ${chunkedResults.length <= 1 ? "hidden" : ""}`}
+        >
+          <Spacer />
+          <button
+            className="px-2 py-1 border w-1/6 disabled:text-gray-100 disabled:cursor-default"
+            disabled={currChunk === 0}
+            onClick={() => setCurrChunk(currChunk - 1)}
+          >
+            previous
+          </button>
+          <button
+            className="px-2 py-1 border w-1/6 disabled:text-gray-100 disabled:cursor-default"
+            disabled={currChunk === chunkedResults.length - 1}
+            onClick={() => setCurrChunk(currChunk + 1)}
+          >
+            next
+          </button>
+          <Spacer />
+        </span>
+      }
     </div>
   );
 }
