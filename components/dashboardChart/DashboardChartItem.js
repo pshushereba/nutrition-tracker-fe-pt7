@@ -19,7 +19,7 @@ const DashboardChartItem = ({ data, toggleFav, deleteRecord }) => {
     <div className="w-full flex">
       <div className="flex w-5/12 items-center">
         <div className="w-1/12">
-          <CenteredContainer >
+          <CenteredContainer>
             <i
               className="cursor-pointer"
               onClick={() => setItem(toggleFav(item))}
@@ -44,9 +44,7 @@ const DashboardChartItem = ({ data, toggleFav, deleteRecord }) => {
       <div className="flex w-7/12 justify-center items-center">
         <div className="w-1/6 text-sm text-center">{calories}</div>
         <div className="w-1/6 text-sm text-center">{fat}g</div>
-        <div className="w-1/6 text-sm text-center">
-          {protein}g
-        </div>
+        <div className="w-1/6 text-sm text-center">{protein}g</div>
         <div className="w-1/6 text-sm text-center">{carbs}g</div>
         <Spacer />
         <div className="flex w-1/3 pr-2 py-2">

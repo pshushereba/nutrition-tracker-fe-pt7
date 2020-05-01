@@ -51,13 +51,18 @@ export default function UpdateServingQtyInput({
   };
 
   return (
-    <form onSubmit={update}>
+    <form className="flex" onSubmit={update}>
       <input
+        className="border border-gray-200 rounded w-1/6 mr-6"
         type="number"
         placeholder="Entered adjusted servings"
         value={qty}
         onChange={(e) => setQty(parseInt(e.target.value))}
+        autoFocus={true}
       />
+      <button classname="pl-8" type="submit">
+        Update
+      </button>
     </form>
   );
 }

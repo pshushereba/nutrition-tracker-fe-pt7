@@ -111,6 +111,8 @@ export default function NutritionFacts({
           mealType: meal_type,
           logType: "daily",
           journalComponent: "log",
+          nutritionInfo: "",
+          searchResults: "",
         },
       });
     }
@@ -159,7 +161,7 @@ export default function NutritionFacts({
         nutrition advice
       </p>
       <button
-        className="w-full text-white bg-pink-400 py-4 rounded-sm"
+        className="w-full text-white bg-blue-400 hover:item-hover py-4 rounded-sm"
         onClick={logFood}
       >
         Log Food

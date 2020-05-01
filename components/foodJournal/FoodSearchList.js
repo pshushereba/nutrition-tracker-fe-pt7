@@ -7,6 +7,20 @@ export default function FoodSearchList({ setNutrInfo }) {
   const { data } = useQuery(GET_SEARCH_RESULTS);
   const results = JSON.parse(data.searchResults);
 
+  const cardList = () => {
+    let keyOrder = 0;
+    return results.map((item) => {
+      keyOrder++;
+      return (
+        <SearchResultsCard
+          key={`${item.food.foodId} ${keyOrder}`}
+          item={item}
+          setNutrInfo={setNutrInfo}
+        />
+      );
+    });
+  };
+
   return (
     <div className="flex flex-col w-1/2">
       {results.length > 0 ? (
@@ -21,15 +35,7 @@ export default function FoodSearchList({ setNutrInfo }) {
       ) : (
         "No Results Found"
       )}
-      {results.map((item) => {
-        return (
-          <SearchResultsCard
-            key={item.food.foodId}
-            item={item}
-            setNutrInfo={setNutrInfo}
-          />
-        );
-      })}
+      {cardList()}
     </div>
   );
 }
