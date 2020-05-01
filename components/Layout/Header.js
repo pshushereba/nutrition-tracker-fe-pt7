@@ -3,20 +3,17 @@ import Cookie from "next-cookies";
 import cookies from "js-cookie";
 import { Spacer } from "./LayoutPrimitives";
 import DashNav from "./DashNav";
-import { removeCookies } from "../../lib/utils";
+import { removeCookies, isExcludedFromThesePages } from "../../lib/utils";
 
 const Header = () => {
   const router = useRouter();
-  const onHome = router.asPath === "/";
-  const onLogin = router.asPath === "/login";
-  const onSignup = router.asPath === "/signup";
-  const creatingProfile = router.asPath === "/createProfile";
-  const inOnboarding = onHome || onLogin || onSignup || creatingProfile;
   const token = Cookie("*").api_token !== undefined;
+  const pagesToExclude = ["/", "/login", "/signup", "/createProfile", "/updateProfile"]
+  const inOnboarding = isExcludedFromThesePages(router, pagesToExclude)
 
   return (
-    <div className="flex w-full bg-gray-10">
-      <div className="w-1/3 pl-16 flex">
+    <div className="flex w-full bg-gray-10 justify-between">
+      <div className="w-1/3 flex">
         <div className="w-20 h-14 pr-2">
           <svg
             className="w-full h-full"
@@ -151,7 +148,7 @@ const Header = () => {
         <>
           <DashNav />
           <span className="flex w-1/3 text-lg justify-end items-center">
-            <ul className="flex  pr-32">
+            <ul className="flex">
               <li
                 className="py-2 px-8 cursor-pointer"
                 onClick={() => router.push("/user/settings")}
@@ -172,9 +169,8 @@ const Header = () => {
         </>
       ) : (
         <>
-          <Spacer />
           <span className="flex w-1/3 text-lg justify-end items-center">
-            <ul className="flex  pr-32">
+            <ul className="flex">
               <li
                 className="py-2 px-8 cursor-pointer"
                 onClick={() => router.push("/api/login")}

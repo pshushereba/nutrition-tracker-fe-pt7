@@ -6,27 +6,37 @@ import FoodSearchBox from "./FoodSearchBox";
 import Footer from "./Footer";
 import { Spacer } from "./LayoutPrimitives";
 import { GET_DASHNAV_STATE } from "../../gql/queries";
-import DoughnutContainer from '../graphs/DoughnutContainer'
+import DoughnutContainer from "../graphs/DoughnutContainer";
+import { useRouter } from "next/router";
+import { isExcludedFromThesePages } from "../../lib/utils";
 
 export default ({ children }) => {
   const { data } = useQuery(GET_DASHNAV_STATE);
-
+  const router = useRouter();
+  const pagesToExclude = [
+    "/",
+    "/login",
+    "/signup",
+    "/createProfile",
+    "/updateProfile",
+  ];
+  const inOnboarding = isExcludedFromThesePages(router, pagesToExclude);
   const inJournal = data ? data.lowerNav === "journal" : false;
-  const onHomePage = data ? data.lowerNav === "homePage" : true;
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-screen pl-16 pr-32">
       <Header />
       <div className={`flex flex-col flex-1`}>
-        <div className={`${onHomePage ? "hidden" : ""} flex my-10`}>
-          <div className="flex flex-col">
+        <div
+          className={`${
+            inOnboarding ? "hidden" : ""
+          } flex my-10 justify-between`}
+        >
+          <div className="flex flex-col w-1/3">
             <DailyVibe />
-            <Spacer />
           </div>
-          <Spacer />
           <DoughnutContainer />
-          <Spacer />
-          <div className="w-3/12 mt-2 mr-40">
+          <div className="w-1/3 mt-2">
             {!inJournal ? <Spacer /> : <FoodSearchBox />}
           </div>
         </div>
