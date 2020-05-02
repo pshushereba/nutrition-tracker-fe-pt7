@@ -27,7 +27,7 @@ export default function AgeGender({ user, setUser, setProfileStep }) {
           placeholder="Age"
           value={user.age}
         />
-        <h3 className="font-medium text-3xl mt-8">How tall are you?</h3>
+        <h3 className="font-medium text-3xl mt-8">How tall are you? ( in inches )</h3>
         <input
           className="border border-gray-400 px-2 py-4 mt-1 focus:border-blue-400 text-2xl"
           name="height"

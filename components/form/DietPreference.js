@@ -21,14 +21,14 @@ export default function DietPreference({ setProfileStep, user, setUser }) {
           setUser({ ...user, diet: e.target.id.toLowerCase()})
         }
       >
-        <FormRadio radioFor="Keto" inputName={formName} icon="Icon" />
-        <FormRadio radioFor="Paleo" inputName={formName} icon="Icon" />
+        <FormRadio radioFor="Keto" inputName={formName} />
+        <FormRadio radioFor="Paleo" inputName={formName} />
         <FormRadio
           radioFor="US Nutrition Guidelines"
           inputName={formName}
-          icon="Icon"
+        
         />
-        <FormRadio radioFor="None" inputName={formName} icon="Icon" />
+        <FormRadio radioFor="None" inputName={formName} />
       </form>
       <button
         className="w-full py-2 text-white text-2xl bg-blue-400 rounded hover:bg-item-hover self-center"
