@@ -95,7 +95,6 @@ export default function FoodLog() {
       <DashboardChart
         records={previousRecords(myDailyRecords)}
         mealType={mealType}
-        refetch={refetch}
       />
     </>
   );

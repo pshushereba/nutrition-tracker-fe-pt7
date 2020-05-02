@@ -78,7 +78,6 @@ export default function FoodLog() {
       </div>
       <DashboardChart
         records={currentRecords(myDailyRecords)}
-        refetch={refetch}
       />
     </>
   );

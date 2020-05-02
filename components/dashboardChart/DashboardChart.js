@@ -8,10 +8,10 @@ import {
   UPDATE_FOOD_ITEM,
 } from "../../gql/mutations.js";
 import { Spacer } from "../Layout/LayoutPrimitives.js";
-import { GET_OPEN_LOG_STATE } from "../../gql/queries.js";
+import { GET_OPEN_LOG_STATE, GET_DOUGHNUT_DATA, GET_FOODJOURNAL_LOGS } from "../../gql/queries.js";
 import { totalUpPropertyValuesInArray, chunkArr } from "../../lib/utils";
 
-const DashboardChart = ({ records, refetch }) => {
+const DashboardChart = ({ records }) => {
   const [currChunk, setCurrChunk] = useState(0);
 
   const [updateFoodString] = useMutation(UPDATE_FOOD_ITEM);
@@ -27,8 +27,17 @@ const DashboardChart = ({ records, refetch }) => {
   const [addFood, { client, data }] = useMutation(ADD_FOOD);
 
   async function deleteRecord(id) {
-    await deleteItem({ variables: { id: id } });
-    refetch();
+    await deleteItem({
+      variables: { id: id },
+      refetchQueries: [
+        {
+          query: GET_DOUGHNUT_DATA,
+        },
+        {
+          query: GET_FOODJOURNAL_LOGS
+        }
+      ],
+    });
   }
 
   async function reLogFood(variables) {
@@ -95,7 +104,9 @@ const DashboardChart = ({ records, refetch }) => {
       </div>
       {
         <span
-          className={`flex mt-40 ${chunkedRecords.length <= 1 ? "hidden" : ""} pb-6`}
+          className={`flex mt-40 ${
+            chunkedRecords.length <= 1 ? "hidden" : ""
+          } pb-6`}
         >
           <Spacer />
           <button

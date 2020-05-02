@@ -119,6 +119,30 @@ export const GET_FOOD_LOG = gql`
   }
 `;
 
+export const GET_DOUGHNUT_DATA = gql`
+  query getFoodLog {
+    me {
+      id
+      profile {
+        id
+        weight
+      }
+    }
+    myDailyRecords {
+      id
+      date
+      calories
+      fat
+      carbs
+      fiber
+      protein
+      food_string
+      meal_type
+    }
+    myWeightLogCount
+  }
+`;
+
 export const GET_FOODJOURNAL_LOGS = gql`
   query getFoodJournalLogs {
     myDailyRecords {

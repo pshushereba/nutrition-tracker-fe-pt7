@@ -1,20 +1,20 @@
 import { Spacer } from "../Layout/LayoutPrimitives";
 import { useQuery } from "@apollo/react-hooks";
-import { ME, GET_FOOD_LOG } from "../../gql/queries";
+import { ME, GET_DOUGHNUT_DATA } from "../../gql/queries";
 import DonutGraph from "./DonutGraph";
 import { useRouter } from "next/router";
 import { currentRecords } from "../../lib/utils";
 import { useState, useEffect } from "react";
 
 const DonutContainer = () => {
-  const { data } = useQuery(GET_FOOD_LOG);
+  const { data } = useQuery(GET_DOUGHNUT_DATA);
   const router = useRouter()
   const [doughnutData, setDoughnutData] = useState({ fat:20, carbs: 40, protein: 10 })
   const inJournal = router.asPath.split("/")[1] === "journal"
   
   useEffect(() => {
     data && setDoughnutData(totals)
-  },[])
+  },[data])
   const chartData = {
     datasets: [
       {
@@ -63,7 +63,7 @@ const DonutContainer = () => {
         <h2 className="w-full text-center font-semibold text-xl pt-4">
           Daily Intake
         </h2>
-        <p className="text-center">{`${doughnutData.calories} Calories`}</p>
+        <p className={`text-center ${!doughnutData.calories ? "hidden" : "" }`}>{`${doughnutData.calories} Calories`}</p>
       </div>
       <div className="flex flex-col -ml-12 justify-end text-center pb-6">
         <div className="flex items-baseline">

@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/react-hooks";
 
 import { ADD_FOOD } from "../../gql/mutations";
 import { adjustIntValuesonAnObject } from "../../lib/utils";
+import { GET_DOUGHNUT_DATA } from "../../gql/queries";
 
 export default function NutritionFacts({
   nutrition: { info, label, meal_type },
@@ -99,6 +100,9 @@ export default function NutritionFacts({
     //  CB that runs mutation in handleSubmit
     const { loading, data, error } = await addFood({
       variables: foodLogData.recordData,
+      refetchQueries : [{
+        query: GET_DOUGHNUT_DATA
+      }]
     });
 
     if (error) return `Error: ${error}`;
