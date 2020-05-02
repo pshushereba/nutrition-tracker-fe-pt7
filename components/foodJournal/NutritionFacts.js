@@ -27,7 +27,7 @@ export default function NutritionFacts({
   const foodLogData = {
     //Obj for storing the vales used in the nutrition graphic and the dailyRecord mutation
     recordData: {
-      date: new Date(Date.now()).toLocaleDateString(),
+      date: new Date(Date.now()).toLocaleDateString().toString(),
       calories: calories * qty || 0,
       fat: Math.floor(fatQuantity * qty) || 0,
       carbs: Math.floor(carbsQuantity * qty) || 0,
@@ -35,6 +35,7 @@ export default function NutritionFacts({
       protein: Math.floor(proteinQuantity * qty) || 0,
       food_string: JSON.stringify(foodString),
       meal_type: meal_type,
+      quantity: parseInt(enteredQty)
     },
     graphicData: info,
   };
