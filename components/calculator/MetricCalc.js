@@ -1,6 +1,6 @@
 import FormInput from "../form/FormInput.js";
 
-const MetricCalc = ({ bmiInfo, setBmiInfo }) => {
+export const MetricCalc = ({ bmiInfo, setBmiInfo }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     bmiCalc(bmiInfo);
@@ -52,4 +52,3 @@ const bmiCalc = (bmiInfo) => {
   );
 };
 
-export { MetricCalc, bmiCalc };
