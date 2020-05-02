@@ -13,7 +13,7 @@ const Progress = () => {
   if (error) return `Error: ${error}`
 
   return (
-    <section className="flex items-center justify-center">
+    <section className="flex items-center justify-between">
       <div className="w-1/3">
         <ProgressGraph data={data} />
       </div>

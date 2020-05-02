@@ -47,6 +47,13 @@ export const ME = gql`
     }
     myWeightLogCount
     myDailyRecordCount
+    myDailyRecords(orderBy: date_DESC) {
+      date
+      fat
+      carbs
+      protein
+      calories
+    }
     lowerNav @client
   }
 `;

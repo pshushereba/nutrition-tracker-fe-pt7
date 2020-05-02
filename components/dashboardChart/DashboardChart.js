@@ -93,21 +93,20 @@ const DashboardChart = ({ records, refetch }) => {
             );
           })}
       </div>
-      <Spacer />
       {
         <span
-          className={`flex mt-40 ${chunkedRecords.length <= 1 ? "hidden" : ""}`}
+          className={`flex mt-40 ${chunkedRecords.length <= 1 ? "hidden" : ""} pb-6`}
         >
           <Spacer />
           <button
-            className="px-2 py-1 border w-1/6 disabled:text-gray-100 disabled:cursor-not-allowed"
+            className="px-2 py-1 border w-1/6 disabled:text-gray-100 disabled:cursor-default"
             disabled={currChunk === 0}
             onClick={() => setCurrChunk(currChunk - 1)}
           >
             previous
           </button>
           <button
-            className="px-2 py-1 border w-1/6 disabled:text-gray-100 disabled:cursor-not-allowed"
+            className="px-2 py-1 border w-1/6 disabled:text-gray-100 disabled:cursor-default"
             disabled={currChunk === chunkedRecords.length - 1}
             onClick={() => setCurrChunk(currChunk + 1)}
           >

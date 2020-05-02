@@ -18,7 +18,7 @@ export default function DesktopFoodJournal() {
   };
 
   return (
-    <div className="flex-1 flex">
+    <div className="flex-1 flex justify-between">
       <div className="flex flex-col w-7/12">
         <div className="flex text-lg font-medium py-2 mb-8">
           <div
@@ -59,10 +59,10 @@ export default function DesktopFoodJournal() {
           "Error"
         )}
       </div>
-      <div className="flex-1"></div>
-      <CenteredContainer extraClasses={`pt-20`}>
+      {/* <div className="flex-1"></div> */}
+      <div className="pt-20">
         <WomanBubblesSVG />
-      </CenteredContainer>
+      </div>
     </div>
   );
 }

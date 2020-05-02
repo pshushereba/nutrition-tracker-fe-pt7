@@ -26,7 +26,7 @@ export default function FoodLog() {
 
   const currentDate = new Date(Date.now());
 
-  const currentRecord = (data) => {
+  const previousRecords = (data) => {
     let newArr = [];
     data.map((record) => {
       const loggedToday =
@@ -93,7 +93,7 @@ export default function FoodLog() {
         </div>
       </div>
       <DashboardChart
-        records={currentRecord(myDailyRecords)}
+        records={previousRecords(myDailyRecords)}
         mealType={mealType}
         refetch={refetch}
       />
