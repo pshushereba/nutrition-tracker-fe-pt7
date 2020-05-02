@@ -48,6 +48,7 @@ export const ME = gql`
     myWeightLogCount
     myDailyRecordCount
     myDailyRecords(orderBy: date_DESC) {
+      id
       date
       fat
       carbs
@@ -96,6 +97,13 @@ export const GET_PROGRESS_DATA = gql`
 
 export const GET_FOOD_LOG = gql`
   query getFoodLog {
+    me {
+      id
+      profile {
+        id
+        weight
+      }
+    }
     myDailyRecords {
       id
       date
@@ -107,6 +115,7 @@ export const GET_FOOD_LOG = gql`
       food_string
       meal_type
     }
+    myWeightLogCount
   }
 `;
 

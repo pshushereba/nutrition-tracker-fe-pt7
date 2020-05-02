@@ -1,26 +1,26 @@
 import { Spacer } from "../Layout/LayoutPrimitives";
 import { useQuery } from "@apollo/react-hooks";
-import { ME } from "../../gql/queries";
+import { ME, GET_FOOD_LOG } from "../../gql/queries";
 import DonutGraph from "./DonutGraph";
 import { useRouter } from "next/router";
 import { currentRecords } from "../../lib/utils";
 import { useState, useEffect } from "react";
 
 const DonutContainer = () => {
-  const { data } = useQuery(ME);
+  const { data } = useQuery(GET_FOOD_LOG);
   const router = useRouter()
   const [doughnutData, setDoughnutData] = useState({ fat:20, carbs: 40, protein: 10 })
   const inJournal = router.asPath.split("/")[1] === "journal"
   
-  // useEffect(() => {
-  //   data && setDoughnutData(totals)
-  // },[])
+  useEffect(() => {
+    data && setDoughnutData(totals)
+  },[])
   const chartData = {
     datasets: [
       {
         data: [doughnutData.fat, doughnutData.carbs, doughnutData.protein],
-        backgroundColor: ["#00426C", "#4D8037", "#FFCE56"],
-        hoverBackgroundColor: ["#FFCE56", "#00426C", "#4D8037"],
+        backgroundColor: ["#1F7DA2", "#9ABA19", "#00426C"],
+        hoverBackgroundColor: ["#035c80", "#4D8037", "#002942"],
       },
     ],
     labels: ["Fat", "Carbs", "Protein"],
