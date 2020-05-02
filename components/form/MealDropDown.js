@@ -1,4 +1,5 @@
-export default function MealDropdown({ setValue, obj }) {
+
+export default function MealDropdown({ setValue, obj, getInfo }) {
   const handleChange = (e) => {
     setValue({ ...obj, meal_type: e.target.value });
   };
@@ -9,6 +10,7 @@ export default function MealDropdown({ setValue, obj }) {
       name="meal"
       required=""
       onChange={handleChange}
+      onMouseLeave={obj ? () => getInfo() : undefined}
     >
       <option className="text-gray-100" disabled="" defaultValue>
         Meal Type
