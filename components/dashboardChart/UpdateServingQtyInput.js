@@ -8,7 +8,7 @@ export default function UpdateServingQtyInput({
   item,
   isEditing,
   setIsEditing,
-  quantity: currQty
+  quantity: currQty,
 }) {
   const [qty, setQty] = useState(currQty);
   const [updateRecord] = useMutation(UPDATE_FOOD_LOG_RECORD);
@@ -17,7 +17,18 @@ export default function UpdateServingQtyInput({
     e.preventDefault();
     // Pass the obj, currVal, and qty
     const adjItem = adjustIntValuesonAnObject(item, currQty, qty);
-    const { calories, fat, protein, carbs, food_string, id, quantity } = adjItem;
+    const {
+      calories,
+      fat,
+      protein,
+      carbs,
+      food_string,
+      id,
+      quantity,
+      date,
+      fiber,
+      meal_type,
+    } = adjItem;
 
     updateRecord({
       variables: {
@@ -27,6 +38,10 @@ export default function UpdateServingQtyInput({
         protein: protein,
         carbs: carbs,
         quantity: qty,
+        date: date,
+        fiber: fiber,
+        food_string: food_string,
+        meal_type: meal_type,
       },
       /* 
         loggedQty doesn't update properly on UI with optimnisticResponse (or refecthQueries), 
@@ -42,7 +57,11 @@ export default function UpdateServingQtyInput({
           fat: fat,
           protein: protein,
           carbs: carbs,
-          quantity: qty
+          quantity: qty,
+          date: date,
+          fiber: fiber,
+          food_string: food_string,
+          meal_type: meal_type,
         },
       },
     });

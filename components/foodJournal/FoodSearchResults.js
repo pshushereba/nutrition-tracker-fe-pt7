@@ -4,7 +4,6 @@ import NutritionFacts from "./NutritionFacts";
 import SplashSVG from "../svg/SplashSVG";
 import FoodSearchList from "./FoodSearchList";
 import { GET_NUTRITION } from "../../gql/queries";
-import { Spacer } from "../Layout/LayoutPrimitives";
 
 export default function FoodSearchResults() {
   const { data } = useQuery(GET_NUTRITION);
