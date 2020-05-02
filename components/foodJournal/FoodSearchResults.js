@@ -12,7 +12,7 @@ export default function FoodSearchResults() {
   const nutrition = data ? data.nutritionInfo : "";
 
   const svg = (
-    <div className="flex flex-col mt-40">
+    <div className="flex flex-col pt-20">
       <PhoneManBigSVG />
     </div>
   );

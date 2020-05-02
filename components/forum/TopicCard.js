@@ -10,7 +10,7 @@ import Menu from "./Menu.js";
 
 const TopicCard = (props) => {
   const router = useRouter();
-  const [addLike] = useMutation(UPDATE_LIKE_COUNT)
+  const [addLike] = useMutation(UPDATE_LIKE_COUNT);
   const [showMenu, setShowMenu] = useState(false);
   const isOwnPost = props.data.user.id === props.user.id;
 
@@ -23,24 +23,23 @@ const TopicCard = (props) => {
   };
 
   const incLikes = async () => {
-    const count = props.data.likeCount ? props.data.likeCount : 0
-    const newCount = count + 1
+    const count = props.data.likeCount ? props.data.likeCount : 0;
+    const newCount = count + 1;
     const { data } = await addLike({
-        variables: {
-            id: props.data.id,
-            likeCount: newCount
+      variables: {
+        id: props.data.id,
+        likeCount: newCount,
+      },
+      optimisticResponse: {
+        __typename: "Mutation",
+        updatePost: {
+          id: props.data.id,
+          __typename: "Post",
+          likeCount: newCount,
         },
-        optimisticResponse: {
-            __typename: "Mutation",
-            updatePost: {
-              id: props.data.id,
-              __typename: "Post",
-              likeCount: newCount,
-            },
-          },
-    })
-
-  }
+      },
+    });
+  };
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -76,15 +75,15 @@ const TopicCard = (props) => {
             </div>
           </div>
           <div className="my-4 mx-2 w-1/4">
-            <div 
-                className="flex cursor-pointer"
-                onClick={incLikes}
-                >
+            <div className="flex cursor-pointer" onClick={incLikes}>
               <LikeIconSVG />
               {props.data.likeCount ? props.data.likeCount : 0}
             </div>
           </div>
-          <div className={`my-4 mx-2 w-1/4 ${isOwnPost ? "cursor-pointer" : ""}`} onClick={isOwnPost && toggleMenu}>
+          <div
+            className={`my-4 mx-2 w-1/4 ${isOwnPost ? "cursor-pointer" : ""}`}
+            onClick={isOwnPost ? toggleMenu : undefined}
+          >
             {showMenu ? (
               <Menu
                 data={props.data}

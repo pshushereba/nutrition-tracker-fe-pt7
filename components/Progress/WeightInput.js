@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 
-import { UPDATE_WEIGHT_LOG, CREATE_WEIGHT_LOG } from "../../gql/mutations";
+import {
+  UPDATE_WEIGHT_LOG,
+  CREATE_WEIGHT_LOG,
+  UPDATE_PROFILE,
+} from "../../gql/mutations";
 import { GET_WEIGHT_LOGS } from "../../gql/queries";
 import { formatDate } from "../../lib/utils";
 
@@ -9,12 +13,16 @@ export default function WeightInput() {
   const [weight, setWeight] = useState();
   const [updateWeightLog] = useMutation(UPDATE_WEIGHT_LOG);
   const [createWeightLog] = useMutation(CREATE_WEIGHT_LOG);
+  const [updateProfileWeight] = useMutation(UPDATE_PROFILE);
   const { data, loading, error, refetch } = useQuery(GET_WEIGHT_LOGS);
 
   if (error) return `${error}`;
   if (loading) return "Loading ...";
 
-  const { myWeightLogs } = data;
+  const {
+    myWeightLogs,
+    me: { profile },
+  } = data;
 
   const handleChange = (e) => {
     setWeight(e.target.valueAsNumber);
@@ -25,6 +33,26 @@ export default function WeightInput() {
   const date = new Date(Date.now());
   const currentDate = formatDate(date).split("-").reverse().join("-");
 
+  function updateDashWeight() {
+    console.log("updateDashWeight", profile);
+    const { age, height } = profile;
+    updateProfileWeight({
+      variables: {
+        age: age,
+        weight: weight,
+        height: height,
+      },
+      optimisticResponse: {
+        __typename: "Mutation",
+        updateProfile: {
+          id: profile.id,
+          __typename: "Profile",
+          weight: weight,
+        },
+      },
+    });
+  }
+
   function createWeight() {
     createWeightLog({
       variables: {
@@ -33,6 +61,7 @@ export default function WeightInput() {
       },
     });
     setWeight(NaN);
+    updateDashWeight();
     refetch();
   }
 
@@ -51,13 +80,16 @@ export default function WeightInput() {
         },
       },
     });
+    updateDashWeight();
     setWeight(NaN);
   }
 
   const hasRecordForToday = currentDate === lastWeightLogDate;
 
   const handleSubmit = () => {
-    hasRecordForToday ? updateWeight() : createWeight();
+    hasRecordForToday
+      ? updateWeight() && updateDashWeight()
+      : createWeight() && updateDashWeight();
   };
 
   return (
