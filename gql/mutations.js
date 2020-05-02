@@ -103,6 +103,7 @@ export const ADD_FOOD = gql`
     $protein: Int!
     $food_string: String!
     $meal_type: String!
+    $quantity: Int!
   ) {
     createDailyRecord(
       data: {
@@ -114,6 +115,7 @@ export const ADD_FOOD = gql`
         protein: $protein
         food_string: $food_string
         meal_type: $meal_type
+        quantity: $quantity
       }
     ) {
       date
@@ -124,6 +126,7 @@ export const ADD_FOOD = gql`
       protein
       food_string
       meal_type
+      quantity
       createdAt
     }
   }
@@ -140,6 +143,7 @@ export const UPDATE_FOOD_STRING = gql`
       protein
       food_string
       meal_type
+      quantity
       createdAt
     }
   }
@@ -218,6 +222,7 @@ export const UPDATE_FOOD_LOG_RECORD = gql`
     $fat: Int
     $carbs: Int
     $protein: Int
+    $quantity: Int
     $food_string: String
   ) {
     updateDailyRecord(
@@ -227,6 +232,7 @@ export const UPDATE_FOOD_LOG_RECORD = gql`
         fat: $fat
         carbs: $carbs
         protein: $protein
+        quantity: $quantity
         food_string: $food_string
       }
     ) {
@@ -238,6 +244,7 @@ export const UPDATE_FOOD_LOG_RECORD = gql`
       fiber
       protein
       food_string
+      quantity
       meal_type
     }
   }

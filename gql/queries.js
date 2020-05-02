@@ -113,6 +113,7 @@ export const GET_FOODJOURNAL_LOGS = gql`
       protein
       food_string
       meal_type
+      quantity
     }
     mealType @client
   }

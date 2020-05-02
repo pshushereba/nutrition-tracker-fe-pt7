@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import FullHeartSVG from "../svg/FullHeartSVG.js";
 import HeartOutlineSVG from "../svg/HeartOutlineSVG.js";
@@ -16,12 +16,14 @@ const DashboardChartItem = ({
   const [item, setItem] = useState(data);
   const [isEditing, setIsEditing] = useState(false);
 
-  const { calories, fat, protein, carbs, food_string, id } = item;
-
-  const { quantity, measure, food, favorite, loggedQty } = JSON.parse(
+  const { calories, fat, protein, carbs, food_string, id, quantity } = item;
+  
+  const { quantity: baseQty, measure, food, favorite } = JSON.parse(
     food_string
   );
   const currentDate = new Date(Date.now());
+
+ 
 
   return (
     <div className="w-full flex">
@@ -36,18 +38,18 @@ const DashboardChartItem = ({
             </i>
           </CenteredContainer>
         </div>
-        {isEditing ? (
+        {/* {isEditing ? ( */}
           <UpdateServingQtyInput
             item={item}
             isEditing={isEditing}
             setIsEditing={setIsEditing}
-            loggedQty={loggedQty}
+            quantity={quantity}
           />
-        ) : (
-          <div className="flex w-11/12 pl-3 items-center">
-            {`${loggedQty ? loggedQty : quantity} ${measure} ${food}`}
+        {/* ) : ( */}
+          <div className={`flex w-11/12 pl-3 items-center ${isEditing ? "hidden" : ""}`}>
+            {`${quantity ? quantity : baseQty} ${measure} ${food}`}
           </div>
-        )}
+        {/* )} */}
       </div>
       <div className="flex w-7/12 justify-center items-center">
         <div className="w-1/6 text-sm text-center">{calories}</div>

@@ -10,7 +10,7 @@ export default function FoodSearchList({ setNutrInfo }) {
   const [currChunk, setCurrChunk] = useState(0);
   const { data } = useQuery(GET_SEARCH_RESULTS);
   const results = JSON.parse(data.searchResults);
-  const chunkedResults = chunkArr(results, 8);
+  const chunkedResults = chunkArr(results, 5);
 
   const cardList = () => {
     let keyOrder = 0;
@@ -41,7 +41,6 @@ export default function FoodSearchList({ setNutrInfo }) {
         "No Results Found"
       )}
       {cardList()}
-      {/* <Spacer /> */}
       {
         <span
           className={`flex mt-8 ${chunkedResults.length <= 1 ? "hidden" : ""}`}
