@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 export const GET_USER = gql`
-  query getUser{
+  query getUser {
     user {
       id
       name
@@ -11,7 +11,7 @@ export const GET_USER = gql`
 `;
 
 export const GET_ALL_USERS = gql`
-  query getAllUsers{
+  query getAllUsers {
     users {
       id
       name
@@ -21,7 +21,7 @@ export const GET_ALL_USERS = gql`
 `;
 
 export const ME = gql`
-  query me{
+  query me {
     me {
       id
       name
@@ -50,7 +50,7 @@ export const ME = gql`
 `;
 
 export const USER_DASH_HEADER = gql`
-  query userDashHeader{
+  query userDashHeader {
     me {
       id
       name
@@ -69,7 +69,7 @@ export const USER_DASH_HEADER = gql`
 `;
 
 export const GET_PROGRESS_DATA = gql`
-  query getProgressData{
+  query getProgressData {
     myDailyRecords {
       id
       date
@@ -86,7 +86,7 @@ export const GET_PROGRESS_DATA = gql`
 `;
 
 export const GET_FOOD_LOG = gql`
-  query getFoodLog{
+  query getFoodLog {
     myDailyRecords {
       id
       date
@@ -102,7 +102,7 @@ export const GET_FOOD_LOG = gql`
 `;
 
 export const GET_FOODJOURNAL_LOGS = gql`
-  query getFoodJournalLogs{
+  query getFoodJournalLogs {
     myDailyRecords {
       id
       date
@@ -113,13 +113,14 @@ export const GET_FOODJOURNAL_LOGS = gql`
       protein
       food_string
       meal_type
+      quantity
     }
     mealType @client
   }
 `;
 
 export const GET_DASHNAV_STATE = gql`
-  query GetDashNavState{
+  query GetDashNavState {
     me {
       id
       name
@@ -152,7 +153,7 @@ export const GET_LOG_TYPE_STATE = gql`
 `;
 
 export const GET_SEARCH_RESULTS = gql`
-  query GetSearchResults{
+  query GetSearchResults {
     me {
       id
       name
@@ -174,7 +175,7 @@ export const GET_FORUM_SELECTION_STATE = gql`
 `;
 
 export const GET_LAST_WEIGHT_LOG = gql`
-  query getLastWeightLog{
+  query getLastWeightLog {
     me {
       id
       profile {
@@ -190,7 +191,7 @@ export const GET_LAST_WEIGHT_LOG = gql`
 `;
 
 export const GET_WEIGHT_LOGS = gql`
-  query getWeightLogs{
+  query getWeightLogs {
     myWeightLogs(orderBy: date_DESC) {
       date
       current_weight
@@ -201,7 +202,9 @@ export const GET_WEIGHT_LOGS = gql`
       name
       profile {
         id
+        age
         weight
+        height
         gender
         goal_weight
       }
@@ -210,7 +213,7 @@ export const GET_WEIGHT_LOGS = gql`
 `;
 
 export const GET_FORUM_TOPICS = gql`
-	query getForumTopics{
+  query getForumTopics {
     posts {
       body
       id
@@ -229,63 +232,61 @@ export const GET_FORUM_TOPICS = gql`
       createdAt
       updatedAt
       likeCount
-  }
+    }
     me {
       id
       name
     }
-	}
+  }
 `;
 
 export const GET_POST_COMMENTS = gql`
-query getPostComments{
-  comments {
-    id
-    user_id
-    user {
-      id
-      name
-    }
-    updatedAt
-    likeCount
-    body
-		post {
-      id
-    }
-  }
-  me {
-    id
-  }
-}
-`
-
-export const GET_POST_DETAILS = gql`
-query getPost($id: String!) {
-  post(
-    id: $id
-  ) {
-    id
-    body
-    title
-    user {
-      id
-      name
-    }
-    user_id
+  query getPostComments {
     comments {
       id
+      user_id
       user {
         id
         name
       }
+      updatedAt
+      likeCount
       body
+      post {
+        id
+      }
     }
-    viewCount
-    likeCount
+    me {
+      id
+    }
   }
-  me {
-    id
-    name
+`;
+
+export const GET_POST_DETAILS = gql`
+  query getPost($id: String!) {
+    post(id: $id) {
+      id
+      body
+      title
+      user {
+        id
+        name
+      }
+      user_id
+      comments {
+        id
+        user {
+          id
+          name
+        }
+        body
+      }
+      viewCount
+      likeCount
+    }
+    me {
+      id
+      name
+    }
   }
-}
-`
+`;

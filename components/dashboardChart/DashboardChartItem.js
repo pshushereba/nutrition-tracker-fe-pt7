@@ -1,25 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import FullHeartSVG from "../svg/FullHeartSVG.js";
 import HeartOutlineSVG from "../svg/HeartOutlineSVG.js";
 import { CenteredContainer, Spacer } from "../Layout/LayoutPrimitives.js";
 import UpdateServingQtyInput from "./UpdateServingQtyInput.js";
+import { dateForApi } from "../../lib/utils.js";
 
-const DashboardChartItem = ({ data, toggleFav, deleteRecord }) => {
+const DashboardChartItem = ({
+  data,
+  toggleFav,
+  deleteRecord,
+  reLogFood,
+  isDailyRecord,
+}) => {
   const [item, setItem] = useState(data);
   const [isEditing, setIsEditing] = useState(false);
 
-  const { calories, fat, protein, carbs, food_string, id } = item;
-
-  const { quantity, measure, food, favorite, loggedQty } = JSON.parse(
+  const { calories, fat, protein, carbs, food_string, id, quantity } = item;
+  
+  const { quantity: baseQty, measure, food, favorite } = JSON.parse(
     food_string
   );
+  const currentDate = new Date(Date.now());
+
+ 
 
   return (
     <div className="w-full flex">
       <div className="flex w-5/12 items-center">
         <div className="w-1/12">
-          <CenteredContainer >
+          <CenteredContainer>
             <i
               className="cursor-pointer"
               onClick={() => setItem(toggleFav(item))}
@@ -28,29 +38,55 @@ const DashboardChartItem = ({ data, toggleFav, deleteRecord }) => {
             </i>
           </CenteredContainer>
         </div>
-        {isEditing ? (
+        {/* {isEditing ? ( */}
           <UpdateServingQtyInput
             item={item}
             isEditing={isEditing}
             setIsEditing={setIsEditing}
-            loggedQty={loggedQty}
+            quantity={quantity}
           />
-        ) : (
-          <div className="flex w-11/12 pl-3 items-center">
-            {`${loggedQty ? loggedQty : quantity} ${measure} ${food}`}
+        {/* ) : ( */}
+          <div className={`flex w-11/12 pl-3 items-center ${isEditing ? "hidden" : ""}`}>
+            {`${quantity ? quantity : baseQty} ${measure} ${food}`}
           </div>
-        )}
+        {/* )} */}
       </div>
       <div className="flex w-7/12 justify-center items-center">
         <div className="w-1/6 text-sm text-center">{calories}</div>
         <div className="w-1/6 text-sm text-center">{fat}g</div>
-        <div className="w-1/6 text-sm text-center">
-          {protein}g
-        </div>
+        <div className="w-1/6 text-sm text-center">{protein}g</div>
         <div className="w-1/6 text-sm text-center">{carbs}g</div>
         <Spacer />
         <div className="flex w-1/3 pr-2 py-2">
-          <div className="w-1/3"></div>
+          {!isDailyRecord ? (
+            <div
+              className="flex flex-col justify-end items-center w-1/3 text-xs text-right cursor-pointer"
+              onClick={() =>
+                reLogFood({
+                  ...item,
+                  date: currentDate.toLocaleDateString().toString(),
+                })
+              }
+            >
+              <i>
+                <svg
+                  width="18"
+                  height="18"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </i>
+              <div>add</div>
+            </div>
+          ) : (
+            <div className="w-1/3"></div>
+          )}
           <div
             className="flex flex-col justify-end items-center w-1/3 text-xs text-right cursor-pointer"
             onClick={() => setIsEditing(!isEditing)}

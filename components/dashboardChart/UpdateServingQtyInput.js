@@ -8,7 +8,7 @@ export default function UpdateServingQtyInput({
   item,
   isEditing,
   setIsEditing,
-  loggedQty: currQty,
+  quantity: currQty,
 }) {
   const [qty, setQty] = useState(currQty);
   const [updateRecord] = useMutation(UPDATE_FOOD_LOG_RECORD);
@@ -17,8 +17,18 @@ export default function UpdateServingQtyInput({
     e.preventDefault();
     // Pass the obj, currVal, and qty
     const adjItem = adjustIntValuesonAnObject(item, currQty, qty);
-    const { calories, fat, protein, carbs, food_string, id } = adjItem;
-    const foodString = JSON.parse(food_string);
+    const {
+      calories,
+      fat,
+      protein,
+      carbs,
+      food_string,
+      id,
+      quantity,
+      date,
+      fiber,
+      meal_type,
+    } = adjItem;
 
     updateRecord({
       variables: {
@@ -27,7 +37,11 @@ export default function UpdateServingQtyInput({
         fat: fat,
         protein: protein,
         carbs: carbs,
-        food_string: JSON.stringify({ ...foodString, loggedQty: qty }),
+        quantity: qty,
+        date: date,
+        fiber: fiber,
+        food_string: food_string,
+        meal_type: meal_type,
       },
       /* 
         loggedQty doesn't update properly on UI with optimnisticResponse (or refecthQueries), 
@@ -43,7 +57,11 @@ export default function UpdateServingQtyInput({
           fat: fat,
           protein: protein,
           carbs: carbs,
-          food_string: JSON.stringify({ ...foodString, loggedQty: qty }),
+          quantity: qty,
+          date: date,
+          fiber: fiber,
+          food_string: food_string,
+          meal_type: meal_type,
         },
       },
     });
@@ -51,13 +69,16 @@ export default function UpdateServingQtyInput({
   };
 
   return (
-    <form onSubmit={update}>
+    <form className={`flex ${!isEditing ? "hidden" : ""}`} onSubmit={update}>
       <input
+        className="border border-gray-200 rounded w-1/6 mr-6"
         type="number"
         placeholder="Entered adjusted servings"
         value={qty}
         onChange={(e) => setQty(parseInt(e.target.value))}
+        autoFocus={true}
       />
+      <button type="submit">Update</button>
     </form>
   );
 }

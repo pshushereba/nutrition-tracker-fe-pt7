@@ -3,8 +3,9 @@ import DashboardChartItem from "./DashboardChartItem.js";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 
 import {
-  UPDATE_FOOD_STRING,
   DELETE_FOOD_LOG_RECORD,
+  ADD_FOOD,
+  UPDATE_FOOD_ITEM,
 } from "../../gql/mutations.js";
 import { Spacer } from "../Layout/LayoutPrimitives.js";
 import { GET_OPEN_LOG_STATE } from "../../gql/queries.js";
@@ -12,18 +13,27 @@ import { totalUpPropertyValuesInArray, chunkArr } from "../../lib/utils";
 
 const DashboardChart = ({ records, refetch }) => {
   const [currChunk, setCurrChunk] = useState(0);
-  const [updateFoodString] = useMutation(UPDATE_FOOD_STRING);
+
+  const [updateFoodString] = useMutation(UPDATE_FOOD_ITEM);
+
   const {
     loading,
     error,
     data: { mealType, logType },
   } = useQuery(GET_OPEN_LOG_STATE);
+
   const [deleteItem] = useMutation(DELETE_FOOD_LOG_RECORD);
+
+  const [addFood, { client, data }] = useMutation(ADD_FOOD);
 
   async function deleteRecord(id) {
     await deleteItem({ variables: { id: id } });
-    console.log("in deleteRecord");
     refetch();
+  }
+
+  async function reLogFood(variables) {
+    await addFood({ variables: variables });
+    client.writeData({ data: { ...data, logType: "daily" } });
   }
 
   if (loading) return "Loading ...";
@@ -48,9 +58,8 @@ const DashboardChart = ({ records, refetch }) => {
   );
 
   const totalCalories = totalUpPropertyValuesInArray(activeRecords, "calories");
-
-  const calorieLabel =
-    logType === "daily" ? `${totalCalories} total calories` : "";
+  const isDailyRecord = logType === "daily";
+  const calorieLabel = isDailyRecord ? `${totalCalories} total calories` : "";
 
   const chunkedRecords = chunkArr(activeRecords, 5);
 
@@ -69,7 +78,7 @@ const DashboardChart = ({ records, refetch }) => {
           <Spacer />
         </div>
       </div>
-      <div >
+      <div>
         {chunkedRecords.length !== 0 &&
           chunkedRecords[currChunk].map((cv) => {
             return (
@@ -78,7 +87,8 @@ const DashboardChart = ({ records, refetch }) => {
                 key={cv.id}
                 toggleFav={toggleFav}
                 deleteRecord={deleteRecord}
-                refetch={refetch}
+                reLogFood={reLogFood}
+                isDailyRecord={isDailyRecord}
               />
             );
           })}

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import InfoSVG from "../svg/InfoSVG.js";
 import StandardCalc from "./StandardCalc.js";
-import MetricCalc from "./MetricCalc.js";
+import { MetricCalc } from "./MetricCalc.js";
 import { VerticalRow } from "../Layout/LayoutPrimitives.js";
 
 const Calculator = () => {
