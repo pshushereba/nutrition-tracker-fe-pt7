@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/react-hooks";
 
 import AgeGenderHeight from "../components/form/AgeGenderHeight";
 import DietPreference from "../components/form/DietPreference";
-import updateMacros from "../components/form/updateMacros";
+import UpdateMacros from "../components/form/updateMacros";
 import WeightGoalWeight from "../components/form/WeightGoalWeight";
 import ActivityLevel from "../components/form/ActivityLevel";
 import LogInSVG from "../components/svg/LogInSVG";
@@ -50,7 +50,7 @@ const CreateProfile = () => {
                   setProfileStep={setProfileStep}
                 />
               ) : profileStep === "macros" ? (
-                <updateMacros user={user} setUser={setUser} />
+                <UpdateMacros user={user} setUser={setUser} />
               ) : (
                 "Error"
               ) //TODO: Proper error handling or default. Will using AgeGender or HeightWeight as default lead to bugs?

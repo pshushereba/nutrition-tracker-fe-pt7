@@ -20,7 +20,7 @@ const DonutContainer = () => {
     <div className="w-1/5 flex justify-around mt-16 -mr-32">
       <div className="flex flex-col -mr-12 justify-end text-center pb-6">
         <div className="flex items-baseline">
-          <div className="text-3xl">{data && data.me.profile.weight ? data.me.profile.weight : "Start Tracking!"}</div>
+          <div className="text-3xl">{data.me.profile && data.me.profile.weight ? data.me.profile.weight : "Start Tracking!"}</div>
           <div>lbs</div>
         </div>
         <div>Weight</div>

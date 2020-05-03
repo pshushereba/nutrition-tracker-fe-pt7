@@ -70,6 +70,7 @@ export const UPDATE_PROFILE = gql`
     $fat: Int
     $carbs: Int
     $protein: Int
+    $calories: Int
   ) {
     updateProfile(
       data: {
@@ -82,6 +83,7 @@ export const UPDATE_PROFILE = gql`
         fat: $fat
         carbs: $carbs
         protein: $protein
+        calories: $calories
       }
     ) {
       id

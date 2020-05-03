@@ -4,16 +4,28 @@ import cookies from "js-cookie";
 import { Spacer } from "./LayoutPrimitives";
 import DashNav from "./DashNav";
 import { removeCookies, isExcludedFromThesePages } from "../../lib/utils";
+import { useFetchUser } from "../../lib/Auth0/user.js";
 
 const Header = () => {
   const router = useRouter();
   const token = Cookie("*").api_token !== undefined;
-  const pagesToExclude = ["/", "/login", "/signup", "/createProfile", "/updateProfile"]
-  const inOnboarding = isExcludedFromThesePages(router, pagesToExclude)
+  const pagesToExclude = [
+    "/",
+    "/login",
+    "/signup",
+    "/createProfile",
+    "/updateProfile",
+  ];
+  const inOnboarding = isExcludedFromThesePages(router, pagesToExclude);
+
+  const { user } = useFetchUser();
 
   return (
     <div className="flex w-full bg-gray-10 justify-between">
-      <div className="w-1/3 flex pl-16">
+      <div
+        className="w-1/3 flex pl-16 cursor-pointer"
+        onClick={() => (user ? router.push("/journal/user") : router.push("/"))}
+      >
         <div className="w-20 h-14 pr-2">
           <svg
             className="w-full h-full"
@@ -137,10 +149,7 @@ const Header = () => {
             />
           </svg>
         </div>
-        <h1
-          className="text-2xl font-medium cursor-pointer self-center pt-1"
-          onClick={() => router.push("/")}
-        >
+        <h1 className="text-2xl font-medium cursor-pointer self-center pt-1">
           Nutrivurv
         </h1>
       </div>
@@ -151,7 +160,7 @@ const Header = () => {
             <ul className="flex">
               <li
                 className="py-2 px-8 cursor-pointer"
-                onClick={() => router.push("/user/settings")}
+                onClick={() => router.push("/updateProfile")}
               >
                 Settings
               </li>

@@ -1,11 +1,10 @@
-import { useMutation, } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/react-hooks";
 import { useRouter } from "next/router";
 
-import { UPDATE_PROFILE, CREATE_WEIGHT_LOG } from "../../gql/mutations";
+import { UPDATE_PROFILE } from "../../gql/mutations";
 import { formatDate } from "../../lib/utils";
 
 export default function Macros({ user, setUser }) {
-
   const router = useRouter();
   const date = new Date(Date.now());
   const currentDate = formatDate(date).split("-").reverse().join("-");
@@ -22,7 +21,7 @@ export default function Macros({ user, setUser }) {
     carbs: user.carbs || 0,
     protein: user.protein || 0,
     calories: user.calories || 0,
-    diet: user.diet || ""
+    diet: user.diet || "",
   };
 
   function handleChange(e) {
@@ -30,32 +29,18 @@ export default function Macros({ user, setUser }) {
   }
 
   const [updateProfile] = useMutation(UPDATE_PROFILE);
-  const [createWieghtLog] = useMutation(CREATE_WEIGHT_LOG)
 
   const handleSubmit = async () => {
     const { loading, data: profileData, error } = await updateProfile({
       variables: variables,
     });
 
-    if (error){
-      alert(`${error}`)
+    if (error) {
+      alert(`${error}`);
     }
 
     if (!loading && profileData) {
-      const { loading, data } = await createWieghtLog({
-        variables: {
-          date: currentDate,
-          current_weight: user.weight
-        },
-      })
-
-      if (error){
-        alert(`${error}`)
-      }
-
-      if (!loading && data) {
-        router.push("/journal/[user]", `/journal/user`);
-      }
+      router.push("/journal/[user]", `/journal/user`);
     }
   };
 
