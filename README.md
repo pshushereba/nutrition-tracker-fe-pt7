@@ -83,22 +83,27 @@ Auth0 is one of the most widely respected identity providers currently operating
 
 At it's core, Nutrivurv is based around the globally recognized, industry-leading Edamam Food Database collection.  Data from two of these comprehensive databases is then used to generate a wide variety of custom user-requested calculations.
 
-# 3️⃣ Environment Variables
+Edamam Food Database endpoint: https://api.edamam.com/api/food-database
+
+# Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
 🚫These are just examples, replace them with the specifics for your app
 
-    *  REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
-    *  REACT_APP_authDomain - when you set up your Firebase project, this information will be in the dashboard
-    *  REACT_APP_databaseURL - in the Firebase dashboard
-    *  REACT_APP_projectID - in the Firebase dashboard
-    *  REACT_APP_storageBucket - in the Firebase dashboard
-    *  REACT_APP_messagingSenderId - in the Firebase dashboard
-    *  REACT_APP_stripe_API - this is your public Stripe API key, generated in the Stripe dashboard
-    *  REACT_APP_backendURL - optional for your local development server
-    *  REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
-    *  REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
+     AUTH0_AUDIENCE=API audience name on the API app on your Auth0 client *In the API settings under 'Identifier'*
+     AUTH0_CLIENT_ID=Your Auth0 Client ID *In the Application Settings under 'Client ID'*
+     AUTH0_CLIENT_SECRET=Your Auth0 Client Secret *In the Application Settings under 'Client Secret'*
+     AUTH0_DOMAIN=Your Auth0 Domain *This is your Auth0 "account number"*
+     AUTH0_SCOPE="openid profile email"
+     DEPLOYED_URI=https://url.where.app.is.deployed.com or http://localhost:3000
+     FOOD_DB_KEY=Edamam API KEY
+     GA_ID=Google Analytics API KEY
+     GRAPHQL_ENDPOINT=https://uri.for.your.backend.api.com
+     POST_LOGOUT_REDIRECT_URI=https://url.where.your.app.id.deployed.com or http://localhost:3000
+     REDIRECT_URI=https://uri.where.your.app.is.deployed.com/api/callback or http://localhost:3000/api/callback
+     SESSION_COOKIE_SECRET=longrandomstringthatsatleast32characterslong
+     WEBSOCKET_ENDPOINT=wss://url.for.your.backend.api.com   
 
 # Content Licenses
 

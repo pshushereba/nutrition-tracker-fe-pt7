@@ -5,6 +5,7 @@ import DonutGraph from "./DonutGraph";
 
 const DonutContainer = () => {
   const { data } = useQuery(ME);
+  console.log(data)
   const chartData = {
     datasets: [
       {

@@ -17,13 +17,11 @@ const DashboardChartItem = ({
   const [isEditing, setIsEditing] = useState(false);
 
   const { calories, fat, protein, carbs, food_string, id, quantity } = item;
-  
+
   const { quantity: baseQty, measure, food, favorite } = JSON.parse(
     food_string
   );
   const currentDate = new Date(Date.now());
-
- 
 
   return (
     <div className="w-full flex">
@@ -38,18 +36,17 @@ const DashboardChartItem = ({
             </i>
           </CenteredContainer>
         </div>
-        {/* {isEditing ? ( */}
+        <div className="flex flex-col w-7/12">
+          <div className={`flex w-11/12 pl-3 items-center`}>
+            {`${quantity ? quantity : baseQty} ${measure} ${food}`}
+          </div>
           <UpdateServingQtyInput
             item={item}
             isEditing={isEditing}
             setIsEditing={setIsEditing}
             quantity={quantity}
           />
-        {/* ) : ( */}
-          <div className={`flex w-11/12 pl-3 items-center ${isEditing ? "hidden" : ""}`}>
-            {`${quantity ? quantity : baseQty} ${measure} ${food}`}
-          </div>
-        {/* )} */}
+        </div>
       </div>
       <div className="flex w-7/12 justify-center items-center">
         <div className="w-1/6 text-sm text-center">{calories}</div>
