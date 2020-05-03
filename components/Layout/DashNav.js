@@ -11,6 +11,7 @@ export default function DashNav() {
   const currPage = router.pathname.split("/")[1];
 
   useEffect(() => {
+    // Write default values to local state in the cache
     client.writeData({
       data: {
         ...data,
@@ -30,6 +31,7 @@ export default function DashNav() {
 
   const activeNavControl = lowerNav ? lowerNav : "journal";
   const user = me ? me.name : "user";
+
   return (
     <ul className="w-1/3 flex justify-around text-lg font-medium py-2">
       <li

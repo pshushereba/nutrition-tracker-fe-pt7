@@ -4,7 +4,6 @@ import FoodLog from "./FoodLog";
 import PreviousLog from "./PreviousLog";
 import Favorites from "./Favorites.js";
 import WomanBubblesSVG from "../svg/WomanBubblesSVG";
-import { CenteredContainer } from "../Layout/LayoutPrimitives";
 import { GET_LOG_TYPE_STATE } from "../../gql/queries";
 
 export default function DesktopFoodJournal() {
@@ -59,7 +58,6 @@ export default function DesktopFoodJournal() {
           "Error"
         )}
       </div>
-      {/* <div className="flex-1"></div> */}
       <div className="pt-20">
         <WomanBubblesSVG />
       </div>

@@ -7,7 +7,7 @@ import { GET_WEIGHT_LOGS } from '../../gql/queries.js'
 
 const Progress = () => {
 
-  const { loading, error, data, refetch } = useQuery(GET_WEIGHT_LOGS)
+  const { loading, error, data } = useQuery(GET_WEIGHT_LOGS)
 
   if (loading) return 'Loading...';
   if (error) return `Error: ${error}`

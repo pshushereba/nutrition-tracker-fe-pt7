@@ -23,7 +23,7 @@ export default function FoodLog() {
     const mealType = e.target.dataset.mealtype;
     client.writeData({ data: { ...data, mealType: mealType } });
   };
-
+  //  Filter records for favorited items
   const favoritesRecords = (data) => {
     let newArr = [];
     data.map((record) => {

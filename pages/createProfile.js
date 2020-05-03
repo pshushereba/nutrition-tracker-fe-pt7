@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useQuery } from "@apollo/react-hooks";
 
 import AgeGenderHeight from "../components/form/AgeGenderHeight";
 import DietPreference from "../components/form/DietPreference";

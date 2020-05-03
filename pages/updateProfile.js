@@ -13,10 +13,8 @@ import {
   Spacer,
   CenteredContainer,
 } from "../components/Layout/LayoutPrimitives";
-import { ME } from "../gql/queries";
 
 const CreateProfile = () => {
-  const { data, loading, error } = useQuery(ME)
   const [user, setUser] = useState({});
   const [profileStep, setProfileStep] = useState("ageGenderHeight");
 

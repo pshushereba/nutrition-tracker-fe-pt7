@@ -10,6 +10,7 @@ const DonutContainer = () => {
   const { data } = useQuery(GET_DOUGHNUT_DATA);
   const router = useRouter()
   const [doughnutData, setDoughnutData] = useState({})
+  // value useed to add negative bottom margin to the graph if on the food journal page
   const inJournal = router.asPath.split("/")[1] === "journal"
   
   useEffect(() => {
@@ -30,10 +31,14 @@ const DonutContainer = () => {
   
   if (!data) return "Loading...";
   
+  // Default values so the graph isn't busted if it's the first time they've visited for the day
   const defaultValuesForNoRecords = { fat: .33, carbs: .33, protein: .33 }
+  // Filter for todays records
   const graphRecords = currentRecords(data.myDailyRecords)
+
   const totals = !graphRecords.length ? defaultValuesForNoRecords : deriveDoughnutValues(graphRecords)
-  
+
+  // Written so that it can be exported to utils if there is use for it somewhere else down tha road
   function deriveDoughnutValues(dataObj) {
     let newObj = {}
     Object.keys(dataObj).map(record => {

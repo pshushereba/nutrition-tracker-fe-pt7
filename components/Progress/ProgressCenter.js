@@ -1,4 +1,3 @@
-import ProgressSVG from "../svg/ProgressSVG.js";
 
 const ProgressCenter = (props) => {
   const weight = props.data.myWeightLogs[0].current_weight;

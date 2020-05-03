@@ -12,7 +12,7 @@ const TopicCard = (props) => {
   const isOwnPost = props.data.user.id === props.user.id;
 
   /* Uncomment after fixing bug in the mutation 
-    don't forget to uncommet the viewCount icon in PostIcons.js */
+    don't forget to uncomment the viewCount icon in PostIcons.js */
 
   // let previousViews = props.data.viewCount === null ? 0 : props.data.viewCount;
 

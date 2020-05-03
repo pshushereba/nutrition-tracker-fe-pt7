@@ -44,9 +44,8 @@ export default function UpdateServingQtyInput({
         meal_type: meal_type,
       },
       /* 
-        loggedQty doesn't update properly on UI with optimnisticResponse (or refecthQueries), 
-        suspicion is that it needs to be moved to a field on the actual
-        mutation in order to update UI optimistically
+        qty doesn't update properly on UI with optimnisticResponse (or refecthQueries), 
+        suspicion is that it has to do with that element being conditionally rendered
       */
       optimisticResponse: {
         __typename: "Mutation",

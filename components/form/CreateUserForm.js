@@ -31,7 +31,7 @@ export default function () {
     } = await addUser({ variables: variables });
     //TODO: Proper error handling
     if (error) {
-      window.alert(`ERROR: ${error}`);
+      alert(`ERROR: ${error}`);
     }
     if (existingToken) {
       Cookie.remove("token");
