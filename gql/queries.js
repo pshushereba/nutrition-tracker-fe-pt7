@@ -45,6 +45,8 @@ export const ME = gql`
         id
       }
     }
+    myWeightLogCount
+    myDailyRecordCount
     lowerNav @client
   }
 `;
