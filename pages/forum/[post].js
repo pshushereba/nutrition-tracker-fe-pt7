@@ -24,8 +24,6 @@ const post = () => {
     return `There was an error getting the post, ${error}`;
   }
 
-  console.log(data);
-
   return (
     <>
       <Layout>
