@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import FullHeartSVG from "../svg/FullHeartSVG.js";
 import HeartOutlineSVG from "../svg/HeartOutlineSVG.js";
 import { CenteredContainer, Spacer } from "../Layout/LayoutPrimitives.js";
 import UpdateServingQtyInput from "./UpdateServingQtyInput.js";
-import { dateForApi } from "../../lib/utils.js";
 
 const DashboardChartItem = ({
   data,

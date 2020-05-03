@@ -76,4 +76,4 @@ const post = () => {
   );
 };
 
-export default withApollo(post);
+export default withApollo(post, {ssr:true});

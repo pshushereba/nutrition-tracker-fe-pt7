@@ -29,7 +29,7 @@ export default function NutritionFacts({
     //Obj for storing the vales used in the nutrition graphic and the dailyRecord mutation
     recordData: {
       date: new Date(Date.now()).toLocaleDateString().toString(),
-      calories: calories * qty || 0,
+      calories: Math.round(calories * qty) || 0,
       fat: Math.floor(fatQuantity * qty) || 0,
       carbs: Math.floor(carbsQuantity * qty) || 0,
       fiber: Math.floor(fiberQuantity * qty) || 0,
