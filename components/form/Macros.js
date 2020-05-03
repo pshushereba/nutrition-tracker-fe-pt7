@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 
 import { CREATE_PROFILE, CREATE_WEIGHT_LOG } from "../../gql/mutations";
 import { formatDate } from "../../lib/utils";
+import { ME } from "../../gql/queries";
 
 export default function Macros({ user, setUser }) {
 
@@ -35,6 +36,9 @@ export default function Macros({ user, setUser }) {
   const handleSubmit = async () => {
     const { loading, data: profileData, error } = await createProfile({
       variables: variables,
+      refetchQueries: [{
+        query: ME
+      }]
     });
 
     if (error){
@@ -47,6 +51,9 @@ export default function Macros({ user, setUser }) {
           date: currentDate,
           current_weight: user.weight
         },
+        refetchQueries: [{
+          query: ME
+        }]
       })
 
       if (error){

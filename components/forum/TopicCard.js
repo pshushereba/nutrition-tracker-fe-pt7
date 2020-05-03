@@ -7,10 +7,11 @@ import { useRouter } from "next/router";
 import { useMutation } from "@apollo/react-hooks";
 import { UPDATE_VIEW_COUNT, UPDATE_LIKE_COUNT } from "../../gql/mutations";
 import Menu from "./Menu.js";
+import PostIcons from "./PostIcons.js";
 
 const TopicCard = (props) => {
   const router = useRouter();
-  const [addLike] = useMutation(UPDATE_LIKE_COUNT);
+  // const [addLike] = useMutation(UPDATE_LIKE_COUNT);
   const [showMenu, setShowMenu] = useState(false);
   const isOwnPost = props.data.user.id === props.user.id;
 
@@ -22,24 +23,24 @@ const TopicCard = (props) => {
     setShowMenu(!showMenu);
   };
 
-  const incLikes = async () => {
-    const count = props.data.likeCount ? props.data.likeCount : 0;
-    const newCount = count + 1;
-    const { data } = await addLike({
-      variables: {
-        id: props.data.id,
-        likeCount: newCount,
-      },
-      optimisticResponse: {
-        __typename: "Mutation",
-        updatePost: {
-          id: props.data.id,
-          __typename: "Post",
-          likeCount: newCount,
-        },
-      },
-    });
-  };
+  // const incLikes = async () => {
+  //   const count = props.data.likeCount ? props.data.likeCount : 0;
+  //   const newCount = count + 1;
+  //   const { data } = await addLike({
+  //     variables: {
+  //       id: props.data.id,
+  //       likeCount: newCount,
+  //     },
+  //     optimisticResponse: {
+  //       __typename: "Mutation",
+  //       updatePost: {
+  //         id: props.data.id,
+  //         __typename: "Post",
+  //         likeCount: newCount,
+  //       },
+  //     },
+  //   });
+  // };
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -63,23 +64,7 @@ const TopicCard = (props) => {
         </div>
         <div className="flex flex-1"></div>
         <div className="flex align-middle">
-          <div className="my-4 mx-2 w-1/4">
-            <div className="flex">
-              <EyeIconSVG /> {props.data.viewCount || 0}
-            </div>
-          </div>
-          <div className="my-4 mx-2 w-1/4">
-            <div className="flex">
-              <CommentIconSVG />{" "}
-              {props.data.comments.length ? props.data.comments.length : 0}
-            </div>
-          </div>
-          <div className="my-4 mx-2 w-1/4">
-            <div className="flex cursor-pointer" onClick={incLikes}>
-              <LikeIconSVG />
-              {props.data.likeCount ? props.data.likeCount : 0}
-            </div>
-          </div>
+          <PostIcons data={props.data} />
           <div
             className={`my-4 mx-2 w-1/4 ${isOwnPost ? "cursor-pointer" : ""}`}
             onClick={isOwnPost ? toggleMenu : undefined}
