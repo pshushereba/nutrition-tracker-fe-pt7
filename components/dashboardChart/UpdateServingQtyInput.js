@@ -69,7 +69,7 @@ export default function UpdateServingQtyInput({
   };
 
   return (
-    <form className={`flex ${!isEditing ? "hidden" : ""}`} onSubmit={update}>
+    <form className="flex" onSubmit={update}>
       <input
         className="border border-gray-200 rounded w-1/6 mr-6"
         type="number"
