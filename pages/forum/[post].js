@@ -1,4 +1,3 @@
-import React from "react";
 import withApollo from "../../lib/apollo";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -6,9 +5,6 @@ import { useQuery } from "@apollo/react-hooks";
 import { GET_POST_DETAILS } from "../../gql/queries.js";
 import Layout from "../../components/Layout/index";
 import CommentCard from "../../components/forum/CommentCard.js";
-import EyeIconSVG from "../../components/svg/EyeIconSVG.js";
-import CommentIconSVG from "../../components/svg/CommentIconSVG.js";
-import LikeIconSVG from "../../components/svg/LikeIconSVG.js";
 import Comment from "../../components/forum/Comment.js";
 import PostIcons from "../../components/forum/PostIcons";
 

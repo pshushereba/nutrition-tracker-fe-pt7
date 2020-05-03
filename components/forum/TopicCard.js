@@ -1,7 +1,4 @@
-import React, { useState } from "react";
-import EyeIconSVG from "../svg/EyeIconSVG.js";
-import CommentIconSVG from "../svg/CommentIconSVG.js";
-import LikeIconSVG from "../svg/LikeIconSVG.js";
+import { useState } from "react";
 import MoreIconSVG from "../svg/MoreIconSVG.js";
 import { useRouter } from "next/router";
 import { useMutation } from "@apollo/react-hooks";
@@ -11,11 +8,10 @@ import PostIcons from "./PostIcons.js";
 
 const TopicCard = (props) => {
   const router = useRouter();
-  // const [addLike] = useMutation(UPDATE_LIKE_COUNT);
   const [showMenu, setShowMenu] = useState(false);
   const isOwnPost = props.data.user.id === props.user.id;
 
-  let previousViews = props.data.viewCount === null ? 1 : props.data.viewCount;
+  let previousViews = props.data.viewCount === null ? 0 : props.data.viewCount;
 
   const [updateViews] = useMutation(UPDATE_VIEW_COUNT);
 
@@ -23,41 +19,33 @@ const TopicCard = (props) => {
     setShowMenu(!showMenu);
   };
 
-  // const incLikes = async () => {
-  //   const count = props.data.likeCount ? props.data.likeCount : 0;
-  //   const newCount = count + 1;
-  //   const { data } = await addLike({
-  //     variables: {
-  //       id: props.data.id,
-  //       likeCount: newCount,
-  //     },
-  //     optimisticResponse: {
-  //       __typename: "Mutation",
-  //       updatePost: {
-  //         id: props.data.id,
-  //         __typename: "Post",
-  //         likeCount: newCount,
-  //       },
-  //     },
-  //   });
-  // };
-
   const handleChange = (e) => {
     e.preventDefault();
-    router.push("/forum/[post]", `/forum/${props.data.id}`);
     updateViews({
       variables: {
         id: props.data.id,
         viewCount: (previousViews += 1),
       },
+      optimisticResponse: {
+        __typename: "Mutation",
+        updatePost: {
+          id: props.data.id,
+          __typename: "Post",
+          viewCount: (previousViews++),
+        },
+      },
     });
+    router.push("/forum/[post]", `/forum/${props.data.id}`);
   };
 
   return (
     <div className="border-b-2 border-gray-50">
       <div className="flex">
         <div className="w-1/2">
-          <h1 className="muli text-2xl my-4" onClick={handleChange}>
+          <h1
+            className="muli text-2xl my-4 cursor-pointer"
+            onClick={handleChange}
+          >
             {props.data.title}
           </h1>
           <p className="mb-4">{props.data.user.name}</p>
