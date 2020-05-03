@@ -3,9 +3,9 @@ import DashboardChartItem from "./DashboardChartItem.js";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 
 import {
-  UPDATE_FOOD_STRING,
   DELETE_FOOD_LOG_RECORD,
   ADD_FOOD,
+  UPDATE_FOOD_ITEM,
 } from "../../gql/mutations.js";
 import { Spacer } from "../Layout/LayoutPrimitives.js";
 import { GET_OPEN_LOG_STATE } from "../../gql/queries.js";
@@ -14,7 +14,7 @@ import { totalUpPropertyValuesInArray, chunkArr } from "../../lib/utils";
 const DashboardChart = ({ records, refetch }) => {
   const [currChunk, setCurrChunk] = useState(0);
 
-  const [updateFoodString] = useMutation(UPDATE_FOOD_STRING);
+  const [updateFoodString] = useMutation(UPDATE_FOOD_ITEM);
 
   const {
     loading,

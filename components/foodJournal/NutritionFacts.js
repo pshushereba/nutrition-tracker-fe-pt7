@@ -112,8 +112,8 @@ export default function NutritionFacts({
           mealType: meal_type,
           logType: "daily",
           journalComponent: "log",
-          nutritionInfo: "",
-          searchResults: "",
+          // nutritionInfo: "",
+          // searchResults: "",
         },
       });
     }

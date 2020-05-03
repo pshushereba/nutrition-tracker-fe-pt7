@@ -22,17 +22,10 @@ export default function SearchResultsCard({ item }) {
   };
 
   const getInfo = async () => {
-    // CB for use in useEffect when the meal_type is selected in MealDropdown
+    // CB for use in MealDropdown when the meal_type is selected to trigger the Nutrition Graphic
     const foodData = await getNutritionInfo(foodObj);
     setNutrition(foodData);
   };
-
-  useEffect(() => {
-    //  When a the meal_type gets set, hit edamam and render the Nurtrition Label
-    foodObj && foodObj.meal_type && getInfo();
-    //Clean up func for componentWillUnmount
-    return () => null;
-  }, [foodObj]);
 
   return (
     <>
@@ -56,7 +49,7 @@ export default function SearchResultsCard({ item }) {
           <p className="w-1/6 self-center text-center">
             {Math.ceil(item.food.nutrients.CHOCDF) || 0} g
           </p>
-          <MealDropdown obj={foodObj} setValue={setFoodObj} />
+          <MealDropdown obj={foodObj} setValue={setFoodObj} getInfo={getInfo}/>
         </div>
       </div>
     </>
