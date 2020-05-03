@@ -34,7 +34,6 @@ export default function WeightInput() {
   const currentDate = formatDate(date).split("-").reverse().join("-");
 
   function updateDashWeight() {
-    console.log("updateDashWeight", profile);
     const { age, height } = profile;
     updateProfileWeight({
       variables: {

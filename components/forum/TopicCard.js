@@ -11,9 +11,12 @@ const TopicCard = (props) => {
   const [showMenu, setShowMenu] = useState(false);
   const isOwnPost = props.data.user.id === props.user.id;
 
-  let previousViews = props.data.viewCount === null ? 0 : props.data.viewCount;
+  /* Uncomment after fixing bug in the mutation 
+    don't forget to uncommet the viewCount icon in PostIcons.js */
 
-  const [updateViews] = useMutation(UPDATE_VIEW_COUNT);
+  // let previousViews = props.data.viewCount === null ? 0 : props.data.viewCount;
+
+  // const [updateViews] = useMutation(UPDATE_VIEW_COUNT);
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -21,20 +24,20 @@ const TopicCard = (props) => {
 
   const handleChange = (e) => {
     e.preventDefault();
-    updateViews({
-      variables: {
-        id: props.data.id,
-        viewCount: (previousViews += 1),
-      },
-      optimisticResponse: {
-        __typename: "Mutation",
-        updatePost: {
-          id: props.data.id,
-          __typename: "Post",
-          viewCount: (previousViews++),
-        },
-      },
-    });
+    // updateViews({
+    //   variables: {
+    //     id: props.data.id,
+    //     viewCount: (previousViews += 1),
+    //   },
+    //   optimisticResponse: {
+    //     __typename: "Mutation",
+    //     updatePost: {
+    //       id: props.data.id,
+    //       __typename: "Post",
+    //       viewCount: (previousViews++),
+    //     },
+    //   },
+    // });
     router.push("/forum/[post]", `/forum/${props.data.id}`);
   };
 

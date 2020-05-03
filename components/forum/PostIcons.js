@@ -28,9 +28,9 @@ export default function PostIcons({ data }) {
   return (
     <>
       <div className="my-4 mx-2">
-        <div className="flex">
-          <EyeIconSVG /> {data.viewCount || 0}
-        </div>
+        {/* <div className="flex">
+          <EyeIconSVG /> {data.viewCount || 0}  // uncomment once updateProfile bug is fixed
+        </div> */}
       </div>
       <div className="my-4 mx-2">
         <div className="flex">
