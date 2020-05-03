@@ -9,12 +9,14 @@ import { useState, useEffect } from "react";
 const DonutContainer = () => {
   const { data } = useQuery(GET_DOUGHNUT_DATA);
   const router = useRouter()
-  const [doughnutData, setDoughnutData] = useState({ fat:20, carbs: 40, protein: 10 })
+  const [doughnutData, setDoughnutData] = useState({})
   const inJournal = router.asPath.split("/")[1] === "journal"
   
   useEffect(() => {
     data && setDoughnutData(totals)
   },[data])
+
+  
   const chartData = {
     datasets: [
       {
@@ -25,16 +27,17 @@ const DonutContainer = () => {
     ],
     labels: ["Fat", "Carbs", "Protein"],
   };
+  
   if (!data) return "Loading...";
   
+  const defaultValuesForNoRecords = { fat: .33, carbs: .33, protein: .33 }
   const graphRecords = currentRecords(data.myDailyRecords)
+  const totals = !graphRecords.length ? defaultValuesForNoRecords : deriveDoughnutValues(graphRecords)
   
   function deriveDoughnutValues(dataObj) {
     let newObj = {}
     Object.keys(dataObj).map(record => {
-
-      Object.keys(dataObj[record]).map(prop => {
-        
+      Object.keys(dataObj[record]).map(prop => {        
         if (typeof dataObj[record][prop] === "number") {
           newObj[prop] ? 
           (newObj[prop] = newObj[prop] += dataObj[record][prop]) : 
@@ -44,7 +47,8 @@ const DonutContainer = () => {
     })
     return newObj
   }
-  const totals = deriveDoughnutValues(graphRecords)
+
+  
   return (
     <div className={`w-1/5 flex justify-around mt-16 -mr-32 ${ inJournal ? "-mb-24" : ""}`}>
       <div className="flex flex-col -mr-12 justify-end text-center pb-6">
