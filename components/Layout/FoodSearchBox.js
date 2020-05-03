@@ -35,7 +35,8 @@ export default function FoodSearchBox() {
   return (
     <form onSubmit={handleSubmit}>
       <input
-        className="w-full border border-gray-200 rounded focus:border-purple-200 py-2 px-4"
+        className="w-full border border-gray-200 rounded focus:border-item-hover_lucero_78
+         py-2 px-4"
         type="text"
         placeholder="Search Food Item"
         name="food"
