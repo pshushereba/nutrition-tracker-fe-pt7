@@ -6,8 +6,6 @@ import { formatDate } from "../../lib/utils";
 
 export default function Macros({ user, setUser }) {
   const router = useRouter();
-  const date = new Date(Date.now());
-  const currentDate = formatDate(date).split("-").reverse().join("-");
 
   const variables = {
     age: parseInt(user.age) || 0,

@@ -47,6 +47,14 @@ export const ME = gql`
     }
     myWeightLogCount
     myDailyRecordCount
+    myDailyRecords(orderBy: date_DESC) {
+      id
+      date
+      fat
+      carbs
+      protein
+      calories
+    }
     lowerNav @client
   }
 `;
@@ -89,6 +97,13 @@ export const GET_PROGRESS_DATA = gql`
 
 export const GET_FOOD_LOG = gql`
   query getFoodLog {
+    me {
+      id
+      profile {
+        id
+        weight
+      }
+    }
     myDailyRecords {
       id
       date
@@ -100,6 +115,31 @@ export const GET_FOOD_LOG = gql`
       food_string
       meal_type
     }
+    myWeightLogCount
+  }
+`;
+
+export const GET_DOUGHNUT_DATA = gql`
+  query getFoodLog {
+    me {
+      id
+      profile {
+        id
+        weight
+      }
+    }
+    myDailyRecords {
+      id
+      date
+      calories
+      fat
+      carbs
+      fiber
+      protein
+      food_string
+      meal_type
+    }
+    myWeightLogCount
   }
 `;
 

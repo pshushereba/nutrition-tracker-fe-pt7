@@ -13,7 +13,10 @@ export default function FoodSearchList({ setNutrInfo }) {
   const chunkedResults = chunkArr(results, 5);
 
   const cardList = () => {
-    let keyOrder = 0;
+    //  Some of the items from edamam have duplicate id's, 
+    // keyOrder added to garauntee a unque value for the key
+    let keyOrder = 0; 
+    
     return chunkedResults[currChunk].map((item) => {
       keyOrder++;
       return (

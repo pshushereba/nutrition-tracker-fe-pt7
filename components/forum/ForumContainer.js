@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useQuery } from "@apollo/react-hooks";
 import { useRouter } from "next/router";
 import TopicList from "./TopicList";
 

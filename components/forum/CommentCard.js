@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { UPDATE_COMMENT } from "../../gql/mutations.js";
-import { useFetchUser } from "../../lib/user.js";
 
 const CommentCard = (props) => {
   const [newComment, setNewComment] = useState(props.data.body);

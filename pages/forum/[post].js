@@ -1,4 +1,3 @@
-import React from "react";
 import withApollo from "../../lib/apollo";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -6,10 +5,8 @@ import { useQuery } from "@apollo/react-hooks";
 import { GET_POST_DETAILS } from "../../gql/queries.js";
 import Layout from "../../components/Layout/index";
 import CommentCard from "../../components/forum/CommentCard.js";
-import EyeIconSVG from "../../components/svg/EyeIconSVG.js";
-import CommentIconSVG from "../../components/svg/CommentIconSVG.js";
-import LikeIconSVG from "../../components/svg/LikeIconSVG.js";
 import Comment from "../../components/forum/Comment.js";
+import PostIcons from "../../components/forum/PostIcons";
 
 const post = () => {
   const router = useRouter();
@@ -27,8 +24,6 @@ const post = () => {
     return `There was an error getting the post, ${error}`;
   }
 
-  console.log(data);
-
   return (
     <>
       <Layout>
@@ -41,21 +36,7 @@ const post = () => {
           <div className="flex justify-between my-4">
             <p>Posted by {data.post.user.name}</p>
             <div className="flex justify-end w-1/2">
-              <div className="mx-2">
-                <div className="flex mx-1">
-                  <EyeIconSVG /> {data.post.viewCount || 0}
-                </div>
-              </div>
-              <div className="mx-2">
-                <div className="flex mx-1">
-                  <CommentIconSVG /> {data.post.comments.length}
-                </div>
-              </div>
-              <div className="mx-2">
-                <div className="flex mx-1">
-                  <LikeIconSVG /> {data.post.likeCount || 0}
-                </div>
-              </div>
+              <PostIcons data={data.post} />
             </div>
           </div>
 
@@ -76,4 +57,4 @@ const post = () => {
   );
 };
 
-export default withApollo(post);
+export default withApollo(post, {ssr:true});

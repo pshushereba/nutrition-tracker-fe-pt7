@@ -23,8 +23,8 @@ export default function FoodLog() {
     const mealType = e.target.dataset.mealtype;
     client.writeData({ data: { ...data, mealType: mealType } });
   };
-
-  const currentRecord = (data) => {
+  //  Filter records for favorited items
+  const favoritesRecords = (data) => {
     let newArr = [];
     data.map((record) => {
       const favorite = JSON.parse(record.food_string).favorite;
@@ -90,9 +90,8 @@ export default function FoodLog() {
         </div>
       </div>
       <DashboardChart
-        records={currentRecord(myDailyRecords)}
+        records={favoritesRecords(myDailyRecords)}
         mealType={mealType}
-        refetch={refetch}
       />
     </>
   );

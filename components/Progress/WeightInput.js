@@ -13,7 +13,10 @@ export default function WeightInput() {
   const [weight, setWeight] = useState();
   const [updateWeightLog] = useMutation(UPDATE_WEIGHT_LOG);
   const [createWeightLog] = useMutation(CREATE_WEIGHT_LOG);
-  const [updateProfileWeight] = useMutation(UPDATE_PROFILE);
+
+  // Could get rid of this mutation with a circular reference to the user in MyWeightLogs
+  const [updateProfileWeight] = useMutation(UPDATE_PROFILE);  
+
   const { data, loading, error, refetch } = useQuery(GET_WEIGHT_LOGS);
 
   if (error) return `${error}`;
@@ -34,7 +37,6 @@ export default function WeightInput() {
   const currentDate = formatDate(date).split("-").reverse().join("-");
 
   function updateDashWeight() {
-    console.log("updateDashWeight", profile);
     const { age, height } = profile;
     updateProfileWeight({
       variables: {
@@ -60,8 +62,8 @@ export default function WeightInput() {
         current_weight: weight,
       },
     });
-    setWeight(NaN);
     updateDashWeight();
+    setWeight(NaN);
     refetch();
   }
 

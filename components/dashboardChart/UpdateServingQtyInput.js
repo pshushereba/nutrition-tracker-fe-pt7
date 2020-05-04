@@ -44,9 +44,8 @@ export default function UpdateServingQtyInput({
         meal_type: meal_type,
       },
       /* 
-        loggedQty doesn't update properly on UI with optimnisticResponse (or refecthQueries), 
-        suspicion is that it needs to be moved to a field on the actual
-        mutation in order to update UI optimistically
+        qty doesn't update properly on UI with optimnisticResponse (or refecthQueries), 
+        suspicion is that it has to do with that element being conditionally rendered
       */
       optimisticResponse: {
         __typename: "Mutation",
@@ -69,7 +68,7 @@ export default function UpdateServingQtyInput({
   };
 
   return (
-    <form className={`flex ${!isEditing ? "hidden" : ""}`} onSubmit={update}>
+    <form className="flex" onSubmit={update}>
       <input
         className="border border-gray-200 rounded w-1/6 mr-6"
         type="number"

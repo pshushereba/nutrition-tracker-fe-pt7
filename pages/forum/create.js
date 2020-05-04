@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import withApollo from '../../lib/apollo.js';
 import { useMutation } from '@apollo/react-hooks';
 import { ADD_POST } from '../../gql/mutations.js';
-import { CenteredContainer, Spacer } from '../../components/Layout/LayoutPrimitives.js';
+import { CenteredContainer } from '../../components/Layout/LayoutPrimitives.js';
 import Layout from '../../components/Layout/index.js';
 import { useRouter } from 'next/router';
 

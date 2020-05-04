@@ -4,7 +4,6 @@ import FoodLog from "./FoodLog";
 import PreviousLog from "./PreviousLog";
 import Favorites from "./Favorites.js";
 import WomanBubblesSVG from "../svg/WomanBubblesSVG";
-import { CenteredContainer } from "../Layout/LayoutPrimitives";
 import { GET_LOG_TYPE_STATE } from "../../gql/queries";
 
 export default function DesktopFoodJournal() {
@@ -18,7 +17,7 @@ export default function DesktopFoodJournal() {
   };
 
   return (
-    <div className="flex-1 flex">
+    <div className="flex-1 flex justify-between">
       <div className="flex flex-col w-7/12">
         <div className="flex text-lg font-medium py-2 mb-8">
           <div
@@ -59,10 +58,9 @@ export default function DesktopFoodJournal() {
           "Error"
         )}
       </div>
-      <div className="flex-1"></div>
-      <CenteredContainer extraClasses={`pt-20`}>
+      <div className="pt-20">
         <WomanBubblesSVG />
-      </CenteredContainer>
+      </div>
     </div>
   );
 }

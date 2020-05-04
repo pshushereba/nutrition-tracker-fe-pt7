@@ -3,12 +3,15 @@ import { useMutation } from "@apollo/react-hooks";
 
 import { ADD_FOOD } from "../../gql/mutations";
 import { adjustIntValuesonAnObject } from "../../lib/utils";
+import { GET_DOUGHNUT_DATA } from "../../gql/queries";
 
 export default function NutritionFacts({
   nutrition: { info, label, meal_type },
 }) {
-  const [qty, setQty] = useState(1); //  Qty value used to get final values
-  const [enteredQty, setEnteredQty] = useState(1); //  No of servings entered into the nutrition display, default value of 1
+  //  Qty value used to get final values
+  const [qty, setQty] = useState(1); 
+  //  No of servings entered into the nutrition display, default value of 1
+  const [enteredQty, setEnteredQty] = useState(1); 
 
   const {
     //  Destructure info for access to properties we're loading into foodLogData
@@ -22,13 +25,14 @@ export default function NutritionFacts({
     ingredients: [{ parsed }],
   } = info;
 
-  const foodString = { ...parsed[0], favorite: false, loggedQty: enteredQty }; //  add favorite and logged qty properties to food_string
+  //  add favorite and logged qty properties to food_string 
+  const foodString = { ...parsed[0], favorite: false, loggedQty: enteredQty }; 
 
   const foodLogData = {
     //Obj for storing the vales used in the nutrition graphic and the dailyRecord mutation
     recordData: {
       date: new Date(Date.now()).toLocaleDateString().toString(),
-      calories: calories * qty || 0,
+      calories: Math.round(calories * qty) || 0,
       fat: Math.floor(fatQuantity * qty) || 0,
       carbs: Math.floor(carbsQuantity * qty) || 0,
       fiber: Math.floor(fiberQuantity * qty) || 0,
@@ -49,28 +53,37 @@ export default function NutritionFacts({
     yield: itemYield,
   } = foodLogData.graphicData;
 
-  const name = ingredients[0].parsed[0].food; // Name of food item
-  const nutrients = Object.keys(totalNutrients).splice(1); // Array of returned nutrients for creating nutrition lable
-  const servingSize = Math.floor(totalWeight / itemYield); // Weight of a single serving
+  // Name of food item
+  const name = ingredients[0].parsed[0].food; 
+  // Array of returned nutrients for creating nutrition lable
+  const nutrients = Object.keys(totalNutrients).splice(1); 
+  // Weight of a single serving
+  const servingSize = Math.floor(totalWeight / itemYield); 
 
+  //  Programatically grab our return nutrients and create items for display in the Nutrition Label
   const nutrientList = nutrients.map((nutrient) => {
-    //  Programatically grab our return nutrients and create items for display in the Nutrition Label
-    const nutrientTotals = totalNutrients; // Macros
-    const dailyTotals = totalDaily; //  Percent daily values
-    const label = nutrientTotals[nutrient].label; //  Macro name
+    // Macros
+    const nutrientTotals = totalNutrients; 
+    //  Percent daily values
+    const dailyTotals = totalDaily; 
+    //  Macro name
+    const label = nutrientTotals[nutrient].label; 
 
     const nutrientQuantity = Math.floor(
       //  Total per selected serving
       nutrientTotals[nutrient].quantity * qty
     );
 
-    const nutrientUnit = nutrientTotals[nutrient].unit; //  Unit for serving total
+    //  Unit for serving total
+    const nutrientUnit = nutrientTotals[nutrient].unit; 
 
-    const totalQuantity = dailyTotals[nutrient] //  Qty for the % daily value
+    //  Qty for the % daily value
+    const totalQuantity = dailyTotals[nutrient] 
       ? Math.floor(dailyTotals[nutrient].quantity * qty)
       : "";
 
-    const totalUnit = dailyTotals[nutrient] //  Unit for the % daily value
+      //  Unit for the % daily value
+    const totalUnit = dailyTotals[nutrient] 
       ? dailyTotals[nutrient].unit
       : "N/A";
 
@@ -99,6 +112,9 @@ export default function NutritionFacts({
     //  CB that runs mutation in handleSubmit
     const { loading, data, error } = await addFood({
       variables: foodLogData.recordData,
+      refetchQueries : [{
+        query: GET_DOUGHNUT_DATA
+      }]
     });
 
     if (error) return `Error: ${error}`;

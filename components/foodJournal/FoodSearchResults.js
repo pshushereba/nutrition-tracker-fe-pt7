@@ -17,7 +17,7 @@ export default function FoodSearchResults() {
   );
 
   return (
-    <section className="flex flex-1 justify-between">
+    <section className="flex flex-1 justify-between mt-24">
       <FoodSearchList />
       {data ? <NutritionFacts nutrition={JSON.parse(nutrition)} /> : svg}
     </section>

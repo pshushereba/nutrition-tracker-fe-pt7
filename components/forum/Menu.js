@@ -5,7 +5,6 @@ import { useMutation } from '@apollo/react-hooks';
 
 const Menu = (props) => {
     const router = useRouter();
-    const [confirmDelete, setConfirmDelete] = useState(false);
     const [deletePost] = useMutation(DELETE_POST);
 
     return (

@@ -6,13 +6,15 @@ import { GET_SEARCH_RESULTS } from "../../gql/queries.js";
 
 export default function FoodSearchBox() {
   const [item, setItem] = useState("");
-  const { data, client } = useQuery(GET_SEARCH_RESULTS); //  Pull in the client so result data can be written to the cache
+  //  Pull in the client so result data can be written to the cache
+  const { data, client } = useQuery(GET_SEARCH_RESULTS); 
 
   const handleChange = (e) => {
     setItem(e.target.value);
   };
 
-  const query = item.replace(" ", "%20"); // Format the entered food item for the API call
+  // Format the entered food item for the API call
+  const query = item.replace(" ", "%20"); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,7 +37,8 @@ export default function FoodSearchBox() {
   return (
     <form onSubmit={handleSubmit}>
       <input
-        className="w-full border border-gray-200 rounded focus:border-purple-200 py-2 px-4"
+        className="w-full border border-gray-200 rounded focus:border-item-hover_lucero_78
+         py-2 px-4"
         type="text"
         placeholder="Search Food Item"
         name="food"

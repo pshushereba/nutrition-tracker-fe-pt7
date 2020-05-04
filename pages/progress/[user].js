@@ -15,14 +15,14 @@ const Progress = () => {
 
   return (
     <Layout>
-      <section className="flex items-center justify-center ml-20 mr-40">
+      <section className="flex items-center justify-center">
         <div className="w-1/3">
           <ProgressGraph data={data} />
         </div>
-        <div className="w-1/3">
+        <div className="flex-1">
           <ProgressCenter data={data} />
         </div>
-        <div className="w-1/3">
+        <div className="w-1/4">
           <ProgressWeightLog data={data} />
         </div>
       </section>

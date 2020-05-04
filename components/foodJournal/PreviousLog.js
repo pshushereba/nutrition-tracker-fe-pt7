@@ -25,13 +25,15 @@ export default function FoodLog() {
   };
 
   const currentDate = new Date(Date.now());
-
-  const currentRecord = (data) => {
+  
+  const previousRecords = (data) => {
     let newArr = [];
     data.map((record) => {
+      // Filter dailyRecords for all records prior to today
       const loggedToday =
         record.date !== currentDate.toLocaleDateString().toString();
       const edamamId = JSON.parse(record.food_string).food;
+      //  Filter out duplicate recods
       const alreadyInRecords = newArr
         .map((item) => {
           const itemEdamamId = JSON.parse(item.food_string).food;
@@ -93,9 +95,8 @@ export default function FoodLog() {
         </div>
       </div>
       <DashboardChart
-        records={currentRecord(myDailyRecords)}
+        records={previousRecords(myDailyRecords)}
         mealType={mealType}
-        refetch={refetch}
       />
     </>
   );

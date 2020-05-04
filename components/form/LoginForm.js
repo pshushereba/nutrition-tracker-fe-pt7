@@ -8,6 +8,18 @@ import { LOG_IN } from "../../gql/mutations";
 import ThunderboltSVG from "../svg/ThunderboltSVG";
 import { Spacer } from "../Layout/LayoutPrimitives";
 
+/*
+    This component was made obselete by the integration of Auth0.
+    Should you want to deploy with out Auth0, create a /login in pages and import
+    this component, and it should work out of the box, if withApollo is refactored to grab the tokens
+    from the API response from the backend. This component does not use ApolloClient. 
+    We had issues with getting ApolloClient to reintialize after login. This means when the queries were
+    sent on page load, there were no tokens in the auth header asthe client was instantiated before
+    they were set. Refactoring the back end to send and retrieve the session creds strictly from cookies
+    and setting "credentials: 'include'" in ApolloClient, might resolve this.
+
+*/
+
 export default function () {
   const [user, setUser] = useState("");
   const Router = useRouter();
@@ -17,7 +29,7 @@ export default function () {
     password: user.password,
   };
 
-  const API = "https://labspt7-nutrition-tracker-be.herokuapp.com";
+  const API = process.env.GRAPHQL_ENDPOINT;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
